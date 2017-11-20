@@ -16,18 +16,20 @@ public class Patient {
     public String Name;
     public String Surname;
     public int PatientNumber;
-    public String Description;
+    //public String Description;
 
-    private Dictionary<Integer, Answer> patientAnswers;
+    public Dictionary<Integer, Answer> PatientAnswers;
 
     public int NihssSum;
     public List<NihssExamination> NihssHistory;
 
-    private Dictionary<Region, Boolean> affectedRegionsSB;
+    public Dictionary<Region, Boolean> AffectedRegionsSB;
 
     public boolean TreatmentDecision;
 
-    private int prognosisHat;
-    private int prognosisiScore;
-    private  int prognsisDragon;
+    public int PrognosisHat;
+    public int PrognosisiScore;
+    public int PrognsisDragon;
+
+    public void WriteToDatabse(){}
 }
