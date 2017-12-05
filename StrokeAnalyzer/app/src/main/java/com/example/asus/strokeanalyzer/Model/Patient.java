@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Patient {
 
-    private int id;
+    public int Id;
     public String Name;
     public String Surname;
     public int PatientNumber;
