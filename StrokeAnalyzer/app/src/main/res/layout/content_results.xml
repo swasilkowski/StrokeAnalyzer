@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.strokeanalyzer.View.ResultsFragment"
+    tools:showIn="@layout/fragment_results"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nihss"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/nihssSum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/Text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stroke_bricks"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/sbDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/Text"/>
+
+        <Button
+            android:id="@+id/CTPicutresBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/view_ct_pictures"
+            style="@style/NormalButton"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/treatment_decision"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/treatmentDecision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/Text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wrong_answers_text"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/wrongAnswers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/Text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hat_scale"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/hatScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/Text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dragon_scale"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/dragonScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/Text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/iscore_scale"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/iscoreScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/Text"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
