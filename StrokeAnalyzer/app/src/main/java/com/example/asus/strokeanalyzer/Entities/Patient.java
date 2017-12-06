@@ -1,4 +1,4 @@
-package Entities;
+package com.example.asus.strokeanalyzer.Entities;
 
 
 import android.arch.persistence.room.ColumnInfo;
@@ -13,7 +13,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "patient")
 public class Patient {
     @PrimaryKey(autoGenerate = true)
-    public int ID;
+    public int id;
 
     @ColumnInfo(name = "name")
     public String Name;
@@ -25,6 +25,5 @@ public class Patient {
     public int PatientNumber;
 
     @Embedded
-    @ColumnInfo(name = "other_data")
     public OtherData OtherData;
 }

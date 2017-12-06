@@ -1,4 +1,4 @@
-package Database;
+package com.example.asus.strokeanalyzer.Database;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;

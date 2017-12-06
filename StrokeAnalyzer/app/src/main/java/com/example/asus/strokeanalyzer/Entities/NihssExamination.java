@@ -1,11 +1,9 @@
-package Entities;
+package com.example.asus.strokeanalyzer.Entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Date;
 
 /**
  * Created by S. Wasilkowski on 2017-12-06.

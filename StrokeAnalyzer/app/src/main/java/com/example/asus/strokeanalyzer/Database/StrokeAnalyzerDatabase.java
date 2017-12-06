@@ -1,16 +1,13 @@
-package Database;
+package com.example.asus.strokeanalyzer.Database;
 
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
 import android.arch.persistence.room.Database;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
 import android.arch.persistence.room.RoomDatabase;
 
-import DAO.NihssDao;
-import DAO.PatientDao;
-import Entities.NihssExamination;
-import Entities.OtherData;
-import Entities.Patient;
+import com.example.asus.strokeanalyzer.DAO.NihssDao;
+import com.example.asus.strokeanalyzer.DAO.PatientDao;
+import com.example.asus.strokeanalyzer.Entities.NihssExamination;
+import com.example.asus.strokeanalyzer.Entities.OtherData;
+import com.example.asus.strokeanalyzer.Entities.Patient;
 
 /**
  * Created by S. Wasilkowski on 2017-12-06.

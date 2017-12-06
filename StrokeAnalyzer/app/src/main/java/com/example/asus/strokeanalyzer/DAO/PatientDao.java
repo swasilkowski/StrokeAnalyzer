@@ -1,4 +1,4 @@
-package DAO;
+package com.example.asus.strokeanalyzer.DAO;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
@@ -7,7 +7,7 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
-import Entities.Patient;
+import com.example.asus.strokeanalyzer.Entities.Patient;
 
 /**
  * Created by S. Wasilkowski on 2017-12-06.
@@ -16,7 +16,7 @@ import Entities.Patient;
 @Dao
 public interface PatientDao {
     @Insert
-    public int insert(Patient patient);
+    public long insert(Patient patient);
 
     @Update
     public void update(Patient patient);
