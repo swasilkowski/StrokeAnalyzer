@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="start_page_icon">85dp</dimen>
+    <dimen name="start_button_margin">25dp</dimen>
+    <dimen name="start_button_margin_vertical">7dp</dimen>
+    <dimen name="start_button_text">23sp</dimen>
+    <dimen name="start_button_padding">20dp</dimen>
+    <dimen name="button_margin">10dp</dimen>
+    <dimen name="button_margin_vertical">3dp</dimen>
+    <dimen name="button_text">20sp</dimen>
+    <dimen name="button_padding">7dp</dimen>
+    <dimen name="text_size">20sp</dimen>
+    <dimen name="text_padding">10dp</dimen>
+    <dimen name="text_margin">12dp</dimen>
+    <dimen name="text_margin_vertical">6dp</dimen>
+
+
+    <dimen name="tmp_button_width">190dp</dimen>
+<!--    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">200dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>-->
+</resources>

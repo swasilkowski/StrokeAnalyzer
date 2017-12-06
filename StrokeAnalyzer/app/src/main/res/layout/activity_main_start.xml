@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.strokeanalyzer.View.MainStartActivity">
+
+    <FrameLayout
+        android:id="@+id/fragmentFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorStartBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="244dp"
+                android:layout_height="190dp"
+                app:srcCompat="@drawable/brain"
+                tools:layout_editor_absoluteX="70dp"
+                tools:layout_editor_absoluteY="42dp" />
+
+<!--            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">-->
+
+<!--                <ImageView
+                    android:id="@+id/listLogo"
+                    android:layout_width="@dimen/start_page_icon"
+                    android:layout_height="@dimen/start_page_icon"
+                    app:srcCompat="@mipmap/ic_person_list_24dp"
+                    tools:layout_editor_absoluteY="258dp"
+                    tools:layout_editor_absoluteX="56dp" />-->
+
+                <Button
+                    style="@style/StartButton"
+                    android:id="@+id/listBt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_bt_text"
+                    tools:layout_editor_absoluteY="268dp"
+                    tools:layout_editor_absoluteX="168dp"
+                    android:onClick="showList"/>
+
+            <!--</LinearLayout>-->
+
+<!--            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">-->
+
+                <Button
+                    style="@style/StartButton"
+                    android:id="@+id/newPatientBt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_patient_bt_text"
+                    tools:layout_editor_absoluteY="374dp"
+                    tools:layout_editor_absoluteX="88dp"
+                    android:onClick="addPatient"/>
+
+<!--                <ImageView
+                    android:id="@+id/newPatientLogo"
+                    android:layout_width="@dimen/start_page_icon"
+                    android:layout_height="@dimen/start_page_icon"
+                    app:srcCompat="@mipmap/ic_person_add_24dp"
+                    tools:layout_editor_absoluteY="355dp"
+                    tools:layout_editor_absoluteX="282dp" />
+
+            </LinearLayout>-->
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

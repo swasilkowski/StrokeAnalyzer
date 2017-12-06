@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">StrokeAnalyzer</string>
+    <string name="list_bt_text">Lista pacjentów</string>
+    <string name="new_patient_bt_text">Dodaj nowego pacjenta</string>
+    <string name="name_string">Imię:</string>
+    <string name="surname_string">Nazwisko:</string>
+    <string name="patient_number_string">Numer pacjenta:</string>
+    <string name="name_hint">Wprowadź imię pacjenta</string>
+    <string name="surname_hint">Wprowadź nazwisko pacjenta</string>
+    <string name="patient_number_hint">Wprowadź numer identyfikujący pacjenta</string>
+    <string name="next_bt">Dalej</string>
+    <string name="nihss">NIHSS</string>
+    <string name="stroke_bricks">Stroke Bricks</string>
+    <string name="treatment_decision">Leczenie trombolityczne</string>
+    <string name="dragon_scale">Skala Dragon</string>
+    <string name="iscore_scale">Skala iScore</string>
+    <string name="hat_scale">Skala Hat</string>
+    <string name="result_string">Wyniki</string>
+    <string name="report_string">Raport</string>
+    <string name="demographic_and_clinic_data">Dane demograficzne i kliniczne</string>
+    <string name="no_result_text">Brak wyniku</string>
+    <string name="view_ct_pictures">Zdjęcia TK</string>
+    <string name="wrong_answers_text">Czynniki wykluczające z leczenia:</string>
+    <string name="profile_bt">Otwórz profil pacjenta</string>
+    <string name="delete_bt">Usuń</string>
+    <string name="report_dialog">Podaj adres email. Po wyborze \'OK\' raport zostanie wygenerowany i
+        przesłany na wprowadzony przez Ciebie adres email.</string>
+    <string name="email_hint">email</string>
+    <string name="report_generation">Generowanie raportu</string>
+    <string name="ok_bt">OK</string>
+    <string name="cancel_bt">Zamknij</string>
+
+    <string name="patient_number_tag">patient_number</string>
+    <string name="done_tag">done</string>
+    <string name="new_patient_tag">new_patient</string>
 </resources>
