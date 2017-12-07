@@ -33,4 +33,5 @@
     <string name="patient_number_tag">patient_number</string>
     <string name="done_tag">done</string>
     <string name="new_patient_tag">new_patient</string>
+    <string name="picture_tag">picture</string>
 </resources>

@@ -2,18 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal">
+    style="@style/Question">
 
     <TextView
         android:id="@+id/questionTextD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Text"/>
+        style="@style/QuestionText"/>
 
     <EditText
         android:id="@+id/answerText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/EditTextCustom"
         android:ems="10"
         android:inputType="textPersonName" />
 

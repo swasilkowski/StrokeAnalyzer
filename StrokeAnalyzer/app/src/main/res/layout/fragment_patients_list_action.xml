@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.asus.strokeanalyzer.View.DialogWindows.PatientsListActionFragment"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    style="@style/Dialog">
 
     <Button
         android:id="@+id/profileBt"

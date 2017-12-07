@@ -80,10 +80,8 @@ public class PatientProfileFragment extends Fragment {
 
         //set patient data
         name = (TextView) view.findViewById(R.id.patientNameShow);
-        surname = (TextView) view.findViewById(R.id.patientSurnameShow);
         number = (TextView) view.findViewById(R.id.patientNumberShow);
-        name.setText(patient.Name);
-        name.setText(patient.Surname);
+        name.setText(patient.Name +" "+ patient.Surname);
         number.setText(Integer.toString(patient.PatientNumber));
 
         final Button resultBt= (Button) view.findViewById(R.id.resultBt);

@@ -10,9 +10,8 @@
 
     <ImageView
         android:id="@+id/newPatientLogoFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
+        style="@style/OtherPicture"
+        app:srcCompat="@drawable/add"
         android:layout_gravity="center"/>
 
     <TextView
@@ -20,12 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name_string"
-        style="@style/Text"/>
+        style="@style/StandardText"/>
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/EditTextCustom"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/name_hint"/>
@@ -35,12 +33,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/surname_string"
-        style="@style/Text"/>
+        style="@style/StandardText"/>
 
     <EditText
         android:id="@+id/surname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/EditTextCustom"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/surname_hint" />
@@ -50,14 +47,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/patient_number_string"
-        style="@style/Text"/>
+        style="@style/StandardText"/>
 
     <EditText
         android:id="@+id/patientNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/EditTextCustom"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="numberSigned"
         android:hint="@string/patient_number_hint" />
 
     <Button

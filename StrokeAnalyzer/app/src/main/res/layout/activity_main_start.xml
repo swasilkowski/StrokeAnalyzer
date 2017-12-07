@@ -21,9 +21,8 @@
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="244dp"
-                android:layout_height="190dp"
-                app:srcCompat="@drawable/brain"
+                style="@style/LogoPicture"
+                app:srcCompat="@drawable/logo"
                 tools:layout_editor_absoluteX="70dp"
                 tools:layout_editor_absoluteY="42dp" />
 
@@ -48,7 +47,7 @@
                     android:text="@string/list_bt_text"
                     tools:layout_editor_absoluteY="268dp"
                     tools:layout_editor_absoluteX="168dp"
-                    android:onClick="showList"/>
+                    android:onClick="showList" />
 
             <!--</LinearLayout>-->
 
@@ -65,7 +64,8 @@
                     android:text="@string/new_patient_bt_text"
                     tools:layout_editor_absoluteY="374dp"
                     tools:layout_editor_absoluteX="88dp"
-                    android:onClick="addPatient"/>
+                    android:onClick="addPatient"
+                    android:background="@color/colorAccent"/>
 
 <!--                <ImageView
                     android:id="@+id/newPatientLogo"

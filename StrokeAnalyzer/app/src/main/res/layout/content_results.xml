@@ -14,30 +14,26 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/nihss"
-            style="@style/Text"/>
+            style="@style/ResultLabel"/>
 
         <TextView
             android:id="@+id/nihssSum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result_text"
-            style="@style/Text"/>
+            style="@style/StandardText"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/stroke_bricks"
-            style="@style/Text"/>
+            style="@style/ResultLabel"/>
 
         <TextView
             android:id="@+id/sbDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result_text"
-            style="@style/Text"/>
+            style="@style/StandardText"/>
 
         <Button
             android:id="@+id/CTPicutresBt"
@@ -47,69 +43,60 @@
             style="@style/NormalButton"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/treatment_decision"
-            style="@style/Text"/>
+            style="@style/ResultLabel"/>
 
         <TextView
             android:id="@+id/treatmentDecision"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result_text"
-            style="@style/Text"/>
+            style="@style/StandardText"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
             android:text="@string/wrong_answers_text"
-            style="@style/Text"/>
+            style="@style/ResultLabel"/>
 
         <TextView
             android:id="@+id/wrongAnswers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result_text"
-            style="@style/Text"/>
+            style="@style/StandardText"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/hat_scale"
-            style="@style/Text"/>
+            style="@style/ResultLabel"/>
 
         <TextView
             android:id="@+id/hatScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result_text"
-            style="@style/Text"/>
+            style="@style/StandardText"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/dragon_scale"
-            style="@style/Text"/>
+            style="@style/ResultLabel"/>
 
         <TextView
             android:id="@+id/dragonScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result_text"
-            style="@style/Text"/>
+            style="@style/StandardText"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/iscore_scale"
-            style="@style/Text"/>
+            style="@style/ResultLabel"/>
 
         <TextView
             android:id="@+id/iscoreScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result_text"
-            style="@style/Text"/>
+            style="@style/StandardText"/>
 
     </LinearLayout>
 

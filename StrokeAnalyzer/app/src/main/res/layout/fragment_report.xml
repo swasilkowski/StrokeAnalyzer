@@ -9,12 +9,12 @@
         android:id="@+id/operationDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/report_dialog" />
+        android:text="@string/report_dialog"
+        style="@style/StandardText"/>
 
     <EditText
         android:id="@+id/emailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/EditTextCustom"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:hint="@string/email_hint" />
