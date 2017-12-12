@@ -10,11 +10,11 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
 
     public class RangeClassifier
     {
-        public Integer MinValue;
-        public Integer MaxValue;
-        public Integer Points;
+        public double MinValue;
+        public double MaxValue;
+        public int Points;
 
-        boolean withinARange(int value)
+        boolean withinARange(double value)
         {
             if(value>MaxValue || value<MinValue)
                 return false;
@@ -32,7 +32,7 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
     {
         super(questionId);
     }
-    public int CalculatePoints(Integer value)
+    public int CalculatePoints(double value)
     {
         if(CorrectValue!= null && CorrectValue.equals(value))
             return 1;
@@ -47,7 +47,7 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
         return 0;
     }
 
-    public boolean CheckCorrecteness(Integer value)
+    public boolean CheckCorrectness(double value)
     {
         if(CorrectValue!= null && CorrectValue.equals(value))
             return true;

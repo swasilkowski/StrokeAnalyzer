@@ -1,7 +1,6 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
-import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
@@ -50,7 +49,7 @@ public final class TreatmentAnalyzer {
                 }
                 else if(userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer)
                 {
-                    if(!((ExpectedNumericAnswer) expectedAnswer).CheckCorrecteness(((NumericAnswer) userAnswer).Value))
+                    if(!((ExpectedNumericAnswer) expectedAnswer).CheckCorrectness(((NumericAnswer) userAnswer).Value))
                     {
                             result.Decision = false;
                             result.badAnswers.add(userAnswer);
