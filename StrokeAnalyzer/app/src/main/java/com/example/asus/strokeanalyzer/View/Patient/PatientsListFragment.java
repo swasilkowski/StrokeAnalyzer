@@ -56,7 +56,8 @@ public class PatientsListFragment extends Fragment  {
             Context context = view.getContext();
 
             //get patients list from database
-            patients = PatientService.GetPatientsList();
+            PatientService patientService = new PatientService(getContext());
+            patients = patientService.GetPatientsList();
 
             pAdapter = new PatientAdapter(patients,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));

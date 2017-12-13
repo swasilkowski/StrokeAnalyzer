@@ -100,7 +100,8 @@ public class NewPatientFragment extends Fragment {
         newPatient.Surname = surname;
         newPatient.PatientNumber = Integer.parseInt(number); //zlap wyjatki!!!
 
-        long patientID = PatientService.AddPatient(newPatient);
+        PatientService patientService = new PatientService(getContext());
+        long patientID = patientService.AddPatient(newPatient);
 
         //move to demograhic form
         FormFragment setFragment = FormFragment.newInstance(Form.DemographicAndClinic, patientID);

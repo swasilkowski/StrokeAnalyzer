@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +42,11 @@ public class Patient {
     public int PrognosisHat;
     public int PrognosisiScore;
     public int PrognsisDragon;
+
+    public Patient() {
+        PatientAnswers = new Hashtable<>();
+        AffectedRegionsSB = new Hashtable<>();
+    }
 
     public void GenarateReport() {
         Document doc = new Document();

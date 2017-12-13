@@ -53,7 +53,8 @@ public class FormFragment extends Fragment {
     public static FormFragment newInstance(Form form, long patientID) {
         FormFragment fragment = new FormFragment();
         fragment.formType = form;
-        fragment.patient = PatientService.GetPatientById((int)patientID);
+        PatientService patientService = new PatientService(fragment.getContext());
+        fragment.patient = patientService.GetPatientById((int)patientID);
         //----------zmienic----------------
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
