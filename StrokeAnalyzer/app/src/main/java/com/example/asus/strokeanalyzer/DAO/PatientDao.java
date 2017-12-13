@@ -1,6 +1,7 @@
 package com.example.asus.strokeanalyzer.DAO;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
@@ -26,4 +27,7 @@ public interface PatientDao {
 
     @Query("SELECT * FROM patient WHERE id = :id")
     public Patient selectById(int id);
+
+    @Delete
+    void delete(Patient patient);
 }
