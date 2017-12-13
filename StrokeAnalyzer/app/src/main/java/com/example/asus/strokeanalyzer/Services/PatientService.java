@@ -18,10 +18,10 @@ import java.util.Map;
  * Created by S. Wasilkowski on 2017-12-12.
  */
 
-public class PatientService {
-    private StrokeAnalyzerDatabase db = DatabaseAccess.getInstance().database;
+public final class PatientService {
+    private static StrokeAnalyzerDatabase db = DatabaseAccess.getInstance().database;
 
-    public List<Patient> GetPatientsList(){
+    public static List<Patient> GetPatientsList(){
         List<Patient> patientsList = new LinkedList<>();
         List<com.example.asus.strokeanalyzer.Entities.Patient> entities;
         entities = db.patientDao().selectAll();
@@ -33,12 +33,12 @@ public class PatientService {
         return  patientsList;
     }
 
-    public Patient GetPatientById(int id) {
+    public static Patient GetPatientById(int id) {
         Patient patient = EntityToModel(db.patientDao().selectById(id));
         return patient;
     }
 
-    public long AddPatient(Patient patient) {
+    public static long AddPatient(Patient patient) {
         long id = db.patientDao().insert(ModelToEntity(patient));
         patient.Id = (int)id;
 
@@ -49,7 +49,7 @@ public class PatientService {
         return id;
     }
 
-    public void UpdatePatient(Patient patient){
+    public static void UpdatePatient(Patient patient){
         db.patientDao().update(ModelToEntity(patient));
 
         for (OtherData data:
@@ -58,7 +58,7 @@ public class PatientService {
         }
     }
 
-    private List<OtherData> modelDatatoEntityData(Patient model){
+    private static List<OtherData> modelDatatoEntityData(Patient model){
         List<OtherData> dataList = new LinkedList<>();
 
         for (Answer answer:
@@ -88,7 +88,7 @@ public class PatientService {
         return dataList;
     }
 
-    private com.example.asus.strokeanalyzer.Entities.Patient ModelToEntity(Patient model) {
+    private static com.example.asus.strokeanalyzer.Entities.Patient ModelToEntity(Patient model) {
         com.example.asus.strokeanalyzer.Entities.Patient entity;
         entity = new com.example.asus.strokeanalyzer.Entities.Patient();
         entity.id = model.Id;
@@ -99,7 +99,7 @@ public class PatientService {
         return entity;
     }
 
-    private Patient EntityToModel(com.example.asus.strokeanalyzer.Entities.Patient entity) {
+    private static Patient EntityToModel(com.example.asus.strokeanalyzer.Entities.Patient entity) {
         Patient patient = new Patient();
         patient.Id = entity.id;
         patient.Name = entity.Name;

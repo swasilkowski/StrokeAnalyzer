@@ -14,6 +14,7 @@ import com.example.asus.strokeanalyzer.Model.Analyzers.StrokeBricksAnalyzer;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 
 /**
@@ -95,8 +96,14 @@ public class NewPatientFragment extends Fragment {
 
         //add patient to database - create profile
         Patient newPatient = new Patient();
+        newPatient.Name = name;
+        newPatient.Surname = surname;
+        newPatient.PatientNumber = Integer.parseInt(number); //zlap wyjatki!!!
+
+        long patientID = PatientService.AddPatient(newPatient);
+
         //move to demograhic form
-        FormFragment setFragment = FormFragment.newInstance(Form.DemographicAndClinic, newPatient);
+        FormFragment setFragment = FormFragment.newInstance(Form.DemographicAndClinic, patientID);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)

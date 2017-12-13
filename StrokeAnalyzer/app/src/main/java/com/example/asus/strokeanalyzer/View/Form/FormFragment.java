@@ -21,6 +21,7 @@ import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.TrueFalseQuestion;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.NewPatientFragment;
 import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
 import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
@@ -49,10 +50,10 @@ public class FormFragment extends Fragment {
     private List<Question> printQuestions = new ArrayList<>();
     private List<com.example.asus.strokeanalyzer.Model.Form.Question.Question> questions = new ArrayList<>();
 
-    public static FormFragment newInstance(Form form, Patient patient) {
+    public static FormFragment newInstance(Form form, long patientID) {
         FormFragment fragment = new FormFragment();
         fragment.formType = form;
-        fragment.patient = patient;
+        fragment.patient = PatientService.GetPatientById((int)patientID);
         //----------zmienic----------------
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);

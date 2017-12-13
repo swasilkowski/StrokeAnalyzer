@@ -199,7 +199,7 @@ public class PatientProfileFragment extends Fragment {
     public void printForm(View v, Form form)
     {
         //move to proper form
-        FormFragment setFragment = FormFragment.newInstance(form, patient);
+        FormFragment setFragment = FormFragment.newInstance(form, patient.Id);
         //move to demograhic form
         //ResultsFragment setFragment= new ResultsFragment();
         getActivity().getSupportFragmentManager().beginTransaction()

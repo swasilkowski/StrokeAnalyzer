@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.PatientsListActionFragment;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
@@ -38,21 +39,7 @@ public class PatientsListFragment extends Fragment  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Patient p1 = new Patient();
-        p1.Name="rafal";
-        p1.Surname = "Kowl";
-        p1.PatientNumber=156;
-        Patient p2 = new Patient();
-        p2.Name="Ola";
-        p2.Surname = "GDgdh";
-        p2.PatientNumber=15695;
-        Patient p3 = new Patient();
-        p3.Name="Kuba";
-        p3.Surname = "Hdggdh";
-        p3.PatientNumber=6955;
-        patients.add(p1);
-        patients.add(p2);
-        patients.add(p3);
+
     }
 
 
@@ -69,7 +56,7 @@ public class PatientsListFragment extends Fragment  {
             Context context = view.getContext();
 
             //get patients list from database
-            //namesList = dbh.getNameList(rankingID);
+            patients = PatientService.GetPatientsList();
 
             pAdapter = new PatientAdapter(patients,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
