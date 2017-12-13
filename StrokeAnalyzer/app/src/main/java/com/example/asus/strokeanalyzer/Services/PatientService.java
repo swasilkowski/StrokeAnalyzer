@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.Services;
 
+import android.content.Context;
+
 import com.example.asus.strokeanalyzer.Database.DatabaseAccess;
 import com.example.asus.strokeanalyzer.Database.StrokeAnalyzerDatabase;
 import com.example.asus.strokeanalyzer.Entities.OtherData;
@@ -12,16 +14,19 @@ import com.example.asus.strokeanalyzer.Model.Patient;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by S. Wasilkowski on 2017-12-12.
  */
 
 public final class PatientService {
-    private static StrokeAnalyzerDatabase db = DatabaseAccess.getInstance().database;
+    private StrokeAnalyzerDatabase db;
 
-    public static List<Patient> GetPatientsList(){
+    public PatientService(Context context) {
+        db = DatabaseAccess.getInstance(context).database;
+    }
+
+    public List<Patient> GetPatientsList(){
         List<Patient> patientsList = new LinkedList<>();
         List<com.example.asus.strokeanalyzer.Entities.Patient> entities;
         entities = db.patientDao().selectAll();
@@ -33,12 +38,12 @@ public final class PatientService {
         return  patientsList;
     }
 
-    public static Patient GetPatientById(int id) {
+    public Patient GetPatientById(int id) {
         Patient patient = EntityToModel(db.patientDao().selectById(id));
         return patient;
     }
 
-    public static long AddPatient(Patient patient) {
+    public long AddPatient(Patient patient) {
         long id = db.patientDao().insert(ModelToEntity(patient));
         patient.Id = (int)id;
 
@@ -49,7 +54,7 @@ public final class PatientService {
         return id;
     }
 
-    public static void UpdatePatient(Patient patient){
+    public void UpdatePatient(Patient patient){
         db.patientDao().update(ModelToEntity(patient));
 
         for (OtherData data:
@@ -58,7 +63,7 @@ public final class PatientService {
         }
     }
 
-    private static List<OtherData> modelDatatoEntityData(Patient model){
+    private List<OtherData> modelDatatoEntityData(Patient model){
         List<OtherData> dataList = new LinkedList<>();
 
         for (Answer answer:
@@ -88,7 +93,7 @@ public final class PatientService {
         return dataList;
     }
 
-    private static com.example.asus.strokeanalyzer.Entities.Patient ModelToEntity(Patient model) {
+    private com.example.asus.strokeanalyzer.Entities.Patient ModelToEntity(Patient model) {
         com.example.asus.strokeanalyzer.Entities.Patient entity;
         entity = new com.example.asus.strokeanalyzer.Entities.Patient();
         entity.id = model.Id;
@@ -99,7 +104,7 @@ public final class PatientService {
         return entity;
     }
 
-    private static Patient EntityToModel(com.example.asus.strokeanalyzer.Entities.Patient entity) {
+    private Patient EntityToModel(com.example.asus.strokeanalyzer.Entities.Patient entity) {
         Patient patient = new Patient();
         patient.Id = entity.id;
         patient.Name = entity.Name;
