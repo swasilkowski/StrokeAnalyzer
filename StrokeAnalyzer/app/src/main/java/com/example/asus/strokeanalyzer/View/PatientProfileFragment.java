@@ -177,7 +177,7 @@ public class PatientProfileFragment extends Fragment {
         Bundle bundel = new Bundle();
 
         // Storing data into bundle
-        bundel.putInt(getString(R.string.patient_number_tag), patient.PatientNumber);
+        bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
 
         //print dialog with actions for patient
         DialogFragment dialog = ReportFragment.newInstance(patient);

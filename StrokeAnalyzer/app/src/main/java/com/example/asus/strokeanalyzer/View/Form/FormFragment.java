@@ -54,6 +54,7 @@ public class FormFragment extends Fragment {
         FormFragment fragment = new FormFragment();
         fragment.formType = form;
         fragment.patient = PatientService.GetPatientById((int)patientID);
+
         //----------zmienic----------------
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -67,29 +68,6 @@ public class FormFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        DescriptiveQuestion p1 = new DescriptiveQuestion(1,"Czy masz zielone oczy?");
-        TrueFalseQuestion p2 = new TrueFalseQuestion(2, "Czy myjesz zęby?");
-        DescriptiveQuestion p3 = new DescriptiveQuestion(3, "Jaki masz kolor skarpetek?");
-        Map<Integer,String> tmp = new HashMap<Integer,String>();
-        tmp.put(1, "5");
-        tmp.put(2, "7");
-        tmp.put(3, "3");
-        BulletedQuestion p4 = new BulletedQuestion(4, "Ile masz lat?",tmp );
-
-        questions.add(p1);
-        questions.add(p2);
-        questions.add(p3);
-        questions.add(p4);
-
-        DescriptiveQ q1 = new DescriptiveQ(p1.GetID(), p1.GetText());
-        TrueFalseQ q2 = new TrueFalseQ(p2.GetID(),p2.GetText());
-        DescriptiveQ q3 = new DescriptiveQ(p3.GetID(),p3.GetText());
-        BulletedQ q4 = new BulletedQ(p4.GetID(), p4.GetText(), tmp);
-
-        printQuestions.add(q1);
-        printQuestions.add(q2);
-        printQuestions.add(q3);
-        printQuestions.add(q4);
     }
 
     @Override
@@ -105,8 +83,8 @@ public class FormFragment extends Fragment {
             Context context = view.getContext();
 
             //get questions list
-            //List<Integer> questionIDs = FormsStructure.QuestionsPrintedInForm.get(formType);
-            //............................
+            List<Integer> questionIDs = FormsStructure.QuestionsPrintedInForm.get(formType);
+            prepareQuestions(questionIDs);
 
             qAdapter = new QuestionAdapter(printQuestions,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -207,6 +185,31 @@ public class FormFragment extends Fragment {
                 return true;
         }
         return false;
+    }
+
+    private void prepareQuestions(List<Integer> questionIDs)
+    {
+        for(Integer id: questionIDs)
+        {
+            com.example.asus.strokeanalyzer.Model.Form.Question.Question question = FormsStructure.Questions.get(id);
+            Question printedQuestion = null;
+
+            if(question instanceof DescriptiveQuestion)
+            {
+                printedQuestion = new DescriptiveQ(question.GetID(), question.GetText());
+            }
+            else if(question instanceof TrueFalseQuestion)
+            {
+                printedQuestion = new TrueFalseQ(question.GetID(), question.GetText());
+            }
+            else if(question instanceof BulletedQuestion)
+            {
+                printedQuestion = new BulletedQ(question.GetID(), question.GetText(), ((BulletedQuestion) question).GetPosiibleValues());
+            }
+
+            questions.add(question);
+            printQuestions.add(printedQuestion);
+        }
     }
 
 

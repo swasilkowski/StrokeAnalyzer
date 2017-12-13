@@ -77,7 +77,7 @@ public class PatientsListFragment extends Fragment  {
 
                     // Storing data into bundle
                     Patient patient = patients.get(position);
-                    bundel.putInt(getString(R.string.patient_number_tag), patient.PatientNumber);
+                    bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
 
                     //print dialog with actions for patient
                     DialogFragment dialog = new PatientsListActionFragment();

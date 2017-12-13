@@ -29,8 +29,14 @@ public class BulletedQuestion extends Question {
         return possibleValues.get(ind);
     }
 
-    public List<Integer> GetListOfPosiibleValues()
+/*    public List<Integer> GetListOfPosiibleValues()
     {
         return Arrays.asList(possibleValues.keySet().toArray(new Integer[0]));
+    }*/
+
+    public Map<Integer, String> GetPosiibleValues()
+    {
+        return possibleValues;
     }
+
 }
