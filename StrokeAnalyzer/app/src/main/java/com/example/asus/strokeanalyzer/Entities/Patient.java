@@ -23,7 +23,4 @@ public class Patient {
 
     @ColumnInfo(name = "patient_name")
     public int PatientNumber;
-
-    @Embedded
-    public OtherData OtherData;
 }

@@ -15,8 +15,8 @@ import com.example.asus.strokeanalyzer.Entities.NihssExamination;
 @Dao
 public interface NihssDao {
     @Insert
-    public long insert(NihssExamination nihssExamination);
+    long insert(NihssExamination nihssExamination);
 
     @Query("SELECT * FROM nihss_form WHERE patient_id = :patientId")
-    public List<NihssExamination> SelectByPatientId(int patientId);
+    List<NihssExamination> SelectByPatientId(int patientId);
 }

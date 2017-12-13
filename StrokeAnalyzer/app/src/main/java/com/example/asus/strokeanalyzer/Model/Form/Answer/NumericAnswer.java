@@ -6,7 +6,7 @@ package com.example.asus.strokeanalyzer.Model.Form.Answer;
 
 public class NumericAnswer extends Answer {
 
-    public int Value;
+    public double Value;
 
     public NumericAnswer(int questionId)
     {

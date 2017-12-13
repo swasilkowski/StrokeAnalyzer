@@ -4,6 +4,7 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
 import com.example.asus.strokeanalyzer.DAO.NihssDao;
+import com.example.asus.strokeanalyzer.DAO.OtherDataDao;
 import com.example.asus.strokeanalyzer.DAO.PatientDao;
 import com.example.asus.strokeanalyzer.Entities.NihssExamination;
 import com.example.asus.strokeanalyzer.Entities.OtherData;
@@ -19,5 +20,7 @@ public abstract class StrokeAnalyzerDatabase extends RoomDatabase {
     public abstract PatientDao patientDao();
 
     public abstract NihssDao nihssDao();
+
+    public abstract OtherDataDao otherDataDao();
 
 }

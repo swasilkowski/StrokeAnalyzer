@@ -1,12 +1,10 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 
 import com.example.asus.strokeanalyzer.Model.CTPictures;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
-import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
@@ -18,7 +16,6 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTrueFal
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
 
-import java.security.cert.CRL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
@@ -66,7 +63,7 @@ public final class StrokeBricksAnalyzer {
                         }
                     }
                 } else if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
-                    if(((ExpectedNumericAnswer) expectedAnswer).CheckCorrecteness(((NumericAnswer) userAnswer).Value)) {
+                    if(((ExpectedNumericAnswer) expectedAnswer).CheckCorrectness(((NumericAnswer) userAnswer).Value)) {
                             for (Region r : regionsAffection.get(i)) {
                                 if (!affectedRegions.contains(r))
                                     affectedRegions.add(r);

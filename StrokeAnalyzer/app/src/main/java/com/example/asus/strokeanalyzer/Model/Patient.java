@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
+import com.example.asus.strokeanalyzer.Services.NihhsService;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -16,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Dictionary;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Asus on 20.11.2017.
@@ -27,12 +29,10 @@ public class Patient {
     public String Name;
     public String Surname;
     public int PatientNumber;
-    //public String Description;
 
-    public Dictionary<Integer, Answer> PatientAnswers;
+    public Map<Integer, Answer> PatientAnswers;
 
     public int NihssSum;
-    public List<NihssExamination> NihssHistory;
 
     public Dictionary<Region, Boolean> AffectedRegionsSB;
 
@@ -41,8 +41,6 @@ public class Patient {
     public int PrognosisHat;
     public int PrognosisiScore;
     public int PrognsisDragon;
-
-    public void WriteToDatabse(){}
 
     public void GenarateReport() {
         Document doc = new Document();
@@ -79,5 +77,13 @@ public class Patient {
             doc.close();
         }
 
+    }
+
+    public List<NihssExamination> getNihssHistory() {
+        return NihhsService.getNihssExaminationsForPatient(Id);
+    }
+
+    public void addNihssExamination(NihssExamination nihssExamination) {
+        NihhsService.addNihssExaminationForPatient(nihssExamination, Id);
     }
 }

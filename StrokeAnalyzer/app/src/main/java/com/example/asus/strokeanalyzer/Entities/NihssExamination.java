@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.Entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
@@ -22,18 +23,17 @@ public class NihssExamination {
     public int PatientId;
 
     @ColumnInfo(name = "added_on")
-    public int addedOn;
+    public long addedOn;
 
-    public int Question1;
-    public int Question2;
-    public int Question3;
-    public int Question4;
-    public int Question5;
-    public int Question6;
-    public int Question7;
-    public int Question8;
-    public int Question9;
-    public int Question10;
-    public int Question11;
-
+    public double Question1;
+    public double Question2;
+    public double Question3;
+    public double Question4;
+    public double Question5;
+    public double Question6;
+    public double Question7;
+    public double Question8;
+    public double Question9;
+    public double Question10;
+    public double Question11;
 }
