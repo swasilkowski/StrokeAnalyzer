@@ -33,6 +33,7 @@ public class PatientsListFragment extends Fragment  {
     private RecyclerView recyclerView;
     private PatientAdapter pAdapter;
     private List<Patient> patients = new ArrayList<>();
+    PatientService patientService;
 
 
     @Override
@@ -54,9 +55,9 @@ public class PatientsListFragment extends Fragment  {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
+            patientService = new PatientService(getContext());
 
             //get patients list from database
-            PatientService patientService = new PatientService(getContext());
             patients = patientService.GetPatientsList();
 
             pAdapter = new PatientAdapter(patients,context);

@@ -15,6 +15,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Patient {
 
     public int NihssSum;
 
-    public Dictionary<Region, Boolean> AffectedRegionsSB;
+    public List<Region> AffectedRegionsSB;
 
     public boolean TreatmentDecision;
 
@@ -45,7 +46,7 @@ public class Patient {
 
     public Patient() {
         PatientAnswers = new Hashtable<>();
-        AffectedRegionsSB = new Hashtable<>();
+        AffectedRegionsSB = new ArrayList<>();
     }
 
     public void GenarateReport() {

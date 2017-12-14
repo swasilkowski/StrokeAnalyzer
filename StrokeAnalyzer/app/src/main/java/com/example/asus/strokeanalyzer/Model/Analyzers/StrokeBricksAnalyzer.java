@@ -84,14 +84,8 @@ public final class StrokeBricksAnalyzer {
             }
         }
 
-        for(Region r: Collections.list(p.AffectedRegionsSB.keys()))
-        {
-            p.AffectedRegionsSB.put(r,false);
-        }
-        for(Region r: affectedRegions)
-        {
-            p.AffectedRegionsSB.put(r, true);
-        }
+        p.AffectedRegionsSB.clear();
+        p.AffectedRegionsSB = affectedRegions;
 
         return affectedRegions;
     }

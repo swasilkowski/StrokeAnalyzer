@@ -151,7 +151,7 @@ public class FormFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
 
-                PatientProfileFragment setFragment= PatientProfileFragment.newInstance(patient);
+                PatientProfileFragment setFragment= PatientProfileFragment.newInstance(patient.Id);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentFrame, setFragment, null)
                         .addToBackStack(null)

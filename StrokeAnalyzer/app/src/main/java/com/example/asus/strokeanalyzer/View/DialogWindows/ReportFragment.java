@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.Services.PatientService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +27,8 @@ import com.example.asus.strokeanalyzer.R;
  */
 public class ReportFragment extends DialogFragment {
 
-    Patient patient;
+    //Patient patient;
+    Integer patientID;
 
 
     public interface GenerateReportDialogListener {
@@ -39,13 +41,21 @@ public class ReportFragment extends DialogFragment {
 
     public static ReportFragment newInstance(Patient patient) {
         ReportFragment fragment = new ReportFragment();
-        fragment.patient = patient;
+        //fragment.patient = patient;
 
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);*/
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            patientID = getArguments().getInt(getString(R.string.patient_id_tag));
+        }
     }
 
     // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
@@ -77,7 +87,7 @@ public class ReportFragment extends DialogFragment {
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //generate report
-                        _listener.onDialogReportPositiveClick(ReportFragment.this, patient.PatientNumber);
+                        _listener.onDialogReportPositiveClick(ReportFragment.this, patientID);
 
                     }
                 })
@@ -120,14 +130,7 @@ public class ReportFragment extends DialogFragment {
     // TODO: Rename and change types and number of parameters
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

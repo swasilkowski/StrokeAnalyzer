@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 
@@ -27,14 +28,15 @@ import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 public class PatientProfileFragment extends Fragment {
 
     TextView name;
-    TextView surname;
     TextView number;
 
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PATIENT = "patient_number";
+    //private static final String ARG_PATIENT = "patient_number";
 
+    private Integer patientID;
     private Patient patient;
+    PatientService patientService;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -49,9 +51,10 @@ public class PatientProfileFragment extends Fragment {
      * @return A new instance of fragment PatientProfileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PatientProfileFragment newInstance(Patient patient) {
+    public static PatientProfileFragment newInstance(Integer patientID) {
         PatientProfileFragment fragment = new PatientProfileFragment();
-        fragment.patient = patient;
+        fragment.patientID = patientID;
+
         //-------------zmien na to podspodem--------------------
         /*Bundle args = new Bundle();
         args.putInt(ARG_PATIENT, patient.PatientNumber);
@@ -62,12 +65,14 @@ public class PatientProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+
+
+/*        if (getArguments() != null) {
             int patientNumber = getArguments().getInt(ARG_PATIENT);
 
             //load patient
             //patient = ;
-        }
+        }*/
     }
 
     @Override
@@ -77,6 +82,10 @@ public class PatientProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_patient_profile, container, false);
 
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
+
+        patientService = new PatientService(view.getContext());
+
+        patient = patientService.GetPatientById(patientID);
 
         //set patient data
         name = (TextView) view.findViewById(R.id.patientNameShow);
@@ -188,7 +197,7 @@ public class PatientProfileFragment extends Fragment {
 
     public void showResults(View v)
     {
-        ResultsFragment setFragment= ResultsFragment.newInstance(patient);
+        ResultsFragment setFragment= ResultsFragment.newInstance(patient.Id);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)

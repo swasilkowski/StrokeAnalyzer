@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
 
 /**
@@ -23,6 +24,9 @@ import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
  * create an instance of this fragment.
  */
 public class PatientsListActionFragment extends DialogFragment {
+
+    Integer patientID;
+    PatientService patientService;
 
     public PatientsListActionFragment() {
         // Required empty public constructor
@@ -93,23 +97,23 @@ public class PatientsListActionFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
+        if (getArguments() != null) {
+            patientID = getArguments().getInt(getString(R.string.patient_id_tag));
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_patients_list_action, container, false);
+        View view = inflater.inflate(R.layout.fragment_patients_list_action, container, false);
+        patientService = new PatientService(view.getContext());
+
+        return view;
     }
 
     public void deletePatient(View v)
     {
-        //get patient number
-        Integer patientNumber;
 
         //remove patient from database
         //---------------------------TODO-----------------------
@@ -121,15 +125,8 @@ public class PatientsListActionFragment extends DialogFragment {
 
     public void setPatientProfile(View v)
     {
-        //get patient number
-        Integer patientNumber;
-
-        //load patient questions from database
-        //---------------------------TODO-----------------------
-        Patient patient = new Patient();
-
         //move to patient profile view
-        PatientProfileFragment setFragment= PatientProfileFragment.newInstance(patient);
+        PatientProfileFragment setFragment= PatientProfileFragment.newInstance(patientID);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)
