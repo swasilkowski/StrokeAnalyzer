@@ -116,7 +116,7 @@ public class PatientsListActionFragment extends DialogFragment {
     {
 
         //remove patient from database
-        //---------------------------TODO-----------------------
+        patientService.DeletePatient(patientID);
 
         //get back to list view
         dismiss();

@@ -103,7 +103,7 @@ public class ResultsFragment extends Fragment {
 
     public void showCTPictures(View view)
     {
-        CTPicturesFragment setFragment= CTPicturesFragment.newInstance(patient);
+        CTPicturesFragment setFragment= CTPicturesFragment.newInstance(patientID);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)

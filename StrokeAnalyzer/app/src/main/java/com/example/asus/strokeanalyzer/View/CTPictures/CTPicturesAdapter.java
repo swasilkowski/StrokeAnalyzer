@@ -1,6 +1,7 @@
 package com.example.asus.strokeanalyzer.View.CTPictures;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +17,13 @@ import com.example.asus.strokeanalyzer.R;
 public class CTPicturesAdapter extends BaseAdapter {
 
     Context context;
-    int CTpictures[];
+    Bitmap CTpictures[];
 
     LayoutInflater inflter;
 
-    public CTPicturesAdapter(Context Context, int[] logos) {
+    public CTPicturesAdapter(Context Context, Bitmap[] pictures) {
         this.context = Context;
-        this.CTpictures = logos;
+        this.CTpictures = pictures;
     }
     @Override
     public int getCount() {
@@ -43,7 +44,7 @@ public class CTPicturesAdapter extends BaseAdapter {
                 .inflate(R.layout.ct_image, viewGroup, false);
 
         ImageView pictures = (ImageView) itemView.findViewById(R.id.basicPic);
-        pictures.setImageResource((int)getItem(i));
+        pictures.setImageBitmap((Bitmap)getItem(i));
         return itemView;
     }
 }

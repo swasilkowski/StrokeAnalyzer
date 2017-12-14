@@ -63,7 +63,8 @@ public final class PatientService {
         }
     }
 
-    public void DeletePatient(Patient patient) {
+    public void DeletePatient(Integer patientID) {
+        Patient patient = GetPatientById(patientID);
         db.patientDao().delete(ModelToEntity(patient));
         //TODO: deleting all patients data
     }

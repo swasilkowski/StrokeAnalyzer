@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.asus.strokeanalyzer.Model.CTPictures;
+import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
@@ -22,6 +24,8 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
 
         //inicialization of fragment manager
         fm = getSupportFragmentManager();
+        FormsStructure.InitializeQuestionsList();
+
     }
 
     public void showList(View v)

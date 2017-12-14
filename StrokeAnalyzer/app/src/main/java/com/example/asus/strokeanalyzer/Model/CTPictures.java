@@ -7,12 +7,15 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
+import android.test.mock.MockApplication;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.R;
 
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Asus on 20.11.2017.
@@ -20,13 +23,15 @@ import java.util.List;
 
 public final class CTPictures {
 
-    private Context appContext;
+    private static Context appContext;
 
     private static Bitmap[] basicPictures = new Bitmap[4];
-    private static Dictionary<Region,Bitmap> regions;
-    private static Dictionary<Region, Integer> regionBasicPictureRelation;
+    private static Map<Region,Bitmap> regions = new Hashtable<>();
+    private static Map<Region, Integer> regionBasicPictureRelation = new Hashtable<>();
 
-    private CTPictures(Context context)
+    private CTPictures(){}
+
+    public static void InitializeCTPictures (Context context)
     {
         appContext =context;
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.R;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
     private List<Question> questions;
+    private List<Answer> answers;
     private final Context context;
 
 
@@ -132,9 +134,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
     }*/
 
-    public QuestionAdapter(final List<Question> questions, Context context) {
+    public QuestionAdapter(final List<Question> questions, List<Answer> answers, Context context) {
         this.questions = questions;
         this.context = context;
+        this.answers = answers;
     }
 
     @Override

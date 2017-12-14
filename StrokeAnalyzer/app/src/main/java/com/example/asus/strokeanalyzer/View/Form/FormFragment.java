@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
+import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
@@ -47,14 +48,16 @@ public class FormFragment extends Fragment {
     private QuestionAdapter qAdapter;
     private Form formType;
     private Patient patient;
+    private Integer patientID;
+    private List<Answer> answers = new ArrayList<>();
     private List<Question> printQuestions = new ArrayList<>();
     private List<com.example.asus.strokeanalyzer.Model.Form.Question.Question> questions = new ArrayList<>();
+    PatientService patientService;
 
     public static FormFragment newInstance(Form form, long patientID) {
         FormFragment fragment = new FormFragment();
         fragment.formType = form;
-        PatientService patientService = new PatientService(fragment.getContext());
-        fragment.patient = patientService.GetPatientById((int)patientID);
+        fragment.patientID = (int)patientID;
         //----------zmienic----------------
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -82,11 +85,13 @@ public class FormFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
 
+            patientService = new PatientService(context);
+            patient = patientService.GetPatientById(patientID);
             //get questions list
             List<Integer> questionIDs = FormsStructure.QuestionsPrintedInForm.get(formType);
             prepareQuestions(questionIDs);
 
-            qAdapter = new QuestionAdapter(printQuestions,context);
+            qAdapter = new QuestionAdapter(printQuestions, answers,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             /*recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.addItemDecoration(new DividerItem(context, LinearLayoutManager.VERTICAL));
@@ -136,6 +141,10 @@ public class FormFragment extends Fragment {
         //noinspection SimplifiableIfStatement
         if (id == R.id.done) {
 
+            //saving patients answers
+            SaveAnswers();
+            patientService.UpdatePatient(patient);
+
             //List<Fragment> currentStackState =  getFragmentManager().getFragments();
             getFragmentManager().popBackStack();
 
@@ -175,6 +184,14 @@ public class FormFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onDestroyView ()
+    {
+        super.onDestroyView();
+        SaveAnswers();
+        patientService.UpdatePatient(patient);
+    }
+
     private boolean newPatient(List<Fragment> fragments)
     {
 
@@ -189,6 +206,7 @@ public class FormFragment extends Fragment {
 
     private void prepareQuestions(List<Integer> questionIDs)
     {
+        if(questionIDs ==null) return;
         for(Integer id: questionIDs)
         {
             com.example.asus.strokeanalyzer.Model.Form.Question.Question question = FormsStructure.Questions.get(id);
@@ -212,6 +230,17 @@ public class FormFragment extends Fragment {
         }
     }
 
+    public void SaveAnswers()
+    {
+        for(Answer ans:answers)
+        {
+            if(patient.PatientAnswers.containsKey(ans.GetQuestionID()))
+                patient.PatientAnswers.remove(ans.GetQuestionID());
+
+            patient.PatientAnswers.put(ans.GetQuestionID(),ans);
+        }
+
+    }
 
     /*
     // TODO: Rename parameter arguments, choose names that match

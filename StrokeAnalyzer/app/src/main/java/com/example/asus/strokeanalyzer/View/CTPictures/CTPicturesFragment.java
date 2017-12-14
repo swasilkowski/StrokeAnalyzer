@@ -1,6 +1,7 @@
 package com.example.asus.strokeanalyzer.View.CTPictures;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.GridView;
 import com.example.asus.strokeanalyzer.Model.CTPictures;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.Services.PatientService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,8 +25,11 @@ import com.example.asus.strokeanalyzer.R;
 public class CTPicturesFragment extends Fragment {
 
     GridView picturesGrid;
+    private Integer patientID;
+    private PatientService patientService;
+    Bitmap[] editedPictures;
 
-    int logos[] = {R.drawable.brain, R.drawable.brain, R.drawable.brain, R.drawable.brain};
+    //int logos[] = {R.drawable.brain, R.drawable.brain, R.drawable.brain, R.drawable.brain};
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -49,9 +54,9 @@ public class CTPicturesFragment extends Fragment {
      * @return A new instance of fragment CTPicturesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CTPicturesFragment newInstance(Patient patient) {
+    public static CTPicturesFragment newInstance(Integer patientID) {
         CTPicturesFragment fragment = new CTPicturesFragment();
-        fragment.patient = patient;
+        fragment.patientID = patientID;
         //-------------zmien na to podspodem--------------------
         /*Bundle args = new Bundle();
         args.putInt(ARG_PATIENT, patient.PatientNumber);
@@ -78,16 +83,19 @@ public class CTPicturesFragment extends Fragment {
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
 
         Context context = view.getContext();
+        CTPictures.InitializeCTPictures(context);
         picturesGrid = (GridView) view.findViewById(R.id.CTPicturesView); // init GridView
         // Create an object of CustomAdapter and set Adapter to GirdView
-        CTPicturesAdapter customAdapter = new CTPicturesAdapter(context.getApplicationContext(), logos);
+        patientService = new PatientService(context);
+        editedPictures = CTPictures.GenerateOutputImage(patientService.GetPatientById(patientID).AffectedRegionsSB);
+        CTPicturesAdapter customAdapter = new CTPicturesAdapter(context.getApplicationContext(), editedPictures);
         picturesGrid.setAdapter(customAdapter);
         // implement setOnItemClickListener event on GridView
         picturesGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                CTPictureFullFragment setFragment= CTPictureFullFragment.newInstance(logos[position]);
+                CTPictureFullFragment setFragment= CTPictureFullFragment.newInstance(editedPictures[position]);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentFrame, setFragment, null)
                         .addToBackStack(null)
