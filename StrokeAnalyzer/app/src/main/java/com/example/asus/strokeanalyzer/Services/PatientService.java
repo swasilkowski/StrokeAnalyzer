@@ -63,6 +63,11 @@ public final class PatientService {
         }
     }
 
+    public void DeletePatient(Patient patient) {
+        db.patientDao().delete(ModelToEntity(patient));
+        //TODO: deleting all patients data
+    }
+
     private List<OtherData> modelDatatoEntityData(Patient model){
         List<OtherData> dataList = new LinkedList<>();
 
