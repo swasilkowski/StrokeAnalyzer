@@ -18,10 +18,16 @@ public class TrueFalseQ implements Question
 
     public String getText() { return text; }
 
+    public int getId()
+    {
+        return id;
+    }
+
     public void setAnswer(boolean answer)
     {
         this.answer = answer;
     }
+    public boolean getAnswer() {return answer;}
 
     @Override
     public int getListItemType() {

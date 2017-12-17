@@ -6,11 +6,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
+import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
+import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
+import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
+import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //sorce:https://medium.com/@ruut_j/a-recyclerview-with-multiple-item-types-bce7fbd1d30e
@@ -31,35 +39,57 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
 
         public abstract void bindType(Question question);
+        public abstract void setAnswer();
     }
 
     public class ViewHolderDescriptiveQ extends ViewHolder {
         private final TextView question;
+        private final EditText answer;//!!!!!!!!!!!!!!!!!!!!! TO DO !!!!!!!!!!
+        private Question questionObject;
 
         public ViewHolderDescriptiveQ(View view) {
             super(view);
 
             question = (TextView) view.findViewById(R.id.questionTextD);
+            answer = (EditText) view.findViewById(R.id.answerText);
         }
 
         @Override
         public void bindType(Question question) {
+            questionObject = question;
             this.question.setText(((DescriptiveQ)question).getText());
         }
+
+        @Override
+        public void setAnswer()
+        {
+            ((DescriptiveQ)questionObject).setAnswer(answer.getText().toString());
+        }
+
     }
 
     public class ViewHolderTrueFalseQ extends ViewHolder {
         private final TextView question;
+        private final CheckBox answer;//!!!!!!!!!!!!!!!!!!!!! TO DO !!!!!!!!!!
+        private Question questionObject;
 
         public ViewHolderTrueFalseQ(View view) {
             super(view);
 
             question = (TextView) view.findViewById(R.id.questionTextTF);
+            answer = (CheckBox) view.findViewById(R.id.answerBox);
         }
 
         @Override
         public void bindType(Question question) {
+            questionObject = question;
             this.question.setText(((TrueFalseQ)question).getText());
+        }
+
+        @Override
+        public void setAnswer()
+        {
+            ((TrueFalseQ)questionObject).setAnswer(answer.isChecked());
         }
     }
 
@@ -67,6 +97,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private final TextView question;
         private final RecyclerView answers;
         private BulletedAnswerAdapter aAdapter;
+        private Question questionObject;
+        private int answerID;
 
         public ViewHolderBulletedQ(View view) {
             super(view);
@@ -77,6 +109,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
         @Override
         public void bindType(Question question) {
+            questionObject = question;
             this.question.setText(((BulletedQ)question).getText());
 
             // Set the adapter
@@ -96,27 +129,22 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             touchHelper.attachToRecyclerView(recyclerView);*/
                 answers.setAdapter(aAdapter);
 
-                /*recyclerView.addOnItemTouchListener(new RecyclerTouchListener( getActivity().getApplicationContext(), recyclerView, new ClickListener() {
+                answers.addOnItemTouchListener(new RecyclerTouchListener( context, answers, new ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
 
-                        // Creating Bundle object
-                        Bundle bundel = new Bundle();
-
-                        // Storing data into bundle
-                        Patient patient = patients.get(position);
-                        bundel.putInt(getString(R.string.patient_number_tag), patient.PatientNumber);
-
-                        //print dialog with actions for patient
-                        DialogFragment dialog = new PatientsListActionFragment();
-                        dialog.setArguments(bundel);
-                        dialog.show(getActivity().getSupportFragmentManager(), "PatientsListActionFragment");
+                        answerID = ((BulletedQ)questionObject).getAnswers().get(position).getId();
 
                     }
-                }));*/
+                }));
 
             }
             //-------------------------------------------------------------
+        }
+
+        @Override
+        public void setAnswer() {
+            ((BulletedQ)questionObject).setAnswer(answerID);
         }
     }
 
@@ -188,6 +216,33 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     public int getItemCount() {
         return questions.size();
     }
+
+    public List<Answer> returnAnswers()
+    {
+        List<Answer> answers = new ArrayList<>();
+        for(Question q:questions)
+        {
+            Answer answer = new Answer(-1);//no answer
+            if(q instanceof DescriptiveQ)
+            {
+                answer = new TextAnswer(((DescriptiveQ) q).getID());
+                ((TextAnswer)answer).Value= ((DescriptiveQ) q).getAnswer();
+            }
+            else if (q instanceof TrueFalseQ)
+            {
+                answer = new TrueFalseAnswer(((TrueFalseQ) q).getId());
+                ((TrueFalseAnswer)answer).Value = ((TrueFalseQ) q).getAnswer();
+            }
+            else if (q instanceof BulletedQ)
+            {
+                answer = new NumericAnswer(((BulletedQ) q).getID());
+                ((NumericAnswer)answer).Value = ((BulletedQ) q).getAnswer();//SAMO ID __________TO DO_________
+            }
+            answers.add(answer);
+        }
+        return answers;
+    }
+
 
     /*    // Remove a RecyclerView item containing a specified Data object
     public void remove(Name data) {

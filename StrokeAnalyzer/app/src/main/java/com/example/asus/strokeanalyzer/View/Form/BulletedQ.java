@@ -30,10 +30,14 @@ public class BulletedQ implements Question{
 
     public String getText() { return text; }
 
+    public int getID(){return id;}
+
     public void setAnswer(int answer)
     {
         answerId = answer;
     }
+
+    public int getAnswer(){return answerId;}
 
     public List<BulletedAnswer> getAnswers()
     {

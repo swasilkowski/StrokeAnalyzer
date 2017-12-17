@@ -22,6 +22,8 @@ public class DescriptiveQ implements Question {
     {
         answer = text;
     }
+    public String getAnswer() { return answer;}
+    public int getID() {return id;}
 
     @Override
     public int getListItemType() {
