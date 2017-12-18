@@ -17,6 +17,7 @@ import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
+import com.example.asus.strokeanalyzer.View.Nihss.NihssExaminationFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -117,7 +118,14 @@ public class PatientProfileFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                printForm(nihssBt, Form.NIHSS);
+                //move to proper form
+                NihssExaminationFragment setFragment = NihssExaminationFragment.newInstance(patient.Id);
+                //move to demograhic form
+                //ResultsFragment setFragment= new ResultsFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentFrame, setFragment, null)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         final Button sbBt= (Button) view.findViewById(R.id.sbBt);

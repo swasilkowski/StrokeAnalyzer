@@ -232,6 +232,7 @@ public class FormFragment extends Fragment {
 
     public void SaveAnswers()
     {
+        answers = qAdapter.returnAnswers();
         for(Answer ans:answers)
         {
             if(patient.PatientAnswers.containsKey(ans.GetQuestionID()))

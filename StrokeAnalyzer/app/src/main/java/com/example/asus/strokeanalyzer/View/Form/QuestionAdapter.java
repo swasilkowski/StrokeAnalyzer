@@ -134,6 +134,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                     public void onClick(View view, int position) {
 
                         answerID = ((BulletedQ)questionObject).getAnswers().get(position).getId();
+                        ((BulletedQ)questionObject).setAnswer(answerID);
 
                     }
                 }));

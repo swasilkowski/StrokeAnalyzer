@@ -58,98 +58,98 @@ public final class FormsStructure {
         BulletedQuestion question101 = new BulletedQuestion(101, "1a. Przytomność", answers101);
 
         Map<Integer, String> answers102 = new Hashtable<>();
-        answers101.put(0, "Prawidłowa odpowiedź na obydwa pytania.");
-        answers101.put(1, "Prawidłowa odpowiedź na jedno z pytań.");
-        answers101.put(2, "Brak prawidłowej odpowiedzi na żadne pytanie.");
+        answers102.put(0, "Prawidłowa odpowiedź na obydwa pytania.");
+        answers102.put(1, "Prawidłowa odpowiedź na jedno z pytań.");
+        answers102.put(2, "Brak prawidłowej odpowiedzi na żadne pytanie.");
         BulletedQuestion question102 = new BulletedQuestion(102, "1b. Orientacja: Aktualny miesiąc i wiek. Afazja - 2 pkt. Intubacja, Dyzartria, Uraz, Bariera językowa - 1 pkt", answers102);
 
         Map<Integer, String> answers103 = new Hashtable<>();
-        answers101.put(0, "Prawidłowe wykonanie obu poleceń.");
-        answers101.put(1, "Prawidłowe wykonanie jednego polecenia.");
-        answers101.put(2, "Chory nie spełnił żadnego polecenia.");
+        answers103.put(0, "Prawidłowe wykonanie obu poleceń.");
+        answers103.put(1, "Prawidłowe wykonanie jednego polecenia.");
+        answers103.put(2, "Chory nie spełnił żadnego polecenia.");
         BulletedQuestion question103 = new BulletedQuestion(103, "1c. Polecenia: Otwarcie i zamknięcie oczu. Zaciśnięcie i rozluźnienie władnej ręki.", answers103);
 
         Map<Integer, String> answers104 = new Hashtable<>();
-        answers101.put(0, "Ruchy prawidłowe.");
-        answers101.put(1, "Częściowe porażenie (zbaczanie).");
-        answers101.put(2, "Porażenie pełne lub przymusowe spojrzenie.");
+        answers104.put(0, "Ruchy prawidłowe.");
+        answers104.put(1, "Częściowe porażenie (zbaczanie).");
+        answers104.put(2, "Porażenie pełne lub przymusowe spojrzenie.");
         BulletedQuestion question104 = new BulletedQuestion(104, "2. Gałki oczne: Poziome ruchy gałek ocznych. Dowolne i odruchowe ruchy.", answers104);
 
         Map<Integer, String> answers105 = new Hashtable<>();
-        answers101.put(0, "Bez ubytków w polu widzenia.");
-        answers101.put(1, "Niedowidzenie +/- kwadrantowe oka.");
-        answers101.put(2, "Niedowidzenie połowiczne oka.");
-        answers101.put(3, "Ślepota organiczna lub korowa.");
+        answers105.put(0, "Bez ubytków w polu widzenia.");
+        answers105.put(1, "Niedowidzenie +/- kwadrantowe oka.");
+        answers105.put(2, "Niedowidzenie połowiczne oka.");
+        answers105.put(3, "Ślepota organiczna lub korowa.");
         BulletedQuestion question105 = new BulletedQuestion(105, "3. Pole widzenia", answers105);
 
         Map<Integer, String> answers106 = new Hashtable<>();
-        answers101.put(0, "Twarz prawidłowa, symetryczna.");
-        answers101.put(1, "Spłycenie fałdu. Asymetria przy uśmiechu.");
-        answers101.put(2, "Całkowity (lub prawie) paraliż dolnego piętra twarzy.");
-        answers101.put(3, "Całkowity paraliż dolnej i górnej części twarzy.");
+        answers106.put(0, "Twarz prawidłowa, symetryczna.");
+        answers106.put(1, "Spłycenie fałdu. Asymetria przy uśmiechu.");
+        answers106.put(2, "Całkowity (lub prawie) paraliż dolnego piętra twarzy.");
+        answers106.put(3, "Całkowity paraliż dolnej i górnej części twarzy.");
         BulletedQuestion question106 = new BulletedQuestion(106, "4. Nerw VII", answers106);
 
         Map<Integer, String> answers107 = new Hashtable<>();
-        answers101.put(0, "LKG nie opada w ciągu 10 s.");
-        answers101.put(1, "LKG opada przed 10 s., ale nie całym impetem");
-        answers101.put(2, "LKG opada przed 10 s., ale oporuje grawitacji.");
-        answers101.put(3, "LKG opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
-        answers101.put(4, "LKG – porażenie (całkowity bark ruchów czynnych).");
+        answers107.put(0, "LKG nie opada w ciągu 10 s.");
+        answers107.put(1, "LKG opada przed 10 s., ale nie całym impetem");
+        answers107.put(2, "LKG opada przed 10 s., ale oporuje grawitacji.");
+        answers107.put(3, "LKG opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
+        answers107.put(4, "LKG – porażenie (całkowity bark ruchów czynnych).");
         BulletedQuestion question107 = new BulletedQuestion(107, "5a. LKG", answers107);
 
         Map<Integer, String> answers108 = new Hashtable<>();
-        answers101.put(0, "PKG nie opada w ciągu 10 s.");
-        answers101.put(1, "PKG opada przed 10 s., ale nie całym impetem");
-        answers101.put(2, "PKG opada przed 10 s., ale oporuje grawitacji.");
-        answers101.put(3, "PKG opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
-        answers101.put(4, "PKG – porażenie (całkowity bark ruchów czynnych).");
+        answers108.put(0, "PKG nie opada w ciągu 10 s.");
+        answers108.put(1, "PKG opada przed 10 s., ale nie całym impetem");
+        answers108.put(2, "PKG opada przed 10 s., ale oporuje grawitacji.");
+        answers108.put(3, "PKG opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
+        answers108.put(4, "PKG – porażenie (całkowity bark ruchów czynnych).");
         BulletedQuestion question108 = new BulletedQuestion(108, "5b. PKG", answers108);
 
         Map<Integer, String> answers109 = new Hashtable<>();
-        answers101.put(0, "LKD nie opada w ciągu 5 s.");
-        answers101.put(1, "LKD opada przed 5 s., ale nie całym impetem");
-        answers101.put(2, "LKD opada przed 5 s., ale oporuje grawitacji.");
-        answers101.put(3, "LKD opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
-        answers101.put(4, "LKD – porażenie (całkowity bark ruchów czynnych).");
+        answers109.put(0, "LKD nie opada w ciągu 5 s.");
+        answers109.put(1, "LKD opada przed 5 s., ale nie całym impetem");
+        answers109.put(2, "LKD opada przed 5 s., ale oporuje grawitacji.");
+        answers109.put(3, "LKD opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
+        answers109.put(4, "LKD – porażenie (całkowity bark ruchów czynnych).");
         BulletedQuestion question109 = new BulletedQuestion(109, "6a. LKD", answers109);
 
         Map<Integer, String> answers110 = new Hashtable<>();
-        answers101.put(0, "PKD nie opada w ciągu 5 s.");
-        answers101.put(1, "PKD opada przed 5 s., ale nie całym impetem");
-        answers101.put(2, "PKD opada przed 5 s., ale oporuje grawitacji.");
-        answers101.put(3, "PKD opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
-        answers101.put(4, "PKD – porażenie (całkowity bark ruchów czynnych).");
+        answers110.put(0, "PKD nie opada w ciągu 5 s.");
+        answers110.put(1, "PKD opada przed 5 s., ale nie całym impetem");
+        answers110.put(2, "PKD opada przed 5 s., ale oporuje grawitacji.");
+        answers110.put(3, "PKD opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
+        answers110.put(4, "PKD – porażenie (całkowity bark ruchów czynnych).");
         BulletedQuestion question110 = new BulletedQuestion(110, "6b. LKD", answers110);
 
         Map<Integer, String> answers111 = new Hashtable<>();
-        answers101.put(0, "Ataksja nieobecna.");
-        answers101.put(1, "Ataksja obecna w minimum jednej kończynie L lub P.");
-        answers101.put(2, "Ataksja obecna w obu kk. górnych lub dolnych (ew. skos).");
+        answers111.put(0, "Ataksja nieobecna.");
+        answers111.put(1, "Ataksja obecna w minimum jednej kończynie L lub P.");
+        answers111.put(2, "Ataksja obecna w obu kk. górnych lub dolnych (ew. skos).");
         BulletedQuestion question111 = new BulletedQuestion(111, "7. Ataksja", answers111);
 
         Map<Integer, String> answers112 = new Hashtable<>();
-        answers101.put(0, "Czucie prawidłowe.");
-        answers101.put(1, "Łagodna do umiarkowanej utrata czucia.");
-        answers101.put(2, "Poważna, całkowita lub obustronna utrata czucia.");
+        answers112.put(0, "Czucie prawidłowe.");
+        answers112.put(1, "Łagodna do umiarkowanej utrata czucia.");
+        answers112.put(2, "Poważna, całkowita lub obustronna utrata czucia.");
         BulletedQuestion question112 = new BulletedQuestion(112, "8. Czucie", answers112);
 
         Map<Integer, String> answers113 = new Hashtable<>();
-        answers101.put(0, "Brak afazji.");
-        answers101.put(1, "Łagodna do umiarkowanej afazja.");
-        answers101.put(2, "Poważna afazja.");
-        answers101.put(3, "Mutyzm. Afazja globalna.");
+        answers113.put(0, "Brak afazji.");
+        answers113.put(1, "Łagodna do umiarkowanej afazja.");
+        answers113.put(2, "Poważna afazja.");
+        answers113.put(3, "Mutyzm. Afazja globalna.");
         BulletedQuestion question113 = new BulletedQuestion(113, "9. Afazja", answers113);
 
         Map<Integer, String> answers114 = new Hashtable<>();
-        answers101.put(0, "Mowa prawidłowa.");
-        answers101.put(1, "Niewyraźne wymawianie przynajmniej niektórych słów.");
-        answers101.put(2, "Mowa bardzo niewyraźna. Brak mowy.");
+        answers114.put(0, "Mowa prawidłowa.");
+        answers114.put(1, "Niewyraźne wymawianie przynajmniej niektórych słów.");
+        answers114.put(2, "Mowa bardzo niewyraźna. Brak mowy.");
         BulletedQuestion question114 = new BulletedQuestion(114, "10. Dyzartria", answers114);
 
         Map<Integer, String> answers115 = new Hashtable<>();
-        answers101.put(0, "Bez nieprawidłowości.");
-        answers101.put(1, "Zaniedbywanie lub ekstyncja bodźców w jednej modalności.");
-        answers101.put(2, "Połowiczna nieuwaga lub ekstyncja bodźców w kilku modalnościach.");
+        answers115.put(0, "Bez nieprawidłowości.");
+        answers115.put(1, "Zaniedbywanie lub ekstyncja bodźców w jednej modalności.");
+        answers115.put(2, "Połowiczna nieuwaga lub ekstyncja bodźców w kilku modalnościach.");
         BulletedQuestion question115 = new BulletedQuestion(115, "11. Zaniedbywanie", answers115);
 
         Questions.put(101, question101);
@@ -185,11 +185,12 @@ public final class FormsStructure {
         questionsForNihss.add(114);
         questionsForNihss.add(115);
         QuestionsUsedForForm.put(Form.NIHSS,questionsForNihss);
+        QuestionsPrintedInForm.put(Form.NIHSS, questionsForNihss);
 
         //DEMOGRAFICZNE I KLINICZNE
         Map<Integer, String> answers201 = new Hashtable<>();
-        answers101.put(0, "Kobieta");
-        answers101.put(1, "Mężczyzna");
+        answers201.put(0, "Kobieta");
+        answers201.put(1, "Mężczyzna");
         BulletedQuestion question201 = new BulletedQuestion(201, "Płeć", answers201);
 
         TrueFalseQuestion question202 = new TrueFalseQuestion(202, "Czy pacjent pali papierosy?");
@@ -211,8 +212,8 @@ public final class FormsStructure {
         TrueFalseQuestion question210 = new TrueFalseQuestion(210, "Świeży udar widoczny w CT");
 
         Map<Integer, String> answers211 = new Hashtable<>();
-        answers101.put(0, "Lakularny");
-        answers101.put(1, "Innego typu");
+        answers211.put(0, "Lakularny");
+        answers211.put(1, "Innego typu");
         BulletedQuestion question211 = new BulletedQuestion(211, "Podtyp udaru", answers211);
 
         TrueFalseQuestion question212 = new TrueFalseQuestion(212, "Krwotok śródmózgowy w TK/MR");
