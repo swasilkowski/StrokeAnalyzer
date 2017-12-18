@@ -4,9 +4,14 @@ import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
+import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedAnswer;
+import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedNumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
+import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -15,31 +20,15 @@ import java.util.List;
 
 public final class NihssAnalyzer {
 
-    private NihssAnalyzer() {}
-
-    public static int CountNihssSum(Patient p)
+    public static int CountNihssSum(NihssExamination examination)
     {
         int pointsSum=0;
-        //choosing questions needed for sum calculation
-        List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.NIHSS);
 
-        //checking users answer and adding it to sum
-        for(int i=0;i<questionIDs.size();i++)
-        {
-            Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
-            if(userAnswer!=null && userAnswer instanceof NumericAnswer)
-            {
-                //??czy -1 to domyslan wartosc czy moze null czy co jak nie odpowiedziano jeszcze na pytanie???
-                pointsSum+= ((NumericAnswer) userAnswer).Value;
-            }
-            else
-            {
-                //throw new WrongQuestionsSetException();
-            }
+        for (Answer answer:
+             examination.Answers) {
+            NumericAnswer numericAnswer = answer instanceof NumericAnswer? ((NumericAnswer)answer) : null;
+            pointsSum += numericAnswer.Value;
         }
-
-        //write patients nihss points sum
-        p.NihssSum = pointsSum;
 
         return pointsSum;
     }

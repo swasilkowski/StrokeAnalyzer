@@ -112,7 +112,7 @@ public class ResultsFragment extends Fragment {
 
     private void preparePatient(Patient p)
     {
-        p.NihssSum = NihssAnalyzer.CountNihssSum(p);
+        p.NihssSum = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
         p.PrognosisHat = HatAnalyzer.AnalyzePrognosis(p);
         p.PrognosisiScore = iScoreAnalyzer.AnalyzePrognosis(p);
         p.PrognsisDragon = DragonAnalyzer.AnalyzePrognosis(p);

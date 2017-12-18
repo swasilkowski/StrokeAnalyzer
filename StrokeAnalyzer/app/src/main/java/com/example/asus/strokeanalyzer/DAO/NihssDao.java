@@ -19,4 +19,7 @@ public interface NihssDao {
 
     @Query("SELECT * FROM nihss_form WHERE patient_id = :patientId")
     List<NihssExamination> SelectByPatientId(int patientId);
+
+    @Query("SELECT * FROM nihss_form WHERE patient_id = :patientId ORDER BY added_on DESC LIMIT 1")
+    NihssExamination SelectLatestByPatientId(int patientId);
 }
