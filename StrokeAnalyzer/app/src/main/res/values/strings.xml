@@ -34,5 +34,6 @@
     <string name="done_tag">done</string>
     <string name="new_patient_tag">new_patient</string>
     <string name="picture_tag">picture</string>
+    <string name="add_tag">add</string>
 
 </resources>

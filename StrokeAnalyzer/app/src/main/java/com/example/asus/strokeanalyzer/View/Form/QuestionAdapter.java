@@ -3,10 +3,13 @@ package com.example.asus.strokeanalyzer.View.Form;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -58,6 +61,24 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((DescriptiveQ)question).getText());
+
+            answer.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    ((DescriptiveQ)questionObject).setAnswer(answer.getText().toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
         }
 
         @Override
@@ -84,6 +105,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((TrueFalseQ)question).getText());
+
+            answer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
+                    ((TrueFalseQ)questionObject).setAnswer(answer.isChecked());
+                }
+            });
         }
 
         @Override

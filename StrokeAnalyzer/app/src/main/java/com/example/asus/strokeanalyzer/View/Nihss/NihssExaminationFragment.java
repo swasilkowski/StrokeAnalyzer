@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -54,6 +57,7 @@ public class NihssExaminationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 /*        if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -91,14 +95,7 @@ public class NihssExaminationFragment extends Fragment {
                 @Override
                 public void onClick(View view, int position) {
 
-                    //move to proper form
-                    FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID);
-                    //move to demograhic form
-                    //ResultsFragment setFragment= new ResultsFragment();
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentFrame, setFragment, null)
-                            .addToBackStack(null)
-                            .commit();
+                   //NIC___________________TODO______________
 
 /*                    // Creating Bundle object
                     Bundle bundel = new Bundle();
@@ -118,6 +115,74 @@ public class NihssExaminationFragment extends Fragment {
         }
 
         return recyclerView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.examination, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.add) {
+
+
+            //move to proper form
+            FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID);
+            //move to demograhic form
+            //ResultsFragment setFragment= new ResultsFragment();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentFrame, setFragment, null)
+                    .addToBackStack(null)
+                    .commit();
+           /* //saving patients answers
+            SaveAnswers();
+            patientService.UpdatePatient(patient);
+
+            //List<Fragment> currentStackState =  getFragmentManager().getFragments();
+            getFragmentManager().popBackStack();
+
+            //if we were creating a new patient we need to clear backstack and put there list of patients and our patient profile
+            List<Fragment> currentStackState =  getFragmentManager().getFragments();
+            if(newPatient(currentStackState))
+            {
+                getFragmentManager().popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
+
+                PatientsListFragment listFragment= new PatientsListFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentFrame, listFragment, null)
+                        .addToBackStack(null)
+                        .commit();
+
+                PatientProfileFragment setFragment= PatientProfileFragment.newInstance(patient.Id);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentFrame, setFragment, null)
+                        .addToBackStack(null)
+                        .commit();
+
+            }*/
+
+/*            //przejdz do nazwania nowego rankingu
+            NewRankingFragment setFragment= new NewRankingFragment();
+            getActivity().getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentFrame, setFragment, null)
+                    .addToBackStack(null)
+                    .commit();
+
+            //((FloatingActionButton) getView().findViewById(R.id.fab)).hide();*/
+            // currentStackState =  getFragmentManager().getFragments();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
    /* // TODO: Rename parameter arguments, choose names that match
