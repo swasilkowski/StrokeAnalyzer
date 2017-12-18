@@ -15,7 +15,7 @@ public final class DatabaseAccess {
 
     private DatabaseAccess(Context context) {
         database = Room.databaseBuilder(context, StrokeAnalyzerDatabase.class,
-                "stroke_analyzer_database").allowMainThreadQueries().build();
+                "stroke_analyzer_database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
     }
 
     public static DatabaseAccess getInstance(Context context) {

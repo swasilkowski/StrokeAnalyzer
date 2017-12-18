@@ -16,7 +16,7 @@ import java.util.List;
  * Created by S. Wasilkowski on 2017-12-12.
  */
 
-public class NihhsService {
+public class NihssService {
     private static StrokeAnalyzerDatabase db = DatabaseAccess.getInstance().database;
 
     public static List<NihssExamination> getNihssExaminationsForPatient(int patientId){
@@ -31,6 +31,12 @@ public class NihhsService {
         }
 
         return examinations;
+    }
+
+    public static NihssExamination getLatestNihssExaminationForPatient(int patientId) {
+        com.example.asus.strokeanalyzer.Entities.NihssExamination entity;
+        entity = db.nihssDao().SelectLatestByPatientId(patientId);
+        return EntityToModel(entity);
     }
 
     public static long addNihssExaminationForPatient(NihssExamination examination, int patientId){
@@ -53,38 +59,50 @@ public class NihhsService {
              model.Answers) {
             NumericAnswer numericAnswer = answer instanceof NumericAnswer ? ((NumericAnswer) answer) : null;
             switch (numericAnswer.GetQuestionID()){
-                case 0:
+                case 101:
                     entity.Question1 = numericAnswer.Value;
                     break;
-                case 1:
+                case 102:
                     entity.Question2 = numericAnswer.Value;
                     break;
-                case 2:
+                case 103:
                     entity.Question3 = numericAnswer.Value;
                     break;
-                case 3:
+                case 104:
                     entity.Question4 = numericAnswer.Value;
                     break;
-                case 4:
+                case 105:
                     entity.Question5 = numericAnswer.Value;
                     break;
-                case 5:
+                case 106:
                     entity.Question6 = numericAnswer.Value;
                     break;
-                case 6:
+                case 107:
                     entity.Question7 = numericAnswer.Value;
                     break;
-                case 7:
+                case 108:
                     entity.Question8 = numericAnswer.Value;
                     break;
-                case 8:
+                case 109:
                     entity.Question9 = numericAnswer.Value;
                     break;
-                case 9:
+                case 110:
                     entity.Question10 = numericAnswer.Value;
                     break;
-                case 10:
+                case 111:
                     entity.Question11 = numericAnswer.Value;
+                    break;
+                case 112:
+                    entity.Question12 = numericAnswer.Value;
+                    break;
+                case 113:
+                    entity.Question13 = numericAnswer.Value;
+                    break;
+                case 114:
+                    entity.Question14 = numericAnswer.Value;
+                    break;
+                case 115:
+                    entity.Question15 = numericAnswer.Value;
                     break;
                 default:
                     throw new IndexOutOfBoundsException();

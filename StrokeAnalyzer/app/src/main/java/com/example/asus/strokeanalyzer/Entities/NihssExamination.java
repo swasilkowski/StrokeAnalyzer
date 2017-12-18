@@ -36,4 +36,8 @@ public class NihssExamination {
     public double Question9;
     public double Question10;
     public double Question11;
+    public double Question12;
+    public double Question13;
+    public double Question14;
+    public double Question15;
 }

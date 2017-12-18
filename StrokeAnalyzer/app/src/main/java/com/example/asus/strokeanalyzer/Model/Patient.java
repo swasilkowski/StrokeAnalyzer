@@ -3,9 +3,10 @@ package com.example.asus.strokeanalyzer.Model;
 import android.os.Environment;
 import android.util.Log;
 
+import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
-import com.example.asus.strokeanalyzer.Services.NihhsService;
+import com.example.asus.strokeanalyzer.Services.NihssService;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -16,7 +17,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -87,10 +87,14 @@ public class Patient {
     }
 
     public List<NihssExamination> getNihssHistory() {
-        return NihhsService.getNihssExaminationsForPatient(Id);
+        return NihssService.getNihssExaminationsForPatient(Id);
+    }
+
+    public NihssExamination getLatestNihssExamination() {
+        return NihssService.getLatestNihssExaminationForPatient(Id);
     }
 
     public void addNihssExamination(NihssExamination nihssExamination) {
-        NihhsService.addNihssExaminationForPatient(nihssExamination, Id);
+        NihssService.addNihssExaminationForPatient(nihssExamination, Id);
     }
 }
