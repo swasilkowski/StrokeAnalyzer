@@ -16,7 +16,7 @@ import android.arch.persistence.room.PrimaryKey;
             childColumns = "patient_id"),
         tableName = "nihss_form")
 public class NihssExamination {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     @ColumnInfo(name = "patient_id")
