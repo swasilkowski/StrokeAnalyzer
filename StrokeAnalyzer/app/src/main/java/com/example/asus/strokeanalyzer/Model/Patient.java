@@ -41,7 +41,8 @@ public class Patient {
     public boolean TreatmentDecision;
 
     public int PrognosisHat;
-    public int PrognosisiScore;
+    public double PrognosisiScore30Days;
+    public double PrognosisiScore1Year;
     public int PrognsisDragon;
 
     public Patient() {
