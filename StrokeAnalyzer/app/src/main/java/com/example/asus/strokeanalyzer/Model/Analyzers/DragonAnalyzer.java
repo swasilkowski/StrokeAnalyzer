@@ -39,7 +39,7 @@ public final class DragonAnalyzer {
         DragonResult result = new DragonResult();
         int pointsSum=0;
 
-        int nihss = p.NihssSum;
+        int nihss = p.getNihssOnAdmission();
         if (nihss >= 5 && nihss <= 9) {
             pointsSum += 1;
         }

@@ -40,7 +40,7 @@ public final class HatAnalyzer {
         //getting list of questions for analysis
         List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.Hat);
 
-        int nihss = p.NihssSum;
+        int nihss = p.getNihssOnAdmission();
         if (nihss >= 15 && nihss <= 20) {
             pointsSum += 1;
         }

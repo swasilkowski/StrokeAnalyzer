@@ -3,11 +3,17 @@ package com.example.asus.strokeanalyzer.Model;
 import android.os.Environment;
 import android.util.Log;
 
+import com.example.asus.strokeanalyzer.Model.Analyzers.DragonAnalyzer;
+import com.example.asus.strokeanalyzer.Model.Analyzers.HatAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
+import com.example.asus.strokeanalyzer.Model.Analyzers.StrokeBricksAnalyzer;
+import com.example.asus.strokeanalyzer.Model.Analyzers.TreatmentAnalyzer;
+import com.example.asus.strokeanalyzer.Model.Analyzers.iScoreAnalyzer;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.results.DragonResult;
 import com.example.asus.strokeanalyzer.Model.results.HatResult;
+import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
 import com.example.asus.strokeanalyzer.Model.results.iScoreResult;
 import com.example.asus.strokeanalyzer.Services.NihssService;
 import com.itextpdf.text.Document;
@@ -37,19 +43,34 @@ public class Patient {
 
     public Map<Integer, Answer> PatientAnswers;
 
-    public int NihssSum;
+    public int getNihss() {
+        return NihssAnalyzer.CountNihssSum(getLatestNihssExamination());
+    }
 
-    public List<Region> AffectedRegionsSB;
+    public int getNihssOnAdmission() {
+        return NihssAnalyzer.CountNihssSum(NihssService.getEarliestNihssExaminationForPatient(Id));
+    }
 
-    public boolean TreatmentDecision;
+    public List<Region> getStrokeBricksAffectedRegions() {
+        return StrokeBricksAnalyzer.AnalyzeRegionsAffection(this);
+    }
 
-    public HatResult PrognosisHat;
-    public iScoreResult PrognosisiScore;
-    public DragonResult PrognosisDragon;
+    public TreatmentResult getTreatmentDecision() {
+        return TreatmentAnalyzer.MakeTreatmentDecision(this);
+    }
+
+    public HatResult getHatPrognosis() {
+        return HatAnalyzer.AnalyzePrognosis(this);
+    }
+    public iScoreResult getIscorePrognosis() {
+        return iScoreAnalyzer.AnalyzePrognosis(this);
+    }
+    public DragonResult getDragonPrognosis() {
+        return DragonAnalyzer.AnalyzePrognosis(this);
+    }
 
     public Patient() {
         PatientAnswers = new Hashtable<>();
-        AffectedRegionsSB = new ArrayList<>();
     }
 
     public void GenarateReport() {

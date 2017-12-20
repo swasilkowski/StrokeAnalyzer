@@ -73,8 +73,6 @@ public final class TreatmentAnalyzer {
             }
         }
 
-        p.TreatmentDecision = result.Decision;
-
         return result;
     }
 

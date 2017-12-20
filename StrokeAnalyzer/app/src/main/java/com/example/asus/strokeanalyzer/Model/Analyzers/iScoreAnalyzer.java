@@ -45,7 +45,7 @@ public final class iScoreAnalyzer {
             Initialize();
         }
         int iScorePoints = countPoints(p, correctAnswersFor30Days);
-        int nihssScore = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
+        int nihssScore = p.getNihssOnAdmission();
         if (nihssScore > 22) {
             iScorePoints += 105;
         }
