@@ -1,4 +1,4 @@
-package com.example.asus.strokeanalyzer.Model.Analyzers;
+package com.example.asus.strokeanalyzer.Model.results;
 
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 

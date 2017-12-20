@@ -6,6 +6,9 @@ import android.util.Log;
 import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
+import com.example.asus.strokeanalyzer.Model.results.DragonResult;
+import com.example.asus.strokeanalyzer.Model.results.HatResult;
+import com.example.asus.strokeanalyzer.Model.results.iScoreResult;
 import com.example.asus.strokeanalyzer.Services.NihssService;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -40,10 +43,9 @@ public class Patient {
 
     public boolean TreatmentDecision;
 
-    public int PrognosisHat;
-    public double PrognosisiScore30Days;
-    public double PrognosisiScore1Year;
-    public int PrognsisDragon;
+    public HatResult PrognosisHat;
+    public iScoreResult PrognosisiScore;
+    public DragonResult PrognosisDragon;
 
     public Patient() {
         PatientAnswers = new Hashtable<>();

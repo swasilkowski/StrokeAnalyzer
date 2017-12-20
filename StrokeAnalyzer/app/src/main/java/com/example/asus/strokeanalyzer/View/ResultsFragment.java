@@ -13,7 +13,7 @@ import com.example.asus.strokeanalyzer.Model.Analyzers.HatAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.StrokeBricksAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.TreatmentAnalyzer;
-import com.example.asus.strokeanalyzer.Model.Analyzers.TreatmentResult;
+import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
 import com.example.asus.strokeanalyzer.Model.Analyzers.iScoreAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
@@ -82,9 +82,9 @@ public class ResultsFragment extends Fragment {
         ((TextView) view.findViewById(R.id.sbDescription)).setText(StrokeBricksAnalyzer.CreateStrokeRangeDescription(patient.AffectedRegionsSB));
         ((TextView) view.findViewById(R.id.treatmentDecision)).setText(patient.TreatmentDecision?"leczenie zalecane":"leczenie NIE zalecane");
         ((TextView) view.findViewById(R.id.wrongAnswers)).setText(wrongAnswersText(TreatmentAnalyzer.MakeTreatmentDecision(patient).badAnswers));
-        ((TextView) view.findViewById(R.id.hatScore)).setText(String.valueOf(patient.PrognosisHat));
-        ((TextView) view.findViewById(R.id.dragonScore)).setText(String.valueOf(patient.PrognsisDragon));
-        ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(patient.PrognosisiScore30Days));
+        ((TextView) view.findViewById(R.id.hatScore)).setText(String.valueOf(patient.PrognosisHat.Score));
+        ((TextView) view.findViewById(R.id.dragonScore)).setText(String.valueOf(patient.PrognosisDragon.Score));
+        ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(patient.PrognosisiScore.ScoreFor30Days));
 
 
         //button leading to CT pictures
@@ -114,9 +114,8 @@ public class ResultsFragment extends Fragment {
     {
         p.NihssSum = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
         p.PrognosisHat = HatAnalyzer.AnalyzePrognosis(p);
-        p.PrognosisiScore30Days = iScoreAnalyzer.AnalyzePrognosisFor30Days(p);
-        p.PrognosisiScore1Year = iScoreAnalyzer.AnalyzePrognosisFor1Year(p);
-        p.PrognsisDragon = DragonAnalyzer.AnalyzePrognosis(p);
+        p.PrognosisiScore = iScoreAnalyzer.AnalyzePrognosis(p);
+        p.PrognosisDragon = DragonAnalyzer.AnalyzePrognosis(p);
         TreatmentResult result= TreatmentAnalyzer.MakeTreatmentDecision(p);
         p.TreatmentDecision = result.Decision;
         p.AffectedRegionsSB = StrokeBricksAnalyzer.AnalyzeRegionsAffection(p);

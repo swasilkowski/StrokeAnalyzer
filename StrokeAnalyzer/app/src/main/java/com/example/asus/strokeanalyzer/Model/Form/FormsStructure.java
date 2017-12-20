@@ -283,7 +283,11 @@ public final class FormsStructure {
         questionsUsedForDragon.add(id);
 
         id = 210;
-        TrueFalseQuestion question210 = new TrueFalseQuestion(id, "Świeży udar widoczny w CT");
+        Map<Integer, String> answers210 = new Hashtable<>();
+        answers210.put(0, "Brak");
+        answers210.put(1, "Poniżej 1/3 powierzchni MCA");
+        answers210.put(2, "Powyżej 1/3 powierzchni MCA");
+        BulletedQuestion question210 = new BulletedQuestion(id, "Świeży udar widoczny w CT", answers210);
         questionsUsedForDragon.add(id);
         questionsUsedForHat.add(id);
         questionsUsedForThrombolysis.add(id);

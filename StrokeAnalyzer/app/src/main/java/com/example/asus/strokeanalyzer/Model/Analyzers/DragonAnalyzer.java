@@ -10,10 +10,13 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedNumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTrueFalseAnswer;
+import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
+import com.example.asus.strokeanalyzer.Model.results.DragonResult;
 
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -22,18 +25,31 @@ import java.util.List;
 
 public final class DragonAnalyzer {
 
-    //key - prognosis sum of points, value - description for a particular sum
-    //prognosisDescription - contains descriptions for particular results of a scale analysis
-    private static Dictionary<Integer, String> prognosisDescription;
     //key - question id, value - object containing correct answer for a question
-    //correctAnswers - contains propwer answers in this scale for particular question
+    //correctAnswers - contains proper answers in this scale for particular question
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
     private DragonAnalyzer() {}
 
-    public static int AnalyzePrognosis(Patient p)
+    public static DragonResult AnalyzePrognosis(Patient p)
     {
+        if (correctAnswers == null) {
+            Initialize();
+        }
+        DragonResult result = new DragonResult();
         int pointsSum=0;
+
+        int nihss = p.NihssSum;
+        if (nihss >= 5 && nihss <= 9) {
+            pointsSum += 1;
+        }
+        if (nihss >= 10 && nihss <= 15) {
+            pointsSum += 2;
+        }
+        if (nihss > 15) {
+            pointsSum += 3;
+        }
+
         //getting list of questions for analysis
         List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.Dragon);
 
@@ -43,11 +59,7 @@ public final class DragonAnalyzer {
             ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
 
             if (userAnswer != null && expectedAnswer != null) {
-                if (userAnswer instanceof TextAnswer && expectedAnswer instanceof ExpectedTextAnswer) {
-                    if (((TextAnswer) userAnswer).Value.equals(((ExpectedTextAnswer) expectedAnswer).CorrectValue)) {
-                        pointsSum += 1;
-                    }
-                } else if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
+                if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
                     pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
                 } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
                     if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
@@ -59,10 +71,88 @@ public final class DragonAnalyzer {
 
             }
         }
-        return pointsSum;
+
+        result.Score = pointsSum;
+        result.GoodOutcomePrognosis = getGoodOutcomePrognosis(pointsSum);
+        result.MiserableOutcomePrognosis = getMiserableOutcomePrognosis(pointsSum);
+
+        return result;
     }
-    public static String GetPrognosisDescription(int points)
-    {
-        return prognosisDescription.get(points);
+
+    private static int getGoodOutcomePrognosis(int score) {
+        switch (score) {
+            case 0:
+                return 96;
+            case 1:
+                return 96;
+            case 2:
+                return 93;
+            case 3:
+                return 78;
+            case 4:
+                return 63;
+            case 5:
+                return 50;
+            case 6:
+                return 22;
+            case 7:
+                return 10;
+            default:
+                return 0;
+        }
+    }
+
+    private static int getMiserableOutcomePrognosis(int score){
+        switch (score) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 2;
+            case 3:
+                return 4;
+            case 4:
+                return 10;
+            case 5:
+                return 23;
+            case 6:
+                return 40;
+            case 7:
+                return 50;
+            case 8:
+                return 89;
+            case 9:
+                return 97;
+            case 10:
+                return 100;
+            default:
+                return 100;
+        }
+    }
+
+    private static void Initialize() {
+        correctAnswers = new Hashtable<>();
+
+        ExpectedNumericAnswer answer200 = new ExpectedNumericAnswer(200);
+        answer200.Ranges.add(new RangeClassifier(65,79,1));
+        answer200.Ranges.add(new RangeClassifier(80,120,2));
+        correctAnswers.put(200, answer200);
+
+        correctAnswers.put(204, new ExpectedTrueFalseAnswer(204, true, 1));
+
+        ExpectedNumericAnswer answer205 = new ExpectedNumericAnswer(205);
+        answer205.Ranges.add(new RangeClassifier(1.5, Double.MAX_VALUE, 1));
+        correctAnswers.put(205, answer205);
+
+        ExpectedNumericAnswer answer206 = new ExpectedNumericAnswer(206);
+        answer206.Ranges.add(new RangeClassifier(144, Double.MAX_VALUE, 1));
+        correctAnswers.put(206, answer206);
+
+        correctAnswers.put(209, new ExpectedTrueFalseAnswer(209, true, 1));
+
+        ExpectedNumericAnswer answer210 = new ExpectedNumericAnswer(210);
+        answer206.Ranges.add(new RangeClassifier(1, 2));
+        correctAnswers.put(210, answer210);
     }
 }

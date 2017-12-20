@@ -3,17 +3,15 @@ package com.example.asus.strokeanalyzer.Model.Analyzers;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedNumericAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
+import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
 
-import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -43,14 +41,6 @@ public final class TreatmentAnalyzer {
 
             if(userAnswer!=null && expectedAnswer!=null)
             {
-                if(userAnswer instanceof TextAnswer && expectedAnswer instanceof ExpectedTextAnswer)
-                {
-                    if(!((TextAnswer) userAnswer).Value.equals(((ExpectedTextAnswer) expectedAnswer).CorrectValue))
-                    {
-                        result.Decision = false;
-                        result.badAnswers.add(userAnswer);
-                    }
-                }
                 if(userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer)
                 {
                     if(!((ExpectedNumericAnswer)expectedAnswer).CheckCorrectness((((NumericAnswer)userAnswer).Value)))
@@ -109,7 +99,9 @@ public final class TreatmentAnalyzer {
 
         correctAnswers.put(208, new ExpectedTrueFalseAnswer(208, false));
 
-        correctAnswers.put(210, new ExpectedTrueFalseAnswer(210, false));
+        ExpectedNumericAnswer answer210 = new ExpectedNumericAnswer(210);
+        answer206.Ranges.add(new RangeClassifier(0, 0));
+        correctAnswers.put(210, answer210);
 
         correctAnswers.put(212, new ExpectedTrueFalseAnswer(212, false));
 
