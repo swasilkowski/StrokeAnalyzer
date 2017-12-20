@@ -70,7 +70,6 @@ public class Patient {
 
     public Patient() {
         PatientAnswers = new Hashtable<>();
-        GenarateReport();
     }
 
     public void GenarateReport() {
