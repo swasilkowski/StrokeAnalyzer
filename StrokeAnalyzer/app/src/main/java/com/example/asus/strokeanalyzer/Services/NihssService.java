@@ -116,6 +116,7 @@ public class NihssService {
         NihssExamination model = new NihssExamination();
 
         model.Date = new Date(entity.addedOn);
+        model.Answers = new ArrayList<>();
 
         NumericAnswer answer;
         answer = new NumericAnswer(0);

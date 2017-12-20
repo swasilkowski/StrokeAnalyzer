@@ -300,7 +300,7 @@ public final class FormsStructure {
         questionsDemographic.add(210);
         questionsDemographic.add(211);
         questionsDemographic.add(212);
-        QuestionsUsedForForm.put(Form.DemographicAndClinic,questionsDemographic);
+        QuestionsPrintedInForm.put(Form.DemographicAndClinic,questionsDemographic);
 
         //LECZENIE
         id = 301;

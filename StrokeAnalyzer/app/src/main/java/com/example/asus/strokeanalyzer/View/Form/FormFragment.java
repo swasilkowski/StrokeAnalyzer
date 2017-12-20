@@ -20,6 +20,7 @@ import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.TrueFalseQuestion;
+import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
@@ -28,6 +29,8 @@ import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
 import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
@@ -143,6 +146,10 @@ public class FormFragment extends Fragment {
 
             //saving patients answers
             SaveAnswers();
+            if(formType==Form.NIHSS)
+            {
+                SaveExamination();
+            }
             patientService.UpdatePatient(patient);
 
             //List<Fragment> currentStackState =  getFragmentManager().getFragments();
@@ -242,6 +249,22 @@ public class FormFragment extends Fragment {
         }
 
     }
+
+    private void SaveExamination()
+    {
+        NihssExamination examination = new NihssExamination();
+        examination.Date = Calendar.getInstance().getTime();
+        examination.Answers  = new ArrayList<>();
+
+        List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.NIHSS);
+        for(int i=0;i<questionIDs.size();i++) {
+            Answer userAnswer = patient.PatientAnswers.get(questionIDs.get(i));
+            examination.Answers.add(userAnswer);
+        }
+
+        patient.addNihssExamination(examination);
+    }
+
 
     /*
     // TODO: Rename parameter arguments, choose names that match

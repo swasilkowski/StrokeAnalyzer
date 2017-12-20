@@ -11,6 +11,7 @@ import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
 import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -55,9 +56,9 @@ public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder> 
 
         final NihssExamination examination = examinations.get(position);
 
-        holder.date.setText(examination.Date.toString());
-       //_____________TO DO________________ holder.sum.setText(NihssAnalyzer.CountNihssSum());
-        holder.sum.setText(0);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy   HH:mm:ss");
+        holder.date.setText(dateFormat.format(examination.Date));
+        holder.sum.setText(String.valueOf(NihssAnalyzer.CountNihssSum(examination)));
 
     }
 
