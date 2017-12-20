@@ -84,7 +84,7 @@ public class ResultsFragment extends Fragment {
         ((TextView) view.findViewById(R.id.wrongAnswers)).setText(wrongAnswersText(TreatmentAnalyzer.MakeTreatmentDecision(patient).badAnswers));
         ((TextView) view.findViewById(R.id.hatScore)).setText(String.valueOf(patient.PrognosisHat));
         ((TextView) view.findViewById(R.id.dragonScore)).setText(String.valueOf(patient.PrognsisDragon));
-        ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(patient.PrognosisiScore));
+        ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(patient.PrognosisiScore30Days));
 
 
         //button leading to CT pictures
@@ -114,7 +114,8 @@ public class ResultsFragment extends Fragment {
     {
         p.NihssSum = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
         p.PrognosisHat = HatAnalyzer.AnalyzePrognosis(p);
-        p.PrognosisiScore = iScoreAnalyzer.AnalyzePrognosis(p);
+        p.PrognosisiScore30Days = iScoreAnalyzer.AnalyzePrognosisFor30Days(p);
+        p.PrognosisiScore1Year = iScoreAnalyzer.AnalyzePrognosisFor1Year(p);
         p.PrognsisDragon = DragonAnalyzer.AnalyzePrognosis(p);
         TreatmentResult result= TreatmentAnalyzer.MakeTreatmentDecision(p);
         p.TreatmentDecision = result.Decision;

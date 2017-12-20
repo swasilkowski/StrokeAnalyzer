@@ -1,5 +1,6 @@
 package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -8,20 +9,6 @@ import java.util.List;
 
 public class ExpectedNumericAnswer extends ExpectedAnswer {
 
-    public class RangeClassifier
-    {
-        public double MinValue;
-        public double MaxValue;
-        public int Points;
-
-        boolean withinARange(double value)
-        {
-            if(value>MaxValue || value<MinValue)
-                return false;
-            return true;
-        }
-
-    }
 
     //null value indicates that particular parameter should not be taken into consideration
     //if correctValue is considered we give 1 point
@@ -31,12 +18,13 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
     public ExpectedNumericAnswer(int questionId)
     {
         super(questionId);
+        Ranges = new LinkedList<>();
     }
     public int CalculatePoints(double value)
     {
         if(CorrectValue!= null && CorrectValue.equals(value))
             return 1;
-        else if(Ranges!=null)
+        else if(Ranges.size() > 0)
         {
             for(RangeClassifier r:Ranges)
             {
@@ -51,7 +39,7 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
     {
         if(CorrectValue!= null && CorrectValue.equals(value))
             return true;
-        else if(Ranges!=null)
+        else if(Ranges.size() > 0)
         {
             for(RangeClassifier r:Ranges)
             {

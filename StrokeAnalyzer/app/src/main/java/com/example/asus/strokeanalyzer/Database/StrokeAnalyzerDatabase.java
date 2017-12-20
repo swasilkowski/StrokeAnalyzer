@@ -14,7 +14,7 @@ import com.example.asus.strokeanalyzer.Entities.Patient;
  * Created by S. Wasilkowski on 2017-12-06.
  */
 
-@Database(entities = {Patient.class, NihssExamination.class, OtherData.class}, version = 2, exportSchema = false)
+@Database(entities = {Patient.class, NihssExamination.class, OtherData.class}, version = 3, exportSchema = false)
 public abstract class StrokeAnalyzerDatabase extends RoomDatabase {
 
     public abstract PatientDao patientDao();
