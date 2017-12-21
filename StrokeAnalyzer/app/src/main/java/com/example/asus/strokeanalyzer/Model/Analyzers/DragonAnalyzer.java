@@ -36,6 +36,10 @@ public final class DragonAnalyzer {
         if (correctAnswers == null) {
             Initialize();
         }
+
+        if(!FormsStructure.patientReady(p,Form.Dragon))
+            return null;
+
         DragonResult result = new DragonResult();
         int pointsSum=0;
 

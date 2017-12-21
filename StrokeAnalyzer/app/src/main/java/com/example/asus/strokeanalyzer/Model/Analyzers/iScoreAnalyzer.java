@@ -31,6 +31,10 @@ public final class iScoreAnalyzer {
     private static Dictionary<Integer, ExpectedAnswer> correctAnswersFor1Year;
 
     public static iScoreResult AnalyzePrognosis(Patient patient) {
+
+        if(!FormsStructure.patientReady(patient,Form.iScore))
+            return null;
+
         iScoreResult result = new iScoreResult();
         result.ScoreFor30Days = getPointsFor30Days(patient);
         result.ScoreFor1Year = getPointsFor1Year(patient);
@@ -44,6 +48,7 @@ public final class iScoreAnalyzer {
         if (correctAnswersFor30Days == null) {
             Initialize();
         }
+
         int iScorePoints = countPoints(p, correctAnswersFor30Days);
         int nihssScore = p.getNihssOnAdmission();
         if (nihssScore > 22) {

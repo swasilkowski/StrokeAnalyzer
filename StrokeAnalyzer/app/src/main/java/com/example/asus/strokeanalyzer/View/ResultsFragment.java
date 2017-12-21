@@ -13,6 +13,10 @@ import com.example.asus.strokeanalyzer.Model.Analyzers.HatAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.StrokeBricksAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.TreatmentAnalyzer;
+import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
+import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
+import com.example.asus.strokeanalyzer.Model.results.DragonResult;
+import com.example.asus.strokeanalyzer.Model.results.HatResult;
 import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
 import com.example.asus.strokeanalyzer.Model.Analyzers.iScoreAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
@@ -21,6 +25,7 @@ import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
+import com.example.asus.strokeanalyzer.Model.results.iScoreResult;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.CTPictures.CTPicturesFragment;
@@ -75,16 +80,33 @@ public class ResultsFragment extends Fragment {
         patient = patientService.GetPatientById(patientID);
 
         //perform operations before showin result
-        preparePatient(patient);
+        //preparePatient(patient);
 
         //patients results
-        ((TextView) view.findViewById(R.id.nihssSum)).setText(String.valueOf(patient.getNihss()));
-/*        ((TextView) view.findViewById(R.id.sbDescription)).setText(StrokeBricksAnalyzer.CreateStrokeRangeDescription(patient.getStrokeBricksAffectedRegions()));
-        ((TextView) view.findViewById(R.id.treatmentDecision)).setText(patient.getTreatmentDecision().Decision?"leczenie zalecane":"leczenie NIE zalecane");
-        ((TextView) view.findViewById(R.id.wrongAnswers)).setText(wrongAnswersText(patient.getTreatmentDecision().badAnswers));
-        ((TextView) view.findViewById(R.id.hatScore)).setText(String.valueOf(patient.getHatPrognosis().Score));
-        ((TextView) view.findViewById(R.id.dragonScore)).setText(String.valueOf(patient.getDragonPrognosis().Score));
-        ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(patient.getIscorePrognosis().ScoreFor30Days));*/
+        int nihssSum =patient.getNihss();
+        if(nihssSum>=0)
+            ((TextView) view.findViewById(R.id.nihssSum)).setText(String.valueOf(nihssSum));
+
+        List<Region> regions = patient.getStrokeBricksAffectedRegions();
+        if(regions!=null)
+            ((TextView) view.findViewById(R.id.sbDescription)).setText(StrokeBricksAnalyzer.CreateStrokeRangeDescription(regions));
+
+        TreatmentResult treatment = patient.getTreatmentDecision();
+        if(treatment!=null)
+        {
+            ((TextView) view.findViewById(R.id.treatmentDecision)).setText(treatment.Decision?"Zalecane":"NIE zalecane");
+            ((TextView) view.findViewById(R.id.wrongAnswers)).setText(wrongAnswersText(treatment.badAnswers));
+        }
+
+        HatResult resultHat = patient.getHatPrognosis();
+        if(resultHat!=null)
+            ((TextView) view.findViewById(R.id.hatScore)).setText(String.valueOf(resultHat.Score));
+        DragonResult resultDragon = patient.getDragonPrognosis();
+        if(resultDragon!=null)
+            ((TextView) view.findViewById(R.id.dragonScore)).setText(String.valueOf(resultDragon.Score));
+        iScoreResult resultiScore = patient.getIscorePrognosis();
+        if(resultiScore!=null)
+            ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(resultiScore.ScoreFor30Days));
 
 
         //button leading to CT pictures
@@ -109,18 +131,6 @@ public class ResultsFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
     }
-
-    private void preparePatient(Patient p)
-    {
-//        p.NihssSum = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
-//        p.PrognosisHat = HatAnalyzer.AnalyzePrognosis(p);
-//        p.PrognosisiScore = iScoreAnalyzer.AnalyzePrognosis(p);
-//        p.PrognosisDragon = DragonAnalyzer.AnalyzePrognosis(p);
-//        TreatmentResult result= TreatmentAnalyzer.MakeTreatmentDecision(p);
-//        p.TreatmentDecision = result.Decision;
-//        p.AffectedRegionsSB = StrokeBricksAnalyzer.AnalyzeRegionsAffection(p);
-    }
-
 
     private String wrongAnswersText(List<Answer> answers)
     {

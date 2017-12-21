@@ -27,7 +27,8 @@ public final class NihssAnalyzer {
         for (Answer answer:
              examination.Answers) {
             NumericAnswer numericAnswer = answer instanceof NumericAnswer? ((NumericAnswer)answer) : null;
-            pointsSum += numericAnswer.Value;
+            if(numericAnswer != null && numericAnswer.Value>=0)
+                pointsSum += numericAnswer.Value;
         }
 
         return pointsSum;

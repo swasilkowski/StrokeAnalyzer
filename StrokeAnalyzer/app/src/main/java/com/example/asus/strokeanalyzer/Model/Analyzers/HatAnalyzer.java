@@ -36,6 +36,10 @@ public final class HatAnalyzer {
         if (correctAnswers == null) {
             Initialize();
         }
+
+        if(!FormsStructure.patientReady(p,Form.Hat))
+            return null;
+
         HatResult result = new HatResult();
         int pointsSum=0;
         //getting list of questions for analysis

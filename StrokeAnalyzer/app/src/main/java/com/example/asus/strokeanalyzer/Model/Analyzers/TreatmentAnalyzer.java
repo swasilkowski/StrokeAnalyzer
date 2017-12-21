@@ -29,6 +29,10 @@ public final class TreatmentAnalyzer {
         if (correctAnswers == null) {
             Initialize();
         }
+
+        if(!FormsStructure.patientReady(p,Form.ThrombolyticTreatment))
+            return null;
+
         TreatmentResult result = new TreatmentResult();
         //getting list of questions for analysis
         List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.ThrombolyticTreatment);
