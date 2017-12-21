@@ -13,6 +13,7 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTrueFal
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
+import com.example.asus.strokeanalyzer.Model.results.iScoreResult;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -24,20 +25,27 @@ import java.util.List;
 
 public final class iScoreAnalyzer {
 
-    //key - prognosis sum of points, value - description for a particular sum
-    //prognosisDescription - contains descriptions for particular results of a scale analysis
-    private static Dictionary<Integer, String> prognosisDescription;
     //key - question id, value - object containing correct answer for a question
     //correctAnswers - contains propwer answers in this scale for particular question
     private static Dictionary<Integer, ExpectedAnswer> correctAnswersFor30Days;
     private static Dictionary<Integer, ExpectedAnswer> correctAnswersFor1Year;
 
-    private iScoreAnalyzer() {}
+    public static iScoreResult AnalyzePrognosis(Patient patient) {
+        iScoreResult result = new iScoreResult();
+        result.ScoreFor30Days = getPointsFor30Days(patient);
+        result.ScoreFor1Year = getPointsFor1Year(patient);
+        result.PrognosisFor30Days = getPredictionFor30Days(result.ScoreFor30Days);
+        result.PrognosisFor1Year = getPredictionFor1Year(result.ScoreFor1Year);
+        return result;
+    }
 
-    public static double AnalyzePrognosisFor30Days(Patient p)
+    private static int getPointsFor30Days(Patient p)
     {
+        if (correctAnswersFor30Days == null) {
+            Initialize();
+        }
         int iScorePoints = countPoints(p, correctAnswersFor30Days);
-        int nihssScore = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
+        int nihssScore = p.getNihssOnAdmission();
         if (nihssScore > 22) {
             iScorePoints += 105;
         }
@@ -47,12 +55,15 @@ public final class iScoreAnalyzer {
         if (nihssScore < 14 && nihssScore >= 9) {
             iScorePoints += 40;
         }
-        return getPredictionFor30Days(iScorePoints);
+        return iScorePoints;
     }
 
-    public static double AnalyzePrognosisFor1Year(Patient p)
+    private static int getPointsFor1Year(Patient p)
     {
-        int iScorePoints = countPoints(p, correctAnswersFor30Days);
+        if (correctAnswersFor1Year == null) {
+            Initialize();
+        }
+        int iScorePoints = countPoints(p, correctAnswersFor1Year);
         int nihssScore = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
         if (nihssScore > 22) {
             iScorePoints += 70;
@@ -63,7 +74,7 @@ public final class iScoreAnalyzer {
         if (nihssScore < 14 && nihssScore >= 9) {
             iScorePoints += 25;
         }
-        return getPredictionFor30Days(iScorePoints);
+        return iScorePoints;
     }
 
     private static double getPredictionFor30Days(int points) {
@@ -213,14 +224,15 @@ public final class iScoreAnalyzer {
             ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
 
             if (userAnswer != null && expectedAnswer != null) {
-            } else if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
-                pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
-            } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
-                if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
-                    pointsSum += ((ExpectedTrueFalseAnswer) expectedAnswer).Score;
+                if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
+                    pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
+                } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
+                    if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
+                        pointsSum += ((ExpectedTrueFalseAnswer) expectedAnswer).Score;
+                    }
+                } else {
+                    //throw new WrongQuestionsSetException();
                 }
-            } else {
-                //throw new WrongQuestionsSetException();
             }
         }
         return pointsSum;

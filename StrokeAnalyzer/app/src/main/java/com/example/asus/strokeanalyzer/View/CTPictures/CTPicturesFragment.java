@@ -87,7 +87,7 @@ public class CTPicturesFragment extends Fragment {
         picturesGrid = (GridView) view.findViewById(R.id.CTPicturesView); // init GridView
         // Create an object of CustomAdapter and set Adapter to GirdView
         patientService = new PatientService(context);
-        editedPictures = CTPictures.GenerateOutputImage(patientService.GetPatientById(patientID).AffectedRegionsSB);
+        editedPictures = CTPictures.GenerateOutputImage(patientService.GetPatientById(patientID).getStrokeBricksAffectedRegions());
         CTPicturesAdapter customAdapter = new CTPicturesAdapter(context.getApplicationContext(), editedPictures);
         picturesGrid.setAdapter(customAdapter);
         // implement setOnItemClickListener event on GridView

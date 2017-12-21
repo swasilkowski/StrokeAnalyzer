@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.example.asus.strokeanalyzer.Model.CTPictures;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
+import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
@@ -14,7 +15,9 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedNumeric
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
+import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
+import com.example.asus.strokeanalyzer.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,52 +43,100 @@ public final class StrokeBricksAnalyzer {
 
     private StrokeBricksAnalyzer() {}
 
-    public static List<Region> AnalyzeRegionsAffection(Patient p)
-    {
+    public static List<Region> AnalyzeRegionsAffection(Patient p) {
         List<Region> affectedRegions = new ArrayList<>();
 
-        //getting list of questions for analysis
-        List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.StrokeBricks);
+        NihssExamination nihssExamination = p.getLatestNihssExamination();
 
-        //check if user's answer was the one expected for marking the region
-        for(int i=0;i<questionIDs.size();i++)
-        {
-            Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
-            ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
+        for (Answer answer:
+             nihssExamination.Answers) {
+            if (!(answer instanceof NumericAnswer)) {
+                //throw new WrongQuestionsSetException();
+            }
+            NumericAnswer numericAnswer = (NumericAnswer)answer;
+            int answerId = numericAnswer.GetQuestionID();
+            double answerValue = numericAnswer.Value;
 
-            if (userAnswer != null && expectedAnswer != null)
-            {
-                if (userAnswer instanceof TextAnswer && expectedAnswer instanceof ExpectedTextAnswer) {
-                    if (((TextAnswer) userAnswer).Value.equals(((ExpectedTextAnswer) expectedAnswer).CorrectValue)) {
-                        for (Region r : regionsAffection.get(i)) {
-                            if (!affectedRegions.contains(r))
-                                affectedRegions.add(r);
-                        }
-                    }
-                } else if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
-                    if(((ExpectedNumericAnswer) expectedAnswer).CheckCorrectness(((NumericAnswer) userAnswer).Value)) {
-                            for (Region r : regionsAffection.get(i)) {
-                                if (!affectedRegions.contains(r))
-                                    affectedRegions.add(r);
-                            }
-                        }
-
-                } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
-                    if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
-                        for (Region r : regionsAffection.get(i)) {
-                            if (!affectedRegions.contains(r))
-                                affectedRegions.add(r);
-                        }
-                    }
-                } else {
-                    //throw new WrongQuestionsSetException();
+            if (answerValue > 0) {
+                switch (answerId) {
+                    case 102: //1b
+                        affectedRegions.add(Region.M1_L);
+                        affectedRegions.add(Region.M4_L);
+                    case 103: //1c
+                        affectedRegions.add(Region.M3_L);
+                        affectedRegions.add(Region.M6_L);
+                    case 104: //2
+                        affectedRegions.add(Region.M1_L);
+                        affectedRegions.add(Region.M4_L);
+                        affectedRegions.add(Region.M1_R);
+                        affectedRegions.add(Region.M4_R);
+                    case 105: //3
+                        affectedRegions.add(Region.P_L);
+                        affectedRegions.add(Region.M2_L);
+                        affectedRegions.add(Region.M3_L);
+                        affectedRegions.add(Region.P_R);
+                        affectedRegions.add(Region.M2_R);
+                        affectedRegions.add(Region.M3_R);
+                    case 106: //4
+                        affectedRegions.add(Region.M5_L);
+                        affectedRegions.add(Region.CR_L);
+                        affectedRegions.add(Region.BGIC_L);
+                        affectedRegions.add(Region.M5_R);
+                        affectedRegions.add(Region.CR_R);
+                        affectedRegions.add(Region.BGIC_R);
+                    case 107: //5a
+                        affectedRegions.add(Region.M5_R);
+                        affectedRegions.add(Region.CR_R);
+                        affectedRegions.add(Region.BGIC_R);
+                    case 108: //5b
+                        affectedRegions.add(Region.M5_L);
+                        affectedRegions.add(Region.CR_L);
+                        affectedRegions.add(Region.BGIC_L);
+                    case 109: //6a
+                        affectedRegions.add(Region.A2_R);
+                        affectedRegions.add(Region.CR_R);
+                        affectedRegions.add(Region.BGIC_R);
+                    case 110: //6b
+                        affectedRegions.add(Region.A2_L);
+                        affectedRegions.add(Region.CR_L);
+                        affectedRegions.add(Region.BGIC_L);
+                    case 112: //8
+                        affectedRegions.add(Region.M5_L);
+                        affectedRegions.add(Region.CR_L);
+                        affectedRegions.add(Region.BGIC_L);
+                        affectedRegions.add(Region.T_L);
+                        affectedRegions.add(Region.A2_L);
+                        affectedRegions.add(Region.M5_R);
+                        affectedRegions.add(Region.CR_R);
+                        affectedRegions.add(Region.BGIC_R);
+                        affectedRegions.add(Region.T_R);
+                        affectedRegions.add(Region.A2_R);
+                    case 113: //9
+                        affectedRegions.add(Region.M1_L);
+                        affectedRegions.add(Region.M4_L);
+                        affectedRegions.add(Region.M3_L);
+                        affectedRegions.add(Region.M6_L);
+                    case 114: //10
+                        affectedRegions.add(Region.A1_L);
+                        affectedRegions.add(Region.M1_L);
+                        affectedRegions.add(Region.M4_L);
+                        affectedRegions.add(Region.BGIC_L);
+                        affectedRegions.add(Region.A1_R);
+                        affectedRegions.add(Region.M1_R);
+                        affectedRegions.add(Region.M4_R);
+                        affectedRegions.add(Region.BGIC_R);
+                    case 115: //11
+                        affectedRegions.add(Region.P_L);
+                        affectedRegions.add(Region.M2_L);
+                        affectedRegions.add(Region.M3_L);
+                        affectedRegions.add(Region.P_R);
+                        affectedRegions.add(Region.M2_R);
+                        affectedRegions.add(Region.M3_R);
+                        affectedRegions.add(Region.A3_R);
+                        affectedRegions.add(Region.M6_R);
                 }
-
             }
         }
-
-        p.AffectedRegionsSB.clear();
-        p.AffectedRegionsSB = affectedRegions;
 
         return affectedRegions;
     }

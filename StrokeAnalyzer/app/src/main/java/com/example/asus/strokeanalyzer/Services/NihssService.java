@@ -39,6 +39,12 @@ public class NihssService {
         return EntityToModel(entity);
     }
 
+    public static NihssExamination getEarliestNihssExaminationForPatient(int patientId) {
+        com.example.asus.strokeanalyzer.Entities.NihssExamination entity;
+        entity = db.nihssDao().SelectEarliestByPatientId(patientId);
+        return EntityToModel(entity);
+    }
+
     public static long addNihssExaminationForPatient(NihssExamination examination, int patientId){
         return db.nihssDao().insert(ModelToEntity(examination, patientId));
     }
@@ -119,38 +125,50 @@ public class NihssService {
         model.Answers = new ArrayList<>();
 
         NumericAnswer answer;
-        answer = new NumericAnswer(0);
+        answer = new NumericAnswer(101);
         answer.Value = entity.Question1;
         model.Answers.add(answer);
-        answer = new NumericAnswer(1);
+        answer = new NumericAnswer(102);
         answer.Value = entity.Question2;
         model.Answers.add(answer);
-        answer = new NumericAnswer(2);
+        answer = new NumericAnswer(103);
         answer.Value = entity.Question3;
         model.Answers.add(answer);
-        answer = new NumericAnswer(3);
+        answer = new NumericAnswer(104);
         answer.Value = entity.Question4;
         model.Answers.add(answer);
-        answer = new NumericAnswer(4);
+        answer = new NumericAnswer(105);
         answer.Value = entity.Question5;
         model.Answers.add(answer);
-        answer = new NumericAnswer(5);
+        answer = new NumericAnswer(106);
         answer.Value = entity.Question6;
         model.Answers.add(answer);
-        answer = new NumericAnswer(6);
+        answer = new NumericAnswer(107);
         answer.Value = entity.Question7;
         model.Answers.add(answer);
-        answer = new NumericAnswer(7);
+        answer = new NumericAnswer(108);
         answer.Value = entity.Question8;
         model.Answers.add(answer);
-        answer = new NumericAnswer(8);
+        answer = new NumericAnswer(109);
         answer.Value = entity.Question9;
         model.Answers.add(answer);
-        answer = new NumericAnswer(9);
+        answer = new NumericAnswer(110);
         answer.Value = entity.Question10;
         model.Answers.add(answer);
-        answer = new NumericAnswer(10);
+        answer = new NumericAnswer(111);
         answer.Value = entity.Question11;
+        model.Answers.add(answer);
+        answer = new NumericAnswer(112);
+        answer.Value = entity.Question12;
+        model.Answers.add(answer);
+        answer = new NumericAnswer(113);
+        answer.Value = entity.Question13;
+        model.Answers.add(answer);
+        answer = new NumericAnswer(114);
+        answer.Value = entity.Question14;
+        model.Answers.add(answer);
+        answer = new NumericAnswer(11);
+        answer.Value = entity.Question15;
         model.Answers.add(answer);
 
         return model;
