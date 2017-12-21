@@ -23,4 +23,7 @@ public interface OtherDataDao {
 
     @Update
     void update(OtherData data);
+
+    @Query("SELECT COUNT(*) FROM other_data WHERE patient_id = :patientId AND answer_id = :answerId")
+    int checkIfExists(int patientId, int answerId);
 }

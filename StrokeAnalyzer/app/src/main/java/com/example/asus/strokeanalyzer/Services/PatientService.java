@@ -34,14 +34,15 @@ public final class PatientService {
 
         for (com.example.asus.strokeanalyzer.Entities.Patient patient:
              entities) {
-            patientsList.add(EntityToModel(patient));
+            Patient model = EntityToModel(patient);
+            patientsList.add(model);
         }
         return  patientsList;
     }
 
     public Patient GetPatientById(int id) {
         Patient patient = EntityToModel(db.patientDao().selectById(id));
-        patient.PatientAnswers = entityDataToModelData(db.otherDataDao().SelectByPatientId(id));
+        //patient.PatientAnswers = entityDataToModelData(db.otherDataDao().SelectByPatientId(id));
         return patient;
     }
 
@@ -61,7 +62,11 @@ public final class PatientService {
 
         for (OtherData data:
                 modelDataToEntityData(patient)) {
-            db.otherDataDao().update(data);
+            if (db.otherDataDao().checkIfExists(patient.Id, data.id) == 0) {
+                db.otherDataDao().insert(data);
+            } else {
+                db.otherDataDao().update(data);
+            }
         }
     }
 
