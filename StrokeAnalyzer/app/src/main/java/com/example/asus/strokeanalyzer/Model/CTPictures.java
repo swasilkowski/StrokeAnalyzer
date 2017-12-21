@@ -26,7 +26,8 @@ public final class CTPictures {
     private static Context appContext;
 
     private static Bitmap[] basicPictures = new Bitmap[4];
-    private static Map<Region,Bitmap> regions = new Hashtable<>();
+    //key - region's id, value - resoruce of image
+    private static Map<Region,Integer> regions = new Hashtable<>();
     private static Map<Region, Integer> regionBasicPictureRelation = new Hashtable<>();
 
     private CTPictures(){}
@@ -70,32 +71,32 @@ public final class CTPictures {
         regionBasicPictureRelation.put(Region.T_R,1);
 
         //assigning regions to images
-        regions.put(Region.A1_L,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p1));
-        regions.put(Region.A1_R,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p2));
-        regions.put(Region.A2_L,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p3));
-        regions.put(Region.A2_R, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p4));
-        regions.put(Region.A3_L, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p5));
-        regions.put(Region.A3_R, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p6));
-        regions.put(Region.BGIC_L, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p7));
-        regions.put(Region.BGIC_R,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p8));
-        regions.put(Region.CR_L,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p1) );
-        regions.put(Region.CR_R,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p2));
-        regions.put(Region.M1_L,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p3));
-        regions.put(Region.M1_R, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p4));
-        regions.put(Region.M2_L, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p5));
-        regions.put(Region.M2_R, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p6));
-        regions.put(Region.M3_L, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p7));
-        regions.put(Region.M3_R,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p8));
-        regions.put(Region.M4_L,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p1) );
-        regions.put(Region.M4_R,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p2));
-        regions.put(Region.M5_L,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p3));
-        regions.put(Region.M5_R, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p4));
-        regions.put(Region.M6_L, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p5));
-        regions.put(Region.M6_R, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p6));
-        regions.put(Region.P_L, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p7));
-        regions.put(Region.P_R,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p8));
-        regions.put(Region.T_L, BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p7));
-        regions.put(Region.T_R,BitmapFactory.decodeResource( appContext.getResources(), R.drawable.p8));
+        regions.put(Region.A1_L, R.drawable.p1);
+        regions.put(Region.A1_R,R.drawable.p2);
+        regions.put(Region.A2_L,R.drawable.p3);
+        regions.put(Region.A2_R, R.drawable.p4);
+        regions.put(Region.A3_L,  R.drawable.p5);
+        regions.put(Region.A3_R, R.drawable.p6);
+        regions.put(Region.BGIC_L,  R.drawable.p7);
+        regions.put(Region.BGIC_R,R.drawable.p8);
+        regions.put(Region.CR_L,R.drawable.p1);
+        regions.put(Region.CR_R, R.drawable.p2);
+        regions.put(Region.M1_L,R.drawable.p3);
+        regions.put(Region.M1_R, R.drawable.p4);
+        regions.put(Region.M2_L,R.drawable.p5);
+        regions.put(Region.M2_R, R.drawable.p6);
+        regions.put(Region.M3_L, R.drawable.p7);
+        regions.put(Region.M3_R,R.drawable.p8);
+        regions.put(Region.M4_L, R.drawable.p1);
+        regions.put(Region.M4_R, R.drawable.p2);
+        regions.put(Region.M5_L, R.drawable.p3);
+        regions.put(Region.M5_R,  R.drawable.p4);
+        regions.put(Region.M6_L, R.drawable.p5);
+        regions.put(Region.M6_R, R.drawable.p6);
+        regions.put(Region.P_L, R.drawable.p7);
+        regions.put(Region.P_R,R.drawable.p8);
+        regions.put(Region.T_L, R.drawable.p7);
+        regions.put(Region.T_R,R.drawable.p8);
 
     }
 
@@ -119,7 +120,7 @@ public final class CTPictures {
             Canvas canvas = new Canvas(bmOverlay);
             canvas.drawARGB(0x00, 0, 0, 0);
             Paint paint = new Paint();
-            paint.setAlpha(180);
+            paint.setAlpha(120);
             canvas.drawBitmap(brainImg, 0, 0, null);
             canvas.drawBitmap(regionImg, 0, 0, paint);
 
@@ -136,6 +137,6 @@ public final class CTPictures {
 
     static Bitmap GetPicture(Region region)
     {
-        return regions.get(region);
+        return BitmapFactory.decodeResource( appContext.getResources(), regions.get(region));
     }
 }

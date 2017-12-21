@@ -22,7 +22,10 @@ import com.example.asus.strokeanalyzer.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Asus on 20.11.2017.
@@ -41,10 +44,15 @@ public final class StrokeBricksAnalyzer {
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
 
-    private StrokeBricksAnalyzer() {}
+    private StrokeBricksAnalyzer() {
+    }
 
     public static List<Region> AnalyzeRegionsAffection(Patient p) {
-        List<Region> affectedRegions = new ArrayList<>();
+        if (correctAnswers == null || regionsDescription == null) {
+            Initialize();
+        }
+
+        Set<Region> affectedRegions = new HashSet<>();
 
         NihssExamination nihssExamination = p.getLatestNihssExamination();
 
@@ -138,7 +146,7 @@ public final class StrokeBricksAnalyzer {
             }
         }
 
-        return affectedRegions;
+        return new ArrayList<>(affectedRegions);
     }
 
     public static String CreateStrokeRangeDescription(List<Region> regions)
@@ -157,5 +165,10 @@ public final class StrokeBricksAnalyzer {
     public static Bitmap[] GetStrokeImage(List<Region> regions)
     {
         return CTPictures.GenerateOutputImage(regions);
+    }
+
+    private static void Initialize() {
+        correctAnswers = new Hashtable<>();
+        regionsDescription = new Hashtable<>();
     }
 }

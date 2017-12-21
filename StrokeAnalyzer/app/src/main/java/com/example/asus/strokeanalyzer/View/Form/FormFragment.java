@@ -16,6 +16,9 @@ import android.view.ViewGroup;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
+import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
+import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
+import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
@@ -92,6 +95,8 @@ public class FormFragment extends Fragment {
 
             patientService = new PatientService(context);
             patient = patientService.GetPatientById(patientID);
+
+
             //get questions list
             List<Integer> questionIDs = FormsStructure.QuestionsPrintedInForm.get(formType);
             prepareQuestions(questionIDs);
@@ -224,14 +229,20 @@ public class FormFragment extends Fragment {
             if(question instanceof DescriptiveQuestion)
             {
                 printedQuestion = new DescriptiveQ(question.GetID(), question.GetText());
+                if(patient.PatientAnswers.containsKey(question.GetID()))
+                    ((DescriptiveQ)printedQuestion).setAnswer(((TextAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
             else if(question instanceof TrueFalseQuestion)
             {
                 printedQuestion = new TrueFalseQ(question.GetID(), question.GetText());
+                if(patient.PatientAnswers.containsKey(question.GetID()))
+                    ((TrueFalseQ)printedQuestion).setAnswer(((TrueFalseAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
             else if(question instanceof BulletedQuestion)
             {
                 printedQuestion = new BulletedQ(question.GetID(), question.GetText(), ((BulletedQuestion) question).GetPosiibleValues());
+                if(patient.PatientAnswers.containsKey(question.GetID()))
+                    ((BulletedQ)printedQuestion).setAnswer((int)((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
 
             questions.add(question);

@@ -79,12 +79,12 @@ public class ResultsFragment extends Fragment {
 
         //patients results
         ((TextView) view.findViewById(R.id.nihssSum)).setText(String.valueOf(patient.getNihss()));
-        ((TextView) view.findViewById(R.id.sbDescription)).setText(StrokeBricksAnalyzer.CreateStrokeRangeDescription(patient.getStrokeBricksAffectedRegions()));
+/*        ((TextView) view.findViewById(R.id.sbDescription)).setText(StrokeBricksAnalyzer.CreateStrokeRangeDescription(patient.getStrokeBricksAffectedRegions()));
         ((TextView) view.findViewById(R.id.treatmentDecision)).setText(patient.getTreatmentDecision().Decision?"leczenie zalecane":"leczenie NIE zalecane");
         ((TextView) view.findViewById(R.id.wrongAnswers)).setText(wrongAnswersText(patient.getTreatmentDecision().badAnswers));
         ((TextView) view.findViewById(R.id.hatScore)).setText(String.valueOf(patient.getHatPrognosis().Score));
         ((TextView) view.findViewById(R.id.dragonScore)).setText(String.valueOf(patient.getDragonPrognosis().Score));
-        ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(patient.getIscorePrognosis().ScoreFor30Days));
+        ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(patient.getIscorePrognosis().ScoreFor30Days));*/
 
 
         //button leading to CT pictures

@@ -304,6 +304,7 @@ public final class FormsStructure {
         TrueFalseQuestion question212 = new TrueFalseQuestion(id, "Krwotok śródmózgowy w TK/MR");
         questionsUsedForThrombolysis.add(id);
 
+        Questions.put(200,question200);
         Questions.put(201, question201);
         Questions.put(202, question202);
         Questions.put(203, question203);
@@ -318,6 +319,7 @@ public final class FormsStructure {
         Questions.put(212, question212);
 
         ArrayList<Integer> questionsDemographic = new ArrayList<>();
+        questionsDemographic.add(200);
         questionsDemographic.add(201);
         questionsDemographic.add(202);
         questionsDemographic.add(203);
