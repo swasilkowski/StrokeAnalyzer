@@ -14,6 +14,7 @@ import com.example.asus.strokeanalyzer.Model.Patient;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by S. Wasilkowski on 2017-12-12.
@@ -40,6 +41,7 @@ public final class PatientService {
 
     public Patient GetPatientById(int id) {
         Patient patient = EntityToModel(db.patientDao().selectById(id));
+        patient.PatientAnswers = entityDataToModelData(db.otherDataDao().SelectByPatientId(id));
         return patient;
     }
 
@@ -48,7 +50,7 @@ public final class PatientService {
         patient.Id = (int)id;
 
         for (OtherData data:
-             modelDatatoEntityData(patient)) {
+             modelDataToEntityData(patient)) {
             db.otherDataDao().insert(data);
         }
         return id;
@@ -58,7 +60,7 @@ public final class PatientService {
         db.patientDao().update(ModelToEntity(patient));
 
         for (OtherData data:
-                modelDatatoEntityData(patient)) {
+                modelDataToEntityData(patient)) {
             db.otherDataDao().update(data);
         }
     }
@@ -69,7 +71,31 @@ public final class PatientService {
         //TODO: deleting all patients data
     }
 
-    private List<OtherData> modelDatatoEntityData(Patient model){
+    private Map<Integer, Answer> entityDataToModelData(List<OtherData> otherData) {
+        Map<Integer, Answer> patientAnswers = new Hashtable<>();
+
+        for (OtherData data:
+             otherData) {
+            switch (data.dataType) {
+                case 0:
+                    NumericAnswer answer = new NumericAnswer(data.answerId);
+                    answer.Value = data.numericData;
+                    patientAnswers.put(data.answerId, answer);
+                case 1:
+                    TextAnswer answer1 = new TextAnswer(data.answerId);
+                    answer1.Value = data.textData;
+                    patientAnswers.put(data.answerId, answer1);
+                case 2:
+                    TrueFalseAnswer answer2 = new TrueFalseAnswer(data.answerId);
+                    answer2.Value = data.booleanData;
+                    patientAnswers.put(data.answerId, answer2);
+            }
+        }
+
+        return patientAnswers;
+    }
+
+    private List<OtherData> modelDataToEntityData(Patient model){
         List<OtherData> dataList = new LinkedList<>();
 
         for (Answer answer:
