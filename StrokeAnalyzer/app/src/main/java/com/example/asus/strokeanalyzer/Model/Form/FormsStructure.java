@@ -38,6 +38,17 @@ public final class FormsStructure {
 
     }
 
+    public static boolean patientReady(Patient p, Form form)
+    {
+        List<Integer> questions = FormsStructure.QuestionsUsedForForm.get(form);
+        for(Integer id:questions)
+        {
+            if(!p.PatientAnswers.containsKey(id))
+                return false;
+        }
+        return true;
+    }
+
     public static void InitializeQuestionsList()
     {
         //uzupelnienei slownikow

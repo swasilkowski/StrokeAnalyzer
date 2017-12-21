@@ -43,8 +43,12 @@ public class Patient {
 
     public Map<Integer, Answer> PatientAnswers;
 
-    public int getNihss() {
-        return NihssAnalyzer.CountNihssSum(getLatestNihssExamination());
+    public int getNihss()
+    {
+        NihssExamination examination = getLatestNihssExamination();
+        if(examination == null)
+            return -1;
+        return NihssAnalyzer.CountNihssSum(examination);
     }
 
     public int getNihssOnAdmission() {

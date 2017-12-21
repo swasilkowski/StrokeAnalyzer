@@ -52,6 +52,9 @@ public final class StrokeBricksAnalyzer {
             Initialize();
         }
 
+        if(!FormsStructure.patientReady(p,Form.StrokeBricks))
+            return null;
+
         Set<Region> affectedRegions = new HashSet<>();
 
         NihssExamination nihssExamination = p.getLatestNihssExamination();
