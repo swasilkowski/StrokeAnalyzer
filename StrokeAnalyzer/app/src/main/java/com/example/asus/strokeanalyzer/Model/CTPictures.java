@@ -108,6 +108,7 @@ public final class CTPictures {
         brainPictures[2] = basicPictures[2].copy(basicPictures[0].getConfig(), true);
         brainPictures[3] = basicPictures[3].copy(basicPictures[0].getConfig(), true);
 
+
         for(Region r:regions)
         {
             //brain image

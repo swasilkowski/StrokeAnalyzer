@@ -39,8 +39,9 @@ public class ReportFragment extends DialogFragment {
     // Use this instance of the interface to deliver action events
     GenerateReportDialogListener _listener;
 
-    public static ReportFragment newInstance(Patient patient) {
+    public static ReportFragment newInstance(Patient patient, GenerateReportDialogListener listener) {
         ReportFragment fragment = new ReportFragment();
+        fragment._listener = listener;
         //fragment.patient = patient;
 
         /*Bundle args = new Bundle();
