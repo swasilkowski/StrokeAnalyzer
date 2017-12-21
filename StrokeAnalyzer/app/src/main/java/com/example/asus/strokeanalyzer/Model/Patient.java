@@ -1,5 +1,6 @@
 package com.example.asus.strokeanalyzer.Model;
 
+import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
@@ -78,21 +79,18 @@ public class Patient {
         return ((Patient)p).Id == Id;
     }
 
-    public void GenarateReport() {
+    public void GenerateReport(Context context) {
         Document doc = new Document();
 
         try {
-            String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String path = context.getExternalFilesDir(null).getAbsolutePath() + "/Dir";
 
             File dir = new File(path);
-            boolean mkdirs = true;
             if(!dir.exists()) {
-                mkdirs = dir.mkdirs();
+                dir.mkdirs();
             }
 
-            boolean d = dir.exists();
             File file = new File(dir, "Raport"+PatientNumber+".pdf");
-            file.createNewFile();
             FileOutputStream fOut = new FileOutputStream(file);
 
             PdfWriter.getInstance(doc, fOut);
@@ -105,46 +103,52 @@ public class Patient {
             Paragraph p1 = new Paragraph("Nr pacjenta "+PatientNumber);
             p1.setAlignment(Paragraph.ALIGN_CENTER);
             p1.setFont(paraFont);
+            doc.add(p1);
 
             Paragraph p2 = new Paragraph("Imię: " + Name);
             p2.setAlignment(Paragraph.ALIGN_LEFT);
             p2.setFont(paraFont);
+            doc.add(p2);
 
             Paragraph p3 = new Paragraph("Nazwisko: " + Surname);
             p3.setAlignment(Paragraph.ALIGN_LEFT);
             p3.setFont(paraFont);
+            doc.add(p3);
 
-            Paragraph p4 = new Paragraph("Wynik NIHSS: " + getNihss());
-            p4.setAlignment(Paragraph.ALIGN_LEFT);
-            p4.setFont(paraFont);
+//            Paragraph p4 = new Paragraph("Wynik NIHSS: " + getNihss());
+//            p4.setAlignment(Paragraph.ALIGN_LEFT);
+//            p4.setFont(paraFont);
+//            doc.add(p4);
+//
+//            Paragraph p5 = new Paragraph("Kwalifikacja do leczenia? " + (getTreatmentDecision().Decision ? "TAK":"NIE"));
+//            p5.setAlignment(Paragraph.ALIGN_LEFT);
+//            p5.setFont(paraFont);
+//            doc.add(p5);
+//
+//            Paragraph p6 = new Paragraph("Rokowania HAT:\n Ryzyko wylewu - " +
+//                    getHatPrognosis().RiskOfSymptomaticICH+
+//                    "%\nRyzyko śmiertelnego wylewu - "+
+//                    getHatPrognosis().RiskOfFatalICH+"%");
+//            p6.setAlignment(Paragraph.ALIGN_LEFT);
+//            p6.setFont(paraFont);
+//            doc.add(p6);
+//
+//            Paragraph p7 = new Paragraph("Rokowania DRAGON:\n Prawdopodobieństwo dobrego wyniku (mRS < 3) - " +
+//                    getDragonPrognosis().GoodOutcomePrognosis+
+//                    "%\nPrawdopodobieństwo złego wyniku (mRS > 4) - "+
+//                    getDragonPrognosis().MiserableOutcomePrognosis+"%");
+//            p7.setAlignment(Paragraph.ALIGN_LEFT);
+//            p7.setFont(paraFont);
+//            doc.add(p7);
+//
+//            Paragraph p8 = new Paragraph("Rokowania iScore:\n Prawdopodobieństwo śmierci po 30 dniach - " +
+//                    getIscorePrognosis().PrognosisFor30Days+
+//                    "%\nPrawdopodobieństwo śmierci po roku - "+
+//                    getIscorePrognosis().PrognosisFor1Year+"%");
+//            p8.setAlignment(Paragraph.ALIGN_LEFT);
+//            p8.setFont(paraFont);
+//            doc.add(p8);
 
-            Paragraph p5 = new Paragraph("Kwalifikacja do leczenia? " + (getTreatmentDecision().Decision ? "TAK":"NIE"));
-            p5.setAlignment(Paragraph.ALIGN_LEFT);
-            p5.setFont(paraFont);
-
-            Paragraph p6 = new Paragraph("Rokowania HAT:\n Ryzyko wylewu - " +
-                    getHatPrognosis().RiskOfSymptomaticICH+
-                    "%\nRyzyko śmiertelnego wylewu - "+
-                    getHatPrognosis().RiskOfFatalICH+"%");
-            p6.setAlignment(Paragraph.ALIGN_LEFT);
-            p6.setFont(paraFont);
-
-            Paragraph p7 = new Paragraph("Rokowania DRAGON:\n Prawdopodobieństwo dobrego wyniku (mRS < 3) - " +
-                    getDragonPrognosis().GoodOutcomePrognosis+
-                    "%\nPrawdopodobieństwo złego wyniku (mRS > 4) - "+
-                    getDragonPrognosis().MiserableOutcomePrognosis+"%");
-            p7.setAlignment(Paragraph.ALIGN_LEFT);
-            p7.setFont(paraFont);
-
-            Paragraph p8 = new Paragraph("Rokowania iScore:\n Prawdopodobieństwo śmierci po 30 dniach - " +
-                    getIscorePrognosis().PrognosisFor30Days+
-                    "%\nPrawdopodobieństwo śmierci po roku - "+
-                    getIscorePrognosis().PrognosisFor1Year+"%");
-            p8.setAlignment(Paragraph.ALIGN_LEFT);
-            p8.setFont(paraFont);
-
-            //add paragraph to document
-            doc.add(p1);
 
         } catch (DocumentException de) {
             Log.e("PDFCreator", "DocumentException:" + de);
