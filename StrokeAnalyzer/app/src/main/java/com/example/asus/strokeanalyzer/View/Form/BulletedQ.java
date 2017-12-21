@@ -22,6 +22,7 @@ public class BulletedQ implements Question{
         this.id = id;
         this.text = text;
         answers = new ArrayList<>();
+        answerId = -1;
         for(Integer key: possibleValues.keySet())
         {
             answers.add(new BulletedAnswer(key,possibleValues.get(key)));

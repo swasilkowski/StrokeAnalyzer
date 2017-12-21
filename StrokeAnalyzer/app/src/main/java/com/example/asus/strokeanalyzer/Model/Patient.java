@@ -50,6 +50,12 @@ public class Patient {
         AffectedRegionsSB = new ArrayList<>();
     }
 
+    @Override
+    public boolean equals(Object p)
+    {
+        return ((Patient)p).Id == Id;
+    }
+
     public void GenarateReport() {
         Document doc = new Document();
 

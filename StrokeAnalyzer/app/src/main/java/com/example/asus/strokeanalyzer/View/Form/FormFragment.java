@@ -52,15 +52,17 @@ public class FormFragment extends Fragment {
     private Form formType;
     private Patient patient;
     private Integer patientID;
+    private boolean creatingPatient;
     private List<Answer> answers = new ArrayList<>();
     private List<Question> printQuestions = new ArrayList<>();
     private List<com.example.asus.strokeanalyzer.Model.Form.Question.Question> questions = new ArrayList<>();
     PatientService patientService;
 
-    public static FormFragment newInstance(Form form, long patientID) {
+    public static FormFragment newInstance(Form form, long patientID, boolean create) {
         FormFragment fragment = new FormFragment();
         fragment.formType = form;
         fragment.patientID = (int)patientID;
+        fragment.creatingPatient = create;
         //----------zmienic----------------
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -157,7 +159,7 @@ public class FormFragment extends Fragment {
 
             //if we were creating a new patient we need to clear backstack and put there list of patients and our patient profile
             List<Fragment> currentStackState =  getFragmentManager().getFragments();
-            if(newPatient(currentStackState))
+            if(creatingPatient)
             {
                 getFragmentManager().popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
 

@@ -28,7 +28,8 @@ public final class HatAnalyzer {
     //correctAnswers - contains propwer answers in this scale for particular question
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
-    private HatAnalyzer() {}
+    private HatAnalyzer() {
+    }
 
     public static int AnalyzePrognosis(Patient p)
     {

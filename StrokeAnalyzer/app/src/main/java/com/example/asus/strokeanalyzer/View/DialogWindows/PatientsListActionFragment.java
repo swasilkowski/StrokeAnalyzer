@@ -27,10 +27,30 @@ public class PatientsListActionFragment extends DialogFragment {
 
     Integer patientID;
     PatientService patientService;
+    private DeleteListener dListener;
+
+    public interface DeleteListener {
+        public void patientDeleted(int patientID);
+    }
 
     public PatientsListActionFragment() {
         // Required empty public constructor
     }
+
+    public static PatientsListActionFragment newInstance(DeleteListener _dListener) {
+        PatientsListActionFragment fragment = new PatientsListActionFragment();
+        fragment.dListener = _dListener;
+/*        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);*/
+        return fragment;
+    }
+
+/*    public PatientsListActionFragment(DeleteListener _dListener)
+    {
+        dListener = _dListener;
+    }*/
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -118,6 +138,7 @@ public class PatientsListActionFragment extends DialogFragment {
         //remove patient from database
         patientService.DeletePatient(patientID);
 
+        dListener.patientDeleted(patientID);
         //get back to list view
         dismiss();
 
@@ -160,14 +181,7 @@ public class PatientsListActionFragment extends DialogFragment {
      * @return A new instance of fragment PatientsListActionFragment.
      *//*
     // TODO: Rename and change types and number of parameters
-    public static PatientsListActionFragment newInstance(String param1, String param2) {
-        PatientsListActionFragment fragment = new PatientsListActionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
 
 

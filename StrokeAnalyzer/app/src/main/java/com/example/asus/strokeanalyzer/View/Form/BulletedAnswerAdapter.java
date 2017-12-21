@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,13 +17,75 @@ import java.util.List;
  * Created by Asus on 04.12.2017.
  */
 
-public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerAdapter.ViewHolder>  {
+public class BulletedAnswerAdapter  extends BaseAdapter {
 
     private List<BulletedAnswer> answers;
     private final Context context;
+    private Integer answerID;
+
+    @Override
+    public int getCount() {
+        return answers.size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return answers.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    public void SetAnswerID(int id)
+    {
+        answerID = id;
+    }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        if (view == null) {
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.answer_row, viewGroup, false);
+        }
+
+        BulletedAnswer answer  = (BulletedAnswer)getItem(i);
+        final TextView t = (TextView)  view.findViewById(R.id.answerTextB);
+        t.setText(answer.getText());
+        color(t,answer.getId());
+        //
+      /*  final BulletedAnswer answer  = (BulletedAnswer)getItem(i);
+        final Button b = (Button) view.findViewById(R.id.answerTextB);
+        b.setBackgroundResource(R.drawable.selected_button);
+        b.setText(answer.getText());
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //chooseAnswer(b, answer.getId());
+                b.setSelected(true);
+            }
+        });*/
+
+        return view;
+    }
+
+    public void color(View view,int id)
+    {
+        if(id==answerID)
+        {
+            view.setBackgroundColor(context.getColor(R.color.colorAccent));
+            //ustaw pokolorowanie
+            // view.setSelected(true);
+        }
+        else
+        {
+            view.setBackgroundColor((context.getColor(R.color.colorPrimary)));
+        }
+    }
+
+
+/*    public class ViewHolder extends RecyclerView.ViewHolder {
         public Button answer;
 
         public ViewHolder(View view) {
@@ -30,22 +93,23 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
 
             answer = (Button) view.findViewById(R.id.answerTextB);
         }
-    }
+    }*/
 
-    public BulletedAnswerAdapter(final List<BulletedAnswer> answers, Context context) {
+    public BulletedAnswerAdapter(final List<BulletedAnswer> answers, int pickedAnswer, Context context) {
         this.answers = answers;
         this.context = context;
+        answerID=pickedAnswer;
     }
 
-    @Override
+  /*  @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.answer_row, parent, false);
 
         return new ViewHolder(itemView);
-    }
+    }*/
 
-    @Override
+/*    @Override
     public void onBindViewHolder(final BulletedAnswerAdapter.ViewHolder holder, int position) {
 
         final BulletedAnswer answer = answers.get(position);
@@ -59,17 +123,28 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
                 chooseAnswer(holder.answer, answer.getId());
             }
         });
-    }
+    }*/
 
     public void chooseAnswer(View view, int id)
     {
-        //
+        clearColors();
+        view.setBackgroundColor(view.getResources().getColor(R.color.colorAccent));
+            //kolorowanie elementu
+           // ListPoint elem = productsList.get(position);
+           // elem.setisBought(val);
+           // notifyItemChanged(position);
     }
 
-    @Override
+    private void clearColors()
+    {
+
+    }
+
+
+    /*@Override
     public int getItemCount() {
         return answers.size();
-    }
+    }*/
 
     /*    // Remove a RecyclerView item containing a specified Data object
     public void remove(Name data) {

@@ -17,9 +17,11 @@ import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.PatientsListActionFragment;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
+import com.example.asus.strokeanalyzer.View.Helpers.RemovePatientPredicate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.jar.Attributes;
 
 /**
@@ -82,9 +84,22 @@ public class PatientsListFragment extends Fragment  {
                     bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
 
                     //print dialog with actions for patient
-                    DialogFragment dialog = new PatientsListActionFragment();
+                    PatientsListActionFragment.DeleteListener listener = new PatientsListActionFragment.DeleteListener() {
+                        @Override
+                        public void patientDeleted(final int patientID) {
+
+                            RemovePatientPredicate<Patient> pred = new RemovePatientPredicate<>();
+                            Patient tmp = new Patient();
+                            tmp.Id = patientID;
+                            pred.patient =tmp;
+                            patients.removeIf(pred);
+                            pAdapter.notifyDataSetChanged();
+                        }
+                    };
+                    DialogFragment dialog =PatientsListActionFragment.newInstance(listener);
                     dialog.setArguments(bundel);
                     dialog.show(getActivity().getSupportFragmentManager(), "PatientsListActionFragment");
+
 
                 }
             }));

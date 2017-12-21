@@ -135,7 +135,7 @@ public class NihssExaminationFragment extends Fragment {
 
 
             //move to proper form
-            FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID);
+            FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID, false);
             //move to demograhic form
             //ResultsFragment setFragment= new ResultsFragment();
             getActivity().getSupportFragmentManager().beginTransaction()

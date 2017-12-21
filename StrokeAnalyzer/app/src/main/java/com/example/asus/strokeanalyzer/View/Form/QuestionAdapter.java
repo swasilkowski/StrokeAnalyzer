@@ -8,9 +8,13 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
@@ -22,6 +26,7 @@ import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //sorce:https://medium.com/@ruut_j/a-recyclerview-with-multiple-item-types-bce7fbd1d30e
@@ -61,6 +66,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((DescriptiveQ)question).getText());
+            this.answer.setText(((DescriptiveQ)questionObject).getAnswer());
 
             answer.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -105,6 +111,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((TrueFalseQ)question).getText());
+            this.answer.setChecked(((TrueFalseQ)questionObject).getAnswer());
 
             answer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -124,7 +131,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     public class ViewHolderBulletedQ extends ViewHolder {
         private final TextView question;
-        private final RecyclerView answers;
+        private final ListView answers;
         private BulletedAnswerAdapter aAdapter;
         private Question questionObject;
         private int answerID;
@@ -133,7 +140,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             super(view);
 
             question = (TextView) view.findViewById(R.id.questionTextB);
-            answers = (RecyclerView) view.findViewById(R.id.answer_recyclerview);
+            answers = (ListView) view.findViewById(R.id.answer_recyclerview);
         }
 
         @Override
@@ -142,14 +149,16 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             this.question.setText(((BulletedQ)question).getText());
 
             // Set the adapter
-            if (answers instanceof RecyclerView) {
+            if (answers instanceof ListView) {
                 Context context = answers.getContext(); //????????????
 
                 //get patients list from database
                 //namesList = dbh.getNameList(rankingID);
 
-                aAdapter = new BulletedAnswerAdapter(((BulletedQ)question).getAnswers(),context);
-                answers.setLayoutManager(new LinearLayoutManager(context));
+                aAdapter = new BulletedAnswerAdapter(((BulletedQ)question).getAnswers(),((BulletedQ)questionObject).getAnswer(),context);
+                answers.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+
+               // answers.setLayoutManager(new LinearLayoutManager(context));
             /*recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.addItemDecoration(new DividerItem(context, LinearLayoutManager.VERTICAL));
             ItemTouchHelper.Callback callback =
@@ -157,16 +166,23 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(recyclerView);*/
                 answers.setAdapter(aAdapter);
+                //answers.setSelection(((BulletedQ)questionObject).getAnswer());
 
-                answers.addOnItemTouchListener(new RecyclerTouchListener( context, answers, new ClickListener() {
+
+                //--------------TODO_--------NOOOOOOOOOOW
+                answers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onClick(View view, int position) {
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        answerID = ((BulletedQ)questionObject).getAnswers().get(position).getId();
+                        answerID = ((BulletedQ)questionObject).getAnswers().get(i).getId();
                         ((BulletedQ)questionObject).setAnswer(answerID);
-
+                        aAdapter.SetAnswerID(answerID);
+                        aAdapter.color(view,answerID);
+                        //answers.setSelection(answerID);
                     }
-                }));
+                });
+
+                //answers.performItemClick(answers.getChildAt(0),0,answers.getItemIdAtPosition(0));
 
             }
             //-------------------------------------------------------------
@@ -272,6 +288,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
         return answers;
     }
+
 
 
     /*    // Remove a RecyclerView item containing a specified Data object
