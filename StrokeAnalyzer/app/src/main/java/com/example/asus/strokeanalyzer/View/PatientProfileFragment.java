@@ -194,21 +194,8 @@ public class PatientProfileFragment extends Fragment {
         // Storing data into bundle
         bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
 
-        ReportFragment.GenerateReportDialogListener listener = new ReportFragment.GenerateReportDialogListener() {
-            @Override
-            public void onDialogReportPositiveClick(DialogFragment dialog, int patientID) {
-
-                patientService.GetPatientById(patientID).GenarateReport();
-            }
-
-            @Override
-            public void onDialogReportNegativeClick(DialogFragment dialog) {
-
-            }
-        };
-
         //print dialog with actions for patient
-        DialogFragment dialog = ReportFragment.newInstance(patient, listener);
+        DialogFragment dialog = ReportFragment.newInstance(patient);
         dialog.setArguments(bundel);
         dialog.show(getActivity().getSupportFragmentManager(), "ReportFragment");
 

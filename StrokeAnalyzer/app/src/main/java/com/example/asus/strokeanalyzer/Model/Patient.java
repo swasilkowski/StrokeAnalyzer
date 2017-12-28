@@ -95,6 +95,7 @@ public class Patient {
             }
 
             File file = new File(dir, "Raport"+PatientNumber+".pdf");
+            file.createNewFile();
             FileOutputStream fOut = new FileOutputStream(file);
 
             PdfWriter.getInstance(doc, fOut);

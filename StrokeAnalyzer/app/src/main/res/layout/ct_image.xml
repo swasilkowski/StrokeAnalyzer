@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitXY"
-        android:layout_gravity="center"
-        android:src="@drawable/brain" />
+        android:layout_gravity="center" />
 
 </LinearLayout>

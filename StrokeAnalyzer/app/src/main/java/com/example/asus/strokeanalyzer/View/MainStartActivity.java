@@ -10,8 +10,11 @@ import com.example.asus.strokeanalyzer.Model.CTPictures;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
 import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
+
+import static java.security.AccessController.getContext;
 
 public class MainStartActivity extends AppCompatActivity implements ReportFragment.GenerateReportDialogListener {
 
@@ -51,7 +54,8 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
     public void onDialogReportPositiveClick(DialogFragment dialog, int patientID) {
 
         //generate report about the patient
-        ;
+        PatientService patientService = new PatientService(dialog.getContext());
+        patientService.GetPatientById(patientID).GenerateReport(dialog.getContext());;
     }
 
     @Override

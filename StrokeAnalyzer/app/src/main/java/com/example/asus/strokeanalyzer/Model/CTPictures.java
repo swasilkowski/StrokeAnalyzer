@@ -12,6 +12,7 @@ import android.test.mock.MockApplication;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.R;
 
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -26,9 +27,9 @@ public final class CTPictures {
     private static Context appContext;
 
     private static Bitmap[] basicPictures = new Bitmap[4];
-    //key - region's id, value - resoruce of image
-    private static Map<Region,Integer> regions = new Hashtable<>();
-    private static Map<Region, Integer> regionBasicPictureRelation = new Hashtable<>();
+    //key - region's id, value - resoruce id of images connected with this region
+    private static Map<Region, List<Integer>> regions = new Hashtable<>();
+    private static Map<Integer, Integer> pictureBasicPictureRelation = new Hashtable<>();
 
     private CTPictures(){}
 
@@ -37,70 +38,162 @@ public final class CTPictures {
         appContext =context;
 
         //setting basic brain pictures
-        basicPictures[0] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain);
-        basicPictures[1] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain);
-        basicPictures[2] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain);
-        basicPictures[3] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain);
+        basicPictures[0] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1);
+        basicPictures[1] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_2);
+        basicPictures[2] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_3);
+        basicPictures[3] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_4);
 
-        //assigning regions to basic brain pictures
-        regionBasicPictureRelation.put(Region.A1_L,0);
-        regionBasicPictureRelation.put(Region.A1_R,1);
-        regionBasicPictureRelation.put(Region.A2_L,2);
-        regionBasicPictureRelation.put(Region.A2_R, 3);
-        regionBasicPictureRelation.put(Region.A3_L, 0);
-        regionBasicPictureRelation.put(Region.A3_R, 1);
-        regionBasicPictureRelation.put(Region.BGIC_L, 2);
-        regionBasicPictureRelation.put(Region.BGIC_R,3);
-        regionBasicPictureRelation.put(Region.CR_L,0 );
-        regionBasicPictureRelation.put(Region.CR_R,1);
-        regionBasicPictureRelation.put(Region.M1_L,2);
-        regionBasicPictureRelation.put(Region.M1_R, 3);
-        regionBasicPictureRelation.put(Region.M2_L, 0);
-        regionBasicPictureRelation.put(Region.M2_R, 1);
-        regionBasicPictureRelation.put(Region.M3_L, 2);
-        regionBasicPictureRelation.put(Region.M3_R,3);
-        regionBasicPictureRelation.put(Region.M4_L,0 );
-        regionBasicPictureRelation.put(Region.M4_R,1);
-        regionBasicPictureRelation.put(Region.M5_L,2);
-        regionBasicPictureRelation.put(Region.M5_R, 3);
-        regionBasicPictureRelation.put(Region.M6_L, 0);
-        regionBasicPictureRelation.put(Region.M6_R, 1);
-        regionBasicPictureRelation.put(Region.P_L, 2);
-        regionBasicPictureRelation.put(Region.P_R,3);
-        regionBasicPictureRelation.put(Region.T_L, 0);
-        regionBasicPictureRelation.put(Region.T_R,1);
+        //assigning images of brain parts to basic brain pictures
+        pictureBasicPictureRelation.put(R.drawable.a1_l_9,0);
+        pictureBasicPictureRelation.put(R.drawable.a1_p_9,0);
+        pictureBasicPictureRelation.put(R.drawable.m2_l_9,0);
+        pictureBasicPictureRelation.put(R.drawable.m2_p_9,0);
+        pictureBasicPictureRelation.put(R.drawable.m3_l_9,0);
+        pictureBasicPictureRelation.put(R.drawable.m3_p_9,0);
+        pictureBasicPictureRelation.put(R.drawable.p_l_9,0);
+        pictureBasicPictureRelation.put(R.drawable.p_p_9,0);
+        pictureBasicPictureRelation.put(R.drawable.a1_l_14,1);
+        pictureBasicPictureRelation.put(R.drawable.a1_p_14,1);
+        pictureBasicPictureRelation.put(R.drawable.bgic_l_14,1);
+        pictureBasicPictureRelation.put(R.drawable.bgic_p_14,1);
+        pictureBasicPictureRelation.put(R.drawable.m1_l_14,1);
+        pictureBasicPictureRelation.put(R.drawable.m1_p_14,1);
+        pictureBasicPictureRelation.put(R.drawable.m2_l_14,1);
+        pictureBasicPictureRelation.put(R.drawable.m2_p_14,1);
+        pictureBasicPictureRelation.put(R.drawable.m3_l_14,1);
+        pictureBasicPictureRelation.put(R.drawable.m3_p_14,1);
+        pictureBasicPictureRelation.put(R.drawable.p_l_14,1);
+        pictureBasicPictureRelation.put(R.drawable.p_p_14,1);
+        pictureBasicPictureRelation.put(R.drawable.t_l_14,1);
+        pictureBasicPictureRelation.put(R.drawable.t_p_14,1);
+        pictureBasicPictureRelation.put(R.drawable.a1_l_16,2);
+        pictureBasicPictureRelation.put(R.drawable.a1_p_16,2);
+        pictureBasicPictureRelation.put(R.drawable.cr_l_16,2);
+        pictureBasicPictureRelation.put(R.drawable.cr_p_16,2);
+        pictureBasicPictureRelation.put(R.drawable.m4_l_16,2);
+        pictureBasicPictureRelation.put(R.drawable.m4_p_16,2);
+        pictureBasicPictureRelation.put(R.drawable.m5_l_16,2);
+        pictureBasicPictureRelation.put(R.drawable.m5_p_16,2);
+        pictureBasicPictureRelation.put(R.drawable.m6_l_16,2);
+        pictureBasicPictureRelation.put(R.drawable.m6_p_16,2);
+        pictureBasicPictureRelation.put(R.drawable.p_l_16,2);
+        pictureBasicPictureRelation.put(R.drawable.p_p_16,2);
+        pictureBasicPictureRelation.put(R.drawable.a1_l_23,3);
+        pictureBasicPictureRelation.put(R.drawable.a1_p_23,3);
+        pictureBasicPictureRelation.put(R.drawable.a2_l_23,3);
+        pictureBasicPictureRelation.put(R.drawable.a2_p_23,3);
+        pictureBasicPictureRelation.put(R.drawable.a3_l_23,3);
+        pictureBasicPictureRelation.put(R.drawable.a3_p_23,3);
+        pictureBasicPictureRelation.put(R.drawable.m4_l_23,3);
+        pictureBasicPictureRelation.put(R.drawable.m4_p_23,3);
+        pictureBasicPictureRelation.put(R.drawable.m5_l_23,3);
+        pictureBasicPictureRelation.put(R.drawable.m5_p_23,3);
+        pictureBasicPictureRelation.put(R.drawable.m6_l_23,3);
+        pictureBasicPictureRelation.put(R.drawable.m6_p_23,3);
 
         //assigning regions to images
-        regions.put(Region.A1_L, R.drawable.p1);
-        regions.put(Region.A1_R,R.drawable.p2);
-        regions.put(Region.A2_L,R.drawable.p3);
-        regions.put(Region.A2_R, R.drawable.p4);
-        regions.put(Region.A3_L,  R.drawable.p5);
-        regions.put(Region.A3_R, R.drawable.p6);
-        regions.put(Region.BGIC_L,  R.drawable.p7);
-        regions.put(Region.BGIC_R,R.drawable.p8);
-        regions.put(Region.CR_L,R.drawable.p1);
-        regions.put(Region.CR_R, R.drawable.p2);
-        regions.put(Region.M1_L,R.drawable.p3);
-        regions.put(Region.M1_R, R.drawable.p4);
-        regions.put(Region.M2_L,R.drawable.p5);
-        regions.put(Region.M2_R, R.drawable.p6);
-        regions.put(Region.M3_L, R.drawable.p7);
-        regions.put(Region.M3_R,R.drawable.p8);
-        regions.put(Region.M4_L, R.drawable.p1);
-        regions.put(Region.M4_R, R.drawable.p2);
-        regions.put(Region.M5_L, R.drawable.p3);
-        regions.put(Region.M5_R,  R.drawable.p4);
-        regions.put(Region.M6_L, R.drawable.p5);
-        regions.put(Region.M6_R, R.drawable.p6);
-        regions.put(Region.P_L, R.drawable.p7);
-        regions.put(Region.P_R,R.drawable.p8);
-        regions.put(Region.T_L, R.drawable.p7);
-        regions.put(Region.T_R,R.drawable.p8);
+        List<Integer> picturesResId = new ArrayList<>();
+        picturesResId.add(R.drawable.a1_l_9);
+        picturesResId.add(R.drawable.a1_l_14);
+        picturesResId.add(R.drawable.a1_l_16);
+        picturesResId.add(R.drawable.a1_l_23);
+        regions.put(Region.A1_L, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.a1_p_9);
+        picturesResId.add(R.drawable.a1_p_14);
+        picturesResId.add(R.drawable.a1_p_16);
+        picturesResId.add(R.drawable.a1_p_23);
+        regions.put(Region.A1_R,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.a2_l_23);
+        regions.put(Region.A2_L,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.a2_p_23);
+        regions.put(Region.A2_R, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.a3_l_23);
+        regions.put(Region.A3_L,  new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.a3_p_23);
+        regions.put(Region.A3_R, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.bgic_l_14);
+        regions.put(Region.BGIC_L,  new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.bgic_p_14);
+        regions.put(Region.BGIC_R,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.cr_l_16);
+        regions.put(Region.CR_L,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.cr_p_16);
+        regions.put(Region.CR_R,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m1_l_14);
+        regions.put(Region.M1_L,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m1_p_14);
+        regions.put(Region.M1_R, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m2_l_9);
+        picturesResId.add(R.drawable.m2_l_14);
+        regions.put(Region.M2_L,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m2_p_9);
+        picturesResId.add(R.drawable.m2_p_14);
+        regions.put(Region.M2_R, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m3_l_9);
+        picturesResId.add(R.drawable.m3_l_14);
+        regions.put(Region.M3_L, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m3_p_9);
+        picturesResId.add(R.drawable.m3_p_14);
+        regions.put(Region.M3_R,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m4_l_16);
+        picturesResId.add(R.drawable.m4_l_23);
+        regions.put(Region.M4_L, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m4_p_16);
+        picturesResId.add(R.drawable.m4_p_23);
+        regions.put(Region.M4_R, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m5_l_16);
+        picturesResId.add(R.drawable.m5_l_23);
+        regions.put(Region.M5_L, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m5_p_16);
+        picturesResId.add(R.drawable.m5_p_23);
+        regions.put(Region.M5_R, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m6_l_16);
+        picturesResId.add(R.drawable.m6_l_23);
+        regions.put(Region.M6_L,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.m6_p_16);
+        picturesResId.add(R.drawable.m6_p_23);
+        regions.put(Region.M6_R,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.p_l_9);
+        picturesResId.add(R.drawable.p_l_14);
+        picturesResId.add(R.drawable.p_l_16);
+        regions.put(Region.P_L, new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.p_p_9);
+        picturesResId.add(R.drawable.p_p_14);
+        picturesResId.add(R.drawable.p_p_16);
+        regions.put(Region.P_R,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.t_l_14);
+        regions.put(Region.T_L,new ArrayList<Integer>(picturesResId));
+        picturesResId.clear();
+        picturesResId.add(R.drawable.t_p_14);
+        regions.put(Region.T_R,new ArrayList<Integer>(picturesResId));
 
     }
 
-    public static Bitmap[] GenerateOutputImage(List<Region> regions)
+    public static Bitmap[] GenerateOutputImage(List<Region> _regions)
     {
         Bitmap[] brainPictures = new Bitmap[4];
         brainPictures[0] = basicPictures[0].copy(basicPictures[0].getConfig(), true);
@@ -109,35 +202,60 @@ public final class CTPictures {
         brainPictures[3] = basicPictures[3].copy(basicPictures[0].getConfig(), true);
 
 
-        for(Region r:regions)
+        _regions = new ArrayList<>();
+        _regions.add(Region.A1_L);
+        _regions.add(Region.A1_R);
+        _regions.add(Region.M2_L);
+        for(Region r:_regions)
         {
-            //brain image
-            Bitmap brainImg = brainPictures[regionBasicPictureRelation.get(r)];
-
             //region image
-            Bitmap regionImg = GetPicture(r);
+            //List<Bitmap> regionImages = GetPictures(r);
+            //image Ids
+            List<Integer> ids = regions.get(r);
 
-            Bitmap bmOverlay = Bitmap.createBitmap(brainImg.getWidth(), brainImg.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bmOverlay);
-            canvas.drawARGB(0x00, 0, 0, 0);
-            Paint paint = new Paint();
-            paint.setAlpha(120);
-            canvas.drawBitmap(brainImg, 0, 0, null);
-            canvas.drawBitmap(regionImg, 0, 0, paint);
+            for(Integer image: ids)
+            {
+                //brain image
+                Bitmap brainImg = brainPictures[pictureBasicPictureRelation.get(image)];
 
-            //moze zbedna czesc??
-            BitmapDrawable drawable = new BitmapDrawable(bmOverlay);
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                //region image
+                Bitmap regionImage = GetPicture(image);
 
-            brainPictures[regionBasicPictureRelation.get(r)] = drawable.getBitmap();
+                Bitmap bmOverlay = Bitmap.createBitmap(brainImg.getWidth(), brainImg.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bmOverlay);
+                canvas.drawARGB(0x00, 0, 0, 0);
+                Paint paint = new Paint();
+                paint.setAlpha(120);
+                canvas.drawBitmap(brainImg, 0, 0, null);
+                canvas.drawBitmap(regionImage, 0, 0, paint);
+
+
+                //moze zbedna czesc??
+                BitmapDrawable drawable = new BitmapDrawable(bmOverlay);
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+
+                brainPictures[pictureBasicPictureRelation.get(image)] = drawable.getBitmap();
+            }
+
 
         }
 
         return brainPictures;
     }
 
-    static Bitmap GetPicture(Region region)
+    static Bitmap GetPicture(Integer resourceID)
     {
-        return BitmapFactory.decodeResource( appContext.getResources(), regions.get(region));
+        return BitmapFactory.decodeResource( appContext.getResources(), resourceID);
+    }
+
+
+    static List<Bitmap> GetPictures(Region region)
+    {
+        List<Bitmap> pics = new ArrayList<>();
+        for(Integer id:regions.get(region))
+        {
+            pics.add(BitmapFactory.decodeResource( appContext.getResources(), id));
+        }
+        return pics;
     }
 }
