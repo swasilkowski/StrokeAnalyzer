@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.View;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
+import com.example.asus.strokeanalyzer.View.DialogWindows.NumberAlertFragment;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 
 /**
@@ -90,10 +92,39 @@ public class NewPatientFragment extends Fragment {
 
     public void createPatient(View v)
     {
-        String name = this.name.getText().toString();
-        String surname = this.surname.getText().toString();
-        String number = this.number.getText().toString();
+        final String name = this.name.getText().toString();
+        final String surname = this.surname.getText().toString();
+        final String number = this.number.getText().toString();
 
+        //sprawdz czy istnieje pacjent o takim numerze
+        if(false)
+        {
+            NumberAlertFragment.NumberAlertDialogListener listener = new NumberAlertFragment.NumberAlertDialogListener() {
+                @Override
+                public void onDialogNumberPositiveClick(DialogFragment dialog, int patientID) {
+                    addPatient(name,surname,number);
+                    dialog.dismiss();
+                }
+
+                @Override
+                public void onDialogNumberNegativeClick(DialogFragment dialog) {
+                                dialog.dismiss();
+                }
+            };
+
+            //print dialog with actions for patient
+            DialogFragment dialog = NumberAlertFragment.newInstance(listener);
+            //dialog.setArguments(bundel);
+            dialog.show(getActivity().getSupportFragmentManager(), "NumberAlertFragment");
+            return;
+        }
+
+        addPatient(name,surname,number);
+
+    }
+
+    public void addPatient(String name, String surname, String number)
+    {
         //add patient to database - create profile
         Patient newPatient = new Patient();
         newPatient.Name = name;
@@ -109,8 +140,8 @@ public class NewPatientFragment extends Fragment {
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)
                 .commit();
-
     }
+
 
 /*    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

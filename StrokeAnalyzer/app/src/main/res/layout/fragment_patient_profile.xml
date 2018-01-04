@@ -52,13 +52,13 @@
             android:text="@string/nihss"
             style="@style/NormalButton"/>
 
-        <Button
+<!--        <Button
             android:id="@+id/sbBt"
             android:layout_width="@dimen/tmp_button_width"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_vertical"
             android:text="@string/stroke_bricks"
-            style="@style/NormalButton"/>
+            style="@style/NormalButton"/>-->
 
         <Button
             android:id="@+id/treatmentBt"
@@ -68,21 +68,21 @@
             android:text="@string/treatment_decision"
             style="@style/NormalButton"/>
 
-        <Button
+<!--        <Button
             android:id="@+id/dragonBt"
             android:layout_width="@dimen/tmp_button_width"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_vertical"
             android:text="@string/dragon_scale"
-            style="@style/NormalButton"/>
+            style="@style/NormalButton"/>-->
 
-        <Button
+<!--        <Button
             android:id="@+id/hatBt"
             android:layout_width="@dimen/tmp_button_width"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_vertical"
             android:text="@string/hat_scale"
-            style="@style/NormalButton"/>
+            style="@style/NormalButton"/>-->
 
         <Button
             android:id="@+id/iscoreBt"

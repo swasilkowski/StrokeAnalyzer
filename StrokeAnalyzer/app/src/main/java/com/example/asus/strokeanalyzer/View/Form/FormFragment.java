@@ -244,6 +244,13 @@ public class FormFragment extends Fragment {
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((BulletedQ)printedQuestion).setAnswer((int)((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
+            else if(question instanceof DescriptiveQuestion)
+            {
+                //zmienicccccc---------------TODO---------------------
+                printedQuestion = new NumericQ(question.GetID(), question.GetText());
+                if(patient.PatientAnswers.containsKey(question.GetID()))
+                    ((NumericQ)printedQuestion).setAnswer(((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
+            }
 
             questions.add(question);
             printQuestions.add(printedQuestion);

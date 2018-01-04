@@ -128,7 +128,7 @@ public class PatientProfileFragment extends Fragment {
                         .commit();
             }
         });
-        final Button sbBt= (Button) view.findViewById(R.id.sbBt);
+/*        final Button sbBt= (Button) view.findViewById(R.id.sbBt);
         sbBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -136,7 +136,7 @@ public class PatientProfileFragment extends Fragment {
             {
                 printForm(sbBt, Form.StrokeBricks);
             }
-        });
+        });*/
         final Button treatmentBt= (Button) view.findViewById(R.id.treatmentBt);
         treatmentBt.setOnClickListener(new View.OnClickListener()
         {
@@ -146,7 +146,7 @@ public class PatientProfileFragment extends Fragment {
                 printForm(treatmentBt, Form.ThrombolyticTreatment);
             }
         });
-        final Button hatBt= (Button) view.findViewById(R.id.hatBt);
+/*        final Button hatBt= (Button) view.findViewById(R.id.hatBt);
         hatBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -163,7 +163,7 @@ public class PatientProfileFragment extends Fragment {
             {
                 printForm(dragonBt, Form.Dragon);
             }
-        });
+        });*/
         final Button iscoreBt= (Button) view.findViewById(R.id.iscoreBt);
         iscoreBt.setOnClickListener(new View.OnClickListener()
         {

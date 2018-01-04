@@ -21,7 +21,9 @@ import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -80,6 +82,7 @@ public class NihssExaminationFragment extends Fragment {
 
             //get patients list from database
             examinations = patientService.GetPatientById(patientID).getNihssHistory();
+            Collections.reverse(examinations);
 
             nAdapter = new NihssAdapter(examinations,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -96,6 +99,18 @@ public class NihssExaminationFragment extends Fragment {
                 public void onClick(View view, int position) {
 
                    //NIC___________________TODO______________
+
+                    if(position==0)
+                    {
+                        //move to proper form
+                        FormFragment setFragment = FormFragment.newInstance(Form.NIHSS, patientID, false);
+                        //move to demograhic form
+                        //ResultsFragment setFragment= new ResultsFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentFrame, setFragment, null)
+                                .addToBackStack(null)
+                                .commit();
+                    }
 
 /*                    // Creating Bundle object
                     Bundle bundel = new Bundle();

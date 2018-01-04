@@ -3,44 +3,43 @@ package com.example.asus.strokeanalyzer.View.DialogWindows;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
-import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
-import com.example.asus.strokeanalyzer.Services.PatientService;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
+
  * to handle interaction events.
- * Use the {@link ReportFragment#newInstance} factory method to
+
  * create an instance of this fragment.
  */
-public class ReportFragment extends DialogFragment {
+public class DeleteDialogFragment extends DialogFragment {
 
     //Patient patient;
     Integer patientID;
 
 
-    public interface GenerateReportDialogListener {
-        public void onDialogReportPositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
-        public void onDialogReportNegativeClick(android.support.v4.app.DialogFragment dialog);
+    public interface DeletePatientDialogListener {
+        public void onDialogDeletePositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
+        public void onDialogDeleteNegativeClick(android.support.v4.app.DialogFragment dialog);
     }
 
     // Use this instance of the interface to deliver action events
-    GenerateReportDialogListener _listener;
+    DeletePatientDialogListener _listener;
 
-    public static ReportFragment newInstance(Patient patient) {
-        ReportFragment fragment = new ReportFragment();
+    public static DeleteDialogFragment newInstance(DeletePatientDialogListener listener) {
+        DeleteDialogFragment fragment = new DeleteDialogFragment();
+        fragment._listener = listener;
         //fragment.patient = patient;
 
         /*Bundle args = new Bundle();
@@ -58,20 +57,20 @@ public class ReportFragment extends DialogFragment {
         }
     }
 
-    // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
+/*    // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         // Verify that the host activity implements the callback interface
         try {
             // Instantiate the NoticeDialogListener so we can send events to the host
-            _listener = (GenerateReportDialogListener) activity;
+            _listener = (DeletePatientDialogListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(activity.toString()
                     + " must implement ChooseNameDialogListener");
         }
-    }
+    }*/
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -79,15 +78,15 @@ public class ReportFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_report, null);
+        final View dialogView = inflater.inflate(R.layout.fragment_delete_dialog, null);
        // final EditText emailView = (EditText) dialogView.findViewById(R.id.emailAddress);
 
-        builder.setTitle(R.string.report_generation)
+        builder.setTitle(R.string.delete_patient)
                 .setView(dialogView)
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //generate report
-                        _listener.onDialogReportPositiveClick(ReportFragment.this, patientID);
+                        _listener.onDialogDeletePositiveClick(DeleteDialogFragment.this, patientID);
 
                     }
                 })
@@ -96,15 +95,14 @@ public class ReportFragment extends DialogFragment {
 
                         // User cancelled the dialog
                         // Send the negative button event back to the host activity
-                        _listener.onDialogReportNegativeClick(ReportFragment.this);
+                        _listener.onDialogDeleteNegativeClick(DeleteDialogFragment.this);
                     }
                 });
         // Create the AlertDialog object and return it
         return builder.create();
     }
 
-    /*
-    // TODO: Rename parameter arguments, choose names that match
+/*    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -115,7 +113,7 @@ public class ReportFragment extends DialogFragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ReportFragment() {
+    public DeleteDialogFragment() {
         // Required empty public constructor
     }
 
@@ -125,18 +123,32 @@ public class ReportFragment extends DialogFragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ReportFragment.
+     * @return A new instance of fragment DeleteDialogFragment.
      *//*
     // TODO: Rename and change types and number of parameters
+    public static DeleteDialogFragment newInstance(String param1, String param2) {
+        DeleteDialogFragment fragment = new DeleteDialogFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
-
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report, container, false);
+        return inflater.inflate(R.layout.fragment_delete_dialog, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

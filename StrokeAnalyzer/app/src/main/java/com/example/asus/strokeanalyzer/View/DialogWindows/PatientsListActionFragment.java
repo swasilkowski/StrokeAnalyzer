@@ -105,7 +105,7 @@ public class PatientsListActionFragment extends DialogFragment {
             @Override
             public void onClick(View v)
             {
-                deletePatient(deleteBt);
+                openDeleteDialog(deleteBt);
             }
         });
 
@@ -132,9 +132,35 @@ public class PatientsListActionFragment extends DialogFragment {
         return view;
     }
 
-    public void deletePatient(View v)
+    public void openDeleteDialog(View v)
     {
+        DeleteDialogFragment.DeletePatientDialogListener listener = new DeleteDialogFragment.DeletePatientDialogListener() {
+            @Override
+            public void onDialogDeletePositiveClick(DialogFragment dialog, int patientID) {
+                deletePatient();
+                dialog.dismiss();
+            }
 
+            @Override
+            public void onDialogDeleteNegativeClick(DialogFragment dialog) {
+                dialog.dismiss();
+            }
+        };
+
+        // Creating Bundle object
+        Bundle bundel = new Bundle();
+
+        // Storing data into bundle
+        bundel.putInt(getString(R.string.patient_id_tag), patientID);
+
+        //print dialog with actions for patient
+        DialogFragment dialog = DeleteDialogFragment.newInstance(listener);
+        dialog.setArguments(bundel);
+        dialog.show(getActivity().getSupportFragmentManager(), "DeleteDialogFragment");
+    }
+
+    public void deletePatient()
+    {
         //remove patient from database
         patientService.DeletePatient(patientID);
 

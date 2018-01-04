@@ -17,6 +17,7 @@
     <string name="hat_scale">Skala Hat</string>
     <string name="result_string">Wyniki</string>
     <string name="report_string">Raport</string>
+    <string name="delete_patient">Usuń</string>
     <string name="demographic_and_clinic_data">Dane demograficzne i kliniczne</string>
     <string name="no_result_text">Brak wyniku</string>
     <string name="view_ct_pictures">Zdjęcia TK</string>
@@ -25,6 +26,9 @@
     <string name="delete_bt">Usuń</string>
     <string name="report_dialog">Podaj adres email. Po wyborze \'OK\' raport zostanie wygenerowany i
         przesłany na wprowadzony przez Ciebie adres email.</string>
+    <string name="delete_dialog">Czy jesteś pewny, że chcesz usunąć dane pacjenta?</string>
+    <string name="number_alert_dialog">Pacjent o takim numerze już istnieje. Czy jesteś pewny, że chcesz utworzyć
+        pacjenta z tym samym numerem?</string>
     <string name="email_hint">email</string>
     <string name="report_generation">Generowanie raportu</string>
     <string name="ok_bt">OK</string>

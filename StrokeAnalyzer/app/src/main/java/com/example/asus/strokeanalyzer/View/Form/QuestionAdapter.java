@@ -95,6 +95,51 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     }
 
+    public class ViewHolderNumericQ extends ViewHolder {
+        private final TextView question;
+        private final EditText answer;//!!!!!!!!!!!!!!!!!!!!! TO DO !!!!!!!!!!
+        private Question questionObject;
+
+        public ViewHolderNumericQ(View view) {
+            super(view);
+
+            question = (TextView) view.findViewById(R.id.questionTextN);
+            answer = (EditText) view.findViewById(R.id.answerData);
+        }
+
+        @Override
+        public void bindType(Question question) {
+            questionObject = question;
+            this.question.setText(((NumericQ)question).getText());
+            this.answer.setText(String.valueOf(((NumericQ)questionObject).getAnswer()));
+
+            answer.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    ((NumericQ)questionObject).setAnswer(Double.parseDouble(answer.getText().toString()));
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
+        }
+
+        @Override
+        public void setAnswer()
+        {
+            ((NumericQ)questionObject).setAnswer(Double.parseDouble(answer.getText().toString()));
+        }
+
+    }
+
     public class ViewHolderTrueFalseQ extends ViewHolder {
         private final TextView question;
         private final CheckBox answer;//!!!!!!!!!!!!!!!!!!!!! TO DO !!!!!!!!!!
@@ -239,6 +284,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                         .from(parent.getContext())
                         .inflate(R.layout.true_false_question, parent, false);
                 return new ViewHolderTrueFalseQ(view);
+            case Question.NUMERIC:
+                view = LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.numeric_question, parent, false);
+                return new ViewHolderNumericQ(view);
 
         }
         return null;
@@ -283,6 +333,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             {
                 answer = new NumericAnswer(((BulletedQ) q).getID());
                 ((NumericAnswer)answer).Value = ((BulletedQ) q).getAnswer();//SAMO ID __________TO DO_________
+            }
+            else if (q instanceof NumericQ)
+            {
+                answer = new NumericAnswer(((NumericQ) q).getID());
+                ((NumericAnswer) answer).Value = ((NumericQ) q).getAnswer();
             }
             answers.add(answer);
         }
