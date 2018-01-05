@@ -11,7 +11,11 @@ import android.widget.TextView;
 
 import com.example.asus.strokeanalyzer.R;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Asus on 04.12.2017.
@@ -20,6 +24,7 @@ import java.util.List;
 public class BulletedAnswerAdapter  extends BaseAdapter {
 
     private List<BulletedAnswer> answers;
+    private Map<Integer, TextView> buttons;
     private final Context context;
     private Integer answerID;
 
@@ -54,6 +59,7 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
         final TextView t = (TextView)  view.findViewById(R.id.answerTextB);
         t.setText(answer.getText());
         color(t,answer.getId());
+        buttons.put(answer.getId(),t);
         //
       /*  final BulletedAnswer answer  = (BulletedAnswer)getItem(i);
         final Button b = (Button) view.findViewById(R.id.answerTextB);
@@ -98,6 +104,7 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
     public BulletedAnswerAdapter(final List<BulletedAnswer> answers, int pickedAnswer, Context context) {
         this.answers = answers;
         this.context = context;
+        this.buttons = new Hashtable<>();
         answerID=pickedAnswer;
     }
 
@@ -127,7 +134,7 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
 
     public void chooseAnswer(View view, int id)
     {
-        clearColors();
+
         view.setBackgroundColor(view.getResources().getColor(R.color.colorAccent));
             //kolorowanie elementu
            // ListPoint elem = productsList.get(position);
@@ -135,9 +142,12 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
            // notifyItemChanged(position);
     }
 
-    private void clearColors()
+    public void clearColors()
     {
-
+            for(Integer ans: new ArrayList<Integer>(buttons.keySet()))
+            {
+                color(buttons.get(ans),ans);
+            }
     }
 
 

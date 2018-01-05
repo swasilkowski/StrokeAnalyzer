@@ -222,6 +222,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                         answerID = ((BulletedQ)questionObject).getAnswers().get(i).getId();
                         ((BulletedQ)questionObject).setAnswer(answerID);
                         aAdapter.SetAnswerID(answerID);
+                        aAdapter.clearColors();
                         aAdapter.color(view,answerID);
                         //answers.setSelection(answerID);
                     }
