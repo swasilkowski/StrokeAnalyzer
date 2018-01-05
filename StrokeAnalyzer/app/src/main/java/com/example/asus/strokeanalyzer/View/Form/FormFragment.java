@@ -56,16 +56,18 @@ public class FormFragment extends Fragment {
     private Patient patient;
     private Integer patientID;
     private boolean creatingPatient;
+    private boolean newForm;
     private List<Answer> answers = new ArrayList<>();
     private List<Question> printQuestions = new ArrayList<>();
     private List<com.example.asus.strokeanalyzer.Model.Form.Question.Question> questions = new ArrayList<>();
     PatientService patientService;
 
-    public static FormFragment newInstance(Form form, long patientID, boolean create) {
+    public static FormFragment newInstance(Form form, long patientID, boolean create, boolean newForm) {
         FormFragment fragment = new FormFragment();
         fragment.formType = form;
         fragment.patientID = (int)patientID;
         fragment.creatingPatient = create;
+        fragment.newForm = newForm;
         //----------zmienic----------------
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -97,9 +99,18 @@ public class FormFragment extends Fragment {
             patient = patientService.GetPatientById(patientID);
 
 
+            if(newForm==true && formType == Form.NIHSS)
+            {
+                clearPreviousAnswers();
+            }
+
             //get questions list
             List<Integer> questionIDs = FormsStructure.QuestionsPrintedInForm.get(formType);
+
+            //zmienia sie rozmiar na dwa razy wieksze
             prepareQuestions(questionIDs);
+
+
 
             qAdapter = new QuestionAdapter(printQuestions, answers,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -254,6 +265,18 @@ public class FormFragment extends Fragment {
 
             questions.add(question);
             printQuestions.add(printedQuestion);
+        }
+    }
+
+    private void clearPreviousAnswers()
+    {
+        List<Integer> questions = new ArrayList<>(FormsStructure.QuestionsUsedForForm.get(formType));
+        questions.addAll(FormsStructure.QuestionsPrintedInForm.get(formType));
+
+        for(Integer id:questions)
+        {
+            if(patient.PatientAnswers.containsKey(id));
+                patient.PatientAnswers.remove(id);
         }
     }
 

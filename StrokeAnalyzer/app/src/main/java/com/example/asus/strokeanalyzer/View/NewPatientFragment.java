@@ -135,7 +135,7 @@ public class NewPatientFragment extends Fragment {
         long patientID = patientService.AddPatient(newPatient);
 
         //move to demograhic form
-        FormFragment setFragment = FormFragment.newInstance(Form.DemographicAndClinic, patientID, true);
+        FormFragment setFragment = FormFragment.newInstance(Form.DemographicAndClinic, patientID, true, true);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)
