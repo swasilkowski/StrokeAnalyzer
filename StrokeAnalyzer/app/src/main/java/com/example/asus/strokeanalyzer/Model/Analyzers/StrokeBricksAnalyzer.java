@@ -173,5 +173,31 @@ public final class StrokeBricksAnalyzer {
     private static void Initialize() {
         correctAnswers = new Hashtable<>();
         regionsDescription = new Hashtable<>();
+        regionsDescription.put(Region.A1_L,"A1_L");
+        regionsDescription.put(Region.A1_R, "A1_R");
+        regionsDescription.put(Region.A2_L, "A2_L");
+        regionsDescription.put(Region.A2_R,"A2_R");
+        regionsDescription.put(Region.A3_L, "A3_L");
+        regionsDescription.put(Region.A3_R, "A3_R");
+        regionsDescription.put(Region.BGIC_L, "BGIC_L");
+        regionsDescription.put(Region.BGIC_R,"BGIC_R");
+        regionsDescription.put(Region.CR_L, "CR_L");
+        regionsDescription.put(Region.CR_R, "CR_R");
+        regionsDescription.put(Region.M1_L,"M1_L");
+        regionsDescription.put(Region.M1_R, "M1_R");
+        regionsDescription.put(Region.M2_L, "M2_L");
+        regionsDescription.put(Region.M2_R, "M2_R");
+        regionsDescription.put(Region.M3_L,"M3_L");
+        regionsDescription.put(Region.M3_R, "M3_R");
+        regionsDescription.put(Region.M4_L, "M4_L");
+        regionsDescription.put(Region.M4_R,"M4_R");
+        regionsDescription.put(Region.M5_L, "M5_L");
+        regionsDescription.put(Region.M5_R, "M5_R");
+        regionsDescription.put(Region.M6_L, "M6_L");
+        regionsDescription.put(Region.M6_R,"M6_R");
+        regionsDescription.put(Region.P_L, "P_L");
+        regionsDescription.put(Region.P_R, "P_R");
+        regionsDescription.put(Region.T_L,"T_L");
+        regionsDescription.put(Region.T_R, "T_R");
     }
 }
