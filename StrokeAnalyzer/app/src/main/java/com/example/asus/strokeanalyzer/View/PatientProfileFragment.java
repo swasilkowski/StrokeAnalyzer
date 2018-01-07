@@ -92,7 +92,7 @@ public class PatientProfileFragment extends Fragment {
         name = (TextView) view.findViewById(R.id.patientNameShow);
         number = (TextView) view.findViewById(R.id.patientNumberShow);
         name.setText(patient.Name +" "+ patient.Surname);
-        number.setText(Integer.toString(patient.PatientNumber));
+        number.setText(Long.toString(patient.PatientNumber));
 
         final Button resultBt= (Button) view.findViewById(R.id.resultBt);
         resultBt.setOnClickListener(new View.OnClickListener()

@@ -56,7 +56,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
         final Patient patient = patients.get(position);
 
         holder.name.setText(patient.Name + " " + patient.Surname);
-        holder.number.setText(Integer.toString(patient.PatientNumber));
+        holder.number.setText(Long.toString(patient.PatientNumber));
 
     }
 
