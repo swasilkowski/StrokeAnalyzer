@@ -26,4 +26,7 @@ public interface OtherDataDao {
 
     @Query("SELECT COUNT(*) FROM other_data WHERE patient_id = :patientId AND answer_id = :answerId")
     int checkIfExists(int patientId, int answerId);
+
+    @Query("DELETE FROM other_data WHERE patient_id = :patientId")
+    void deleteByPatientId(int patientId);
 }

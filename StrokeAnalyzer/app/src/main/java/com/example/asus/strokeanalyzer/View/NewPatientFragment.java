@@ -142,7 +142,7 @@ public class NewPatientFragment extends Fragment {
         Patient newPatient = new Patient();
         newPatient.Name = name;
         newPatient.Surname = surname;
-        newPatient.PatientNumber = Integer.parseInt(number); //zlap wyjatki!!!
+        newPatient.PatientNumber = Long.parseLong(number); //zlap wyjatki!!!
 
         PatientService patientService = new PatientService(getContext());
         long patientID = patientService.AddPatient(newPatient);

@@ -52,6 +52,9 @@ public class NihssService {
     private static com.example.asus.strokeanalyzer.Entities.NihssExamination
         ModelToEntity(NihssExamination model, int patientId) throws IndexOutOfBoundsException {
 
+        if (model == null) {
+            return null;
+        }
         com.example.asus.strokeanalyzer.Entities.NihssExamination entity;
         entity = new com.example.asus.strokeanalyzer.Entities.NihssExamination();
 
@@ -119,6 +122,10 @@ public class NihssService {
     }
 
     private static NihssExamination EntityToModel(com.example.asus.strokeanalyzer.Entities.NihssExamination entity){
+        if (entity == null) {
+            return null;
+        }
+
         NihssExamination model = new NihssExamination();
 
         model.Date = new Date(entity.addedOn);

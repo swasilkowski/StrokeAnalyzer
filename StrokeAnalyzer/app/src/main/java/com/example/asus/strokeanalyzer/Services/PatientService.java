@@ -72,32 +72,8 @@ public final class PatientService {
 
     public void DeletePatient(Integer patientID) {
         Patient patient = GetPatientById(patientID);
+        db.otherDataDao().deleteByPatientId(patientID);
         db.patientDao().delete(ModelToEntity(patient));
-        //TODO: deleting all patients data
-    }
-
-    private Map<Integer, Answer> entityDataToModelData(List<OtherData> otherData) {
-        Map<Integer, Answer> patientAnswers = new Hashtable<>();
-
-        for (OtherData data:
-             otherData) {
-            switch (data.dataType) {
-                case 0:
-                    NumericAnswer answer = new NumericAnswer(data.answerId);
-                    answer.Value = data.numericData;
-                    patientAnswers.put(data.answerId, answer);
-                case 1:
-                    TextAnswer answer1 = new TextAnswer(data.answerId);
-                    answer1.Value = data.textData;
-                    patientAnswers.put(data.answerId, answer1);
-                case 2:
-                    TrueFalseAnswer answer2 = new TrueFalseAnswer(data.answerId);
-                    answer2.Value = data.booleanData;
-                    patientAnswers.put(data.answerId, answer2);
-            }
-        }
-
-        return patientAnswers;
     }
 
     private List<OtherData> modelDataToEntityData(Patient model){
