@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.Entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
@@ -12,9 +13,10 @@ import java.util.Date;
  */
 
 @Entity(foreignKeys = @ForeignKey(
-        entity = Patient.class,
-        parentColumns = "id",
-        childColumns = "patient_id"),
+            entity = Patient.class,
+            parentColumns = "id",
+            childColumns = "patient_id"),
+        indices = @Index("patient_id"),
         tableName = "other_data")
 public class OtherData {
     @PrimaryKey(autoGenerate = true)
