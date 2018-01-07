@@ -52,7 +52,10 @@ public class Patient {
     }
 
     public int getNihssOnAdmission() {
-        return NihssAnalyzer.CountNihssSum(NihssService.getEarliestNihssExaminationForPatient(Id));
+        NihssExamination examination = NihssService.getEarliestNihssExaminationForPatient(Id);
+        if(examination == null)
+            return -1;
+        return NihssAnalyzer.CountNihssSum(examination);
     }
 
     public List<Region> getStrokeBricksAffectedRegions() {
