@@ -22,60 +22,29 @@
             <ImageView
                 android:id="@+id/logo"
                 style="@style/LogoPicture"
-                app:srcCompat="@drawable/logo"
-                tools:layout_editor_absoluteX="70dp"
-                tools:layout_editor_absoluteY="42dp" />
+                app:srcCompat="@drawable/logo" />
 
-<!--            <LinearLayout
-                android:layout_width="wrap_content"
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/logo_space_height"/>
+
+            <Button
+                style="@style/HugeButton"
+                android:id="@+id/listBt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">-->
+                android:text="@string/list_bt_text"
+                android:onClick="showList" />
 
-<!--                <ImageView
-                    android:id="@+id/listLogo"
-                    android:layout_width="@dimen/start_page_icon"
-                    android:layout_height="@dimen/start_page_icon"
-                    app:srcCompat="@mipmap/ic_person_list_24dp"
-                    tools:layout_editor_absoluteY="258dp"
-                    tools:layout_editor_absoluteX="56dp" />-->
-
-                <Button
-                    style="@style/StartButton"
-                    android:id="@+id/listBt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/list_bt_text"
-                    tools:layout_editor_absoluteY="268dp"
-                    tools:layout_editor_absoluteX="168dp"
-                    android:onClick="showList" />
-
-            <!--</LinearLayout>-->
-
-<!--            <LinearLayout
-                android:layout_width="wrap_content"
+            <Button
+                style="@style/HugeButton"
+                android:id="@+id/newPatientBt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">-->
-
-                <Button
-                    style="@style/StartButton"
-                    android:id="@+id/newPatientBt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/new_patient_bt_text"
-                    tools:layout_editor_absoluteY="374dp"
-                    tools:layout_editor_absoluteX="88dp"
-                    android:onClick="addPatient"
-                    android:background="@color/colorAccent"/>
-
-<!--                <ImageView
-                    android:id="@+id/newPatientLogo"
-                    android:layout_width="@dimen/start_page_icon"
-                    android:layout_height="@dimen/start_page_icon"
-                    app:srcCompat="@mipmap/ic_person_add_24dp"
-                    tools:layout_editor_absoluteY="355dp"
-                    tools:layout_editor_absoluteX="282dp" />
-
-            </LinearLayout>-->
+                android:text="@string/new_patient_bt_text"
+                android:onClick="addPatient"
+                android:background="@color/colorAccent"
+                android:shadowColor="@color/colorAccentDark"/>
 
         </LinearLayout>
 

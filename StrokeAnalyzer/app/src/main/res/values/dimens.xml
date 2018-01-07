@@ -1,24 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="start_page_icon">85dp</dimen>
-    <dimen name="start_button_margin">25dp</dimen>
-    <dimen name="start_button_margin_vertical">7dp</dimen>
-    <dimen name="start_button_text">23sp</dimen>
-    <dimen name="start_button_padding">20dp</dimen>
-    <dimen name="button_margin">10dp</dimen>
-    <dimen name="button_margin_vertical">3dp</dimen>
-    <dimen name="button_text">20sp</dimen>
+    <dimen name="huge_button_margin">25dp</dimen>
+    <dimen name="huge_button_margin_vertical">7dp</dimen>
+    <dimen name="huge_button_text">23sp</dimen>
+    <dimen name="huge_button_padding">20dp</dimen>
+
+    <dimen name="dialog_button_margin">10dp</dimen>
+    <dimen name="dialog_button_margin_vertical">3dp</dimen>
+    <dimen name="dialog_button_text">20sp</dimen>
+
+    <dimen name="logo_space_height">30dp</dimen>
+    <dimen name="list_element_padding">10dp</dimen>
+    <dimen name="menu_space_height">110dp</dimen>
+    <dimen name="frame_margin">10dp</dimen>
+    <dimen name="frame_elevation">3dp</dimen>
+
+    <dimen name="nihss_sum_padding">5dp</dimen>
+    <dimen name="nihss_sum_width">65dp</dimen>
+
+    <dimen name="huge_text_size">25sp</dimen>
+    <dimen name="small_text_size">18sp</dimen>
+    <dimen name="text_margin">12dp</dimen>
+    <dimen name="small_text_margin">1dp</dimen>
+    <dimen name="label_text_size">25dp</dimen>
+
+    <dimen name="label_left_padding">10dp</dimen>
+    <dimen name="label_top_padding">20dp</dimen>
+    <dimen name="label_bottom_padding">7dp</dimen>
+
+    <dimen name="menu_text_name">35sp</dimen>
+    <dimen name="menu_text_number">25sp</dimen>
+
+    <dimen name="edit_text_new_patient_tezt_size">22sp</dimen>
+
+
     <dimen name="button_padding">7dp</dimen>
     <dimen name="text_size">20sp</dimen>
+    <dimen name="edit_text_size">27sp</dimen>
     <dimen name="text_padding">5dp</dimen>
-    <dimen name="text_margin">12dp</dimen>
+
     <dimen name="text_margin_vertical">3dp</dimen>
-    <dimen name="patient_text_size">25sp</dimen>
-    <dimen name="patient_number_text_size">18sp</dimen>
+
     <dimen name="patient_text_margin_vertical">2dp</dimen>
     <dimen name="logo_size">250dp</dimen>
     <dimen name="logo_margin">20dp</dimen>
-    <dimen name="pic_size">120dp</dimen>
+    <dimen name="pic_size">180dp</dimen>
     <dimen name="patient_row_padding">12dp</dimen>
     <dimen name="examination_row_padding">12dp</dimen>
     <dimen name="examination_text_size">23sp</dimen>
@@ -28,7 +54,8 @@
     <dimen name="question_margin">10dp</dimen>
     <dimen name="result_label_text_size">25dp</dimen>
     <dimen name="result_label_padding">7dp</dimen>
-    <dimen name="space_height">40dp</dimen>
+
+
 
 
     <dimen name="tmp_button_width">190dp</dimen>

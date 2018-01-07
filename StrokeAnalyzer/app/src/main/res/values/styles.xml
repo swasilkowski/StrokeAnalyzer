@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -51,7 +50,7 @@
     
     <style name="ResultLabel">
         <item name="android:textSize">@dimen/result_label_text_size</item>
-        <item name="android:padding">@dimen/result_label_padding</item>
+<!--        <item name="android:padding">@dimen/result_label_padding</item>-->
         <item name="android:layout_marginLeft">@dimen/text_margin</item>
         <item name="android:layout_marginRight">@dimen/text_margin</item>
         <item name="android:layout_marginBottom">@dimen/text_margin_vertical</item>
@@ -66,78 +65,97 @@
     </style>
 
     <style name="EditTextCustom">
-        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="EditTextNewPatient">
+        <item name="android:textSize">@dimen/edit_text_new_patient_tezt_size</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="HugeText">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/huge_text_size</item>
+        <item name="android:layout_marginLeft">@dimen/text_margin</item>
+        <item name="android:layout_marginRight">@dimen/text_margin</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SmallText">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:layout_marginLeft">@dimen/text_margin</item>
+        <item name="android:layout_marginRight">@dimen/text_margin</item>
+    </style>
+
+    <style name="LabelText">
+        <item name="android:textSize">@dimen/label_text_size</item>
         <item name="android:layout_marginLeft">@dimen/text_margin</item>
         <item name="android:layout_marginRight">@dimen/text_margin</item>
         <item name="android:layout_marginBottom">@dimen/text_margin_vertical</item>
         <item name="android:layout_marginTop">@dimen/text_margin_vertical</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingTop">@dimen/label_top_padding</item>
+        <item name="android:paddingLeft">@dimen/label_left_padding</item>
+        <item name="android:paddingBottom">@dimen/label_bottom_padding</item>
     </style>
 
-    <style name="Patient_name">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textSize">@dimen/patient_text_size</item>
-        <item name="android:layout_marginLeft">@dimen/text_margin</item>
-        <item name="android:layout_marginRight">@dimen/text_margin</item>
-        <item name="android:layout_marginBottom">@dimen/patient_text_margin_vertical</item>
-        <item name="android:layout_marginTop">@dimen/patient_text_margin_vertical</item>
-        <item name="android:textStyle">bold</item>
+    <style name="SumFrame">
+        <item name="android:padding">@dimen/nihss_sum_padding</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:layout_width">@dimen/nihss_sum_width</item>
     </style>
 
-    <style name="Patient_number">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textSize">@dimen/patient_number_text_size</item>
-        <item name="android:layout_marginLeft">@dimen/text_margin</item>
-        <item name="android:layout_marginRight">@dimen/text_margin</item>
-        <item name="android:layout_marginBottom">@dimen/patient_text_margin_vertical</item>
-        <item name="android:layout_marginTop">@dimen/patient_text_margin_vertical</item>
-    </style>
-
-    <style name="Examination">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textSize">@dimen/examination_text_size</item>
-        <item name="android:layout_marginLeft">@dimen/text_margin</item>
-        <item name="android:layout_marginRight">@dimen/text_margin</item>
-        <item name="android:layout_marginBottom">@dimen/patient_text_margin_vertical</item>
-        <item name="android:layout_marginTop">@dimen/patient_text_margin_vertical</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="Examination_sum">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textSize">@dimen/examination_sum_text_size</item>
-        <item name="android:layout_marginLeft">@dimen/text_margin</item>
-        <item name="android:layout_marginRight">@dimen/text_margin</item>
-        <item name="android:layout_marginBottom">@dimen/patient_text_margin_vertical</item>
-        <item name="android:layout_marginTop">@dimen/patient_text_margin_vertical</item>
+    <style name="InputFrame">
+        <item name="android:layout_margin">@dimen/frame_margin</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:shadowColor">@color/colorText</item>
+        <item name="android:elevation">@dimen/frame_elevation</item>
     </style>
     
     <style name="Button">
         <item name="android:textColor">@color/white</item>
-
     </style>
 
-    <style name="StartButton" parent="@style/Button">
+    <style name="HugeButton" parent="@style/Button">
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:shadowColor">@color/colorPrimaryDark</item>
-        <item name="android:layout_marginLeft">@dimen/start_button_margin</item>
-        <item name="android:layout_marginRight">@dimen/start_button_margin</item>
-        <item name="android:layout_marginTop">@dimen/start_button_margin_vertical</item>
-        <item name="android:layout_marginBottom">@dimen/start_button_margin_vertical</item>
-        <item name="android:textSize">@dimen/start_button_text</item>
-        <item name="android:padding">@dimen/start_button_padding</item>
+        <item name="android:layout_marginLeft">@dimen/huge_button_margin</item>
+        <item name="android:layout_marginRight">@dimen/huge_button_margin</item>
+        <item name="android:layout_marginTop">@dimen/huge_button_margin_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/huge_button_margin_vertical</item>
+        <item name="android:textSize">@dimen/huge_button_text</item>
+        <item name="android:padding">@dimen/huge_button_padding</item>
     </style>
 
-    <style name="NormalButton" parent="@style/Button">
-        <item name="android:layout_marginLeft">@dimen/button_margin</item>
-        <item name="android:layout_marginRight">@dimen/button_margin</item>
-        <item name="android:layout_marginTop">@dimen/button_margin_vertical</item>
-        <item name="android:layout_marginBottom">@dimen/button_margin_vertical</item>
-        <item name="android:textSize">@dimen/button_text</item>
-        <item name="android:padding">@dimen/button_padding</item>
+    <style name="DialogButton" parent="@style/Button">
+        <item name="android:layout_marginLeft">@dimen/dialog_button_margin</item>
+        <item name="android:layout_marginRight">@dimen/dialog_button_margin</item>
+        <item name="android:layout_marginTop">@dimen/dialog_button_margin_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/dialog_button_margin_vertical</item>
+        <item name="android:textSize">@dimen/dialog_button_text</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:shadowColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="MenuButton" parent="@style/Button">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:shadowColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/huge_button_text</item>
+        <item name="android:padding">@dimen/huge_button_padding</item>
+        <item name="android:layout_height">0px</item>
     </style>
 
 </resources>

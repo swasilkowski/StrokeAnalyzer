@@ -1,66 +1,79 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.asus.strokeanalyzer.View.NewPatientFragment"
+    android:layout_gravity="center">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/nextBt"
+    android:layout_alignParentTop="true"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:gravity="center">
-
-    <ImageView
-        android:id="@+id/newPatientLogoFragment"
-        style="@style/OtherPicture"
-        app:srcCompat="@drawable/add"
-        android:layout_gravity="center"/>
+    android:layout_margin="20dp">
 
     <TextView
-        android:id="@+id/nameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/name_string"
-        style="@style/StandardText"/>
+        android:text="@string/new_patient_data_label"
+        style="@style/LabelText"/>
 
-    <EditText
-        android:id="@+id/name"
-        style="@style/EditTextCustom"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/name_hint"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/InputFrame">
+
+        <EditText
+            android:id="@+id/name"
+            style="@style/EditTextNewPatient"
+            android:inputType="textPersonName"
+            android:hint="@string/name_hint"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/InputFrame">
+
+        <EditText
+            android:id="@+id/surname"
+            style="@style/EditTextNewPatient"
+            android:inputType="textPersonName"
+            android:hint="@string/surname_hint" />
+
+    </FrameLayout>
 
     <TextView
-        android:id="@+id/surnameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/surname_string"
-        style="@style/StandardText"/>
+        android:text="@string/new_patient_id_label"
+        style="@style/LabelText"/>
 
-    <EditText
-        android:id="@+id/surname"
-        style="@style/EditTextCustom"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/surname_hint" />
-
-    <TextView
-        android:id="@+id/numberText"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/patient_number_string"
-        style="@style/StandardText"/>
+        style="@style/InputFrame">
 
-    <EditText
-        android:id="@+id/patientNumber"
-        style="@style/EditTextCustom"
-        android:ems="10"
-        android:inputType="numberSigned"
-        android:hint="@string/patient_number_hint" />
+        <EditText
+            android:id="@+id/patientNumber"
+            style="@style/EditTextNewPatient"
+            android:inputType="numberSigned"
+            android:hint="@string/patient_number_hint" />
+
+    </FrameLayout>
+
+</LinearLayout>
 
     <Button
         android:id="@+id/nextBt"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/next_bt"
-        style="@style/NormalButton"/>
+        android:layout_alignParentBottom="true"
+        style="@style/MenuButton"/>
 
-</LinearLayout>
+</RelativeLayout>

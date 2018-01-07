@@ -2,6 +2,7 @@ package com.example.asus.strokeanalyzer.View;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,7 @@ public class ResultsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_results, container, false);
 
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Wyniki");
 
         patientService = new PatientService(view.getContext());
         patient = patientService.GetPatientById(patientID);

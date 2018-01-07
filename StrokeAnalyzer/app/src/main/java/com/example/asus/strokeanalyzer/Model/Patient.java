@@ -39,7 +39,7 @@ public class Patient {
     public int Id;
     public String Name;
     public String Surname;
-    public int PatientNumber;
+    public long PatientNumber;
 
     public Map<Integer, Answer> PatientAnswers;
 

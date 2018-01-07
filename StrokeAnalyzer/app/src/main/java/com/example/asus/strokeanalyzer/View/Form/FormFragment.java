@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
+import com.example.asus.strokeanalyzer.View.DividerItem;
 import com.example.asus.strokeanalyzer.View.NewPatientFragment;
 import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
 import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
@@ -91,6 +93,9 @@ public class FormFragment extends Fragment {
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
         recyclerView = (RecyclerView) view;
 
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(formType.Print());
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -121,6 +126,7 @@ public class FormFragment extends Fragment {
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(recyclerView);*/
             recyclerView.setAdapter(qAdapter);
+            recyclerView.addItemDecoration(new DividerItem(this.getContext(),LinearLayoutManager.VERTICAL));
 
            /* recyclerView.addOnItemTouchListener(new RecyclerTouchListener( getActivity().getApplicationContext(), recyclerView, new ClickListener() {
                 @Override
@@ -215,6 +221,10 @@ public class FormFragment extends Fragment {
         super.onDestroyView();
         SaveAnswers();
         patientService.UpdatePatient(patient);
+        if(formType == Form.NIHSS)
+            return;
+
+        getFragmentManager().popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
     }
 
     private boolean newPatient(List<Fragment> fragments)

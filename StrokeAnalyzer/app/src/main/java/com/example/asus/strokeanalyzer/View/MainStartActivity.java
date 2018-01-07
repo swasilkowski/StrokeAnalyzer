@@ -24,11 +24,19 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_start);
+        //getSupportActionBar().hide();
 
         //inicialization of fragment manager
         fm = getSupportFragmentManager();
         FormsStructure.InitializeQuestionsList();
 
+    }
+
+    @Override
+    protected  void onResume()
+    {
+        super.onResume();
+        getSupportActionBar().hide();
     }
 
     public void showList(View v)

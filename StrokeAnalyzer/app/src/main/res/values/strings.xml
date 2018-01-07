@@ -5,9 +5,9 @@
     <string name="name_string">Imię:</string>
     <string name="surname_string">Nazwisko:</string>
     <string name="patient_number_string">Numer pacjenta:</string>
-    <string name="name_hint">Wprowadź imię pacjenta</string>
-    <string name="surname_hint">Wprowadź nazwisko pacjenta</string>
-    <string name="patient_number_hint">Wprowadź numer identyfikujący pacjenta</string>
+    <string name="name_hint">Imię pacjenta</string>
+    <string name="surname_hint">Nazwisko pacjenta</string>
+    <string name="patient_number_hint">Numer pacjenta</string>
     <string name="next_bt">Dalej</string>
     <string name="nihss">NIHSS</string>
     <string name="stroke_bricks">Stroke Bricks</string>
@@ -17,6 +17,7 @@
     <string name="hat_scale">Skala Hat</string>
     <string name="result_string">Wyniki</string>
     <string name="report_string">Raport</string>
+    <string name="scales_string">Badania</string>
     <string name="delete_patient">Usuń</string>
     <string name="demographic_and_clinic_data">Dane demograficzne i kliniczne</string>
     <string name="no_result_text">Brak wyniku</string>
@@ -33,6 +34,9 @@
     <string name="report_generation">Generowanie raportu</string>
     <string name="ok_bt">OK</string>
     <string name="cancel_bt">Zamknij</string>
+    <string name="new_patient_data_label">DANE OSOBOWE</string>
+    <string name="new_patient_id_label">DANE IDENTYFIKACYJNE</string>
+    <string name="toast_new_patient">Należy uzupełnić wszystkie pola formularza.</string>
 
     <string name="patient_id_tag">patient_id</string>
     <string name="done_tag">done</string>

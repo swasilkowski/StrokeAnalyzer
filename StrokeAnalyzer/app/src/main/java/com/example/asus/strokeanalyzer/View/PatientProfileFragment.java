@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,15 +85,16 @@ public class PatientProfileFragment extends Fragment {
 
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
 
+
         patientService = new PatientService(view.getContext());
 
         patient = patientService.GetPatientById(patientID);
-
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Profil: "+patient.Name+" "+patient.Surname);
         //set patient data
         name = (TextView) view.findViewById(R.id.patientNameShow);
         number = (TextView) view.findViewById(R.id.patientNumberShow);
         name.setText(patient.Name +" "+ patient.Surname);
-        number.setText(Integer.toString(patient.PatientNumber));
+        number.setText(Long.toString(patient.PatientNumber));
 
         final Button resultBt= (Button) view.findViewById(R.id.resultBt);
         resultBt.setOnClickListener(new View.OnClickListener()
@@ -112,76 +114,20 @@ public class PatientProfileFragment extends Fragment {
                 generateReport(reportBt);
             }
         });
-        final Button nihssBt= (Button) view.findViewById(R.id.nihssBt);
-        nihssBt.setOnClickListener(new View.OnClickListener()
+        final Button formsBt= (Button) view.findViewById(R.id.formsBt);
+        formsBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                //move to proper form
-                NihssExaminationFragment setFragment = NihssExaminationFragment.newInstance(patient.Id);
-                //move to demograhic form
-                //ResultsFragment setFragment= new ResultsFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentFrame, setFragment, null)
-                        .addToBackStack(null)
-                        .commit();
+                chooseForm(formsBt);
             }
         });
-/*        final Button sbBt= (Button) view.findViewById(R.id.sbBt);
-        sbBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(sbBt, Form.StrokeBricks);
-            }
-        });*/
-        final Button treatmentBt= (Button) view.findViewById(R.id.treatmentBt);
-        treatmentBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(treatmentBt, Form.ThrombolyticTreatment);
-            }
-        });
-/*        final Button hatBt= (Button) view.findViewById(R.id.hatBt);
-        hatBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(hatBt, Form.Hat);
-            }
-        });
-        final Button dragonBt= (Button) view.findViewById(R.id.dragonBt);
-        dragonBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(dragonBt, Form.Dragon);
-            }
-        });*/
-        final Button iscoreBt= (Button) view.findViewById(R.id.iscoreBt);
-        iscoreBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(iscoreBt, Form.iScore);
-            }
-        });
-        final Button demoandclinicBt= (Button) view.findViewById(R.id.dandcBt);
-        demoandclinicBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(demoandclinicBt, Form.DemographicAndClinic);
-            }
-        });
+
+
+
+        //---------------
+
 
         return view;
     }
@@ -210,18 +156,17 @@ public class PatientProfileFragment extends Fragment {
                 .commit();
     }
 
-
-    public void printForm(View v, Form form)
+    public void chooseForm(View v)
     {
-        //move to proper form
-        FormFragment setFragment = FormFragment.newInstance(form, patient.Id, false, false);
-        //move to demograhic form
-        //ResultsFragment setFragment= new ResultsFragment();
+        FormListFragment setFragment= FormListFragment.newInstance(patient.Id);
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrame, setFragment, null)
-                .addToBackStack(null)
+                .add(R.id.fragmentFrame, setFragment, null)
+                .addToBackStack("forms_list")
                 .commit();
     }
+
+
+
 
 
 

@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.EnumValues;
 
+import com.example.asus.strokeanalyzer.Model.results.DragonResult;
+
 /**
  * Created by Asus on 20.11.2017.
  */
@@ -11,5 +13,25 @@ public enum Form {
     ThrombolyticTreatment,
     Hat,
     iScore,
-    Dragon
+    Dragon;
+
+    public String Print()
+    {
+        if(this==NIHSS)
+            return "NIHSS";
+        if(this==StrokeBricks)
+            return "Stroke Bricks";
+        if(this==DemographicAndClinic)
+            return "Dane demograficzne i kliniczne";
+        if(this==ThrombolyticTreatment)
+            return "Leczenie trombolityczne";
+        if(this==Hat)
+            return "Hat";
+        if(this==iScore)
+            return "iScore";
+        if(this==Dragon)
+            return "Dragon";
+        else return "...";
+    }
+
 }

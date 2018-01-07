@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.PatientsListActionFragment;
+import com.example.asus.strokeanalyzer.View.DividerItem;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RemovePatientPredicate;
@@ -45,6 +47,12 @@ public class PatientsListFragment extends Fragment  {
 
     }
 
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        //((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +61,9 @@ public class PatientsListFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_patients_list, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
         recyclerView = (RecyclerView) view;
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Wybierz pacjenta");
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -71,6 +82,7 @@ public class PatientsListFragment extends Fragment  {
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(recyclerView);*/
             recyclerView.setAdapter(pAdapter);
+            recyclerView.addItemDecoration(new DividerItem(this.getContext(), LinearLayoutManager.VERTICAL));
 
             recyclerView.addOnItemTouchListener(new RecyclerTouchListener( getActivity().getApplicationContext(), recyclerView, new ClickListener() {
                 @Override
@@ -112,6 +124,7 @@ public class PatientsListFragment extends Fragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
         /*if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -123,6 +136,7 @@ public class PatientsListFragment extends Fragment  {
     @Override
     public void onDetach() {
         super.onDetach();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
        // mListener = null;
     }
 

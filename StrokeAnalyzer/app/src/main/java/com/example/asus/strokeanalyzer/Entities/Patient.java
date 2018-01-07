@@ -22,5 +22,5 @@ public class Patient {
     public String Surname;
 
     @ColumnInfo(name = "patient_name")
-    public int PatientNumber;
+    public long PatientNumber;
 }

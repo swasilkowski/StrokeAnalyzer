@@ -26,6 +26,7 @@ public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView date;
+        public TextView time;
         public TextView sum;
         public final View mView;
 
@@ -34,6 +35,7 @@ public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder> 
             mView = view;
 
             date = (TextView) view.findViewById(R.id.examinationDate);
+            time = (TextView) view.findViewById(R.id.examinationTime);
             sum = (TextView) view.findViewById(R.id.pointsSum);
         }
     }
@@ -56,8 +58,10 @@ public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder> 
 
         final NihssExamination examination = examinations.get(position);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy   HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         holder.date.setText(dateFormat.format(examination.Date));
+        holder.time.setText(timeFormat.format(examination.Date));
         holder.sum.setText(String.valueOf(NihssAnalyzer.CountNihssSum(examination)));
 
     }

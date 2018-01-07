@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
+import com.example.asus.strokeanalyzer.View.DividerItem;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
@@ -25,6 +27,8 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,6 +78,7 @@ public class NihssExaminationFragment extends Fragment {
 
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
         recyclerView = (RecyclerView) view;
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Badania NIHSS");
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -93,6 +98,7 @@ public class NihssExaminationFragment extends Fragment {
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(recyclerView);*/
             recyclerView.setAdapter(nAdapter);
+            recyclerView.addItemDecoration(new DividerItem(this.getContext(), LinearLayoutManager.VERTICAL));
 
             recyclerView.addOnItemTouchListener(new RecyclerTouchListener( getActivity().getApplicationContext(), recyclerView, new ClickListener() {
                 @Override
@@ -199,6 +205,15 @@ public class NihssExaminationFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        getFragmentManager().popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
+    }
+
+
 
    /* // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

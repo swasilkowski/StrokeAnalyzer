@@ -6,100 +6,48 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_space_height" />
+
     <TextView
         android:id="@+id/patientNameShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Patient_name"/>
+        android:textSize="@dimen/menu_text_name"
+        style="@style/HugeText"/>
 
     <TextView
         android:id="@+id/patientNumberShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Patient_number"/>
+        android:textSize="@dimen/menu_text_number"
+        style="@style/SmallText"/>
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_height" />
+        android:layout_height="@dimen/menu_space_height" />
 
-    <GridLayout
+    <Button
+        android:id="@+id/resultBt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:layout_gravity="center">
+        android:layout_weight="1"
+        android:text="@string/result_string"
+        style="@style/MenuButton"/>
 
-        <Button
-            android:id="@+id/resultBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/result_string"
-            style="@style/NormalButton"/>
+    <Button
+        android:id="@+id/reportBt"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:text="@string/report_string"
+        style="@style/MenuButton"
+        android:background="@color/colorStartBackground"/>
 
-        <Button
-            android:id="@+id/dandcBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/demographic_and_clinic_data"
-            style="@style/NormalButton"/>
-
-        <Button
-            android:id="@+id/nihssBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/nihss"
-            style="@style/NormalButton"/>
-
-<!--        <Button
-            android:id="@+id/sbBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/stroke_bricks"
-            style="@style/NormalButton"/>-->
-
-        <Button
-            android:id="@+id/treatmentBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/treatment_decision"
-            style="@style/NormalButton"/>
-
-<!--        <Button
-            android:id="@+id/dragonBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/dragon_scale"
-            style="@style/NormalButton"/>-->
-
-<!--        <Button
-            android:id="@+id/hatBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/hat_scale"
-            style="@style/NormalButton"/>-->
-
-        <Button
-            android:id="@+id/iscoreBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/iscore_scale"
-            style="@style/NormalButton"/>
-
-        <Button
-            android:id="@+id/reportBt"
-            android:layout_width="@dimen/tmp_button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
-            android:text="@string/report_string"
-            style="@style/NormalButton"/>
-
-    </GridLayout>
+    <Button
+        android:id="@+id/formsBt"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:text="@string/scales_string"
+        style="@style/MenuButton"/>
 
 </LinearLayout>

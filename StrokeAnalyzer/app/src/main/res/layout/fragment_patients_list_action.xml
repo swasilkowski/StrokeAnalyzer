@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/profile_bt"
-        style="@style/NormalButton"/>
+        style="@style/DialogButton"/>
 
     <Button
         android:id="@+id/deleteBt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/delete_bt"
-        style="@style/NormalButton"/>
+        style="@style/DialogButton"/>
 
 </LinearLayout>

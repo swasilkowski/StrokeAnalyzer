@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.example.asus.strokeanalyzer.View.FormListFragment">
+
+    <Button
+        android:id="@+id/dandcBt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical"
+        android:text="@string/demographic_and_clinic_data"
+        style="@style/HugeButton"/>
+
+    <Button
+        android:id="@+id/nihssBt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical"
+        android:text="@string/nihss"
+        style="@style/HugeButton"/>
+
+    <Button
+        android:id="@+id/treatmentBt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical"
+        android:text="@string/treatment_decision"
+        style="@style/HugeButton"/>
+
+    <Button
+        android:id="@+id/iscoreBt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical"
+        android:text="@string/iscore_scale"
+        style="@style/HugeButton"/>
+
+
+</LinearLayout>

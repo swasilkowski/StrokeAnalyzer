@@ -5,11 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.asus.strokeanalyzer.Model.Analyzers.StrokeBricksAnalyzer;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
@@ -56,7 +58,8 @@ public class NewPatientFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                createPatient(nextBt);
+                if(!createPatient(nextBt))
+                    Toast.makeText(v.getContext(), getString(R.string.toast_new_patient), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -71,6 +74,13 @@ public class NewPatientFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }*/
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
 
     @Override
@@ -90,11 +100,14 @@ public class NewPatientFragment extends Fragment {
         //mListener = null;
     }
 
-    public void createPatient(View v)
+    public boolean createPatient(View v)
     {
         final String name = this.name.getText().toString();
         final String surname = this.surname.getText().toString();
         final String number = this.number.getText().toString();
+
+        if(name.isEmpty() || surname.isEmpty() || number.isEmpty())
+            return false;
 
         //sprawdz czy istnieje pacjent o takim numerze
         if(false)
@@ -116,11 +129,11 @@ public class NewPatientFragment extends Fragment {
             DialogFragment dialog = NumberAlertFragment.newInstance(listener);
             //dialog.setArguments(bundel);
             dialog.show(getActivity().getSupportFragmentManager(), "NumberAlertFragment");
-            return;
+            return true;
         }
 
         addPatient(name,surname,number);
-
+        return true;
     }
 
     public void addPatient(String name, String surname, String number)

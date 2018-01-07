@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/view_ct_pictures"
-            style="@style/NormalButton"/>
+            style="@style/DialogButton"/>
 
         <TextView
             android:text="@string/treatment_decision"
