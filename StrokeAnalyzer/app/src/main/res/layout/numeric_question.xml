@@ -13,7 +13,6 @@
     <EditText
         android:id="@+id/answerData"
         style="@style/EditTextCustom"
-        android:ems="10"
         android:inputType="number" />
 
 </LinearLayout>

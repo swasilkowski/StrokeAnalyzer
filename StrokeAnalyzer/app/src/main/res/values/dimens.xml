@@ -22,7 +22,8 @@
     <dimen name="small_text_size">18sp</dimen>
     <dimen name="text_margin">12dp</dimen>
     <dimen name="small_text_margin">1dp</dimen>
-    <dimen name="label_text_size">25dp</dimen>
+    <dimen name="label_text_size">25sp</dimen>
+    <dimen name="question_text_size">22sp</dimen>
 
     <dimen name="label_left_padding">10dp</dimen>
     <dimen name="label_top_padding">20dp</dimen>
@@ -32,11 +33,12 @@
     <dimen name="menu_text_number">25sp</dimen>
 
     <dimen name="edit_text_new_patient_tezt_size">22sp</dimen>
-
+    <dimen name="edit_text_size">20sp</dimen>
+    <dimen name="edit_text_margin">7dp</dimen>
 
     <dimen name="button_padding">7dp</dimen>
     <dimen name="text_size">20sp</dimen>
-    <dimen name="edit_text_size">27sp</dimen>
+
     <dimen name="text_padding">5dp</dimen>
 
     <dimen name="text_margin_vertical">3dp</dimen>
@@ -56,8 +58,7 @@
     <dimen name="result_label_padding">7dp</dimen>
 
 
-
-
+<dimen name="rowheight">250dp</dimen>
     <dimen name="tmp_button_width">190dp</dimen>
 <!--    <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>

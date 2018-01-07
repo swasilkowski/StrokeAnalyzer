@@ -210,6 +210,9 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                     new SwipeHelperCallback(nAdapter);
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(recyclerView);*/
+  /*              ViewGroup.LayoutParams layoutParams = answers.getLayoutParams();
+                layoutParams.height = (int) context.getResources().getDimension(R.dimen.rowheight) * answers.getCount();
+                answers.setLayoutParams(layoutParams);*/
                 answers.setAdapter(aAdapter);
                 //answers.setSelection(((BulletedQ)questionObject).getAnswer());
 
@@ -227,6 +230,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                         //answers.setSelection(answerID);
                     }
                 });
+
+
 
                 //answers.performItemClick(answers.getChildAt(0),0,answers.getItemIdAtPosition(0));
 

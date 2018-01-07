@@ -42,11 +42,11 @@
         <item name="android:textColor">@color/colorText</item>
     </style>
 
-    <style name="QuestionText" parent="@style/Text">
+<!--    <style name="QuestionText" parent="@style/Text">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">center</item>
-    </style>
+    </style>-->
     
     <style name="ResultLabel">
         <item name="android:textSize">@dimen/result_label_text_size</item>
@@ -68,10 +68,7 @@
         <item name="android:textSize">@dimen/edit_text_size</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginBottom">15dp</item>
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_margin">@dimen/edit_text_margin</item>
     </style>
 
     <style name="EditTextNewPatient">
@@ -79,18 +76,14 @@
         <item name="android:background">@color/white</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:layout_marginBottom">15dp</item>
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_margin">15dp</item>
     </style>
 
     <style name="HugeText">
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/huge_text_size</item>
         <item name="android:layout_marginLeft">@dimen/text_margin</item>
         <item name="android:layout_marginRight">@dimen/text_margin</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="SmallText">
@@ -110,6 +103,15 @@
         <item name="android:paddingTop">@dimen/label_top_padding</item>
         <item name="android:paddingLeft">@dimen/label_left_padding</item>
         <item name="android:paddingBottom">@dimen/label_bottom_padding</item>
+    </style>
+
+    <style name="QuestionText">
+        <item name="android:textSize">@dimen/question_text_size</item>
+        <item name="android:layout_marginLeft">@dimen/text_margin</item>
+        <item name="android:layout_marginRight">@dimen/text_margin</item>
+        <item name="android:layout_marginBottom">@dimen/text_margin_vertical</item>
+        <item name="android:layout_marginTop">@dimen/text_margin_vertical</item>
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
     <style name="SumFrame">
