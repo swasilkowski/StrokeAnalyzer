@@ -81,7 +81,7 @@ public class CTPicturesFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_ctpictures, container, false);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
+        view.setBackgroundColor(getResources().getColor(R.color.pictureBackground));
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Uszkodzone obszary mózgu");
 

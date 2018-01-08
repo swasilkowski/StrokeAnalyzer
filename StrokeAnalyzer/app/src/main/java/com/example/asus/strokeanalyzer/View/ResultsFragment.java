@@ -9,17 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.asus.strokeanalyzer.Model.Analyzers.DragonAnalyzer;
-import com.example.asus.strokeanalyzer.Model.Analyzers.HatAnalyzer;
-import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.StrokeBricksAnalyzer;
-import com.example.asus.strokeanalyzer.Model.Analyzers.TreatmentAnalyzer;
-import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.results.DragonResult;
 import com.example.asus.strokeanalyzer.Model.results.HatResult;
 import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
-import com.example.asus.strokeanalyzer.Model.Analyzers.iScoreAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
@@ -102,13 +96,27 @@ public class ResultsFragment extends Fragment {
 
         HatResult resultHat = patient.getHatPrognosis();
         if(resultHat!=null)
+        {
             ((TextView) view.findViewById(R.id.hatScore)).setText(String.valueOf(resultHat.Score));
+            ((TextView) view.findViewById(R.id.hatSymptomaticICH)).setText(String.valueOf(resultHat.RiskOfSymptomaticICH));
+            ((TextView) view.findViewById(R.id.hatFatalICH)).setText(String.valueOf(resultHat.RiskOfFatalICH));
+        }
+
         DragonResult resultDragon = patient.getDragonPrognosis();
         if(resultDragon!=null)
+        {
             ((TextView) view.findViewById(R.id.dragonScore)).setText(String.valueOf(resultDragon.Score));
+            ((TextView) view.findViewById(R.id.dragonGoodOutcomePrognosis)).setText(String.valueOf(resultDragon.GoodOutcomePrognosis));
+            ((TextView) view.findViewById(R.id.dragonMiserableOutcomePrognosis)).setText(String.valueOf(resultDragon.MiserableOutcomePrognosis));
+        }
+
         iScoreResult resultiScore = patient.getIscorePrognosis();
         if(resultiScore!=null)
-            ((TextView) view.findViewById(R.id.iscoreScore)).setText(String.valueOf(resultiScore.ScoreFor30Days));
+        {
+            ((TextView) view.findViewById(R.id.iscore30Days)).setText(String.valueOf(resultiScore.PrognosisFor30Days));
+            ((TextView) view.findViewById(R.id.iscore1Year)).setText(String.valueOf(resultiScore.PrognosisFor1Year));
+        }
+
 
 
         //button leading to CT pictures

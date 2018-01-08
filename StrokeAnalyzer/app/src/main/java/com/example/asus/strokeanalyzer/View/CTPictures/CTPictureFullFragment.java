@@ -48,6 +48,7 @@ public class CTPictureFullFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ctpicture_full, container, false);
+        view.setBackgroundColor(getResources().getColor(R.color.pictureBackground));
         selectedImage = (ImageView) view.findViewById(R.id.basicPicFullsize);
         selectedImage.setImageBitmap(image);
 

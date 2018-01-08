@@ -1,7 +1,6 @@
 package com.example.asus.strokeanalyzer.Model;
 
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
 
 import com.example.asus.strokeanalyzer.Model.Analyzers.DragonAnalyzer;

@@ -15,7 +15,7 @@
 
         <TextView
             android:text="@string/nihss"
-            style="@style/ResultLabel"/>
+            style="@style/ResultText"/>
 
         <TextView
             android:id="@+id/nihssSum"
@@ -26,7 +26,7 @@
 
         <TextView
             android:text="@string/stroke_bricks"
-            style="@style/ResultLabel"/>
+            style="@style/ResultText"/>
 
         <TextView
             android:id="@+id/sbDescription"
@@ -44,7 +44,7 @@
 
         <TextView
             android:text="@string/treatment_decision"
-            style="@style/ResultLabel"/>
+            style="@style/ResultText"/>
 
         <TextView
             android:id="@+id/treatmentDecision"
@@ -54,9 +54,8 @@
             style="@style/StandardText"/>
 
         <TextView
-
             android:text="@string/wrong_answers_text"
-            style="@style/ResultLabel"/>
+            style="@style/SubresultText"/>
 
         <TextView
             android:id="@+id/wrongAnswers"
@@ -67,7 +66,11 @@
 
         <TextView
             android:text="@string/hat_scale"
-            style="@style/ResultLabel"/>
+            style="@style/ResultText"/>
+
+        <TextView
+            android:text="@string/score_text"
+            style="@style/SubresultText"/>
 
         <TextView
             android:id="@+id/hatScore"
@@ -77,8 +80,34 @@
             style="@style/StandardText"/>
 
         <TextView
+            android:text="@string/hat_symptomaticICH_text"
+            style="@style/SubresultText"/>
+
+        <TextView
+            android:id="@+id/hatSymptomaticICH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/StandardText"/>
+
+        <TextView
+            android:text="@string/hat_fatalICH_text"
+            style="@style/SubresultText"/>
+
+        <TextView
+            android:id="@+id/hatFatalICH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/StandardText"/>
+
+        <TextView
             android:text="@string/dragon_scale"
-            style="@style/ResultLabel"/>
+            style="@style/ResultText"/>
+
+        <TextView
+            android:text="@string/score_text"
+            style="@style/SubresultText"/>
 
         <TextView
             android:id="@+id/dragonScore"
@@ -88,11 +117,48 @@
             style="@style/StandardText"/>
 
         <TextView
-            android:text="@string/iscore_scale"
-            style="@style/ResultLabel"/>
+            android:text="@string/dragon_good_outcome_text"
+            style="@style/SubresultText"/>
 
         <TextView
-            android:id="@+id/iscoreScore"
+            android:id="@+id/dragonGoodOutcomePrognosis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/StandardText"/>
+
+        <TextView
+            android:text="@string/dragon_miserable_outcome_text"
+            style="@style/SubresultText"/>
+
+        <TextView
+            android:id="@+id/dragonMiserableOutcomePrognosis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/StandardText"/>
+
+        <TextView
+            android:text="@string/iscore_scale"
+            style="@style/ResultText"/>
+
+        <TextView
+            android:text="@string/iscore_30days"
+            style="@style/SubresultText"/>
+
+        <TextView
+            android:id="@+id/iscore30Days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result_text"
+            style="@style/StandardText"/>
+
+        <TextView
+            android:text="@string/iscore_1year"
+            style="@style/SubresultText"/>
+
+        <TextView
+            android:id="@+id/iscore1Year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result_text"

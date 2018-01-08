@@ -1,14 +1,11 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
-import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedNumericAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;

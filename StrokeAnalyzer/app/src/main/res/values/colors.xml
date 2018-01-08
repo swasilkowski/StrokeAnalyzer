@@ -10,5 +10,6 @@
     <color name="colorAccentLight">#ff89b0</color>
     <color name="white">#ffffff</color>
     <color name="colorText">#333333</color>
-    <color name="buttonBackgroundColor">#77333333</color>
+    <color name="buttonBackgroundColor">#88333333</color>
+    <color name="pictureBackground">#000000</color>
 </resources>

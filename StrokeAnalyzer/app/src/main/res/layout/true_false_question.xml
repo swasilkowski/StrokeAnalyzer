@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     style="@style/Question">
-
 
     <TextView
         android:id="@+id/questionTextTF"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        style="@style/QuestionText"/>
-
-    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl">
-        <CheckBox
-            android:id="@+id/answerBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/answerBox"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        style="@style/QuestionText"/>
 
+    <CheckBox
+        android:id="@+id/answerBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
 
-
-</LinearLayout>
+</RelativeLayout>
