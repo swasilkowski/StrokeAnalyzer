@@ -56,6 +56,7 @@
     <dimen name="question_margin">10dp</dimen>
     <dimen name="result_label_text_size">25dp</dimen>
     <dimen name="result_label_padding">7dp</dimen>
+    <dimen name="result_left_padding">20dp</dimen>
 
 
 <dimen name="rowheight">250dp</dimen>

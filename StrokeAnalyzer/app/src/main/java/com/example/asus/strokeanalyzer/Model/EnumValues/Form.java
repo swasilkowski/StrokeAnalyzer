@@ -1,7 +1,5 @@
 package com.example.asus.strokeanalyzer.Model.EnumValues;
 
-import com.example.asus.strokeanalyzer.Model.results.DragonResult;
-
 /**
  * Created by Asus on 20.11.2017.
  */

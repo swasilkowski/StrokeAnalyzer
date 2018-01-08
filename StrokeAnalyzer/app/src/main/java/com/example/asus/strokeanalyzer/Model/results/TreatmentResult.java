@@ -3,7 +3,6 @@ package com.example.asus.strokeanalyzer.Model.results;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

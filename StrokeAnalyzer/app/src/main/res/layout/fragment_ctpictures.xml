@@ -4,45 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.asus.strokeanalyzer.View.CTPictures.CTPicturesFragment"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:gravity="center">
 
     <GridView
         android:id="@+id/CTPicturesView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:footerDividersEnabled="false"
-        android:numColumns="2" />
+        android:numColumns="2"/>
 
-  <!--  <ImageView
-        android:id="@+id/basicPic0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/brain"
-        android:layout_row="0"
-        android:layout_column="0"/>
-
-    <ImageView
-        android:id="@+id/basicPic1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/brain"
-        android:layout_row="0"
-        android:layout_column="1"/>
-
-    <ImageView
-        android:id="@+id/basicPic2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/brain"
-        android:layout_row="1"
-        android:layout_column="0"/>
-
-    <ImageView
-        android:id="@+id/basicPic3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/brain"
-        android:layout_row="1"
-        android:layout_column="1"/>-->
 </LinearLayout>
