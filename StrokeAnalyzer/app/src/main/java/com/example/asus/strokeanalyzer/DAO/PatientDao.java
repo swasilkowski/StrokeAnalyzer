@@ -17,16 +17,19 @@ import com.example.asus.strokeanalyzer.Entities.Patient;
 @Dao
 public interface PatientDao {
     @Insert
-    public long insert(Patient patient);
+    long insert(Patient patient);
 
     @Update
-    public void update(Patient patient);
+    void update(Patient patient);
 
     @Query("SELECT * FROM patient")
-    public List<Patient> selectAll();
+    List<Patient> selectAll();
 
     @Query("SELECT * FROM patient WHERE id = :id")
-    public Patient selectById(int id);
+    Patient selectById(int id);
+
+    @Query("SELECT COUNT(*) FROM patient WHERE patient_number = :patientNumber")
+    int checkIfPatientExistsByNumber(long patientNumber);
 
     @Delete
     void delete(Patient patient);

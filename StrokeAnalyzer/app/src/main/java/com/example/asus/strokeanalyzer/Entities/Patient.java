@@ -21,6 +21,6 @@ public class Patient {
     @ColumnInfo(name = "surname")
     public String Surname;
 
-    @ColumnInfo(name = "patient_name")
+    @ColumnInfo(name = "patient_number")
     public long PatientNumber;
 }
