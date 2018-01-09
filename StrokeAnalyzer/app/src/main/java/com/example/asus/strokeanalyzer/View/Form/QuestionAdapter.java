@@ -327,8 +327,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             Answer answer = new Answer(-1);//no answer
             if(q instanceof DescriptiveQ)
             {
-                answer = new TextAnswer(((DescriptiveQ) q).getID());
-                ((TextAnswer)answer).Value= ((DescriptiveQ) q).getAnswer();
+                /*answer = new TextAnswer(((DescriptiveQ) q).getID());
+                ((TextAnswer)answer).Value= ((DescriptiveQ) q).getAnswer();*/
+                answer = new NumericAnswer(((DescriptiveQ) q).getID());
+                if(((DescriptiveQ) q).getAnswer()==null)
+                    ((NumericAnswer) answer).Value = 0;
+                else
+                ((NumericAnswer) answer).Value = Double.parseDouble(((DescriptiveQ) q).getAnswer());
             }
             else if (q instanceof TrueFalseQ)
             {

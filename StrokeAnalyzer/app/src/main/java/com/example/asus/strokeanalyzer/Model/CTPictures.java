@@ -201,12 +201,6 @@ public final class CTPictures {
         brainPictures[2] = basicPictures[2].copy(basicPictures[0].getConfig(), true);
         brainPictures[3] = basicPictures[3].copy(basicPictures[0].getConfig(), true);
 
-
-        //------------------TODO----------------NIE DZIALA
-        _regions = new ArrayList<>();
-        _regions.add(Region.A1_L);
-        _regions.add(Region.A1_R);
-        _regions.add(Region.M2_L);
         for(Region r:_regions)
         {
             //region image

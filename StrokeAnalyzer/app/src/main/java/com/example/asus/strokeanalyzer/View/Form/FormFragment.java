@@ -243,9 +243,13 @@ public class FormFragment extends Fragment {
 
             if(question instanceof DescriptiveQuestion)
             {
+                //zmienicccccc---------------TODO---------------------
                 printedQuestion = new DescriptiveQ(question.GetID(), question.GetText());
                 if(patient.PatientAnswers.containsKey(question.GetID()))
-                    ((DescriptiveQ)printedQuestion).setAnswer(((TextAnswer)patient.PatientAnswers.get(question.GetID())).Value);
+                    //((DescriptiveQ)printedQuestion).setAnswer(((TextAnswer)patient.PatientAnswers.get(question.GetID())).Value);
+                    ((DescriptiveQ)printedQuestion).setAnswer(String.valueOf(((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value));
+
+
             }
             else if(question instanceof TrueFalseQuestion)
             {
@@ -261,7 +265,6 @@ public class FormFragment extends Fragment {
             }
             else if(question instanceof DescriptiveQuestion)
             {
-                //zmienicccccc---------------TODO---------------------
                 printedQuestion = new NumericQ(question.GetID(), question.GetText());
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((NumericQ)printedQuestion).setAnswer(((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
