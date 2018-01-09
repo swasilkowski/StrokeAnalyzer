@@ -250,7 +250,7 @@ public final class iScoreAnalyzer {
 
         ExpectedNumericAnswer answer201b = new ExpectedNumericAnswer(201);
         answer201b.Ranges.add(new RangeClassifier(1,1, 5));
-        correctAnswersFor30Days.put(201, answer201b);
+        correctAnswersFor1Year.put(201, answer201b);
 
         correctAnswersFor1Year.put(202,  new ExpectedTrueFalseAnswer(202, true, 5));
 
@@ -263,7 +263,7 @@ public final class iScoreAnalyzer {
 
         ExpectedNumericAnswer answer206b = new ExpectedNumericAnswer(206);
         answer206b.Ranges.add(new RangeClassifier(135, Double.MAX_VALUE, 10));
-        correctAnswersFor30Days.put(206, answer206b);
+        correctAnswersFor1Year.put(206, answer206b);
 
         ExpectedNumericAnswer answer211a = new ExpectedNumericAnswer(211);
         answer211a.Ranges.add(new RangeClassifier(1,1,30));

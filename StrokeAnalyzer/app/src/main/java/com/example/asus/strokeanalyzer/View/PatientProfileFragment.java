@@ -126,9 +126,6 @@ public class PatientProfileFragment extends Fragment {
 
 
 
-        //---------------
-
-
         return view;
     }
 

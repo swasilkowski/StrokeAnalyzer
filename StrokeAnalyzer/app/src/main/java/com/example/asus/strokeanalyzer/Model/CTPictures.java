@@ -202,6 +202,7 @@ public final class CTPictures {
         brainPictures[3] = basicPictures[3].copy(basicPictures[0].getConfig(), true);
 
 
+        //------------------TODO----------------NIE DZIALA
         _regions = new ArrayList<>();
         _regions.add(Region.A1_L);
         _regions.add(Region.A1_R);
@@ -246,16 +247,5 @@ public final class CTPictures {
     static Bitmap GetPicture(Integer resourceID)
     {
         return BitmapFactory.decodeResource( appContext.getResources(), resourceID);
-    }
-
-
-    static List<Bitmap> GetPictures(Region region)
-    {
-        List<Bitmap> pics = new ArrayList<>();
-        for(Integer id:regions.get(region))
-        {
-            pics.add(BitmapFactory.decodeResource( appContext.getResources(), id));
-        }
-        return pics;
     }
 }
