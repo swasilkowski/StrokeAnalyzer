@@ -76,6 +76,10 @@ public final class PatientService {
         db.patientDao().delete(ModelToEntity(patient));
     }
 
+    public boolean isPatientNumberTaken(long patientNumber) {
+        return  (db.patientDao().checkIfPatientExistsByNumber(patientNumber) > 0);
+    }
+
     private List<OtherData> modelDataToEntityData(Patient model){
         List<OtherData> dataList = new LinkedList<>();
 
