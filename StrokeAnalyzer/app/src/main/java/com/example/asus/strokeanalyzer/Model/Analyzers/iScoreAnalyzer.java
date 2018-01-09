@@ -29,7 +29,7 @@ public final class iScoreAnalyzer {
 
     public static iScoreResult AnalyzePrognosis(Patient patient) {
 
-        if(!FormsStructure.patientReady(patient,Form.iScore))
+        if(!FormsStructure.patientReady(patient,Form.iScore) || patient.getLatestNihssExamination() == null)
             return null;
 
         iScoreResult result = new iScoreResult();
@@ -69,7 +69,7 @@ public final class iScoreAnalyzer {
         int nihssScore = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
         if (nihssScore > 22) {
             iScorePoints += 70;
-        }
+    }
         if (nihssScore <= 22 && nihssScore >= 14) {
             iScorePoints += 40;
         }
@@ -219,7 +219,7 @@ public final class iScoreAnalyzer {
     private static int countPoints(Patient p, Dictionary<Integer, ExpectedAnswer> correctAnswers) {
         int pointsSum = (int)((NumericAnswer)(p.PatientAnswers.get(200))).Value;
         List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.iScore);
-        questionIDs.remove(200);
+        questionIDs.remove(0);
 
         for(int i=0;i<questionIDs.size();i++) {
             Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
