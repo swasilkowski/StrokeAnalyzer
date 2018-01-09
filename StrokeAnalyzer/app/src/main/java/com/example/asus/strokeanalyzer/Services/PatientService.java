@@ -73,6 +73,7 @@ public final class PatientService {
     public void DeletePatient(Integer patientID) {
         Patient patient = GetPatientById(patientID);
         db.otherDataDao().deleteByPatientId(patientID);
+        db.nihssDao().deleteByPatientId(patientID);
         db.patientDao().delete(ModelToEntity(patient));
     }
 
