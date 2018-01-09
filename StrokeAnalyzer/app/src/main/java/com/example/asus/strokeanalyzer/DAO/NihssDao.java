@@ -25,4 +25,7 @@ public interface NihssDao {
 
     @Query("SELECT * FROM nihss_form WHERE patient_id = :patientId ORDER BY added_on LIMIT 1")
     NihssExamination SelectEarliestByPatientId(int patientId);
+
+    @Query("DELETE FROM nihss_form WHERE patient_id = :patientId")
+    void deleteByPatientId(int patientId);
 }
