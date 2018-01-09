@@ -121,8 +121,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    ((NumericQ)questionObject).setAnswer(Double.parseDouble(answer.getText().toString()));
+                    String ans = answer.getText().toString();
+                    if(ans.isEmpty())
+                        ((NumericQ)questionObject).setAnswer(0);
+                    else
+                        ((NumericQ)questionObject).setAnswer(Double.parseDouble(ans));
                 }
 
                 @Override
@@ -327,13 +330,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             Answer answer = new Answer(-1);//no answer
             if(q instanceof DescriptiveQ)
             {
-                /*answer = new TextAnswer(((DescriptiveQ) q).getID());
-                ((TextAnswer)answer).Value= ((DescriptiveQ) q).getAnswer();*/
-                answer = new NumericAnswer(((DescriptiveQ) q).getID());
-                if(((DescriptiveQ) q).getAnswer()==null)
-                    ((NumericAnswer) answer).Value = 0;
-                else
-                ((NumericAnswer) answer).Value = Double.parseDouble(((DescriptiveQ) q).getAnswer());
+                answer = new TextAnswer(((DescriptiveQ) q).getID());
+                ((TextAnswer)answer).Value= ((DescriptiveQ) q).getAnswer();
             }
             else if (q instanceof TrueFalseQ)
             {

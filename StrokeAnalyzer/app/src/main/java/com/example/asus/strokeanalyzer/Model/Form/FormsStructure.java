@@ -4,6 +4,7 @@ import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
+import com.example.asus.strokeanalyzer.Model.Form.Question.NumericQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.Question;
 import com.example.asus.strokeanalyzer.Model.Form.Question.TrueFalseQuestion;
 import com.example.asus.strokeanalyzer.Model.Patient;
@@ -244,7 +245,7 @@ public final class FormsStructure {
 
         //DEMOGRAFICZNE I KLINICZNE
         id = 200;
-        DescriptiveQuestion question200 = new DescriptiveQuestion(id, "Wiek");
+        NumericQuestion question200 = new NumericQuestion(id, "Wiek");
         questionsUsedForDragon.add(id);
         questionsUsedForIscore.add(id);
         questionsUsedForThrombolysis.add(id);
@@ -270,12 +271,12 @@ public final class FormsStructure {
         questionsUsedForIscore.add(id);
 
         id = 205;
-        DescriptiveQuestion question205 = new DescriptiveQuestion(id, "Czas");
+        NumericQuestion question205 = new NumericQuestion(id, "Czas");
         questionsUsedForDragon.add(id);
         questionsUsedForThrombolysis.add(id);
 
         id = 206;
-        DescriptiveQuestion question206 = new DescriptiveQuestion(id, "Poziom glukozy we krwi");
+        NumericQuestion question206 = new NumericQuestion(id, "Poziom glukozy we krwi");
         questionsUsedForDragon.add(id);
         questionsUsedForIscore.add(id);
         questionsUsedForHat.add(id);

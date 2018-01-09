@@ -21,6 +21,7 @@ import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
+import com.example.asus.strokeanalyzer.Model.Form.Question.NumericQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.TrueFalseQuestion;
 import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
@@ -243,13 +244,9 @@ public class FormFragment extends Fragment {
 
             if(question instanceof DescriptiveQuestion)
             {
-                //zmienicccccc---------------TODO---------------------
                 printedQuestion = new DescriptiveQ(question.GetID(), question.GetText());
                 if(patient.PatientAnswers.containsKey(question.GetID()))
-                    //((DescriptiveQ)printedQuestion).setAnswer(((TextAnswer)patient.PatientAnswers.get(question.GetID())).Value);
-                    ((DescriptiveQ)printedQuestion).setAnswer(String.valueOf(((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value));
-
-
+                    ((DescriptiveQ)printedQuestion).setAnswer(((TextAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
             else if(question instanceof TrueFalseQuestion)
             {
@@ -263,7 +260,7 @@ public class FormFragment extends Fragment {
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((BulletedQ)printedQuestion).setAnswer((int)((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
-            else if(question instanceof DescriptiveQuestion)
+            else if(question instanceof NumericQuestion)
             {
                 printedQuestion = new NumericQ(question.GetID(), question.GetText());
                 if(patient.PatientAnswers.containsKey(question.GetID()))

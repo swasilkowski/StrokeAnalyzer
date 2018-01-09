@@ -32,8 +32,8 @@
     <string name="iscore_1year">Prognoza na 1 rok:</string>
     <string name="profile_bt">Otwórz profil pacjenta</string>
     <string name="delete_bt">Usuń</string>
-    <string name="report_dialog">Podaj adres email. Po wyborze \'OK\' raport zostanie wygenerowany i
-        przesłany na wprowadzony przez Ciebie adres email.</string>
+    <string name="report_dialog">Po wyborze \'OK\' raport zostanie wygenerowany i
+        zapisany w pamięci Twojego telefonu.</string>
     <string name="delete_dialog">Czy jesteś pewny, że chcesz usunąć dane pacjenta?</string>
     <string name="number_alert_dialog">Pacjent o takim numerze już istnieje. Czy jesteś pewny, że chcesz utworzyć
         pacjenta z tym samym numerem?</string>
