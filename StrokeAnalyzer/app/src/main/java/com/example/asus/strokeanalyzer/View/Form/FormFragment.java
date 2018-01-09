@@ -1,10 +1,8 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,18 +26,14 @@ import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
-import com.example.asus.strokeanalyzer.View.DividerItem;
+import com.example.asus.strokeanalyzer.View.Helpers.DividerItem;
 import com.example.asus.strokeanalyzer.View.NewPatientFragment;
 import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
 import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Dictionary;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 

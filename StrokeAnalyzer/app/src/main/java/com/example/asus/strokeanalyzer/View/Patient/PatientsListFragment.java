@@ -1,7 +1,6 @@
 package com.example.asus.strokeanalyzer.View.Patient;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -16,15 +15,13 @@ import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.PatientsListActionFragment;
-import com.example.asus.strokeanalyzer.View.DividerItem;
+import com.example.asus.strokeanalyzer.View.Helpers.DividerItem;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RemovePatientPredicate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.jar.Attributes;
 
 /**
  * A simple {@link Fragment} subclass.

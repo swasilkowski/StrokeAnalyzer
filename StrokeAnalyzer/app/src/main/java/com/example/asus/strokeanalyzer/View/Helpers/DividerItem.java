@@ -1,4 +1,4 @@
-package com.example.asus.strokeanalyzer.View;
+package com.example.asus.strokeanalyzer.View.Helpers;
 
 import android.content.Context;
 import android.content.res.TypedArray;
