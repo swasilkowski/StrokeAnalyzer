@@ -39,6 +39,7 @@
         pacjenta z tym samym numerem?</string>
     <string name="email_hint">email</string>
     <string name="report_generation">Generowanie raportu</string>
+    <string name="number_alert_title">Powtórzony numer</string>
     <string name="ok_bt">OK</string>
     <string name="cancel_bt">Zamknij</string>
     <string name="new_patient_data_label">DANE OSOBOWE</string>

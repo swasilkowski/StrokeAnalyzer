@@ -32,6 +32,7 @@ public class NewPatientFragment extends Fragment {
     private EditText name;
     private EditText surname;
     private EditText number;
+    private PatientService patientService;
     private boolean DONE;
 
     public NewPatientFragment() {
@@ -70,6 +71,7 @@ public class NewPatientFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DONE = false;
+        patientService = new PatientService(getContext());
         /*if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -110,11 +112,12 @@ public class NewPatientFragment extends Fragment {
             return false;
 
         //sprawdz czy istnieje pacjent o takim numerze
-        if(false)
+
+        if(patientService.isPatientNumberTaken(Long.parseLong(number)))
         {
             NumberAlertFragment.NumberAlertDialogListener listener = new NumberAlertFragment.NumberAlertDialogListener() {
                 @Override
-                public void onDialogNumberPositiveClick(DialogFragment dialog, int patientID) {
+                public void onDialogNumberPositiveClick(DialogFragment dialog) {
                     addPatient(name,surname,number);
                     dialog.dismiss();
                 }

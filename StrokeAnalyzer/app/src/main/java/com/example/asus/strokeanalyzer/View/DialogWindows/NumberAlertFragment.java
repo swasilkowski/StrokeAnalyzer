@@ -28,7 +28,7 @@ public class NumberAlertFragment extends DialogFragment {
 
 
     public interface NumberAlertDialogListener {
-        public void onDialogNumberPositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
+        public void onDialogNumberPositiveClick(android.support.v4.app.DialogFragment dialog);
         public void onDialogNumberNegativeClick(android.support.v4.app.DialogFragment dialog);
     }
 
@@ -76,15 +76,15 @@ public class NumberAlertFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_delete_dialog, null);
+        final View dialogView = inflater.inflate(R.layout.fragment_number_alert, null);
         // final EditText emailView = (EditText) dialogView.findViewById(R.id.emailAddress);
 
-        builder.setTitle(R.string.delete_patient)
+        builder.setTitle(R.string.number_alert_title)
                 .setView(dialogView)
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //generate report
-                        _listener.onDialogNumberPositiveClick(NumberAlertFragment.this, patientID);
+                        _listener.onDialogNumberPositiveClick(NumberAlertFragment.this);
 
                     }
                 })
