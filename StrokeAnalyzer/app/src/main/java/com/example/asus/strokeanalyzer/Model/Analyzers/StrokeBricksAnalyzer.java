@@ -73,14 +73,17 @@ public final class StrokeBricksAnalyzer {
                     case 102: //1b
                         affectedRegions.add(Region.M1_L);
                         affectedRegions.add(Region.M4_L);
+                        break;
                     case 103: //1c
                         affectedRegions.add(Region.M3_L);
                         affectedRegions.add(Region.M6_L);
+                        break;
                     case 104: //2
                         affectedRegions.add(Region.M1_L);
                         affectedRegions.add(Region.M4_L);
                         affectedRegions.add(Region.M1_R);
                         affectedRegions.add(Region.M4_R);
+                        break;
                     case 105: //3
                         affectedRegions.add(Region.P_L);
                         affectedRegions.add(Region.M2_L);
@@ -88,6 +91,7 @@ public final class StrokeBricksAnalyzer {
                         affectedRegions.add(Region.P_R);
                         affectedRegions.add(Region.M2_R);
                         affectedRegions.add(Region.M3_R);
+                        break;
                     case 106: //4
                         affectedRegions.add(Region.M5_L);
                         affectedRegions.add(Region.CR_L);
@@ -95,22 +99,27 @@ public final class StrokeBricksAnalyzer {
                         affectedRegions.add(Region.M5_R);
                         affectedRegions.add(Region.CR_R);
                         affectedRegions.add(Region.BGIC_R);
+                        break;
                     case 107: //5a
                         affectedRegions.add(Region.M5_R);
                         affectedRegions.add(Region.CR_R);
                         affectedRegions.add(Region.BGIC_R);
+                        break;
                     case 108: //5b
                         affectedRegions.add(Region.M5_L);
                         affectedRegions.add(Region.CR_L);
                         affectedRegions.add(Region.BGIC_L);
+                        break;
                     case 109: //6a
                         affectedRegions.add(Region.A2_R);
                         affectedRegions.add(Region.CR_R);
                         affectedRegions.add(Region.BGIC_R);
+                        break;
                     case 110: //6b
                         affectedRegions.add(Region.A2_L);
                         affectedRegions.add(Region.CR_L);
                         affectedRegions.add(Region.BGIC_L);
+                        break;
                     case 112: //8
                         affectedRegions.add(Region.M5_L);
                         affectedRegions.add(Region.CR_L);
@@ -122,11 +131,13 @@ public final class StrokeBricksAnalyzer {
                         affectedRegions.add(Region.BGIC_R);
                         affectedRegions.add(Region.T_R);
                         affectedRegions.add(Region.A2_R);
+                        break;
                     case 113: //9
                         affectedRegions.add(Region.M1_L);
                         affectedRegions.add(Region.M4_L);
                         affectedRegions.add(Region.M3_L);
                         affectedRegions.add(Region.M6_L);
+                        break;
                     case 114: //10
                         affectedRegions.add(Region.A1_L);
                         affectedRegions.add(Region.M1_L);
@@ -136,6 +147,7 @@ public final class StrokeBricksAnalyzer {
                         affectedRegions.add(Region.M1_R);
                         affectedRegions.add(Region.M4_R);
                         affectedRegions.add(Region.BGIC_R);
+                        break;
                     case 115: //11
                         affectedRegions.add(Region.P_L);
                         affectedRegions.add(Region.M2_L);
@@ -145,6 +157,7 @@ public final class StrokeBricksAnalyzer {
                         affectedRegions.add(Region.M3_R);
                         affectedRegions.add(Region.A3_R);
                         affectedRegions.add(Region.M6_R);
+                        break;
                 }
             }
         }
