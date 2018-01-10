@@ -12,4 +12,9 @@ public class NumericAnswer extends Answer {
     {
         super(questionId);
     }
+
+    public NumericAnswer(int questionId, double value) {
+        super(questionId);
+        Value = value;
+    }
 }

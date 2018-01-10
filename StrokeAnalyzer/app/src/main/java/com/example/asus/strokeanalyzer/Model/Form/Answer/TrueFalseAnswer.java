@@ -12,4 +12,9 @@ public class TrueFalseAnswer extends Answer {
     {
         super(questionId);
     }
+
+    public TrueFalseAnswer(int questionId, boolean value) {
+        super(questionId);
+        Value = value;
+    }
 }
