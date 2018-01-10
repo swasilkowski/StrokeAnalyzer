@@ -149,6 +149,7 @@ public class ResultsFragment extends Fragment {
         for(Answer ans:answers)
         {
             text.append(FormsStructure.Questions.get(ans.GetQuestionID()).GetText());
+            text.append("  ");
             text.append(answerText(ans));
             text.append("\n");
         }
