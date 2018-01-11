@@ -2,6 +2,7 @@ package com.example.asus.strokeanalyzer.Model;
 
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -16,4 +17,8 @@ public class NihssExamination {
 
     public Date Date;
     public List<Answer> Answers;
+
+    public NihssExamination() {
+        Answers = new LinkedList<>();
+    }
 }
