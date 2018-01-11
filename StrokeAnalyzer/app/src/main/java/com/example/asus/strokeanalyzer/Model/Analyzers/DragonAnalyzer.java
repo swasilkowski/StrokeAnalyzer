@@ -11,13 +11,17 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.Model.results.DragonResult;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa dokonująca analizy rezultatów leczenie tromolitycznego w skali Dragon
+ * Zawiera słownik poprawnych odpowiedzi dla pytań o danym ID. Klasa DragonAnalyzer posiada metodę
+ * pozwalającą na wyznaczenie wyniku skali Dragon oraz metody rzutujące wyznaczoną liczbę punktów na prawdopodobieństwo
+ * powodzenia i niepowodzenia leczenia.
+ *
+ * @author Stanisław Wasilkowski
  */
 
 public final class DragonAnalyzer {
@@ -26,8 +30,26 @@ public final class DragonAnalyzer {
     //correctAnswers - contains proper answers in this scale for particular question
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
+    /**
+     * Bezparametrowy konstruktor klasy
+     * Oznaczony jako prywatny, by uniemożliwić jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     */
     private DragonAnalyzer() {}
 
+    /**
+     * Metoda dokonująca wyliczenia wyniku w skali Dragon dla pacjenta p.
+     * Funkcja pobiera sumę punktów najświeższego badania w skali NIHSS i w zależności od jej wartości
+     * dodaje odpowiednią liczba punktów w skali Dragon. Następnie dla każdego pytania tego formularza
+     * wyznacza odpowiednią liczbę punktów w zależności od odpowiedzi udzielonej przez użytkownika.
+     * Za odpowiedż typu prawda/fałsz przyznawany jest 1 punkt w przypadku zgodności odpowiedzi.
+     * Dla odpowiedzi numerycznej liczba punktów dopierana jest na podstaie zakresu, do którego należy liczba.
+     * Następnie w zależności od liczby uzyskanych punktów określane jest prawdopodobieństwo dobrego
+     * rezultatu leczenia oraz prawdopodobieństwo niepowodzenia leczenia trombolitycznego.
+     *
+     * @param p obiekt klasy Patient, dla którego dokonywana jest analiza
+     * @return (DragonResult) wynik przeprowadzanej analizy; zawiera liczbę punktów skali Dragon,
+     *          procent powodzenia oraz procent niepowodzenia leczenia trombolitycznego
+     */
     public static DragonResult AnalyzePrognosis(Patient p)
     {
         if (correctAnswers == null) {
@@ -80,6 +102,11 @@ public final class DragonAnalyzer {
         return result;
     }
 
+    /**
+     * Metoda wyznaczająca procentowe prawdopodobieństwo powodzenia leczenia trombolitycznego
+     * @param score liczba punktów skali Dragon
+     * @return (int) procent określający szanse powodzenie leczenia trombolitycznego
+     */
     private static int getGoodOutcomePrognosis(int score) {
         switch (score) {
             case 0:
@@ -103,6 +130,11 @@ public final class DragonAnalyzer {
         }
     }
 
+    /**
+     * Metoda wyznaczająca procentowe prawdopodobieństwo niepowodzenia leczenia trombolitycznego
+     * @param score liczba punktów skali Dragon
+     * @return (int) procent określający niepowodzenie leczenia trombolitycznego
+     */
     private static int getMiserableOutcomePrognosis(int score){
         switch (score) {
             case 0:
@@ -132,6 +164,9 @@ public final class DragonAnalyzer {
         }
     }
 
+    /**
+     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza
+     */
     private static void Initialize() {
         correctAnswers = new Hashtable<>();
 

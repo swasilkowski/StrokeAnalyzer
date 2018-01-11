@@ -1,7 +1,11 @@
 package com.example.asus.strokeanalyzer.Model.results;
 
 /**
- * Created by S. Wasilkowski on 2017-12-20.
+ * Klasa przechowująca wynik analizy dotyczącej skali Dragon.
+ * Zawiera pole przechowujące liczbę punktów w skali Dragon oraz pola przechowujące prawdopodobieństwo
+ * powodzenia oraz niepowodzenia leczenia trombolitycznego
+ *
+ * @author Stanisław Wasilkowski
  */
 
 public final class DragonResult {

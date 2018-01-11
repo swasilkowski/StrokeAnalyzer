@@ -1,15 +1,13 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa reprezentująca pytanie, które zawiera zbiór gotowych odpowiedzi
+ * Przechowuje ono mapę łączącą pewną wartość liczbową z treścią odpowiedzi. Wartość ta może stanowić
+ * liczbę punktów przyznawanych odpowiedzi bądź jej Id w zależności od pytania.
+ *
+ * @author Marta Marciszewicz
  */
 
 public class BulletedQuestion extends Question {
@@ -18,22 +16,33 @@ public class BulletedQuestion extends Question {
     //possibleValues - field containing all of the values user may pick
     private Map<Integer, String> possibleValues;
 
+    /**
+     * Konstruktor ustawiający ID pytania, jego treść oraz możliwe odpowiedi na pytanie
+     * @param id ID pytania
+     * @param text treść pytania
+     * @param answers mapa zawierająca możliwe odpowiedzi na dane pytanie
+     */
     public BulletedQuestion(int id, String text, Map<Integer, String> answers)
     {
         super(id, text);
         possibleValues = answers;
     }
 
+    /**
+     * Metoda wracająca treść danej odpowiedzi
+     * @param ind liczba charakteryzująca daną odpowiedż
+     * @return (String) tekst odpowiedzi
+     */
     public String GetValueDescription(int ind)
     {
         return possibleValues.get(ind);
     }
 
-/*    public List<Integer> GetListOfPosiibleValues()
-    {
-        return Arrays.asList(possibleValues.keySet().toArray(new Integer[0]));
-    }*/
-
+    /**
+     * Metoda zwracająca możliwe odpowiedzi na dane pytnaie
+     * @return
+     * {@code Map<Integer, String>} mapa możliwych do wyboru odpowiedzi na pytanie
+     */
     public Map<Integer, String> GetPosiibleValues()
     {
         return possibleValues;

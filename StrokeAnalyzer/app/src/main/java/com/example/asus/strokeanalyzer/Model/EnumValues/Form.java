@@ -1,7 +1,10 @@
 package com.example.asus.strokeanalyzer.Model.EnumValues;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Wyliczenie rodzaji skal.
+ * Klasa zawiera również metodę Print, która pozwala na wypisanie nazwy danej wartości typu wyliczeniowego
+ *
+ * @author Marta Marciszewicz
  */
 
 public enum Form {
@@ -13,6 +16,10 @@ public enum Form {
     iScore,
     Dragon;
 
+    /**
+     * Wypisanie nazwy danej wartości typu wyliczeniowego
+     * @return (String) poprawna nazwa danego elementu typu wyliczeniowego Form
+     */
     public String Print()
     {
         if(this==NIHSS)

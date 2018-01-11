@@ -1,7 +1,9 @@
 package com.example.asus.strokeanalyzer.Model.EnumValues;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Wyliczenie regionów na które podzielony zostaje mózg w modelu StrokeBricks
+ *
+ * @author Marta Marciszewicz
  */
 
 public enum Region {

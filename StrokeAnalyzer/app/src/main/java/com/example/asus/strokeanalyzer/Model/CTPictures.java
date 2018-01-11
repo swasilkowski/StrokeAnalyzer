@@ -5,43 +5,48 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
-import android.test.mock.MockApplication;
-
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.R;
-
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Asus on 20.11.2017.
+ * CTPictures to klasa zarządzająca obrazami CT wyświetlanymi w aplikacji.
+ * <p>
+ * Przechowuje ona powiązania pomiędzy regionami zdefiniowanymi w modelu StrokeBricks,
+ * a obrazkami reprezentującymi regiony. Określa też zależność pomiędzy obrazami regonów,
+ * a obrazami bazowymi.
+ * <p>
+ * Pozwala na wygenerowanie obrazów CT mózgu z zaznaczonymi regionami możliwego występowania udar
+ * na podstawie dostarczonej listy regionów.
+ *
+ * @author Marta Marciszewicz
+ *
  */
-
 public final class CTPictures {
 
     private static Context appContext;
-
-    private static Bitmap[] basicPictures = new Bitmap[4];
-    //key - region's id, value - resoruce id of images connected with this region
+    //key - region's id, value - list of resoruce id of images connected with this region
     private static Map<Region, List<Integer>> regions = new Hashtable<>();
+    //key - region's picture ID, value - ID of a basic brain picture on which particular region's image is visible
     private static Map<Integer, Integer> pictureBasicPictureRelation = new Hashtable<>();
 
+    /**
+     * Domyślny konstruktor klasy
+     * Oznaczony jako prywatny, by uniemożliwić jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     */
     private CTPictures(){}
 
+    /**
+     * Metoda inicjalizująca mapy wykorzystywane w procesie generowania obrazów z naniesionymi regionami
+     * występowania udaru.
+     * @param context kontekst aplikacji niezbędny do pobierania Bitmap z obrazami z zasobów aplikacji
+     */
     public static void InitializeCTPictures (Context context)
     {
         appContext =context;
-
-        //setting basic brain pictures
-        basicPictures[0] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1);
-        basicPictures[1] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_2);
-        basicPictures[2] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_3);
-        basicPictures[3] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_4);
 
         //assigning images of brain parts to basic brain pictures
         pictureBasicPictureRelation.put(R.drawable.a1_l_9,0);
@@ -193,18 +198,26 @@ public final class CTPictures {
 
     }
 
+    /**
+     * Metoda generująca obrazy mózgu z zaznaczonymi regionami możliwego wystąpienia udaru.
+     * Funkcja przechodzi po wszystkich regionach dostarczonych jako parametr. Dla każdego z regionów
+     * pobiera jego obraz  zasobów apliakcji i wczytuje do Bitmapy, a następnie odrysowuje przy pomocy
+     * klasy Canvas na bitmapie zawierającej przykłądowy obraz CT mózgu.
+     * @param _regions lista regionów, które należy zaznaczyć na przykładowych obrazach CT mózgu
+     * @return (Bitmap[]) tablica Bitmap zawierająca przerobione obrazy CT mózgu z nanesionymi regionami,
+     *          które może obejmować udar
+     */
     public static Bitmap[] GenerateOutputImage(List<Region> _regions)
     {
         Bitmap[] brainPictures = new Bitmap[4];
-        brainPictures[0] = basicPictures[0].copy(basicPictures[0].getConfig(), true);
-        brainPictures[1] = basicPictures[1].copy(basicPictures[0].getConfig(), true);
-        brainPictures[2] = basicPictures[2].copy(basicPictures[0].getConfig(), true);
-        brainPictures[3] = basicPictures[3].copy(basicPictures[0].getConfig(), true);
+        Bitmap tmp = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1);
+        brainPictures[0] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1).copy(tmp.getConfig(), true);
+        brainPictures[1] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_2).copy(tmp.getConfig(), true);
+        brainPictures[2] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_3).copy(tmp.getConfig(), true);
+        brainPictures[3] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_4).copy(tmp.getConfig(), true);
 
         for(Region r:_regions)
         {
-            //region image
-            //List<Bitmap> regionImages = GetPictures(r);
             //image Ids
             List<Integer> ids = regions.get(r);
 
@@ -216,6 +229,7 @@ public final class CTPictures {
                 //region image
                 Bitmap regionImage = GetPicture(image);
 
+                //image transformation
                 Bitmap bmOverlay = Bitmap.createBitmap(brainImg.getWidth(), brainImg.getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(bmOverlay);
                 canvas.drawARGB(0x00, 0, 0, 0);
@@ -224,21 +238,19 @@ public final class CTPictures {
                 canvas.drawBitmap(brainImg, 0, 0, null);
                 canvas.drawBitmap(regionImage, 0, 0, paint);
 
-
-                //moze zbedna czesc??
-                BitmapDrawable drawable = new BitmapDrawable(bmOverlay);
-                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-
-                brainPictures[pictureBasicPictureRelation.get(image)] = drawable.getBitmap();
+                brainPictures[pictureBasicPictureRelation.get(image)] = bmOverlay;
             }
-
-
         }
-
         return brainPictures;
     }
 
-    static Bitmap GetPicture(Integer resourceID)
+    /**
+     * Metoda pobrająca obraz o podanym ID z zasobów i zwracająca go w postaci Bitmapy.
+     * Wykorzystywana wewnątrz klasy nanoszącej na podstawowe zdjęcia CT obrazy reprezentujące poszczególne regiony mózgu.
+     * @param resourceID ID zasobu zawierającego obraz
+     * @return (Bitmap) bitmapa zawierająca obraz o podanym w parametrze ID
+     */
+    private static Bitmap GetPicture(Integer resourceID)
     {
         return BitmapFactory.decodeResource( appContext.getResources(), resourceID);
     }

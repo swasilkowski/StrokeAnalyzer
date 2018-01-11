@@ -6,10 +6,10 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.util.Date;
-
 /**
- * Created by S. Wasilkowski on 2017-12-06.
+ * Klasa definiująca tabelę w bazie danych zawierającą odpowiedzi na pytania formularzy aplikacji
+ *
+ * @author Stanisław Wasilkowski
  */
 
 @Entity(foreignKeys = @ForeignKey(

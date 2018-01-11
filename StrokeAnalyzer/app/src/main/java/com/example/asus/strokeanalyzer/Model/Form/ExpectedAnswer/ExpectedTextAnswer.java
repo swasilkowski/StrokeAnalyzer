@@ -1,13 +1,20 @@
 package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa reprezentująca spodziewaną odpowiedź będącą napisem.
+ * Zawiera wartość poprawnej odpowiedzi typu String
+ *
+ * @author Marta Marciszewicz
  */
 
 public class ExpectedTextAnswer extends  ExpectedAnswer {
 
     public String CorrectValue;
 
+    /**
+     * Konstruktor ustawiający ID pytania, którego dotyczy odpowiedź
+     * @param questionId ID pytania, którego dotyczy odpowiedź
+     */
     public ExpectedTextAnswer(int questionId)
     {
         super(questionId);

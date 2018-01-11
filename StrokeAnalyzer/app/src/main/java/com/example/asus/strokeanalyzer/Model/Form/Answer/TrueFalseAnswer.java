@@ -1,13 +1,20 @@
 package com.example.asus.strokeanalyzer.Model.Form.Answer;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa reprezentująca odpowiedź typu prawda/fałsz.
+ * Zawiera wartość udzielonej odpowiedzi typu boolean
+ *
+ * @author Marta Marciszewicz
  */
 
 public class TrueFalseAnswer extends Answer {
 
     public boolean Value;
 
+    /**
+     * Konstruktor ustawiający ID pytania, którego dotyczy odpowiedź
+     * @param questionId ID pytania, którego dotyczy odpowiedź
+     */
     public TrueFalseAnswer(int questionId)
     {
         super(questionId);

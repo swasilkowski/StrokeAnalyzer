@@ -11,19 +11,40 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa dokonująca analizy możliwości zastosowania leczenia trombolitycznego.
+ * Zawiera słownik poprawnych odpowiedzi dla pytań o danym ID oraz metodę pozwalającą na wyznaczenie
+ * wyniku analizy stanu pacjenta
+ *
+ * @author Marta Marciszewicz & Stanisław Wasilkowski
  */
 
 public final class TreatmentAnalyzer {
 
+    //key - question ID; value - expected answer for question with given ID
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
+    /**
+     * Metoda dokonująca analizy możliwości dopuszczenia leczenia trombolitycznego na podstawie
+     * odpowiedzi udzielonych przez pacjenta w formularzach apliakcji. Metoda pobiera listę ID
+     * pytań wykorzystywanych do analizy i dla każdego dokonuje porównania odpowiedzi przechowywanej
+     * w profilu pacjenta p z prawidłową odpowiedzią zawartą w słowniku correctAnswers.
+     * W przypadku pytań typu prawda/fałsz porównywana jest wartość bool przechowywana w odpowiedzi.
+     * Dla pytań zawierających odpowiedź w postaci wartości liczbowej sprawdzana jest przynależność
+     * danej wartości do odpowiedniego zakresu. Jeżeli, którekolwiek porównanie zwróci wartość false
+     * decyzja dotycząca leczenia trombolitycznego ustawiana jest jako negatywna.
+     * Analizator dokonują porównania wszystkich pytań, w celu wygenerowania listy pytań, na które
+     * udzielona odpowiedź jest niepoprawna.
+     *
+     * @param p obiekt klasy Patient, dla którego dokonywana jest analiza
+     * @return (TreatmentResult) wynik przeprowadzonej analizy; zawiera zarówno decyzję dotyczącą
+     *          zastosowania leczenia trombolitycznego jak również listę odpowiedzi, które wpłynęły
+     *          na ostateczną decyję w przypadku gdy jest ona negatywna
+     */
     public static TreatmentResult MakeTreatmentDecision(Patient p)
     {
         if (correctAnswers == null) {
@@ -80,6 +101,9 @@ public final class TreatmentAnalyzer {
         return result;
     }
 
+    /**
+     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza
+     */
     private static void Initialize() {
         correctAnswers = new Hashtable<>();
 

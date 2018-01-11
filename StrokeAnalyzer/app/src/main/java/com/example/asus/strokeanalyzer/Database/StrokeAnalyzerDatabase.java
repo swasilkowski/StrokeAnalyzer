@@ -2,7 +2,6 @@ package com.example.asus.strokeanalyzer.Database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
-
 import com.example.asus.strokeanalyzer.DAO.NihssDao;
 import com.example.asus.strokeanalyzer.DAO.OtherDataDao;
 import com.example.asus.strokeanalyzer.DAO.PatientDao;
@@ -11,7 +10,11 @@ import com.example.asus.strokeanalyzer.Entities.OtherData;
 import com.example.asus.strokeanalyzer.Entities.Patient;
 
 /**
- * Created by S. Wasilkowski on 2017-12-06.
+ * Abstrakcyjna klasa określająca definicję bazy danych aplikacji
+ * Jest rozszerzeniem klasy RoomDatabase. Zawiera metody zwracające interfejsy DAO
+ * (Data Access Object) bazy danych.
+ *
+ * @author Stanisław Wasilkowski
  */
 
 @Database(entities = {Patient.class, NihssExamination.class, OtherData.class}, version = 5, exportSchema = false)

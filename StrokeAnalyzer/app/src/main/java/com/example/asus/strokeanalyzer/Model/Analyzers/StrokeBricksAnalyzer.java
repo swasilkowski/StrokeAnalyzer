@@ -1,26 +1,15 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
-import android.graphics.Bitmap;
-
-import com.example.asus.strokeanalyzer.Model.CTPictures;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedNumericAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTextAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedTrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
-import com.example.asus.strokeanalyzer.R;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -28,7 +17,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa wyznaczająca zbiór regionów mózgu dotkniętych udarem przy wykorzystaniu modelu Stroke Bricks
+ * Zawiera słownik opisów regionów oraz słownik łączący ID pytania z listą regionów. Klasa StrokeBricksAnalyzer
+ * posiada metodę pozwalającą na wyznaczenie listy regionów mózgu objętych udarem oraz metodę generującą opis
+ * rozległości udaru.
+ *
+ * @author Stanisław Wasilkowski
  */
 
 public final class StrokeBricksAnalyzer {
@@ -44,9 +38,24 @@ public final class StrokeBricksAnalyzer {
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
 
+    /**
+     * Bezparametrowy konstruktor klasy
+     * Oznaczony jako prywatny, by uniemożliwić jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     */
     private StrokeBricksAnalyzer() {
     }
 
+    /**
+     * Metoda dokonująca wyznaczenia regionów objętych udarem niedokrwiennym mózgu na podstawie
+     * modelu Stroke Bricks dla pacjenta p.
+     * Funkcja pobiera odpowiedzi udzielone przez użytkownika w najświeższym badaniu NIHSS i jeżeli
+     * wartość punktowa odpowiedzi jest większa niż 0, regiony przypisane do pytania na które udzielona
+     * została odpowiedź dołączane są do listy uszkodzonych w wyniku udaru regionów.
+     *
+     * @param p obiekt klasy Patient, dla którego dokonywana jest analiza
+     * @return
+     * {@literal List<Region>} lista regionów potencjalnego występowania udaru wyznaczonych na podstawie modelu Stroke Bricks
+     */
     public static List<Region> AnalyzeRegionsAffection(Patient p) {
         if (correctAnswers == null || regionsDescription == null) {
             Initialize();
@@ -165,6 +174,15 @@ public final class StrokeBricksAnalyzer {
         return new ArrayList<>(affectedRegions);
     }
 
+    /**
+     * Metoda generująca opsi rozległości udaru.
+     * Funkcja pobiera opis regionu dla każdego z regionów dostarczonych w parametrze regions i następnie
+     * dodaje go do wynikowego tekstu opisującego rozległość udaru
+     *
+     * @param regions lista regionów
+     * @return (String) opis rozległości udaru (opis zawiera listę regionów możliwego występowania udaru
+     *          niedokriwennego mózgu)
+     */
     public static String CreateStrokeRangeDescription(List<Region> regions)
     {
         String description = "Obszar objęty udarem zawiera: \n";
@@ -178,13 +196,11 @@ public final class StrokeBricksAnalyzer {
         return description;
     }
 
-    public static Bitmap[] GetStrokeImage(List<Region> regions)
-    {
-        return CTPictures.GenerateOutputImage(regions);
-    }
-
+    /**
+     * Metoda inicjalizująca słownik zawierający opisy poszczególnych regionów (nazwy)
+     */
     private static void Initialize() {
-        correctAnswers = new Hashtable<>();
+        //correctAnswers = new Hashtable<>();
         regionsDescription = new Hashtable<>();
         regionsDescription.put(Region.A1_L,"A1_L");
         regionsDescription.put(Region.A1_R, "A1_R");

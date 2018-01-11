@@ -11,13 +11,17 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.Model.results.HatResult;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa dokonująca analizy prawdopodobieństwa wystąpienia krwotoku śródczaszkowego w skali Hat
+ * Zawiera słownik poprawnych odpowiedzi dla pytań o danym ID. Klasa HatAnalyzer posiada metodę
+ * pozwalającą na wyznaczenie wyniku skali Hat oraz metody rzutujące wyznaczoną liczbę punktów na
+ * prawdopodobieństwo wystąpienia krwotoku śródczaszkowego oraz śmiertelnego krwotoku śródczaszkowego.
+ *
+ * @author Stanisław Wasilkowski
  */
 
 public final class HatAnalyzer {
@@ -25,9 +29,26 @@ public final class HatAnalyzer {
     //correctAnswers - contains propwer answers in this scale for particular question
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
+    /**
+     * Bezparametrowy konstruktor klasy
+     * Oznaczony jako prywatny, by uniemożliwić jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     */
     private HatAnalyzer() {
     }
 
+    /**
+     * Metoda dokonująca wyliczenia wyniku w skali Hat dla pacjenta p.
+     * Funkcja pobiera sumę punktów najświeższego badania w skali NIHSS i w zależności od jej wartości
+     * dodaje odpowiednią liczbę punktów. Następnie przechodzi po pytaniach dotyczących tego formularza
+     * i dla każdego wyznacza odpowiednią liczbę punktów w zależności od odpowiedzi udzielonej przez użytkownika.
+     * Następnie w zależności od liczby uzyskanych punktów zwracane są procentowe prawdopodobieństwa
+     * wystąpienia krwotoku.
+     *
+     * @param p obiekt klasy Patient, dla którego dokonywana jest analiza
+     * @return (HatResult) wynik przeprowadzanej analizy; zawiera liczbę punktów skali Hat,
+     *          procent określający prawdopodobieństwo wystąpienia krwotoku śródczaszkowego oraz
+     *          procent określający prawdopodobieństwo śmiertelnego krwotoku śródczaszkowego.
+     */
     public static HatResult AnalyzePrognosis(Patient p)
     {
         if (correctAnswers == null) {
@@ -76,6 +97,12 @@ public final class HatAnalyzer {
         return result;
     }
 
+    /**
+     * Metoda wyznaczająca procentowe prawdopodobieństwo wystąpienia krwotoku śródczaszkowego
+     * po zastosowaniu leczenia trombolitycznego
+     * @param score liczba punktów skali Hat
+     * @return (int) procent określający prawdopodobieństwo wystąpienia krwotoku śródczaszkowego
+     */
     private static int getRiskOfSymptomaticICH(int score) {
         switch (score) {
             case 0:
@@ -95,6 +122,12 @@ public final class HatAnalyzer {
         }
     }
 
+    /**
+     * Metoda wyznaczająca procentowe prawdopodobieństwo wystąpienia śmiertelnego krwotoku śródczaszkowego
+     * po zastosowaniu leczenia trombolitycznego
+     * @param score liczba punktów skali Hat
+     * @return (int) procent określający prawdopodobieństwo wystąpienia śmiertelnego krwotoku śródczaszkowego
+     */
     private static int getRiskOfFatalICH(int score) {
         switch (score) {
             case 0:
@@ -114,6 +147,9 @@ public final class HatAnalyzer {
         }
     }
 
+    /**
+     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza
+     */
     private static void Initialize() {
         correctAnswers = new Hashtable<>();
 

@@ -3,12 +3,13 @@ package com.example.asus.strokeanalyzer.Entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Created by S. Wasilkowski on 2017-12-06.
+ * Klasa definiująca tabelę bazy danych zawierającą badania pacjenta w skali NIHSS
+ *
+ * @author Stanisław Wasilkowski
  */
 
 @Entity(foreignKeys = @ForeignKey(

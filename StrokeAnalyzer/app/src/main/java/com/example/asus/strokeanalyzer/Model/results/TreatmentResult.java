@@ -1,12 +1,15 @@
 package com.example.asus.strokeanalyzer.Model.results;
 
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa przechowująca wynik analizy dotyczącej możliwości zastosowania leczenia trombolitycznego.
+ * Zawiera pole przechowujące ostateczną decyzję odnoszącą się do leczenia oraz listę odpowiedzi,
+ * które różniły się od spodziewanej odpowiedzi na dane pytanie
+ *
+ * @author Marta Marciszewicz
  */
 
 public class TreatmentResult {

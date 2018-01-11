@@ -1,7 +1,6 @@
 package com.example.asus.strokeanalyzer.Model.Form;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
-import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.NumericQuestion;
@@ -9,17 +8,22 @@ import com.example.asus.strokeanalyzer.Model.Form.Question.Question;
 import com.example.asus.strokeanalyzer.Model.Form.Question.TrueFalseQuestion;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.View.Form.DescriptiveQ;
-import com.itextpdf.text.pdf.languages.ArabicLigaturizer;
-
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Asus on 20.11.2017.
+ * Klasa zarządzająca formularzami.
+ * Przechowuje mapę łączącą formularz z listą pytań używanych przy wyznaczaniu wyniku tego formularza oraz
+ * mapę wiążącą formualrz z listą pytań wyświetlanych w danym formularzu. Ponadto przechowuje mapę
+ * przypisującą ID do pytania. Mapa ta zawiera wszystkie pytania występujące w aplikacji.
+ *<p>
+ * Zawiera głównie metodę inicjalizującą poszczególne mapy. Dodatkowo klasa umożliwie też sprawdzenie
+ * czy zostały przez użytkownika udzielone odpowiedzi na wszystkie pytania wymagane dla danego formularza.
+ *
+ * @author Marta Marciszewicz & Stanisław Wasilkowski
  */
 
 public final class FormsStructure {
@@ -34,11 +38,22 @@ public final class FormsStructure {
     public static Map<Integer, Question> Questions = new Hashtable<>();
 
 
+    /**
+     * Domyślny konstruktor klasy
+     * Oznaczony jako prywatny, by uniemożliwić jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     */
     private FormsStructure(){
-
-
     }
 
+    /**
+     * Sprawdzenie, czy obiekt klasy Patient zawiera odpowiedzi na wszytkie pytania wykorzystywane w formularzu
+     * przekazanym jako paramter
+     * @param p obiekt klasy Patient, dla którego sprawdzamy możliwość analizy we wskazanej skali
+     * @param form rodzaj skali, której analizę chcemy przeprwadzić dla obiektu p
+     * @return (boolean) true - jeżeli obiekt p zawiera wszystkie odpowiedzi na pytania formularza form,
+     *          false - jeżeli nie wszystkie pytania formularza form posiadają odpowiedź w obiekcie klasy
+     *          Patient
+     */
     public static boolean patientReady(Patient p, Form form)
     {
         List<Integer> questions = FormsStructure.QuestionsUsedForForm.get(form);
@@ -50,6 +65,9 @@ public final class FormsStructure {
         return true;
     }
 
+    /**
+     * Metoda inicjalizująca słowniki klasy FormsStructure
+     */
     public static void InitializeQuestionsList()
     {
         //uzupelnienei slownikow
@@ -507,48 +525,6 @@ public final class FormsStructure {
         QuestionsUsedForForm.put(Form.Hat, questionsUsedForHat);
         QuestionsUsedForForm.put(Form.StrokeBricks, questionsUsedForStrokeBricks);
 
-//        ArrayList<Integer> questionIDs = new ArrayList<>();
-//        questionIDs.add(1);
-//        questionIDs.add(2);
-//
-//        QuestionsUsedForForm.put(Form.DemographicAndClinic, (ArrayList)questionIDs.clone());
-//
-//
-//        questionIDs.clear();
-//        QuestionsUsedForForm.put(Form.Dragon,(ArrayList)questionIDs.clone());
-//        QuestionsUsedForForm.put(Form.Hat,(ArrayList)questionIDs.clone());
-//
-//        questionIDs.clear();
-//        questionIDs.add(4);
-//        QuestionsUsedForForm.put(Form.iScore,(ArrayList)questionIDs.clone());
-//        QuestionsUsedForForm.put(Form.StrokeBricks,(ArrayList)questionIDs.clone());
-//        questionIDs.clear();
-//        questionIDs.add(3);
-//        QuestionsUsedForForm.put(Form.ThrombolyticTreatment,(ArrayList)questionIDs.clone());
-//
-//        questionIDs.clear();
-//        questionIDs.add(1);
-//        questionIDs.add(2);
-//
-//        QuestionsPrintedInForm.put(Form.DemographicAndClinic,(ArrayList)questionIDs.clone());
-//        QuestionsPrintedInForm.put(Form.Dragon,(ArrayList)questionIDs.clone());
-//        QuestionsPrintedInForm.put(Form.Hat,(ArrayList)questionIDs.clone());
-//
-//        questionIDs.clear();
-//        questionIDs.add(4);
-//        QuestionsPrintedInForm.put(Form.iScore,(ArrayList)questionIDs.clone());
-//        QuestionsPrintedInForm.put(Form.NIHSS,(ArrayList)questionIDs.clone());
-//        QuestionsPrintedInForm.put(Form.StrokeBricks,(ArrayList)questionIDs.clone());
-//
-//        questionIDs.clear();
-//        questionIDs.add(3);
-//        QuestionsPrintedInForm.put(Form.ThrombolyticTreatment,questionIDs);
-
-
-
     }
-
-
-    public static void PrintForm(Form form, Patient p){}
 }
 
