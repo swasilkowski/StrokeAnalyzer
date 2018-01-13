@@ -97,7 +97,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     public class ViewHolderNumericQ extends ViewHolder {
         private final TextView question;
-        private final EditText answer;//!!!!!!!!!!!!!!!!!!!!! TO DO !!!!!!!!!!
+        private final EditText answer;
         private Question questionObject;
 
         public ViewHolderNumericQ(View view) {
@@ -111,7 +111,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((NumericQ)question).getText());
-            this.answer.setText(String.valueOf(((NumericQ)questionObject).getAnswer()));
+            if(((NumericQ)questionObject).getAnswerSet())
+                this.answer.setText(numericAnswerTransform(String.valueOf(((NumericQ)questionObject).getAnswer())));
 
             answer.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -141,7 +142,19 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             ((NumericQ)questionObject).setAnswer(Double.parseDouble(answer.getText().toString()));
         }
 
+        private String numericAnswerTransform(String answer)
+        {
+            String[] numberParts=answer.split("\\.");
+            if(numberParts[numberParts.length-1].equals("0"))
+                return numberParts[0];
+            else
+                return answer;
+        }
+
+
     }
+
+
 
     public class ViewHolderTrueFalseQ extends ViewHolder {
         private final TextView question;

@@ -211,10 +211,10 @@ public final class CTPictures {
     {
         Bitmap[] brainPictures = new Bitmap[4];
         Bitmap tmp = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1);
-        brainPictures[0] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1).copy(tmp.getConfig(), true);
-        brainPictures[1] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_2).copy(tmp.getConfig(), true);
-        brainPictures[2] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_3).copy(tmp.getConfig(), true);
-        brainPictures[3] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_4).copy(tmp.getConfig(), true);
+        brainPictures[0] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1);
+        brainPictures[1] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_2);
+        brainPictures[2] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_3);
+        brainPictures[3] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_4);
 
         for(Region r:_regions)
         {

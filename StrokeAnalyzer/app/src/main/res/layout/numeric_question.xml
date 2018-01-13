@@ -13,6 +13,6 @@
     <EditText
         android:id="@+id/answerData"
         style="@style/EditTextCustom"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
 
 </LinearLayout>
