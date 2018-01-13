@@ -1,7 +1,6 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -23,11 +21,8 @@ import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.R;
-import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
-import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 //sorce:https://medium.com/@ruut_j/a-recyclerview-with-multiple-item-types-bce7fbd1d30e
@@ -240,7 +235,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
                // answers.setLayoutManager(new LinearLayoutManager(context));
             /*recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.addItemDecoration(new DividerItem(context, LinearLayoutManager.VERTICAL));
+            recyclerView.addItemDecoration(new LineDecoration(context, LinearLayoutManager.VERTICAL));
             ItemTouchHelper.Callback callback =
                     new SwipeHelperCallback(nAdapter);
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);

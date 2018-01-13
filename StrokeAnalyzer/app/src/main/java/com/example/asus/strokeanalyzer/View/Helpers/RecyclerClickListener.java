@@ -10,13 +10,14 @@ import android.view.View;
  * Created by Asus on 03.12.2017.
  */
 
-public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
+public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
 
-    private GestureDetector gestureDetector;
     private ClickListener clickListener;
+    private GestureDetector gestureDetector;
 
-    public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
+    public RecyclerClickListener(Context context, final ClickListener clickListener) {
         this.clickListener = clickListener;
+
         gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
@@ -25,10 +26,6 @@ public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
 
             @Override
             public void onLongPress(MotionEvent e) {
-                /*View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-                if (child != null && clickListener != null) {
-                    clickListener.onLongClick(child, recyclerView.getChildLayoutPosition(child));
-                }*/
             }
         });
     }

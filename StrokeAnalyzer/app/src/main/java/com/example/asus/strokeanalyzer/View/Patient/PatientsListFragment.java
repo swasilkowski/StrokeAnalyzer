@@ -15,10 +15,9 @@ import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.PatientsListActionFragment;
-import com.example.asus.strokeanalyzer.View.Helpers.DividerItem;
+import com.example.asus.strokeanalyzer.View.Helpers.LineDecoration;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
-import com.example.asus.strokeanalyzer.View.Helpers.RecyclerTouchListener;
-import com.example.asus.strokeanalyzer.View.Helpers.RemovePatientPredicate;
+import com.example.asus.strokeanalyzer.View.Helpers.RecyclerClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,15 +72,15 @@ public class PatientsListFragment extends Fragment  {
             pAdapter = new PatientAdapter(patients,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             /*recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.addItemDecoration(new DividerItem(context, LinearLayoutManager.VERTICAL));
+            recyclerView.addItemDecoration(new LineDecoration(context, LinearLayoutManager.VERTICAL));
             ItemTouchHelper.Callback callback =
                     new SwipeHelperCallback(nAdapter);
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(recyclerView);*/
             recyclerView.setAdapter(pAdapter);
-            recyclerView.addItemDecoration(new DividerItem(this.getContext(), LinearLayoutManager.VERTICAL));
+            recyclerView.addItemDecoration(new LineDecoration(this.getContext()));
 
-            recyclerView.addOnItemTouchListener(new RecyclerTouchListener( getActivity().getApplicationContext(), recyclerView, new ClickListener() {
+            recyclerView.addOnItemTouchListener(new RecyclerClickListener( getActivity().getApplicationContext(), new ClickListener() {
                 @Override
                 public void onClick(View view, int position) {
 
@@ -89,7 +88,7 @@ public class PatientsListFragment extends Fragment  {
                     Bundle bundel = new Bundle();
 
                     // Storing data into bundle
-                    Patient patient = patients.get(position);
+                    final Patient patient = patients.get(position);
                     bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
 
                     //print dialog with actions for patient
@@ -97,11 +96,9 @@ public class PatientsListFragment extends Fragment  {
                         @Override
                         public void patientDeleted(final int patientID) {
 
-                            RemovePatientPredicate<Patient> pred = new RemovePatientPredicate<>();
                             Patient tmp = new Patient();
                             tmp.Id = patientID;
-                            pred.patient =tmp;
-                            patients.removeIf(pred);
+                            patients.remove(patients.indexOf(tmp));
                             pAdapter.notifyDataSetChanged();
                         }
                     };

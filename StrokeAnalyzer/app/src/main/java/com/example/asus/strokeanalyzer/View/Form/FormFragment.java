@@ -27,7 +27,7 @@ import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
-import com.example.asus.strokeanalyzer.View.Helpers.DividerItem;
+import com.example.asus.strokeanalyzer.View.Helpers.LineDecoration;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -112,15 +112,15 @@ public class FormFragment extends Fragment {
             qAdapter = new QuestionAdapter(printQuestions, answers,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             /*recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.addItemDecoration(new DividerItem(context, LinearLayoutManager.VERTICAL));
+            recyclerView.addItemDecoration(new LineDecoration(context, LinearLayoutManager.VERTICAL));
             ItemTouchHelper.Callback callback =
                     new SwipeHelperCallback(nAdapter);
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(recyclerView);*/
             recyclerView.setAdapter(qAdapter);
-            recyclerView.addItemDecoration(new DividerItem(this.getContext(),LinearLayoutManager.VERTICAL));
+            recyclerView.addItemDecoration(new LineDecoration(this.getContext()));
 
-           /* recyclerView.addOnItemTouchListener(new RecyclerTouchListener( getActivity().getApplicationContext(), recyclerView, new ClickListener() {
+           /* recyclerView.addOnItemTouchListener(new RecyclerClickListener( getActivity().getApplicationContext(), recyclerView, new ClickListener() {
                 @Override
                 public void onClick(View view, int position) {
 
