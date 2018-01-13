@@ -6,67 +6,16 @@
     tools:context="com.example.asus.strokeanalyzer.View.NewPatientFragment"
     android:layout_gravity="center">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/nextBt"
-    android:layout_alignParentTop="true"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:layout_margin="20dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_patient_data_label"
-        style="@style/LabelText"/>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/InputFrame">
+        android:layout_above="@+id/nextBt"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp">
 
-        <EditText
-            android:id="@+id/name"
-            style="@style/EditTextNewPatient"
-            android:inputType="textPersonName"
-            android:hint="@string/name_hint"/>
-
+        <include layout="@layout/content_new_patient" />
     </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/InputFrame">
-
-        <EditText
-            android:id="@+id/surname"
-            style="@style/EditTextNewPatient"
-            android:inputType="textPersonName"
-            android:hint="@string/surname_hint" />
-
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_patient_id_label"
-        style="@style/LabelText"/>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/InputFrame">
-
-        <EditText
-            android:id="@+id/patientNumber"
-            style="@style/EditTextNewPatient"
-            android:inputType="numberSigned"
-            android:hint="@string/patient_number_hint" />
-
-    </FrameLayout>
-
-</LinearLayout>
 
     <Button
         android:id="@+id/nextBt"

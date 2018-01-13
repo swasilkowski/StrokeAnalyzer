@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.strokeanalyzer.View.PatientProfileFragment"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_space_height_landscape" />
+
+    <TextView
+        android:id="@+id/patientNameShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/menu_text_name"
+        style="@style/HugeText"/>
+
+    <TextView
+        android:id="@+id/patientNumberShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/menu_text_number"
+        style="@style/SmallText"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_space_height_landscape" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/resultBt"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/result_string"
+            style="@style/MenuButtonLandscape"/>
+
+        <Button
+            android:id="@+id/reportBt"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/report_string"
+            style="@style/MenuButtonLandscape"
+            android:background="@color/colorStartBackground"/>
+
+        <Button
+            android:id="@+id/formsBt"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/scales_string"
+            style="@style/MenuButtonLandscape"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

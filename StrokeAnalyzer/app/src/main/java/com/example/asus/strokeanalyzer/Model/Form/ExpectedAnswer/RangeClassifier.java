@@ -20,7 +20,7 @@ public class RangeClassifier
      * @param value wartość dla której funkcja sprawdza przynależność do zakresu klasyfikatora
      * @return true - jeżeli wartość należy do przedziału [MinValue;MAxValue]; false - w przeciwnym przypadku
      */
-    boolean withinARange(double value)
+    public boolean withinARange(double value)
     {
         if(value>MaxValue || value<MinValue)
             return false;

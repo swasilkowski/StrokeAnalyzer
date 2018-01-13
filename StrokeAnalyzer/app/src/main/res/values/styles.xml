@@ -196,4 +196,13 @@
         <item name="android:layout_height">0px</item>
     </style>
 
+    <style name="MenuButtonLandscape" parent="@style/Button">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:shadowColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/huge_button_text</item>
+        <item name="android:padding">@dimen/huge_button_padding</item>
+        <item name="android:layout_width">0px</item>
+    </style>
+
+
 </resources>

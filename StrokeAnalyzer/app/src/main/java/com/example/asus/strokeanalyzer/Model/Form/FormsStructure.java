@@ -1,6 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.Form;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
+import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.NumericQuestion;
@@ -263,7 +264,7 @@ public final class FormsStructure {
 
         //DEMOGRAFICZNE I KLINICZNE
         id = 200;
-        NumericQuestion question200 = new NumericQuestion(id, "Wiek");
+        NumericQuestion question200 = new NumericQuestion(id, "Wiek", new RangeClassifier(0,150));
         questionsUsedForDragon.add(id);
         questionsUsedForIscore.add(id);
         questionsUsedForThrombolysis.add(id);
@@ -289,12 +290,12 @@ public final class FormsStructure {
         questionsUsedForIscore.add(id);
 
         id = 205;
-        NumericQuestion question205 = new NumericQuestion(id, "Czas");
+        NumericQuestion question205 = new NumericQuestion(id, "Czas", new RangeClassifier(0,6000));
         questionsUsedForDragon.add(id);
         questionsUsedForThrombolysis.add(id);
 
         id = 206;
-        NumericQuestion question206 = new NumericQuestion(id, "Poziom glukozy we krwi");
+        NumericQuestion question206 = new NumericQuestion(id, "Poziom glukozy we krwi", new RangeClassifier(0,1000));
         questionsUsedForDragon.add(id);
         questionsUsedForIscore.add(id);
         questionsUsedForHat.add(id);

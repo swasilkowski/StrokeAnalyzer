@@ -28,9 +28,6 @@ import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.Helpers.DividerItem;
-import com.example.asus.strokeanalyzer.View.NewPatientFragment;
-import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
-import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -175,7 +172,7 @@ public class FormFragment extends Fragment {
             getFragmentManager().popBackStack();
 
             //if we were creating a new patient we need to clear backstack and put there list of patients and our patient profile
-            List<Fragment> currentStackState =  getFragmentManager().getFragments();
+/*            List<Fragment> currentStackState =  getFragmentManager().getFragments();
             if(creatingPatient)
             {
                 getFragmentManager().popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
@@ -192,7 +189,7 @@ public class FormFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
 
-            }
+            }*/
 
 /*            //przejdz do nazwania nowego rankingu
             NewRankingFragment setFragment= new NewRankingFragment();
@@ -222,17 +219,6 @@ public class FormFragment extends Fragment {
         getFragmentManager().popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
     }
 
-    private boolean newPatient(List<Fragment> fragments)
-    {
-
-
-        for(Fragment f: fragments)
-        {
-            if(f instanceof NewPatientFragment)
-                return true;
-        }
-        return false;
-    }
 
     private void prepareQuestions(List<Integer> questionIDs)
     {
@@ -262,7 +248,7 @@ public class FormFragment extends Fragment {
             }
             else if(question instanceof NumericQuestion)
             {
-                printedQuestion = new NumericQ(question.GetID(), question.GetText());
+                printedQuestion = new NumericQ(question.GetID(), question.GetText(), ((NumericQuestion) question).Range);
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((NumericQ)printedQuestion).setAnswer(((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.strokeanalyzer.View.NewPatientFragment"
+    tools:showIn="@layout/fragment_new_patient"
+    android:fillViewport="true"
+    android:layout_gravity="center">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_patient_data_label"
+                style="@style/LabelText"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/InputFrame">
+
+                <EditText
+                    android:id="@+id/name"
+                    style="@style/EditTextNewPatient"
+                    android:inputType="textPersonName"
+                    android:hint="@string/name_hint"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/InputFrame">
+
+                <EditText
+                    android:id="@+id/surname"
+                    style="@style/EditTextNewPatient"
+                    android:inputType="textPersonName"
+                    android:hint="@string/surname_hint" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_patient_id_label"
+                style="@style/LabelText"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/InputFrame">
+
+                <EditText
+                    android:id="@+id/patientNumber"
+                    style="@style/EditTextNewPatient"
+                    android:inputType="numberSigned"
+                    android:hint="@string/patient_number_hint" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -16,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
@@ -99,12 +100,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private final TextView question;
         private final EditText answer;
         private Question questionObject;
+        private Toast toast;
 
         public ViewHolderNumericQ(View view) {
             super(view);
 
             question = (TextView) view.findViewById(R.id.questionTextN);
             answer = (EditText) view.findViewById(R.id.answerData);
+            toast = Toast.makeText(view.getContext(),"Podana liczba jest niepoprawna",Toast.LENGTH_SHORT);
         }
 
         @Override
@@ -123,10 +126,26 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     String ans = answer.getText().toString();
-                    if(ans.isEmpty())
-                        ((NumericQ)questionObject).setAnswer(0);
-                    else
-                        ((NumericQ)questionObject).setAnswer(Double.parseDouble(ans));
+
+                    try{
+                        if(ans.isEmpty())
+                            ((NumericQ)questionObject).clearAnswer();
+                        else
+                        {
+                            if(!((NumericQ)questionObject).setAnswer(Double.parseDouble(ans)))
+                            {
+                                ((NumericQ)questionObject).clearAnswer();
+                                toast.show();
+                            }
+                        }
+
+                    }
+                    catch(NumberFormatException exception)
+                    {
+                        ((NumericQ)questionObject).clearAnswer();
+                        toast.show();
+                    }
+
                 }
 
                 @Override

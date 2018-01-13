@@ -20,6 +20,9 @@ import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.NumberAlertFragment;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
+import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
+
+import static android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +49,9 @@ public class NewPatientFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_patient, container, false);
 
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Tworzenie profilu pacjenta");
+
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
         view.setClickable(true);
         //mListener.setTitleName(getString(R.string.title_fragmet_change_name));
@@ -59,7 +65,7 @@ public class NewPatientFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(!createPatient(nextBt))
+                if(!createPatient(v))
                     Toast.makeText(v.getContext(), getString(R.string.toast_new_patient), Toast.LENGTH_LONG).show();
             }
         });
@@ -82,7 +88,8 @@ public class NewPatientFragment extends Fragment {
     public void onPause()
     {
         super.onPause();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        //getFragmentManager().popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
+        //((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
 
     @Override
@@ -97,8 +104,17 @@ public class NewPatientFragment extends Fragment {
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
         //mListener = null;
     }
 
@@ -111,31 +127,39 @@ public class NewPatientFragment extends Fragment {
         if(name.isEmpty() || surname.isEmpty() || number.isEmpty())
             return false;
 
-        //sprawdz czy istnieje pacjent o takim numerze
-
-        if(patientService.isPatientNumberTaken(Long.parseLong(number)))
+        try
         {
-            NumberAlertFragment.NumberAlertDialogListener listener = new NumberAlertFragment.NumberAlertDialogListener() {
-                @Override
-                public void onDialogNumberPositiveClick(DialogFragment dialog) {
-                    addPatient(name,surname,number);
-                    dialog.dismiss();
-                }
+            long patientNumber = Long.parseLong(number);
+            //sprawdz czy istnieje pacjent o takim numerze
+            if(patientService.isPatientNumberTaken(patientNumber))
+            {
+                NumberAlertFragment.NumberAlertDialogListener listener = new NumberAlertFragment.NumberAlertDialogListener() {
+                    @Override
+                    public void onDialogNumberPositiveClick(DialogFragment dialog) {
+                        addPatient(name,surname,number);
+                        dialog.dismiss();
+                    }
 
-                @Override
-                public void onDialogNumberNegativeClick(DialogFragment dialog) {
-                                dialog.dismiss();
-                }
-            };
+                    @Override
+                    public void onDialogNumberNegativeClick(DialogFragment dialog) {
+                        dialog.dismiss();
+                    }
+                };
 
-            //print dialog with actions for patient
-            DialogFragment dialog = NumberAlertFragment.newInstance(listener);
-            //dialog.setArguments(bundel);
-            dialog.show(getActivity().getSupportFragmentManager(), "NumberAlertFragment");
-            return true;
+                //print dialog with actions for patient
+                DialogFragment dialog = NumberAlertFragment.newInstance(listener);
+                //dialog.setArguments(bundel);
+                dialog.show(getActivity().getSupportFragmentManager(), "NumberAlertFragment");
+                return true;
+            }
+
+            addPatient(name,surname,number);
+        }
+        catch(NumberFormatException exception)
+        {
+            Toast.makeText(v.getContext(),"Numer pacjenta jest za długi. Wprwadź inny numer", Toast.LENGTH_LONG).show();
         }
 
-        addPatient(name,surname,number);
         return true;
     }
 
@@ -150,8 +174,18 @@ public class NewPatientFragment extends Fragment {
         PatientService patientService = new PatientService(getContext());
         long patientID = patientService.AddPatient(newPatient);
 
+
+        getFragmentManager().popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
+
+        PatientsListFragment listFragment= new PatientsListFragment();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentFrame, listFragment, null)
+                .addToBackStack(null)
+                .commit();
+
         //move to demograhic form
-        FormFragment setFragment = FormFragment.newInstance(Form.DemographicAndClinic, patientID, true, true);
+        //FormFragment setFragment = FormFragment.newInstance(Form.DemographicAndClinic, patientID, true, true);
+        PatientProfileFragment setFragment = PatientProfileFragment.newInstance((int)patientID);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)
