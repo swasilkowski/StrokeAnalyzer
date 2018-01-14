@@ -110,7 +110,9 @@ public class FormFragment extends Fragment {
 
 
             qAdapter = new QuestionAdapter(printQuestions, answers,context);
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            RecyclerView.LayoutManager layout = new LinearLayoutManager(context);
+            layout.setAutoMeasureEnabled(true);
+            recyclerView.setLayoutManager(layout);
             /*recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.addItemDecoration(new LineDecoration(context, LinearLayoutManager.VERTICAL));
             ItemTouchHelper.Callback callback =

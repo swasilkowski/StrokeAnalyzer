@@ -1,6 +1,7 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,6 +22,8 @@ import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.R;
+import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
+import com.example.asus.strokeanalyzer.View.Helpers.RecyclerClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -206,7 +209,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     public class ViewHolderBulletedQ extends ViewHolder {
         private final TextView question;
-        private final ListView answers;
+        private final RecyclerView answers;
         private BulletedAnswerAdapter aAdapter;
         private Question questionObject;
         private int answerID;
@@ -215,7 +218,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             super(view);
 
             question = (TextView) view.findViewById(R.id.questionTextB);
-            answers = (ListView) view.findViewById(R.id.answer_recyclerview);
+            answers = (RecyclerView) view.findViewById(R.id.answer_recyclerview);
         }
 
         @Override
@@ -224,16 +227,19 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             this.question.setText(((BulletedQ)question).getText());
 
             // Set the adapter
-            if (answers instanceof ListView) {
+            if (answers instanceof RecyclerView) {
                 Context context = answers.getContext(); //????????????
 
                 //get patients list from database
                 //namesList = dbh.getNameList(rankingID);
 
                 aAdapter = new BulletedAnswerAdapter(((BulletedQ)question).getAnswers(),((BulletedQ)questionObject).getAnswer(),context);
-                answers.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+                //answers.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
-               // answers.setLayoutManager(new LinearLayoutManager(context));
+                RecyclerView.LayoutManager layout = new LinearLayoutManager(context);
+                layout.setAutoMeasureEnabled(true);
+                answers.setLayoutManager(layout);
+               //answers.setLayoutManager(new LinearLayoutManager(context));
             /*recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.addItemDecoration(new LineDecoration(context, LinearLayoutManager.VERTICAL));
             ItemTouchHelper.Callback callback =
@@ -248,7 +254,22 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
 
                 //--------------TODO_--------NOOOOOOOOOOW
-                answers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                answers.addOnItemTouchListener(new RecyclerClickListener( context, new ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+
+                        answerID = ((BulletedQ)questionObject).getAnswers().get(position).getId();
+                        ((BulletedQ)questionObject).setAnswer(answerID);
+                        aAdapter.SetAnswerID(answerID);
+                        aAdapter.clearColors();
+                        aAdapter.color(view,answerID);
+                        //answers.setSelection(answerID);
+
+                    }
+                }));
+
+            }
+/*                answers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -259,13 +280,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                         aAdapter.color(view,answerID);
                         //answers.setSelection(answerID);
                     }
-                });
+                });*/
 
 
 
                 //answers.performItemClick(answers.getChildAt(0),0,answers.getItemIdAtPosition(0));
 
-            }
+
             //-------------------------------------------------------------
         }
 

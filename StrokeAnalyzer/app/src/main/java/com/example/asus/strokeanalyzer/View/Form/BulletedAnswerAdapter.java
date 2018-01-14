@@ -21,47 +21,49 @@ import java.util.Map;
  * Created by Asus on 04.12.2017.
  */
 
-public class BulletedAnswerAdapter  extends BaseAdapter {
+public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerAdapter.ViewHolder>  {
 
     private List<BulletedAnswer> answers;
-    private Map<Integer, TextView> buttons;
     private final Context context;
+    private Map<Integer, TextView> buttons;
     private Integer answerID;
 
-    @Override
-    public int getCount() {
-        return answers.size();
-    }
 
-    @Override
-    public Object getItem(int i) {
-        return answers.get(i);
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView answer;
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
+        public ViewHolder(View view) {
+            super(view);
 
-    public void SetAnswerID(int id)
-    {
-        answerID = id;
-    }
-
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view == null) {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.answer_row, viewGroup, false);
+            answer = (TextView) view.findViewById(R.id.answerTextB);
         }
+    }
 
-        BulletedAnswer answer  = (BulletedAnswer)getItem(i);
-        final TextView t = (TextView)  view.findViewById(R.id.answerTextB);
-        t.setText(answer.getText());
-        color(t,answer.getId());
-        buttons.put(answer.getId(),t);
-        //
-      /*  final BulletedAnswer answer  = (BulletedAnswer)getItem(i);
+    public BulletedAnswerAdapter(final List<BulletedAnswer> answers, int pickedAnswer, Context context) {
+        this.answers = answers;
+        this.context = context;
+        this.buttons = new Hashtable<>();
+        answerID=pickedAnswer;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.answer_row, parent, false);
+
+        return new ViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(final BulletedAnswerAdapter.ViewHolder holder, int position) {
+
+        final BulletedAnswer answer = answers.get(position);
+        holder.answer.setText(answer.getText());
+        color(holder.answer,answer.getId());
+        buttons.put(answer.getId(),holder.answer);
+
+     /*         //
+      *//**//*  final BulletedAnswer answer  = (BulletedAnswer)getItem(i);
         final Button b = (Button) view.findViewById(R.id.answerTextB);
         b.setBackgroundResource(R.drawable.selected_button);
         b.setText(answer.getText());
@@ -71,9 +73,26 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
                 //chooseAnswer(b, answer.getId());
                 b.setSelected(true);
             }
-        });*/
+        });*//**//*
 
         return view;
+
+
+
+        holder.answer.setText(answer.getText());
+        holder.answer.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                chooseAnswer(holder.answer, answer.getId());
+            }
+        });*/
+    }
+
+    public void SetAnswerID(int id)
+    {
+        answerID = id;
     }
 
     public void color(View view,int id)
@@ -90,8 +109,48 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
         }
     }
 
+    public void clearColors()
+    {
+        for(Integer ans: new ArrayList<Integer>(buttons.keySet()))
+        {
+            color(buttons.get(ans),ans);
+        }
+    }
 
-/*    public class ViewHolder extends RecyclerView.ViewHolder {
+    public void chooseAnswer(View view, int id)
+    {
+        //
+    }
+
+    @Override
+    public int getItemCount() {
+        return answers.size();
+    }
+
+    /*    // Remove a RecyclerView item containing a specified Data object
+    public void remove(Name data) {
+        int position = namesList.indexOf(data);
+        namesList.remove(position);
+        notifyItemRemoved(position);
+    }*/
+
+   /*
+
+
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        if (view == null) {
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.answer_row, viewGroup, false);
+        }
+
+
+    }
+
+
+
+
+*//*    public class ViewHolder extends RecyclerView.ViewHolder {
         public Button answer;
 
         public ViewHolder(View view) {
@@ -99,24 +158,13 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
 
             answer = (Button) view.findViewById(R.id.answerTextB);
         }
-    }*/
+    }*//*
 
-    public BulletedAnswerAdapter(final List<BulletedAnswer> answers, int pickedAnswer, Context context) {
-        this.answers = answers;
-        this.context = context;
-        this.buttons = new Hashtable<>();
-        answerID=pickedAnswer;
-    }
 
-  /*  @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.answer_row, parent, false);
 
-        return new ViewHolder(itemView);
-    }*/
 
-/*    @Override
+
+*//*    @Override
     public void onBindViewHolder(final BulletedAnswerAdapter.ViewHolder holder, int position) {
 
         final BulletedAnswer answer = answers.get(position);
@@ -130,7 +178,7 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
                 chooseAnswer(holder.answer, answer.getId());
             }
         });
-    }*/
+    }*//*
 
     public void chooseAnswer(View view, int id)
     {
@@ -140,27 +188,11 @@ public class BulletedAnswerAdapter  extends BaseAdapter {
            // ListPoint elem = productsList.get(position);
            // elem.setisBought(val);
            // notifyItemChanged(position);
-    }
-
-    public void clearColors()
-    {
-            for(Integer ans: new ArrayList<Integer>(buttons.keySet()))
-            {
-                color(buttons.get(ans),ans);
-            }
-    }
-
-
-    /*@Override
-    public int getItemCount() {
-        return answers.size();
     }*/
 
-    /*    // Remove a RecyclerView item containing a specified Data object
-    public void remove(Name data) {
-        int position = namesList.indexOf(data);
-        namesList.remove(position);
-        notifyItemRemoved(position);
-    }*/
+
+
+
+
 
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.asus.strokeanalyzer.Model.CTPictures;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
+import com.example.asus.strokeanalyzer.Model.Report;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
@@ -63,7 +64,7 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
 
         //generate report about the patient
         PatientService patientService = new PatientService(dialog.getContext());
-        patientService.GetPatientById(patientID).GenerateReport(dialog.getContext());;
+        Report.GenerateReport( patientService.GetPatientById(patientID), dialog.getContext());
     }
 
     @Override
