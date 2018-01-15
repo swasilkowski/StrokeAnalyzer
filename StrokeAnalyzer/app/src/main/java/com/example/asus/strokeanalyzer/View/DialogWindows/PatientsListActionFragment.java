@@ -51,7 +51,7 @@ public class PatientsListActionFragment extends DialogFragment {
     {
         dListener = _dListener;
     }*/
-
+/*
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -62,7 +62,7 @@ public class PatientsListActionFragment extends DialogFragment {
         //final EditText nameView = (EditText) dialogView.findViewById(R.id.name);
 
         builder.setView(dialogView)
-               /* .setPositiveButton(R.string.check, new DialogInterface.OnClickListener() {
+               *//* .setPositiveButton(R.string.check, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // ADD NEW ELEMENT
                         try
@@ -86,33 +86,15 @@ public class PatientsListActionFragment extends DialogFragment {
                         // Send the negative button event back to the host activity
                         mListener.onDialogNameNegativeClick(ChooseNameFragment.this);
                     }
-                })*/;
-        // Create the AlertDialog object and return it*/
+                })*//*;
+        // Create the AlertDialog object and return it*//*
 
-        final Button profileBt= (Button) dialogView.findViewById(R.id.profileBt);
-        profileBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                setPatientProfile(profileBt);
-            }
-        });
 
-        final Button deleteBt= (Button) dialogView.findViewById(R.id.deleteBt);
-        deleteBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                openDeleteDialog(deleteBt);
-            }
-        });
 
 
 
         return builder.create();
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -128,6 +110,26 @@ public class PatientsListActionFragment extends DialogFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patients_list_action, container, false);
         patientService = new PatientService(view.getContext());
+
+        final Button profileBt= (Button) view.findViewById(R.id.profileBt);
+        profileBt.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                setPatientProfile(profileBt);
+            }
+        });
+
+        final Button deleteBt= (Button) view.findViewById(R.id.deleteBt);
+        deleteBt.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                openDeleteDialog(deleteBt);
+            }
+        });
 
         return view;
     }

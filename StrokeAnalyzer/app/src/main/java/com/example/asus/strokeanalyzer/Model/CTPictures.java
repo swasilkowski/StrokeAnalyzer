@@ -216,6 +216,9 @@ public final class CTPictures {
         brainPictures[2] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_3);
         brainPictures[3] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_4);
 
+        if(_regions==null)
+            return brainPictures;
+
         for(Region r:_regions)
         {
             //image Ids
