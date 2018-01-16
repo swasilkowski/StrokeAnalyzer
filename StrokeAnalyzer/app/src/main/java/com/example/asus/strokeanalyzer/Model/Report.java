@@ -35,9 +35,10 @@ public final class Report {
      * @param patient Obiekt klasy Patient, zawierająca dane pacjenta, które mają zostać zawarte w raporcie
      * @param context Kontekst aplikacji niezbędny do stworzenia nowego pliku z danymi
      */
-    public static void GenerateReport(Patient patient, Context context)
+    public static String GenerateReport(Patient patient, Context context)
     {
         Document doc = new Document();
+        String filePath =null;
 
         try {
             String path = context.getExternalFilesDir(null).getAbsolutePath() + "/Dir";
@@ -135,6 +136,8 @@ public final class Report {
             p8.setFont(paraFont);
             doc.add(p8);
 
+            filePath=file.getPath();
+
 
         } catch (DocumentException de) {
             Log.e("PDFCreator", "DocumentException:" + de);
@@ -144,6 +147,8 @@ public final class Report {
         finally {
             doc.close();
         }
+
+        return filePath;
     }
 
 }

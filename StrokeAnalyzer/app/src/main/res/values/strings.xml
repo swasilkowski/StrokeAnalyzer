@@ -32,8 +32,9 @@
     <string name="iscore_1year">Prognoza na 1 rok:</string>
     <string name="profile_bt">Otwórz profil pacjenta</string>
     <string name="delete_bt">Usuń</string>
-    <string name="report_dialog">Po wyborze \'OK\' raport zostanie wygenerowany i
-        zapisany w pamięci Twojego telefonu.</string>
+    <string name="report_dialog">Po wyborze opcji \'OK\' raport zostanie wygenerowany i
+        zapisany w pamięci Twojego telefonu. Otrzymasz także możliwość udostępnienia wygenerowanego raportu. \n\n
+        Jeżeli nie chcesz udostępniać raportu wybierz przycisk cofania, gdy pojawi się okno udostępniania.</string>
     <string name="delete_dialog">Czy jesteś pewny, że chcesz usunąć dane pacjenta?</string>
     <string name="number_alert_dialog">Pacjent o takim numerze już istnieje. Czy jesteś pewny, że chcesz utworzyć
         pacjenta z tym samym numerem?</string>
@@ -51,5 +52,8 @@
     <string name="new_patient_tag">new_patient</string>
     <string name="picture_tag">picture</string>
     <string name="add_tag">add</string>
+    <string name="report_share_title">Udostępnij za pomocą...</string>
+    <string name="report_share_msg_title">[Stroke Analyzer]Raport z badania</string>
+    <string name="report_share_msg_text">Aplikacja Stroke Analyzer przesyła raport z analizy stanu zdrowia pacjenta o numerze: \n</string>
 
 </resources>

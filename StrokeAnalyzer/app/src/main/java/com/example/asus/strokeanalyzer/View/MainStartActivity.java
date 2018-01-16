@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.View;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
 import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
+
+import java.io.File;
 
 import static java.security.AccessController.getContext;
 
@@ -64,11 +68,27 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
 
         //generate report about the patient
         PatientService patientService = new PatientService(dialog.getContext());
-        Report.GenerateReport( patientService.GetPatientById(patientID), dialog.getContext());
+        String fileName = Report.GenerateReport( patientService.GetPatientById(patientID), dialog.getContext());
+
+        if(fileName!=null)
+            share(fileName);
     }
 
     @Override
     public void onDialogReportNegativeClick(DialogFragment dialog) {
         dialog.dismiss();
+    }
+
+    private void share(String fileName) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        File file = new File(fileName);
+
+        if(file.exists()) {
+            intent.setType("application/pdf");
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_share_msg_title));
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.report_share_msg_text));
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+fileName));
+            startActivity(Intent.createChooser(intent, getString(R.string.report_share_title)));
+        }
     }
 }
