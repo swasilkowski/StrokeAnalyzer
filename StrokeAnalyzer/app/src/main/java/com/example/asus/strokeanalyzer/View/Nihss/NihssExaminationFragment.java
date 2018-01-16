@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -224,7 +225,12 @@ public class NihssExaminationFragment extends Fragment {
     public void onDestroy()
     {
         super.onDestroy();
-        getFragmentManager().popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
+        FragmentManager manager = getFragmentManager();
+        if(manager!=null)
+        {
+            manager.popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
+        }
+
     }
 
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -174,7 +175,11 @@ public class FormFragment extends Fragment {
             patientService.UpdatePatient(patient);
 
             //List<Fragment> currentStackState =  getFragmentManager().getFragments();
-            getFragmentManager().popBackStack();
+            FragmentManager manager = getFragmentManager();
+            if(manager!=null)
+            {
+                manager.popBackStack();
+            }
 
             //if we were creating a new patient we need to clear backstack and put there list of patients and our patient profile
 /*            List<Fragment> currentStackState =  getFragmentManager().getFragments();
@@ -221,7 +226,11 @@ public class FormFragment extends Fragment {
         if(formType == Form.NIHSS)
             return;
 
-        getFragmentManager().popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
+        FragmentManager manager = getFragmentManager();
+        if(manager!=null)
+        {
+            manager.popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
+        }
     }
 
 

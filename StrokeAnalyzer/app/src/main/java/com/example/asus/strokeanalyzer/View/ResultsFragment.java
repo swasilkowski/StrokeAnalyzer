@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.View;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class ResultsFragment extends Fragment {
     private Patient patient;
     private Integer patientID;
     private PatientService patientService;
+    FragmentActivity activity;
 
     public ResultsFragment() {
         // Required empty public constructor
@@ -65,7 +67,7 @@ public class ResultsFragment extends Fragment {
         if (getArguments() != null) {
             patientID = getArguments().getInt(ARG_PATIENT_ID);
         }
-
+    activity=getActivity();
     }
 
     @Override
@@ -148,11 +150,15 @@ public class ResultsFragment extends Fragment {
 
     public void showCTPictures(View view)
     {
-        CTPicturesFragment setFragment= CTPicturesFragment.newInstance(patientID);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrame, setFragment, null)
-                .addToBackStack(null)
-                .commit();
+        if(activity!=null)
+        {
+            CTPicturesFragment setFragment= CTPicturesFragment.newInstance(patientID);
+            activity.getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentFrame, setFragment, null)
+                    .addToBackStack(null)
+                    .commit();
+        }
+
     }
 
     private String wrongAnswersText(List<Answer> answers)
