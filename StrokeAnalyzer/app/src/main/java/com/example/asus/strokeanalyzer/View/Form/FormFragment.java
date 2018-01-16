@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -79,9 +80,16 @@ public class FormFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_form, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
-
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(formType.Print());
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar =  activity.getSupportActionBar();
+            if(bar!=null)
+            {
+                bar.show();
+                bar.setTitle(formType.Print());
+            }
+        }
 
         // Set the adapter
         if (view instanceof RecyclerView) {

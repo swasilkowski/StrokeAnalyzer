@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,7 +42,9 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
     protected  void onResume()
     {
         super.onResume();
-        getSupportActionBar().hide();
+        ActionBar bar = getSupportActionBar();
+        if(bar!=null)
+            bar.hide();
     }
 
     public void showList(View v)

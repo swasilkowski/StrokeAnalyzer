@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,7 +86,15 @@ public class CTPicturesFragment extends Fragment {
 
         view.setBackgroundColor(getResources().getColor(R.color.pictureBackground, null));
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Uszkodzone obszary mózgu");
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar =  activity.getSupportActionBar();
+            if(bar!=null)
+            {
+                bar.setTitle("Uszkodzone obszary mózgu");
+            }
+        }
 
         Context context = view.getContext();
         CTPictures.InitializeCTPictures(context);

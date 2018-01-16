@@ -6,6 +6,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +45,7 @@ public class PatientProfileFragment extends Fragment {
     private Integer patientID;
     private Patient patient;
     PatientService patientService;
+    FragmentActivity activity;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -73,6 +76,7 @@ public class PatientProfileFragment extends Fragment {
         if (getArguments() != null) {
             patientID = getArguments().getInt(ARG_PATIENT_ID);
         }
+        activity= getActivity();
     }
 
     @Override
@@ -87,7 +91,16 @@ public class PatientProfileFragment extends Fragment {
         patientService = new PatientService(view.getContext());
 
         patient = patientService.GetPatientById(patientID);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Profil: "+patient.Name+" "+patient.Surname);
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar =  activity.getSupportActionBar();
+            if(bar!=null)
+            {
+                bar.setTitle("Profil: "+patient.Name+" "+patient.Surname);
+            }
+        }
+
         //set patient data
         name = view.findViewById(R.id.patientNameShow);
         number = view.findViewById(R.id.patientNumberShow);
@@ -129,35 +142,47 @@ public class PatientProfileFragment extends Fragment {
 
     public void generateReport(View v)
     {
-        // Creating Bundle object
-        Bundle bundel = new Bundle();
+        if(activity!=null)
+        {
+            // Creating Bundle object
+            Bundle bundel = new Bundle();
 
-        // Storing data into bundle
-        bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
+            // Storing data into bundle
+            bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
 
-        //print dialog with actions for patient
-        DialogFragment dialog = ReportFragment.newInstance(patient);
-        dialog.setArguments(bundel);
-        dialog.show(getActivity().getSupportFragmentManager(), "ReportFragment");
+            //print dialog with actions for patient
+            DialogFragment dialog = ReportFragment.newInstance(patient);
+            dialog.setArguments(bundel);
+            dialog.show(activity.getSupportFragmentManager(), "ReportFragment");
+        }
+
 
     }
 
     public void showResults(View v)
     {
-        ResultsFragment setFragment= ResultsFragment.newInstance(patient.Id);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrame, setFragment, null)
-                .addToBackStack(null)
-                .commit();
+        if(activity!=null)
+        {
+            ResultsFragment setFragment= ResultsFragment.newInstance(patient.Id);
+            activity.getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentFrame, setFragment, null)
+                    .addToBackStack(null)
+                    .commit();
+        }
+
     }
 
     public void chooseForm(View v)
     {
-        FormListFragment setFragment= FormListFragment.newInstance(patient.Id);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentFrame, setFragment, null)
-                .addToBackStack("forms_list")
-                .commit();
+        if(activity!=null)
+        {
+            FormListFragment setFragment= FormListFragment.newInstance(patient.Id);
+            activity.getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragmentFrame, setFragment, null)
+                    .addToBackStack("forms_list")
+                    .commit();
+        }
+
     }
 
 

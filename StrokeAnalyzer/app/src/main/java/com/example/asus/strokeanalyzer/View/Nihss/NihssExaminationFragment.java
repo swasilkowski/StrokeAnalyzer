@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -47,6 +49,7 @@ public class NihssExaminationFragment extends Fragment {
     private List<NihssExamination> examinations = new ArrayList<>();
     PatientService patientService;
     int patientID;
+    FragmentActivity activity;
 
     public static NihssExaminationFragment newInstance(long patientID) {
         NihssExaminationFragment fragment = new NihssExaminationFragment();
@@ -66,6 +69,7 @@ public class NihssExaminationFragment extends Fragment {
         if (getArguments() != null) {
             patientID = getArguments().getInt(ARG_PATIENT_ID);
         }
+        activity = getActivity();
     }
 
     @Override
@@ -76,7 +80,15 @@ public class NihssExaminationFragment extends Fragment {
 
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Badania NIHSS");
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar =  activity.getSupportActionBar();
+            if(bar!=null)
+            {
+                bar.setTitle("Badania NIHSS");
+            }
+        }
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -153,15 +165,18 @@ public class NihssExaminationFragment extends Fragment {
         //noinspection SimplifiableIfStatement
         if (id == R.id.add) {
 
+            if(activity!=null)
+            {
+                //move to proper form
+                FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID, false, true);
+                //move to demograhic form
+                //ResultsFragment setFragment= new ResultsFragment();
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentFrame, setFragment, null)
+                        .addToBackStack(null)
+                        .commit();
+            }
 
-            //move to proper form
-            FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID, false, true);
-            //move to demograhic form
-            //ResultsFragment setFragment= new ResultsFragment();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentFrame, setFragment, null)
-                    .addToBackStack(null)
-                    .commit();
            /* //saving patients answers
             SaveAnswers();
             patientService.UpdatePatient(patient);

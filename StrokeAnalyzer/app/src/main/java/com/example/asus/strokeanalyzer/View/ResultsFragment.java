@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.View;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,7 @@ public class ResultsFragment extends Fragment {
         if (getArguments() != null) {
             patientID = getArguments().getInt(ARG_PATIENT_ID);
         }
+
     }
 
     @Override
@@ -73,7 +75,15 @@ public class ResultsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_results, container, false);
 
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Wyniki");
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar =  activity.getSupportActionBar();
+            if(bar!=null)
+            {
+                bar.setTitle("Wyniki");
+            }
+        }
 
         patientService = new PatientService(view.getContext());
         patient = patientService.GetPatientById(patientID);

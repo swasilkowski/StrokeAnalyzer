@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -57,8 +59,18 @@ public class PatientsListFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_patients_list, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Wybierz pacjenta");
+        AppCompatActivity activity = ((AppCompatActivity) getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar =  activity.getSupportActionBar();
+            if(bar!=null)
+            {
+                bar.show();
+                bar.setTitle("Wybierz pacjenta");
+            }
+        }
+
+
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -130,7 +142,15 @@ public class PatientsListFragment extends Fragment  {
     @Override
     public void onDetach() {
         super.onDetach();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.hide();
+        }
+
        // mListener = null;
     }
 
