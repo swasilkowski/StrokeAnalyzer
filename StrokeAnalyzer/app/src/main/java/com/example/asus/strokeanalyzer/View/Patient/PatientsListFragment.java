@@ -2,6 +2,7 @@ package com.example.asus.strokeanalyzer.View.Patient;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -40,7 +41,6 @@ public class PatientsListFragment extends Fragment  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Override
@@ -51,12 +51,11 @@ public class PatientsListFragment extends Fragment  {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_patients_list, container, false);
-        view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
-        recyclerView = (RecyclerView) view;
+        view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Wybierz pacjenta");
@@ -64,6 +63,7 @@ public class PatientsListFragment extends Fragment  {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
+            recyclerView = (RecyclerView) view;
             patientService = new PatientService(getContext());
 
             //get patients list from database

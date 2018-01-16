@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,35 +22,27 @@ import com.example.asus.strokeanalyzer.R;
  */
 public class CTPictureFullFragment extends Fragment {
 
-    private static final String ARG_PICTURE = "picture";
     ImageView selectedImage;
     Bitmap image;
 
     public static CTPictureFullFragment newInstance(Bitmap image) {
         CTPictureFullFragment fragment = new CTPictureFullFragment();
         fragment.image = image;
-/*        Bundle args = new Bundle();
-        args.putInt(ARG_PICTURE, imageID);
-        fragment.setArguments(args);*/
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      /*  if (getArguments() != null) {
-            imageID = getArguments().getInt(ARG_PICTURE);
-
-        }*/
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ctpicture_full, container, false);
-        view.setBackgroundColor(getResources().getColor(R.color.pictureBackground));
-        selectedImage = (ImageView) view.findViewById(R.id.basicPicFullsize);
+        view.setBackgroundColor(getResources().getColor(R.color.pictureBackground, null));
+        selectedImage = view.findViewById(R.id.basicPicFullsize);
         selectedImage.setImageBitmap(image);
 
         return view;

@@ -2,6 +2,7 @@ package com.example.asus.strokeanalyzer.View.Nihss;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,8 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
  */
 public class NihssExaminationFragment extends Fragment {
 
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PATIENT_ID = "patient_id";
 
     private RecyclerView recyclerView;
     private NihssAdapter nAdapter;
@@ -47,13 +50,11 @@ public class NihssExaminationFragment extends Fragment {
 
     public static NihssExaminationFragment newInstance(long patientID) {
         NihssExaminationFragment fragment = new NihssExaminationFragment();
-        fragment.patientID = (int)patientID;
 
-        //proper form down
-     /*   Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
+        Bundle args = new Bundle();
+        args.putInt(ARG_PATIENT_ID, (int)patientID);
+        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -62,25 +63,25 @@ public class NihssExaminationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-/*        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
+        if (getArguments() != null) {
+            patientID = getArguments().getInt(ARG_PATIENT_ID);
+        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nihss_examination, container, false);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
-        recyclerView = (RecyclerView) view;
+        view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
+
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Badania NIHSS");
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
+            recyclerView = (RecyclerView) view;
             patientService = new PatientService(getContext());
 
             //get patients list from database

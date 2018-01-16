@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.View.DialogWindows;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,13 +28,16 @@ import com.example.asus.strokeanalyzer.Services.PatientService;
  */
 public class ReportFragment extends DialogFragment {
 
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PATIENT_ID = "patient_id";
+
     //Patient patient;
     Integer patientID;
 
 
     public interface GenerateReportDialogListener {
-        public void onDialogReportPositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
-        public void onDialogReportNegativeClick(android.support.v4.app.DialogFragment dialog);
+        void onDialogReportPositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
+        void onDialogReportNegativeClick(android.support.v4.app.DialogFragment dialog);
     }
 
     // Use this instance of the interface to deliver action events
@@ -41,12 +45,11 @@ public class ReportFragment extends DialogFragment {
 
     public static ReportFragment newInstance(Patient patient) {
         ReportFragment fragment = new ReportFragment();
-        //fragment.patient = patient;
 
-        /*Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
+        Bundle args = new Bundle();
+        args.putInt(ARG_PATIENT_ID, patient.Id);
+        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -54,7 +57,7 @@ public class ReportFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            patientID = getArguments().getInt(getString(R.string.patient_id_tag));
+            patientID = getArguments().getInt(ARG_PATIENT_ID);
         }
     }
 
@@ -73,6 +76,7 @@ public class ReportFragment extends DialogFragment {
         }
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction

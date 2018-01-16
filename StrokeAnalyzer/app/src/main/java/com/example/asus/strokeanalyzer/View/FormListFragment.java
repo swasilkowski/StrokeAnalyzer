@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.View;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,39 +26,40 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
  */
 public class FormListFragment extends Fragment {
 
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PATIENT_ID = "patient_id";
+
     private Integer patientID;
 
 
     public static FormListFragment newInstance(Integer id) {
         FormListFragment fragment = new FormListFragment();
-        fragment.patientID = id;
 
-/*        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
+        Bundle args = new Bundle();
+        args.putInt(ARG_PATIENT_ID, id);
+        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
+        if (getArguments() != null) {
+            patientID = getArguments().getInt(ARG_PATIENT_ID);
+        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 View view = inflater.inflate(R.layout.fragment_form_list, container, false);
 
-        view.setBackgroundColor(getResources().getColor(R.color.buttonBackgroundColor));
+        view.setBackgroundColor(getResources().getColor(R.color.buttonBackgroundColor, null));
         view.setClickable(true);
 
-        final Button nihssBt= (Button) view.findViewById(R.id.nihssBt);
+        final Button nihssBt= view.findViewById(R.id.nihssBt);
         nihssBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -82,7 +84,7 @@ View view = inflater.inflate(R.layout.fragment_form_list, container, false);
                 printForm(sbBt, Form.StrokeBricks);
             }
         });*/
-        final Button treatmentBt= (Button) view.findViewById(R.id.treatmentBt);
+        final Button treatmentBt= view.findViewById(R.id.treatmentBt);
         treatmentBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -109,7 +111,7 @@ View view = inflater.inflate(R.layout.fragment_form_list, container, false);
                 printForm(dragonBt, Form.Dragon);
             }
         });*/
-        final Button iscoreBt= (Button) view.findViewById(R.id.iscoreBt);
+        final Button iscoreBt= view.findViewById(R.id.iscoreBt);
         iscoreBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -118,7 +120,7 @@ View view = inflater.inflate(R.layout.fragment_form_list, container, false);
                 printForm(iscoreBt, Form.iScore);
             }
         });
-        final Button demoandclinicBt= (Button) view.findViewById(R.id.dandcBt);
+        final Button demoandclinicBt= view.findViewById(R.id.dandcBt);
         demoandclinicBt.setOnClickListener(new View.OnClickListener()
         {
             @Override

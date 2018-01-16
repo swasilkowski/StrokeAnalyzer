@@ -1,5 +1,6 @@
 package com.example.asus.strokeanalyzer.View;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.content.Context;
 import android.net.Uri;
@@ -29,6 +30,9 @@ import com.example.asus.strokeanalyzer.View.Nihss.NihssExaminationFragment;
  */
 public class PatientProfileFragment extends Fragment {
 
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PATIENT_ID = "patient_id";
+
     TextView name;
     TextView number;
 
@@ -55,35 +59,29 @@ public class PatientProfileFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static PatientProfileFragment newInstance(Integer patientID) {
         PatientProfileFragment fragment = new PatientProfileFragment();
-        fragment.patientID = patientID;
 
-        //-------------zmien na to podspodem--------------------
-        /*Bundle args = new Bundle();
-        args.putInt(ARG_PATIENT, patient.PatientNumber);
-        fragment.setArguments(args);*/
+        Bundle args = new Bundle();
+        args.putInt(ARG_PATIENT_ID, patientID);
+        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-/*        if (getArguments() != null) {
-            int patientNumber = getArguments().getInt(ARG_PATIENT);
-
-            //load patient
-            //patient = ;
-        }*/
+        if (getArguments() != null) {
+            patientID = getArguments().getInt(ARG_PATIENT_ID);
+        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patient_profile, container, false);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
+        view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
 
         patientService = new PatientService(view.getContext());
@@ -91,12 +89,12 @@ public class PatientProfileFragment extends Fragment {
         patient = patientService.GetPatientById(patientID);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Profil: "+patient.Name+" "+patient.Surname);
         //set patient data
-        name = (TextView) view.findViewById(R.id.patientNameShow);
-        number = (TextView) view.findViewById(R.id.patientNumberShow);
+        name = view.findViewById(R.id.patientNameShow);
+        number = view.findViewById(R.id.patientNumberShow);
         name.setText(patient.Name +" "+ patient.Surname);
         number.setText(Long.toString(patient.PatientNumber));
 
-        final Button resultBt= (Button) view.findViewById(R.id.resultBt);
+        final Button resultBt=  view.findViewById(R.id.resultBt);
         resultBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -105,7 +103,7 @@ public class PatientProfileFragment extends Fragment {
                 showResults(resultBt);
             }
         });
-        final Button reportBt= (Button) view.findViewById(R.id.reportBt);
+        final Button reportBt=  view.findViewById(R.id.reportBt);
         reportBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -114,7 +112,7 @@ public class PatientProfileFragment extends Fragment {
                 generateReport(reportBt);
             }
         });
-        final Button formsBt= (Button) view.findViewById(R.id.formsBt);
+        final Button formsBt= view.findViewById(R.id.formsBt);
         formsBt.setOnClickListener(new View.OnClickListener()
         {
             @Override

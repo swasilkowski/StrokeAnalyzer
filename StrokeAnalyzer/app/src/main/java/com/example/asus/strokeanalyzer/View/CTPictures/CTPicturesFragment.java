@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.View.CTPictures;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -24,6 +25,9 @@ import com.example.asus.strokeanalyzer.Services.PatientService;
  * create an instance of this fragment.
  */
 public class CTPicturesFragment extends Fragment {
+
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PATIENT_ID = "patient_id";
 
     GridView picturesGrid;
     private Integer patientID;
@@ -57,41 +61,39 @@ public class CTPicturesFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static CTPicturesFragment newInstance(Integer patientID) {
         CTPicturesFragment fragment = new CTPicturesFragment();
-        fragment.patientID = patientID;
-        //-------------zmien na to podspodem--------------------
-        /*Bundle args = new Bundle();
-        args.putInt(ARG_PATIENT, patient.PatientNumber);
-        fragment.setArguments(args);*/
+
+        Bundle args = new Bundle();
+        args.putInt(ARG_PATIENT_ID, patientID);
+        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
-
+        if (getArguments() != null) {
+            patientID = getArguments().getInt(ARG_PATIENT_ID);
+        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_ctpictures, container, false);
 
-        view.setBackgroundColor(getResources().getColor(R.color.pictureBackground));
+        view.setBackgroundColor(getResources().getColor(R.color.pictureBackground, null));
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Uszkodzone obszary mózgu");
 
         Context context = view.getContext();
         CTPictures.InitializeCTPictures(context);
-        picturesGrid = (GridView) view.findViewById(R.id.CTPicturesView); // init GridView
+        picturesGrid = view.findViewById(R.id.CTPicturesView); // init GridView
         // Create an object of CustomAdapter and set Adapter to GirdView
         patientService = new PatientService(context);
         editedPictures = CTPictures.GenerateOutputImage(patientService.GetPatientById(patientID).getStrokeBricksAffectedRegions());
-        CTPicturesAdapter customAdapter = new CTPicturesAdapter(context.getApplicationContext(), editedPictures);
+        CTPicturesAdapter customAdapter = new CTPicturesAdapter(editedPictures);
         picturesGrid.setAdapter(customAdapter);
         // implement setOnItemClickListener event on GridView
         picturesGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

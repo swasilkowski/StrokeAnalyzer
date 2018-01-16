@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +31,8 @@ public class DeleteDialogFragment extends DialogFragment {
 
 
     public interface DeletePatientDialogListener {
-        public void onDialogDeletePositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
-        public void onDialogDeleteNegativeClick(android.support.v4.app.DialogFragment dialog);
+        void onDialogDeletePositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
+        void onDialogDeleteNegativeClick(android.support.v4.app.DialogFragment dialog);
     }
 
     // Use this instance of the interface to deliver action events
@@ -40,12 +41,7 @@ public class DeleteDialogFragment extends DialogFragment {
     public static DeleteDialogFragment newInstance(DeletePatientDialogListener listener) {
         DeleteDialogFragment fragment = new DeleteDialogFragment();
         fragment._listener = listener;
-        //fragment.patient = patient;
 
-        /*Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
         return fragment;
     }
 
@@ -72,6 +68,7 @@ public class DeleteDialogFragment extends DialogFragment {
         }
     }*/
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction

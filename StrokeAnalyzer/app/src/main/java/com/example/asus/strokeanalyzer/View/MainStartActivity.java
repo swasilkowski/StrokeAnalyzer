@@ -71,7 +71,7 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
         String fileName = Report.GenerateReport( patientService.GetPatientById(patientID), dialog.getContext());
 
         if(fileName!=null)
-            share(fileName);
+            share(fileName, patientService.GetPatientById(patientID).PatientNumber);
     }
 
     @Override
@@ -79,14 +79,14 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
         dialog.dismiss();
     }
 
-    private void share(String fileName) {
+    private void share(String fileName, long patientNumber) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         File file = new File(fileName);
 
         if(file.exists()) {
             intent.setType("application/pdf");
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_share_msg_title));
-            intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.report_share_msg_text));
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.report_share_msg_text)+ String.valueOf(patientNumber));
             intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+fileName));
             startActivity(Intent.createChooser(intent, getString(R.string.report_share_title)));
         }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class PatientsListActionFragment extends DialogFragment {
     private DeleteListener dListener;
 
     public interface DeleteListener {
-        public void patientDeleted(int patientID);
+        void patientDeleted(int patientID);
     }
 
     public PatientsListActionFragment() {
@@ -40,10 +41,7 @@ public class PatientsListActionFragment extends DialogFragment {
     public static PatientsListActionFragment newInstance(DeleteListener _dListener) {
         PatientsListActionFragment fragment = new PatientsListActionFragment();
         fragment.dListener = _dListener;
-/*        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
+
         return fragment;
     }
 
@@ -104,14 +102,15 @@ public class PatientsListActionFragment extends DialogFragment {
         }
     }
 
+    @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patients_list_action, container, false);
         patientService = new PatientService(view.getContext());
 
-        final Button profileBt= (Button) view.findViewById(R.id.profileBt);
+        final Button profileBt= view.findViewById(R.id.profileBt);
         profileBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -121,7 +120,7 @@ public class PatientsListActionFragment extends DialogFragment {
             }
         });
 
-        final Button deleteBt= (Button) view.findViewById(R.id.deleteBt);
+        final Button deleteBt= view.findViewById(R.id.deleteBt);
         deleteBt.setOnClickListener(new View.OnClickListener()
         {
             @Override

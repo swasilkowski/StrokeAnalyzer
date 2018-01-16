@@ -1,6 +1,6 @@
 package com.example.asus.strokeanalyzer.View.CTPictures;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +11,15 @@ import android.widget.ImageView;
 import com.example.asus.strokeanalyzer.R;
 
 /**
- * Created by Asus on 07.12.2017.
+ * Klasa stanowiąca adapter dla pojedynczego obrazu CT mózgu reprezentującego rozległość udaru.
+ * Pozwala na wyświetlenie przybliżenia pojedynczego zdjęcia.
  */
 
 public class CTPicturesAdapter extends BaseAdapter {
 
-    Context context;
-    Bitmap CTpictures[];
+    private Bitmap CTpictures[];
 
-    LayoutInflater inflter;
-
-    public CTPicturesAdapter(Context Context, Bitmap[] pictures) {
-        this.context = Context;
+    CTPicturesAdapter(Bitmap[] pictures) {
         this.CTpictures = pictures;
     }
     @Override
@@ -40,10 +37,10 @@ public class CTPicturesAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        View itemView = LayoutInflater.from(viewGroup.getContext())
+        @SuppressLint("ViewHolder") View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.ct_image, viewGroup, false);
 
-        ImageView pictures = (ImageView) itemView.findViewById(R.id.basicPic);
+        ImageView pictures = itemView.findViewById(R.id.basicPic);
         pictures.setImageBitmap((Bitmap)getItem(i));
         return itemView;
     }
