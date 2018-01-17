@@ -185,6 +185,14 @@
         <item name="android:padding">@dimen/huge_button_padding</item>
     </style>
 
+    <style name="HugeButtonHorizontal" parent="@style/HugeButton">
+        <item name="android:layout_marginLeft">@dimen/huge_button_margin_vertical</item>
+        <item name="android:layout_marginRight">@dimen/huge_button_margin_vertical</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:padding">15dp</item>
+    </style>
+
     <style name="DialogButton" parent="@style/Button">
         <item name="android:layout_marginLeft">@dimen/dialog_button_margin</item>
         <item name="android:layout_marginRight">@dimen/dialog_button_margin</item>
