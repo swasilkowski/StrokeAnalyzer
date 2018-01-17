@@ -23,6 +23,7 @@ import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
+import com.example.asus.strokeanalyzer.View.Helpers.LineDecoration;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerClickListener;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ import java.util.List;
 //sorce:https://medium.com/@ruut_j/a-recyclerview-with-multiple-item-types-bce7fbd1d30e
 
 /**
- * Created by Asus on 03.12.2017.
+ * @author Marta Marciszewicz
  */
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
@@ -41,7 +42,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
 
     public abstract class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
         }
 
@@ -54,11 +55,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private final EditText answer;//!!!!!!!!!!!!!!!!!!!!! TO DO !!!!!!!!!!
         private Question questionObject;
 
-        public ViewHolderDescriptiveQ(View view) {
+        ViewHolderDescriptiveQ(View view) {
             super(view);
 
-            question = (TextView) view.findViewById(R.id.questionTextD);
-            answer = (EditText) view.findViewById(R.id.answerText);
+            question =  view.findViewById(R.id.questionTextD);
+            answer =  view.findViewById(R.id.answerText);
         }
 
         @Override
@@ -100,11 +101,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private Question questionObject;
         private Toast toast;
 
-        public ViewHolderNumericQ(View view) {
+        ViewHolderNumericQ(View view) {
             super(view);
 
-            question = (TextView) view.findViewById(R.id.questionTextN);
-            answer = (EditText) view.findViewById(R.id.answerData);
+            question =  view.findViewById(R.id.questionTextN);
+            answer =  view.findViewById(R.id.answerData);
             toast = Toast.makeText(view.getContext(),"Podana liczba jest niepoprawna",Toast.LENGTH_SHORT);
         }
 
@@ -178,11 +179,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private final CheckBox answer;//!!!!!!!!!!!!!!!!!!!!! TO DO !!!!!!!!!!
         private Question questionObject;
 
-        public ViewHolderTrueFalseQ(View view) {
+        ViewHolderTrueFalseQ(View view) {
             super(view);
 
-            question = (TextView) view.findViewById(R.id.questionTextTF);
-            answer = (CheckBox) view.findViewById(R.id.answerBox);
+            question =  view.findViewById(R.id.questionTextTF);
+            answer =  view.findViewById(R.id.answerBox);
         }
 
         @Override
@@ -214,11 +215,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private Question questionObject;
         private int answerID;
 
-        public ViewHolderBulletedQ(View view) {
+        ViewHolderBulletedQ(View view) {
             super(view);
 
-            question = (TextView) view.findViewById(R.id.questionTextB);
-            answers = (RecyclerView) view.findViewById(R.id.answer_recyclerview);
+            question =  view.findViewById(R.id.questionTextB);
+            answers =  view.findViewById(R.id.answer_recyclerview);
         }
 
         @Override
@@ -227,7 +228,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             this.question.setText(((BulletedQ)question).getText());
 
             // Set the adapter
-            if (answers instanceof RecyclerView) {
+            if (answers != null) {
                 Context context = answers.getContext(); //????????????
 
                 //get patients list from database
@@ -239,6 +240,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                 RecyclerView.LayoutManager layout = new LinearLayoutManager(context);
                 layout.setAutoMeasureEnabled(true);
                 answers.setLayoutManager(layout);
+               // answers.addItemDecoration(new LineDecoration(context));
                //answers.setLayoutManager(new LinearLayoutManager(context));
             /*recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.addItemDecoration(new LineDecoration(context, LinearLayoutManager.VERTICAL));
@@ -310,7 +312,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
     }*/
 
-    public QuestionAdapter(final List<Question> questions, List<Answer> answers, Context context) {
+    QuestionAdapter(final List<Question> questions, List<Answer> answers, Context context) {
         this.questions = questions;
         this.context = context;
         this.answers = answers;
@@ -324,7 +326,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = null;
+        View view;
         switch (viewType) {
             case Question.BULLETED:
                 view = LayoutInflater
@@ -370,7 +372,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         return questions.size();
     }
 
-    public List<Answer> returnAnswers()
+    List<Answer> returnAnswers()
     {
         List<Answer> answers = new ArrayList<>();
         for(Question q:questions)

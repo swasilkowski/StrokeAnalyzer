@@ -11,15 +11,22 @@
   style="@style/NormalButton"/>
      android:background="@drawable/selected_button"-->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/answerTextB"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    android:gravity="center_vertical"
-    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+    android:background="@color/white"
+    android:padding="@dimen/answer_frame_padding">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/answerTextB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/AnswerTextView"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+
+</FrameLayout>
+
 
 <!--
 </LinearLayout>-->
