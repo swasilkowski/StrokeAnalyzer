@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
+import com.example.asus.strokeanalyzer.R;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -41,14 +42,14 @@ public final class Report {
         String filePath =null;
 
         try {
-            String path = context.getExternalFilesDir(null).getAbsolutePath() + "/Dir";
+            String path = context.getExternalFilesDir(null).getAbsolutePath() + "/" + context.getString(R.string.reports_folder_name);
 
             File dir = new File(path);
             if(!dir.exists()) {
                 dir.mkdirs();
             }
 
-            File file = new File(dir, "Raport"+patient.PatientNumber+".pdf");
+            File file = new File(dir, context.getString(R.string.report) + patient.PatientNumber + context.getString(R.string.report_extension));
             file.createNewFile();
             FileOutputStream fOut = new FileOutputStream(file);
 
@@ -58,25 +59,25 @@ public final class Report {
             doc.open();
 
             Font paraFont= new Font(Font.FontFamily.COURIER);
-            String noResult = "Brak wyniku.";
+            String noResult = String.valueOf(R.string.report_no_result);
 
-            Paragraph p1 = new Paragraph("Nr pacjenta "+patient.PatientNumber);
+            Paragraph p1 = new Paragraph(context.getString(R.string.report_patient_number)+patient.PatientNumber);
             p1.setAlignment(Paragraph.ALIGN_CENTER);
             p1.setFont(paraFont);
             doc.add(p1);
 
-            Paragraph p2 = new Paragraph("Imię: " + patient.Name);
+            Paragraph p2 = new Paragraph(context.getString(R.string.report_name) + patient.Name);
             p2.setAlignment(Paragraph.ALIGN_LEFT);
             p2.setFont(paraFont);
             doc.add(p2);
 
-            Paragraph p3 = new Paragraph("Nazwisko: " + patient.Surname);
+            Paragraph p3 = new Paragraph(context.getString(R.string.report_surname) + patient.Surname + "\n");
             p3.setAlignment(Paragraph.ALIGN_LEFT);
             p3.setFont(paraFont);
             doc.add(p3);
 
             String nihssResult = patient.getNihss() >= 0? ((Integer)patient.getNihss()).toString() : noResult;
-            Paragraph p4 = new Paragraph("Wynik NIHSS: " + nihssResult);
+            Paragraph p4 = new Paragraph(context.getString(R.string.report_nihss_result) + nihssResult + "\n");
             p4.setAlignment(Paragraph.ALIGN_LEFT);
             p4.setFont(paraFont);
             doc.add(p4);
@@ -84,54 +85,54 @@ public final class Report {
             String treatmentDecisionText = noResult;
             if (patient.getTreatmentDecision() != null) {
                 TreatmentResult treatmentResult = patient.getTreatmentDecision();
-                treatmentDecisionText = (patient.getTreatmentDecision().Decision ? "TAK":"NIE");
                 if (treatmentResult.Decision) {
-                    treatmentDecisionText = "TAK";
+                    treatmentDecisionText = context.getString(R.string.report_yes);
                 } else {
-                    treatmentDecisionText = "NIE\nPowody wykluczenia:\n";
+                    treatmentDecisionText = context.getString(R.string.report_no) + "\n"
+                            + context.getString(R.string.report_treatment_exclusion_reasons) + "\n";
                     for (Answer badAnswer:
                             treatmentResult.badAnswers) {
                         treatmentDecisionText += FormsStructure.Questions.get(badAnswer.GetQuestionID()).GetText()+"\n";
                     }
                 }
             }
-            Paragraph p5 = new Paragraph("Kwalifikacja do leczenia? " + treatmentDecisionText);
+            Paragraph p5 = new Paragraph(context.getString(R.string.report_qualification_for_treatment) + treatmentDecisionText + "\n");
             p5.setAlignment(Paragraph.ALIGN_LEFT);
             p5.setFont(paraFont);
             doc.add(p5);
 
             String hatPrognosisText = noResult;
             if (patient.getHatPrognosis() != null) {
-                hatPrognosisText = "Ryzyko wylewu - " +
+                hatPrognosisText = context.getString(R.string.report_haemorrhage_risk) +
                         patient.getHatPrognosis().RiskOfSymptomaticICH+
-                        "%\nRyzyko śmiertelnego wylewu - "+
+                        "%\n" + context.getString(R.string.report_fatal_haemorrhage_risk) +
                         patient.getHatPrognosis().RiskOfFatalICH+"%";
             }
-            Paragraph p6 = new Paragraph("Rokowania HAT:\n" + hatPrognosisText);
+            Paragraph p6 = new Paragraph(context.getString(R.string.report_hat_prognosis) + "\n" + hatPrognosisText + "\n");
             p6.setAlignment(Paragraph.ALIGN_LEFT);
             p6.setFont(paraFont);
             doc.add(p6);
 
             String dragonPrognosisText = noResult;
             if (patient.getDragonPrognosis() != null) {
-                dragonPrognosisText = "Prawdopodobieństwo dobrego wyniku (mRS < 3) - " +
+                dragonPrognosisText = context.getString(R.string.report_probability_of_good_outcome) +
                         patient.getDragonPrognosis().GoodOutcomePrognosis+
-                        "%\nPrawdopodobieństwo złego wyniku (mRS > 4) - "+
+                        "%\n" + context.getString(R.string.report_probability_of_miserable_outcome) +
                         patient.getDragonPrognosis().MiserableOutcomePrognosis+"%";
             }
-            Paragraph p7 = new Paragraph("Rokowania DRAGON:\n" + dragonPrognosisText);
+            Paragraph p7 = new Paragraph(context.getString(R.string.report_dragon_prognosis) + "\n" + dragonPrognosisText + "\n");
             p7.setAlignment(Paragraph.ALIGN_LEFT);
             p7.setFont(paraFont);
             doc.add(p7);
 
             String iscoreResultText = noResult;
             if (patient.getIscorePrognosis() != null) {
-                iscoreResultText = "Prawdopodobieństwo śmierci po 30 dniach - \" +\n" +
-                        "                    getIscorePrognosis().PrognosisFor30Days+\n" +
-                        "                    \"%\\nPrawdopodobieństwo śmierci po roku - \"+\n" +
-                        "                    getIscorePrognosis().PrognosisFor1Year+\"%";
+                iscoreResultText = context.getString(R.string.report_probability_of_30_days_death) +
+                        patient.getIscorePrognosis().PrognosisFor30Days+"%\n" +
+                        context.getString(R.string.report_probability_of_1_year_death) +
+                        patient.getIscorePrognosis().PrognosisFor1Year+"%";
             }
-            Paragraph p8 = new Paragraph("Rokowania iScore:\n" + iscoreResultText);
+            Paragraph p8 = new Paragraph(context.getString(R.string.report_iscore_prognosis) + "\n" + iscoreResultText + "\n");
             p8.setAlignment(Paragraph.ALIGN_LEFT);
             p8.setFont(paraFont);
             doc.add(p8);
