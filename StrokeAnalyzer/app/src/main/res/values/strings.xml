@@ -56,4 +56,26 @@
     <string name="picture_tag">picture</string>
     <string name="add_tag">add</string>
 
+    <string name="reports_folder_name">Raporty</string>
+    <string name="report">Raport</string>
+    <string name="report_extension">.pdf</string>
+    <string name="report_no_result">Brak wyniku.</string>
+    <string name="report_patient_number">Nr pacjenta </string>
+    <string name="report_name">Imię: </string>
+    <string name="report_surname">Nazwisko: </string>
+    <string name="report_nihss_result">Wynik NIHSS: </string>
+    <string name="report_yes">TAK</string>
+    <string name="report_no">NIE</string>
+    <string name="report_treatment_exclusion_reasons">Powody wykluczenia:</string>
+    <string name="report_qualification_for_treatment">Kwalifikacja do leczenia? </string>
+    <string name="report_haemorrhage_risk">Ryzyko wylewu: </string>
+    <string name="report_fatal_haemorrhage_risk">Ryzyko śmiertelnego wylewu: </string>
+    <string name="report_hat_prognosis">Rokowania HAT:</string>
+    <string name="report_probability_of_good_outcome">Prawdopodobieństwo dobrego wyniku (mRS &lt; 3): </string>
+    <string name="report_probability_of_miserable_outcome">Prawdopodobieństwo złego wyniku (mRS &gt; 4): </string>
+    <string name="report_dragon_prognosis">Rokowania DRAGON:</string>
+    <string name="report_probability_of_30_days_death">Prawdopodobieństwo śmierci po 30 dniach: </string>
+    <string name="report_probability_of_1_year_death">Prawdopodobieństwo śmierci po roku: </string>
+    <string name="report_iscore_prognosis">Rokowania iScore:</string>
+
 </resources>
