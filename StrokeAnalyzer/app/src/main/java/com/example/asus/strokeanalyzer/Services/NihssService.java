@@ -229,7 +229,7 @@ public class NihssService {
         answer = new NumericAnswer(114);
         answer.Value = entity.Question14;
         model.Answers.add(answer);
-        answer = new NumericAnswer(11);
+        answer = new NumericAnswer(115);
         answer.Value = entity.Question15;
         model.Answers.add(answer);
 

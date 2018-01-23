@@ -16,7 +16,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.R;
@@ -25,7 +24,6 @@ import com.example.asus.strokeanalyzer.View.Helpers.LineDecoration;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerClickListener;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,12 +31,8 @@ import java.util.List;
 import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
-
- * to handle interaction events.
-
- * create an instance of this fragment.
+ * Klasa będąca podklasą {@link Fragment}. Pozwala na wyświetlenie listy badań w skali NIHSS pacjenta.
+ * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link NihssExaminationFragment#newInstance}.
  */
 public class NihssExaminationFragment extends Fragment {
 
@@ -52,6 +46,12 @@ public class NihssExaminationFragment extends Fragment {
     int patientID;
     FragmentActivity activity;
 
+    /**
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
+     *
+     * @param patientID Id pacjenta, którego badania w skali NIHSS mają zostać wyświetlone
+     * @return (NihssExaminationFragment) nowa instancja fragmentu NihssExaminationFragment
+     */
     public static NihssExaminationFragment newInstance(long patientID) {
         NihssExaminationFragment fragment = new NihssExaminationFragment();
 
@@ -62,7 +62,13 @@ public class NihssExaminationFragment extends Fragment {
         return fragment;
     }
 
-
+    /**
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}. Dodatkowo zapisuje obiekt aktywności fragmentu.
+     *
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +79,17 @@ public class NihssExaminationFragment extends Fragment {
         activity = getActivity();
     }
 
+    /**
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
+     * fragmentu inicjalizuje obiekt klasy RecyclerView odpowiedzialny za prezentację listy badań skali NIHSS przy wykorzystaniu
+     * klasy {@link NihssAdapter}
+     *
+     * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
+     * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -103,12 +120,6 @@ public class NihssExaminationFragment extends Fragment {
 
             nAdapter = new NihssAdapter(examinations,context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            /*recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.addItemDecoration(new LineDecoration(context, LinearLayoutManager.VERTICAL));
-            ItemTouchHelper.Callback callback =
-                    new SwipeHelperCallback(nAdapter);
-            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-            touchHelper.attachToRecyclerView(recyclerView);*/
             recyclerView.setAdapter(nAdapter);
             recyclerView.addItemDecoration(new LineDecoration(this.getContext()));
 
@@ -116,46 +127,44 @@ public class NihssExaminationFragment extends Fragment {
                 @Override
                 public void onClick(View view, int position) {
 
-                   //NIC___________________TODO______________
-
                     if(position==0)
                     {
                         //move to proper form
                         FormFragment setFragment = FormFragment.newInstance(Form.NIHSS, patientID, false, false);
-                        //move to demograhic form
-                        //ResultsFragment setFragment= new ResultsFragment();
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragmentFrame, setFragment, null)
                                 .addToBackStack(null)
                                 .commit();
                     }
 
-/*                    // Creating Bundle object
-                    Bundle bundel = new Bundle();
-
-                    // Storing data into bundle
-                    Patient patient = patients.get(position);
-                    bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
-
-                    //print dialog with actions for patient
-                    DialogFragment dialog = new PatientsListActionFragment();
-                    dialog.setArguments(bundel);
-                    dialog.show(getActivity().getSupportFragmentManager(), "PatientsListActionFragment");*/
-
                 }
             }));
-
         }
 
         return recyclerView;
     }
 
+    /**
+     * Metoda umożliwiająca zainicjowanie standardowego menu aktywności.
+     *
+     * @param menu obiekt klasy Menu, w którym umieszczone powinno zostać umieszczone menu dla stworzone
+     *             tego fragmentu
+     * @param inflater obiekt klasy MenuInflater pozwalający na pozyskanie menu z zasobów aplikacji
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.examination, menu);
         super.onCreateOptionsMenu(menu,inflater);
     }
 
+    /**
+     * Metoda wywoływana w momencie wyboru przez użytkownika jednej z opcji w menu fragmentu.
+     * Funkcja jest odpowiedzialna za przejście do fragmentu z formaularzem skali NIHSS.
+     *
+     * @param item elementu menu, który został wybrany przez użytkownika
+     * @return (boolean) false - jeżeli element menu ma być przetworzony standardowo;
+     *          true - jeżeli element menu został obsłużony wewnątrz funkcji
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -170,57 +179,21 @@ public class NihssExaminationFragment extends Fragment {
             {
                 //move to proper form
                 FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID, false, true);
-                //move to demograhic form
-                //ResultsFragment setFragment= new ResultsFragment();
                 activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentFrame, setFragment, null)
                         .addToBackStack(null)
                         .commit();
             }
-
-           /* //saving patients answers
-            SaveAnswers();
-            patientService.UpdatePatient(patient);
-
-            //List<Fragment> currentStackState =  getFragmentManager().getFragments();
-            getFragmentManager().popBackStack();
-
-            //if we were creating a new patient we need to clear backstack and put there list of patients and our patient profile
-            List<Fragment> currentStackState =  getFragmentManager().getFragments();
-            if(newPatient(currentStackState))
-            {
-                getFragmentManager().popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
-
-                PatientsListFragment listFragment= new PatientsListFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentFrame, listFragment, null)
-                        .addToBackStack(null)
-                        .commit();
-
-                PatientProfileFragment setFragment= PatientProfileFragment.newInstance(patient.Id);
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentFrame, setFragment, null)
-                        .addToBackStack(null)
-                        .commit();
-
-            }*/
-
-/*            //przejdz do nazwania nowego rankingu
-            NewRankingFragment setFragment= new NewRankingFragment();
-            getActivity().getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentFrame, setFragment, null)
-                    .addToBackStack(null)
-                    .commit();
-
-            //((FloatingActionButton) getView().findViewById(R.id.fab)).hide();*/
-            // currentStackState =  getFragmentManager().getFragments();
-
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Metoda wywoływana w momencie, gdy fragment przestaje być wykorzystywany. Aplikacja wykorzystuje tę metodę
+     * do usunięcia dodatkowego fragmentu ze stosu fragmentów.
+     */
     @Override
     public void onDestroy()
     {
@@ -233,73 +206,4 @@ public class NihssExaminationFragment extends Fragment {
 
     }
 
-
-
-   /* // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public NihssExaminationFragment() {
-        // Required empty public constructor
-    }
-
-    *//**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NihssExaminationFragment.
-     *//*
-    // TODO: Rename and change types and number of parameters
-
-
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

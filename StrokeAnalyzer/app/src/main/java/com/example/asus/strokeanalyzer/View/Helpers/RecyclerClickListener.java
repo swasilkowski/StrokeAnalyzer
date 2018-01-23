@@ -7,7 +7,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by Asus on 03.12.2017.
+ * Klasa zarządzająca akcją kliknięcia elementu RecyclerView.
+ *
+ * @author Marta Marciszewicz
  */
 
 public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
@@ -15,6 +17,12 @@ public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
     private ClickListener clickListener;
     private GestureDetector gestureDetector;
 
+    /**
+     * Konstruktor inicjalizujący detektor gestów oraz obiekt klasy {@link ClickListener}.
+     *
+     * @param context kontekst aplikacji
+     * @param clickListener obiekt klasy ClickListener, wykorzystywany do obsługi zdarzenia kliknięcia
+     */
     public RecyclerClickListener(Context context, final ClickListener clickListener) {
         this.clickListener = clickListener;
 
@@ -30,6 +38,16 @@ public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
         });
     }
 
+    /**
+     * Metoda nasłuchująca zdarzeń związanych z dotknięciem ekranu, pozwalająca na ich przechwycenie i
+     * obsługę. Funkcja wywołuje metodę onClick listenera {@link ClickListener}, jeżeli użytkownik kliknął
+     * na jeden z elementów RecyclerView.
+     *
+     * @param rv obiekt klasy RecyclerView, na którym zostało zaobserwowane kliknięcie
+     * @param e obiekt klasy MotionEvent opisujące zdarzenie dotknięcia
+     * @return (boolean) true - jeżeli zdarzenie dotknięcia ma zostać interpretowane przez obiekt;
+     *          false - jeżeli obiekt ma kontynuować nasłuchiwanie zdarzeń
+     */
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
         View child = rv.findChildViewUnder(e.getX(), e.getY());
@@ -39,11 +57,25 @@ public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
         return false;
     }
 
+    /**
+     * Metoda wymagana przy implrementacji interfejsu {@link RecyclerView.OnItemTouchListener} - nie
+     * jest wykorzystywana w programie.
+     *
+     * @param rv obiekt klasy RecyclerView, na którym zostało zaobserwowane kliknięcie
+     * @param e obiekt klasy MotionEvent opisujące zdarzenie dotknięcia
+     */
     @Override
     public void onTouchEvent(RecyclerView rv, MotionEvent e) {
 
     }
 
+    /**
+     * Metoda wymagana przy implrementacji interfejsu {@link RecyclerView.OnItemTouchListener} - nie
+     * jest wykorzystywana w programie.
+     *
+     * @param disallowIntercept parametr informujący o tym, czy zdarzenie na elemencie RecyclerView ma
+     *                          zostać przez niego obsłużone (true oznacza brak obsługi)
+     */
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 

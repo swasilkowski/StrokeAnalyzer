@@ -1,7 +1,5 @@
 package com.example.asus.strokeanalyzer.View;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,29 +7,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 import com.example.asus.strokeanalyzer.View.Nihss.NihssExaminationFragment;
 
-import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link FormListFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Klasa będąca podklasą {@link Fragment}. Pozwala na wybór formularza, którego modyfikacji chce dokonać użytkownik.
+ * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormListFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class FormListFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PATIENT_ID = "patient_id";
 
+    //Id of patient whose data are going to be changed
     private Integer patientID;
 
+    /**
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
+     */
+    public FormListFragment() {
+        // Required empty public constructor
+    }
 
+    /**
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
+     *
+     * @param id Id pacjenta, w którego profilu otworzony został widok fragmentu (dane pacjenta o tym Id będą edytowane
+     *           w formularzach)
+     * @return (FormListFragment) nowa instancja fragmentu FormListFragment
+     */
     public static FormListFragment newInstance(Integer id) {
         FormListFragment fragment = new FormListFragment();
 
@@ -42,6 +51,13 @@ public class FormListFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}
+     *
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +66,21 @@ public class FormListFragment extends Fragment {
         }
     }
 
+    /**
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
+     * fragmentu ustawia akcje dla poszczególnych przycisków we fragmencie.
+     *
+     * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
+     * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-View view = inflater.inflate(R.layout.fragment_form_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_form_list, container, false);
 
         view.setBackgroundColor(getResources().getColor(R.color.buttonBackgroundColor, null));
         view.setClickable(true);
@@ -67,57 +93,29 @@ View view = inflater.inflate(R.layout.fragment_form_list, container, false);
             {
                 //move to proper form
                 NihssExaminationFragment setFragment = NihssExaminationFragment.newInstance(patientID);
-                //move to demograhic form
-                //ResultsFragment setFragment= new ResultsFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentFrame, setFragment, null)
                         .addToBackStack(null)
                         .commit();
             }
         });
-/*        final Button sbBt= (Button) view.findViewById(R.id.sbBt);
-        sbBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(sbBt, Form.StrokeBricks);
-            }
-        });*/
+
         final Button treatmentBt= view.findViewById(R.id.treatmentBt);
         treatmentBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                printForm(treatmentBt, Form.ThrombolyticTreatment);
+                printForm(Form.ThrombolyticTreatment);
             }
         });
-/*        final Button hatBt= (Button) view.findViewById(R.id.hatBt);
-        hatBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(hatBt, Form.Hat);
-            }
-        });
-        final Button dragonBt= (Button) view.findViewById(R.id.dragonBt);
-        dragonBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                printForm(dragonBt, Form.Dragon);
-            }
-        });*/
         final Button iscoreBt= view.findViewById(R.id.iscoreBt);
         iscoreBt.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                printForm(iscoreBt, Form.iScore);
+                printForm(Form.iScore);
             }
         });
         final Button demoandclinicBt= view.findViewById(R.id.dandcBt);
@@ -126,21 +124,22 @@ View view = inflater.inflate(R.layout.fragment_form_list, container, false);
             @Override
             public void onClick(View v)
             {
-                printForm(demoandclinicBt, Form.DemographicAndClinic);
+                printForm(Form.DemographicAndClinic);
             }
         });
 
-
-        // Inflate the layout for this fragment
         return view;
     }
 
-    public void printForm(View v, Form form)
+    /**
+     * Metoda dokonująca przejścia do kolejnego fragmentu zawierającego formularz konkretnej skali wskazanej w parametrze
+     *
+     * @param form formularz wybrany przez użytkownika
+     */
+    public void printForm(Form form)
     {
         //move to proper form
         FormFragment setFragment = FormFragment.newInstance(form, patientID, false, false);
-        //move to demograhic form
-        //ResultsFragment setFragment= new ResultsFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)
@@ -154,72 +153,4 @@ View view = inflater.inflate(R.layout.fragment_form_list, container, false);
         getFragmentManager().popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
     }*/
 
-   /* // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public FormListFragment() {
-        // Required empty public constructor
-    }
-
-    *//**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FormListFragment.
-     *//*
-    // TODO: Rename and change types and number of parameters
-
-
-
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
+import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
+
 /**
  * Klasa pomocnicza umożliwiająca sprawdzenie przynależności danej liczby do zakresu
  * Oprócz wartości granicznych zakresu sprawdzanego przez klasyfikator, klasa może zawierać także liczbę
@@ -20,8 +22,9 @@ public class RangeClassifier
      * @param value wartość dla której funkcja sprawdza przynależność do zakresu klasyfikatora
      * @return true - jeżeli wartość należy do przedziału [MinValue;MAxValue]; false - w przeciwnym przypadku
      */
-    public boolean withinARange(double value)
-    {
+    public boolean withinARange(double value) throws NoAnswerException {
+        if(value==(-1))
+            throw  new NoAnswerException();
         if(value>MaxValue || value<MinValue)
             return false;
         return true;

@@ -1,6 +1,8 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
+import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
+import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
@@ -49,8 +51,7 @@ public final class HatAnalyzer {
      *          procent określający prawdopodobieństwo wystąpienia krwotoku śródczaszkowego oraz
      *          procent określający prawdopodobieństwo śmiertelnego krwotoku śródczaszkowego.
      */
-    public static HatResult AnalyzePrognosis(Patient p)
-    {
+    public static HatResult AnalyzePrognosis(Patient p) throws WrongQuestionsSetException {
         if (correctAnswers == null) {
             Initialize();
         }
@@ -63,32 +64,44 @@ public final class HatAnalyzer {
         //getting list of questions for analysis
         List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.Hat);
 
-        int nihss = p.getNihssOnAdmission();
-        if (nihss >= 15 && nihss <= 20) {
+        int nihss = p.getNihss();
+        if (nihss >= 15 && nihss < 20) {
             pointsSum += 1;
         }
-        if (nihss > 20) {
+        if (nihss >= 20) {
             pointsSum += 2;
         }
 
-        //check if user's answer was correct and count points for given answers
-        for(int i=0;i<questionIDs.size();i++) {
-            Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
-            ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
+        try
+        {
+//check if user's answer was correct and count points for given answers
+            for(int i=0;i<questionIDs.size();i++) {
+                Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
+                ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
 
-            if (userAnswer != null && expectedAnswer != null) {
-                if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
-                    pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
-                } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
-                    if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
-                        pointsSum += 1;
+                if (userAnswer != null && expectedAnswer != null) {
+                    if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
+                        pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
+                    } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
+                        //if this is question about diabetes and points for glucose where already given then ignore this
+                        if(questionIDs.get(i)==203 && ((ExpectedNumericAnswer) correctAnswers.get(206)).CalculatePoints(((NumericAnswer) p.PatientAnswers.get(206)).Value)>0)
+                            continue;
+                        if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
+                            pointsSum += ((ExpectedTrueFalseAnswer) expectedAnswer).Score;
+                        }
+                    } else {
+                        throw new WrongQuestionsSetException();
                     }
-                } else {
-                    //throw new WrongQuestionsSetException();
-                }
 
+                }
             }
         }
+        catch (NoAnswerException e)
+        {
+            return null;
+        }
+
+
 
         result.Score = pointsSum;
         result.RiskOfFatalICH = getRiskOfFatalICH(pointsSum);
@@ -154,10 +167,16 @@ public final class HatAnalyzer {
         correctAnswers = new Hashtable<>();
 
         ExpectedNumericAnswer answer206 = new ExpectedNumericAnswer(206);
-        answer206.Ranges.add(new RangeClassifier(200, 0, 1));
+        answer206.Ranges.add(new RangeClassifier(201,Double.MAX_VALUE, 1));
 
         ExpectedNumericAnswer answer210 = new ExpectedNumericAnswer(210);
         answer210.Ranges.add(new RangeClassifier(1, 1, 1));
         answer210.Ranges.add(new RangeClassifier(2, 2, 2));
+
+        ExpectedTrueFalseAnswer answer203 = new ExpectedTrueFalseAnswer(203,true,1);
+
+        correctAnswers.put(206, answer206);
+        correctAnswers.put(210, answer210);
+        correctAnswers.put(203, answer203);
     }
 }

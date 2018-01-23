@@ -1,7 +1,5 @@
 package com.example.asus.strokeanalyzer.View;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -12,23 +10,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.example.asus.strokeanalyzer.Model.Analyzers.StrokeBricksAnalyzer;
-import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.NumberAlertFragment;
-import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
-
 import static android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * create an instance of this fragment.
+ * Klasa będąca podklasą {@link Fragment}. Pozwala na utworzenie nowego profilu pacjenta w aplikacji i
+ * zapisanie go w bazie danych.
+ * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormListFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class NewPatientFragment extends Fragment {
 
@@ -36,12 +30,25 @@ public class NewPatientFragment extends Fragment {
     private EditText surname;
     private EditText number;
     private PatientService patientService;
-    private boolean DONE;
 
+    /**
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
+     */
     public NewPatientFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
+     * fragmentu pobiera poszczególne jego elementy i zapisuje w obiekcie.
+     *
+     *
+     * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
+     * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,36 +80,22 @@ public class NewPatientFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu.
+     *
+     * @param savedInstanceState  poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DONE = false;
         patientService = new PatientService(getContext());
-        /*if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
     }
 
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        //getFragmentManager().popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
-        //((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-       /* if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
-    }
-
+    /**
+     * Metoda wywoływana w momencie, gdy fragment jest wyświetlany użytkownikowi. Aplikacja wykorzystuje tę metodę
+     * do kontrolowania elementu ActionBar.
+     */
     @Override
     public void onResume()
     {
@@ -110,14 +103,27 @@ public class NewPatientFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
     }
 
+    /**
+     * Metoda wywoływana w momencie, gdy fragment odłączany jest od aktywności. Aplikacja wykorzystuje tę metodę
+     * do kontrolowania elementu ActionBar.
+     */
     @Override
     public void onDetach() {
         super.onDetach();
-
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-        //mListener = null;
     }
 
+    /**
+     * Metoda tworząca profil nowego pacjenta w bazie danych.
+     * Funkcja pobiera z widoku fragmentu dane pacjenta wprowadzone przez użytkownika. Następnie wywołuje metodę
+     * tworzącą profil nowego pacjenta. Metoda sprawdza dodatkowo istnienie pacjent o podanym numerze w bazie i
+     * prosi o potwierdzenie przez uzytkownika chęci utowrzenia profilu pacjenta o tym samym numerze., w przypadku zaistnienia
+     * takiej sytuacji.
+     *
+     * @param v obiekt klasy View pozwalający na pozyskanie kontekstu aplikacji
+     * @return (boolean) true - jeżeli stowrzenie profilu nowego pacjenta zakończyło się sukcesem;
+     *          false - jeżeli nie udało się utworzyć profilu nowego pacjenta
+     */
     public boolean createPatient(View v)
     {
         final String name = this.name.getText().toString();
@@ -129,14 +135,14 @@ public class NewPatientFragment extends Fragment {
 
         try
         {
-            long patientNumber = Long.parseLong(number);
+            final long patientNumber = Long.parseLong(number);
             //sprawdz czy istnieje pacjent o takim numerze
             if(patientService.isPatientNumberTaken(patientNumber))
             {
                 NumberAlertFragment.NumberAlertDialogListener listener = new NumberAlertFragment.NumberAlertDialogListener() {
                     @Override
                     public void onDialogNumberPositiveClick(DialogFragment dialog) {
-                        addPatient(name,surname,number);
+                        addPatient(name,surname,patientNumber);
                         dialog.dismiss();
                     }
 
@@ -153,7 +159,7 @@ public class NewPatientFragment extends Fragment {
                 return true;
             }
 
-            addPatient(name,surname,number);
+            addPatient(name,surname,patientNumber);
         }
         catch(NumberFormatException exception)
         {
@@ -163,13 +169,22 @@ public class NewPatientFragment extends Fragment {
         return true;
     }
 
-    public void addPatient(String name, String surname, String number)
+    /**
+     * Metoda dodająca nowego pacjenta do listy wszystkich pacjentów.
+     * Funkcja tworzy obiekt klasy Patient na podstawie danych podanych jako argumenty, a następnie
+     * wywołuje metodę dodającą nowego pacjenta do bazy. Dodatkowo metoda wywołuje przejście do kolejnego fragmentu.
+     *
+     * @param name imię nowego pacjenta
+     * @param surname nazwisko nowego pacjenta
+     * @param number numer nowego pacjenta
+     */
+    public void addPatient(String name, String surname, long number)
     {
         //add patient to database - create profile
         Patient newPatient = new Patient();
         newPatient.Name = name;
         newPatient.Surname = surname;
-        newPatient.PatientNumber = Long.parseLong(number); //zlap wyjatki!!!
+        newPatient.PatientNumber = number;
 
         PatientService patientService = new PatientService(getContext());
         long patientID = patientService.AddPatient(newPatient);
@@ -183,72 +198,10 @@ public class NewPatientFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
 
-        //move to demograhic form
-        //FormFragment setFragment = FormFragment.newInstance(Form.DemographicAndClinic, patientID, true, true);
         PatientProfileFragment setFragment = PatientProfileFragment.newInstance((int)patientID);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)
                 .commit();
     }
-
-
-/*    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-
-
-    *//**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NewPatientFragment.
-     *//*
-    // TODO: Rename and change types and number of parameters
-    public static NewPatientFragment newInstance(String param1, String param2) {
-        NewPatientFragment fragment = new NewPatientFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-
-
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

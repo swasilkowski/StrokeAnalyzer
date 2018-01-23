@@ -113,7 +113,7 @@ public class FormFragment extends Fragment {
 
 
 
-            qAdapter = new QuestionAdapter(printQuestions, answers,context);
+            qAdapter = new QuestionAdapter(printQuestions);
             RecyclerView.LayoutManager layout = new LinearLayoutManager(context);
             layout.setAutoMeasureEnabled(true);
             recyclerView.setLayoutManager(layout);

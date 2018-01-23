@@ -29,7 +29,8 @@ public final class StrokeBricksAnalyzer {
 
     //key - question id, value - list of regions affected if the answer for a question was correc
     //regionsAffection - dependency between question and regions affected by stroke
-    private static Dictionary<Integer, List<Region>> regionsAffection;
+    private static Dictionary<Integer, List<Region>> regionsAffectionR;
+    private static Dictionary<Integer, List<Region>> regionsAffectionL;
     //key - region, value - description of this part of a brain that is characeterising it
     //regionsDescription - descriptions of regions
     private static Dictionary<Region,String> regionsDescription;
@@ -68,8 +69,7 @@ public final class StrokeBricksAnalyzer {
 
         NihssExamination nihssExamination = p.getLatestNihssExamination();
 
-        for (Answer answer:
-             nihssExamination.Answers) {
+        for (Answer answer: nihssExamination.Answers) {
             if (!(answer instanceof NumericAnswer)) {
                 //throw new WrongQuestionsSetException();
             }
@@ -78,100 +78,64 @@ public final class StrokeBricksAnalyzer {
             double answerValue = numericAnswer.Value;
 
             if (answerValue > 0) {
-                switch (answerId) {
-                    case 102: //1b
-                        affectedRegions.add(Region.M1_L);
-                        affectedRegions.add(Region.M4_L);
-                        break;
-                    case 103: //1c
-                        affectedRegions.add(Region.M3_L);
-                        affectedRegions.add(Region.M6_L);
-                        break;
-                    case 104: //2
-                        affectedRegions.add(Region.M1_L);
-                        affectedRegions.add(Region.M4_L);
-                        affectedRegions.add(Region.M1_R);
-                        affectedRegions.add(Region.M4_R);
-                        break;
-                    case 105: //3
-                        affectedRegions.add(Region.P_L);
-                        affectedRegions.add(Region.M2_L);
-                        affectedRegions.add(Region.M3_L);
-                        affectedRegions.add(Region.P_R);
-                        affectedRegions.add(Region.M2_R);
-                        affectedRegions.add(Region.M3_R);
-                        break;
-                    case 106: //4
-                        affectedRegions.add(Region.M5_L);
-                        affectedRegions.add(Region.CR_L);
-                        affectedRegions.add(Region.BGIC_L);
-                        affectedRegions.add(Region.M5_R);
-                        affectedRegions.add(Region.CR_R);
-                        affectedRegions.add(Region.BGIC_R);
-                        break;
-                    case 107: //5a
-                        affectedRegions.add(Region.M5_R);
-                        affectedRegions.add(Region.CR_R);
-                        affectedRegions.add(Region.BGIC_R);
-                        break;
-                    case 108: //5b
-                        affectedRegions.add(Region.M5_L);
-                        affectedRegions.add(Region.CR_L);
-                        affectedRegions.add(Region.BGIC_L);
-                        break;
-                    case 109: //6a
-                        affectedRegions.add(Region.A2_R);
-                        affectedRegions.add(Region.CR_R);
-                        affectedRegions.add(Region.BGIC_R);
-                        break;
-                    case 110: //6b
-                        affectedRegions.add(Region.A2_L);
-                        affectedRegions.add(Region.CR_L);
-                        affectedRegions.add(Region.BGIC_L);
-                        break;
-                    case 112: //8
-                        affectedRegions.add(Region.M5_L);
-                        affectedRegions.add(Region.CR_L);
-                        affectedRegions.add(Region.BGIC_L);
-                        affectedRegions.add(Region.T_L);
-                        affectedRegions.add(Region.A2_L);
-                        affectedRegions.add(Region.M5_R);
-                        affectedRegions.add(Region.CR_R);
-                        affectedRegions.add(Region.BGIC_R);
-                        affectedRegions.add(Region.T_R);
-                        affectedRegions.add(Region.A2_R);
-                        break;
-                    case 113: //9
-                        affectedRegions.add(Region.M1_L);
-                        affectedRegions.add(Region.M4_L);
-                        affectedRegions.add(Region.M3_L);
-                        affectedRegions.add(Region.M6_L);
-                        break;
-                    case 114: //10
-                        affectedRegions.add(Region.A1_L);
-                        affectedRegions.add(Region.M1_L);
-                        affectedRegions.add(Region.M4_L);
-                        affectedRegions.add(Region.BGIC_L);
-                        affectedRegions.add(Region.A1_R);
-                        affectedRegions.add(Region.M1_R);
-                        affectedRegions.add(Region.M4_R);
-                        affectedRegions.add(Region.BGIC_R);
-                        break;
-                    case 115: //11
-                        affectedRegions.add(Region.P_L);
-                        affectedRegions.add(Region.M2_L);
-                        affectedRegions.add(Region.M3_L);
-                        affectedRegions.add(Region.P_R);
-                        affectedRegions.add(Region.M2_R);
-                        affectedRegions.add(Region.M3_R);
-                        affectedRegions.add(Region.A3_R);
-                        affectedRegions.add(Region.M6_R);
-                        break;
-                }
+
+                affectedRegions.addAll(getRegions(answerId, p));
             }
         }
 
         return new ArrayList<>(affectedRegions);
+    }
+
+    private static List<Region> getRegions(int questionID, Patient patient)
+    {
+        //only left hemisphere
+        if(questionID==102 || questionID==103 || questionID==108 || questionID==110)
+            return regionsAffectionL.get(questionID);
+
+        //only right hemisphere
+        if(questionID==107 || questionID==109 || questionID==105 || questionID==112 || questionID==114)
+            return regionsAffectionR.get(questionID);
+
+        //combination of both right and left hemispheres
+        if(questionID==104 || questionID==106)
+        {
+            List<Region> tmpList = new ArrayList<Region>(regionsAffectionR.get(questionID));
+            tmpList.addAll(regionsAffectionL.get(questionID));
+            return tmpList;
+        }
+
+        //special analysis for question 9
+        if(questionID==113)
+        {
+            if(((NumericAnswer)patient.PatientAnswers.get(213)).Value>0)
+                return regionsAffectionR.get(questionID);
+            else return regionsAffectionL.get(questionID);
+
+        }
+        //special analyzis for question 11
+        if(questionID==115)
+        {
+            if(((NumericAnswer)patient.PatientAnswers.get(115)).Value==1)
+            {
+                if(((NumericAnswer)patient.PatientAnswers.get(105)).Value>0)
+                {
+                    return new ArrayList<>();
+                }
+                else
+                    return regionsAffectionR.get(questionID);
+            }
+            else if(((NumericAnswer)patient.PatientAnswers.get(115)).Value==2)
+            {
+                List<Region> tmpList = new ArrayList<Region>(regionsAffectionR.get(questionID));
+                if(((NumericAnswer)patient.PatientAnswers.get(213)).Value>0)
+                    tmpList.addAll(regionsAffectionL.get(105));
+                else tmpList.addAll(regionsAffectionR.get(105));
+                return tmpList;
+            }
+
+        }
+
+        return new ArrayList<>();
     }
 
     /**
@@ -228,5 +192,122 @@ public final class StrokeBricksAnalyzer {
         regionsDescription.put(Region.P_R, "P_R");
         regionsDescription.put(Region.T_L,"T_L");
         regionsDescription.put(Region.T_R, "T_R");
+
+
+        regionsAffectionR = new Hashtable<>();
+        regionsAffectionL = new Hashtable<>();
+        List<Region> tmpRegionList = new ArrayList<>();
+        //1b
+        tmpRegionList.add(Region.M1_L);
+        tmpRegionList.add(Region.M4_L);
+        regionsAffectionL.put(102,new ArrayList<Region>(tmpRegionList));
+        //1c
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M3_L);
+        tmpRegionList.add(Region.M6_L);
+        regionsAffectionL.put(103, new ArrayList<Region>(tmpRegionList));
+        //2
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M1_L);
+        tmpRegionList.add(Region.M4_L);
+        regionsAffectionL.put(104, new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M1_R);
+        tmpRegionList.add(Region.M4_R);
+        regionsAffectionR.put(104, new ArrayList<Region>(tmpRegionList));
+        //3
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.P_L);
+        tmpRegionList.add(Region.M2_L);
+        tmpRegionList.add(Region.M3_L);
+        regionsAffectionL.put(105, new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.P_R);
+        tmpRegionList.add(Region.M2_R);
+        tmpRegionList.add(Region.M3_R);
+        regionsAffectionR.put(105, new ArrayList<Region>(tmpRegionList));
+        //4
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M5_L);
+        tmpRegionList.add(Region.CR_L);
+        tmpRegionList.add(Region.BGIC_L);
+        regionsAffectionL.put(106, new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M5_R);
+        tmpRegionList.add(Region.CR_R);
+        tmpRegionList.add(Region.BGIC_R);
+        regionsAffectionR.put(106, new ArrayList<Region>(tmpRegionList));
+        //5a
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M5_R);
+        tmpRegionList.add(Region.CR_R);
+        tmpRegionList.add(Region.BGIC_R);
+        regionsAffectionR.put(107, new ArrayList<Region>(tmpRegionList));
+        //5b
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M5_L);
+        tmpRegionList.add(Region.CR_L);
+        tmpRegionList.add(Region.BGIC_L);
+        regionsAffectionL.put(108, new ArrayList<Region>(tmpRegionList));
+        //6a
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.A2_R);
+        tmpRegionList.add(Region.CR_R);
+        tmpRegionList.add(Region.BGIC_R);
+        regionsAffectionR.put(109, new ArrayList<Region>(tmpRegionList));
+        //6b
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.A2_L);
+        tmpRegionList.add(Region.CR_L);
+        tmpRegionList.add(Region.BGIC_L);
+        regionsAffectionL.put(110, new ArrayList<Region>(tmpRegionList));
+        //8
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M5_L);
+        tmpRegionList.add(Region.CR_L);
+        tmpRegionList.add(Region.BGIC_L);
+        tmpRegionList.add(Region.T_L);
+        tmpRegionList.add(Region.A2_L);
+        regionsAffectionL.put(112, new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M5_R);
+        tmpRegionList.add(Region.CR_R);
+        tmpRegionList.add(Region.BGIC_R);
+        tmpRegionList.add(Region.T_R);
+        tmpRegionList.add(Region.A2_R);
+        regionsAffectionR.put(112, new ArrayList<Region>(tmpRegionList));
+        //9
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M1_L);
+        tmpRegionList.add(Region.M4_L);
+        tmpRegionList.add(Region.M3_L);
+        tmpRegionList.add(Region.M6_L);
+        regionsAffectionL.put(113, new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M1_R);
+        tmpRegionList.add(Region.M4_R);
+        tmpRegionList.add(Region.M3_R);
+        tmpRegionList.add(Region.M6_R);
+        regionsAffectionR.put(113, new ArrayList<Region>(tmpRegionList));
+        //10
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.A1_L);
+        tmpRegionList.add(Region.M1_L);
+        tmpRegionList.add(Region.M4_L);
+        tmpRegionList.add(Region.BGIC_L);
+        regionsAffectionL.put(114, new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.A1_R);
+        tmpRegionList.add(Region.M1_R);
+        tmpRegionList.add(Region.M4_R);
+        tmpRegionList.add(Region.BGIC_R);
+        regionsAffectionR.put(114, new ArrayList<Region>(tmpRegionList));
+        //11
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.A3_R);
+        tmpRegionList.add(Region.M6_R);
+        regionsAffectionR.put(115, new ArrayList<Region>(tmpRegionList));
+
+
     }
 }

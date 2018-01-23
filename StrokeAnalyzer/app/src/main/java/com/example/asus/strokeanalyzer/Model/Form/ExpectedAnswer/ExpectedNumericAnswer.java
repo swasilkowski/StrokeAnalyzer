@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
+import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,16 +43,23 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
      * @param value wartość odpowiedzi udzielonej na pytanie, któego dotyczy obiekt tej klasy
      * @return (int) liczba punktów uzyskanych dla podanej odpowiedzi
      */
-    public int CalculatePoints(double value)
-    {
+    public int CalculatePoints(double value) throws NoAnswerException {
         if(CorrectValue!= null && CorrectValue.equals(value))
             return 1;
         else if(Ranges.size() > 0)
         {
             for(RangeClassifier r:Ranges)
             {
-                if(r.withinARange(value))
-                    return r.Points;
+                try
+                {
+                    if(r.withinARange(value))
+                        return r.Points;
+                }
+                catch (NoAnswerException exception)
+                {
+                    throw exception;
+                }
+
             }
         }
         return 0;
@@ -67,16 +76,23 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
      * @return (boolean) true - jeżeli wartość odpowiedzi jest zgodna z oczekiwaną odpowiedzią; false
      *          - w przeciwnym przypadku
      */
-    public boolean CheckCorrectness(double value)
-    {
+    public boolean CheckCorrectness(double value) throws NoAnswerException {
         if(CorrectValue!= null && CorrectValue.equals(value))
             return true;
         else if(Ranges.size() > 0)
         {
             for(RangeClassifier r:Ranges)
             {
-                if(r.withinARange(value))
-                    return true;
+                try
+                {
+                    if(r.withinARange(value))
+                        return true;
+                }
+                catch (NoAnswerException exception)
+                {
+                    throw exception;
+                }
+
             }
         }
         return false;

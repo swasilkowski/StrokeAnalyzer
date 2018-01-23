@@ -2,8 +2,6 @@ package com.example.asus.strokeanalyzer.View;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,21 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
-import com.example.asus.strokeanalyzer.View.Form.FormFragment;
-import com.example.asus.strokeanalyzer.View.Nihss.NihssExaminationFragment;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link PatientProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Klasa będąca podklasą {@link Fragment}. Fragment wyświetla profil pacjenta wybranego przez użytkownika
+ * i pozwala na wykonanie różnych czyności związanych z danym pacjentem, np. sprawdzenie jego wyników, czy
+ * wygenerowanie raportu o stanie zdrowia.
+ * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormListFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class PatientProfileFragment extends Fragment {
 
@@ -37,29 +32,24 @@ public class PatientProfileFragment extends Fragment {
 
     TextView name;
     TextView number;
-
-
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    //private static final String ARG_PATIENT = "patient_number";
-
     private Integer patientID;
     private Patient patient;
     PatientService patientService;
     FragmentActivity activity;
 
-    //private OnFragmentInteractionListener mListener;
-
+    /**
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
+     */
     public PatientProfileFragment() {
         // Required empty public constructor
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     * @return A new instance of fragment PatientProfileFragment.
+     * @param patientID Id pacjenta, którego wyniki mają zostać wyświetlone we fragmencie
+     * @return (PatientProfileFragment) nowa instancja fragmentu PatientProfileFragment
      */
-    // TODO: Rename and change types and number of parameters
     public static PatientProfileFragment newInstance(Integer patientID) {
         PatientProfileFragment fragment = new PatientProfileFragment();
 
@@ -70,6 +60,13 @@ public class PatientProfileFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}. Dodatkowo zapisuje obiekt aktywności fragmentu.
+     *
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +76,17 @@ public class PatientProfileFragment extends Fragment {
         activity= getActivity();
     }
 
+    /**
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
+     * fragmentu pobiera poszczególne jego elementy i zapisuje je w obiekcie oraz ustawia akcje dla przycisków
+     * fragmentu.
+     *
+     * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
+     * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,9 +95,7 @@ public class PatientProfileFragment extends Fragment {
 
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
-
         patientService = new PatientService(view.getContext());
-
         patient = patientService.GetPatientById(patientID);
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
@@ -113,7 +119,7 @@ public class PatientProfileFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                showResults(resultBt);
+                showResults();
             }
         });
         final Button reportBt=  view.findViewById(R.id.reportBt);
@@ -122,7 +128,7 @@ public class PatientProfileFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                generateReport(reportBt);
+                generateReport();
             }
         });
         final Button formsBt= view.findViewById(R.id.formsBt);
@@ -131,16 +137,18 @@ public class PatientProfileFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                chooseForm(formsBt);
+                chooseForm();
             }
         });
-
-
 
         return view;
     }
 
-    public void generateReport(View v)
+    /**
+     * Metoda wyświetlająca okno dialogowe do potwierdzenia przez użtykownika chęci wygenerowania raportu.
+     *
+     */
+    public void generateReport()
     {
         if(activity!=null)
         {
@@ -156,10 +164,12 @@ public class PatientProfileFragment extends Fragment {
             dialog.show(activity.getSupportFragmentManager(), "ReportFragment");
         }
 
-
     }
 
-    public void showResults(View v)
+    /**
+     * Metoda przechodząca fragmentu zawierającego wyniki analizy stanu pacjenta.
+     */
+    public void showResults()
     {
         if(activity!=null)
         {
@@ -172,7 +182,10 @@ public class PatientProfileFragment extends Fragment {
 
     }
 
-    public void chooseForm(View v)
+    /**
+     * Metoda przechodząca do fragmentu pozwalającego wybrać formularz do uzupełnienia.
+     */
+    public void chooseForm()
     {
         if(activity!=null)
         {
@@ -185,48 +198,4 @@ public class PatientProfileFragment extends Fragment {
 
     }
 
-
-
-
-
-
-/*
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-   /* public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

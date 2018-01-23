@@ -2,6 +2,8 @@ package com.example.asus.strokeanalyzer.Model;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.example.asus.strokeanalyzer.Model.Analyzers.DragonAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.HatAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
@@ -9,6 +11,7 @@ import com.example.asus.strokeanalyzer.Model.Analyzers.StrokeBricksAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.TreatmentAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.iScoreAnalyzer;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
+import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.results.DragonResult;
@@ -84,7 +87,16 @@ public class Patient {
      *          leczenia trombolitycznego
      */
     public TreatmentResult getTreatmentDecision() {
-        return TreatmentAnalyzer.MakeTreatmentDecision(this);
+        try
+        {
+            return TreatmentAnalyzer.MakeTreatmentDecision(this);
+        }
+        catch (WrongQuestionsSetException exception)
+        {
+            Log.e("TreatmentAnalyzer", "WrongQuestionsSetException:" + exception);
+        }
+        return null;
+
     }
 
     /**
@@ -94,7 +106,15 @@ public class Patient {
      *          krwotoku śródczaskowego u pacjenta
      */
     public HatResult getHatPrognosis() {
-        return HatAnalyzer.AnalyzePrognosis(this);
+        try
+        {
+            return HatAnalyzer.AnalyzePrognosis(this);
+        }
+        catch (WrongQuestionsSetException exception)
+        {
+            Log.e("HatAnalyzer", "WrongQuestionsSetException:" + exception);
+        }
+        return null;
     }
 
     /**
@@ -114,7 +134,15 @@ public class Patient {
      *          leczenia trombolitycznego u pacjenta
      */
     public DragonResult getDragonPrognosis() {
-        return DragonAnalyzer.AnalyzePrognosis(this);
+        try
+        {
+            return DragonAnalyzer.AnalyzePrognosis(this);
+        }
+        catch (WrongQuestionsSetException exception)
+        {
+            Log.e("DragonAnalyzer", "WrongQuestionsSetException:" + exception);
+        }
+        return  null;
     }
 
     /**

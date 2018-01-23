@@ -1,6 +1,10 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
+import android.util.Log;
+
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
+import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
+import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
@@ -11,6 +15,9 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.Model.results.iScoreResult;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -50,6 +57,11 @@ public final class iScoreAnalyzer {
         if(!FormsStructure.patientReady(patient,Form.iScore) || patient.getLatestNihssExamination() == null)
             return null;
 
+        if(correctAnswersFor30Days == null || correctAnswersFor1Year == null)
+        {
+            Initialize();
+        }
+
         iScoreResult result = new iScoreResult();
         result.ScoreFor30Days = getPointsFor30Days(patient);
         result.ScoreFor1Year = getPointsFor1Year(patient);
@@ -69,12 +81,17 @@ public final class iScoreAnalyzer {
      */
     private static int getPointsFor30Days(Patient p)
     {
-        if (correctAnswersFor30Days == null) {
-            Initialize();
+        int iScorePoints=0;
+        try{
+            iScorePoints = countPoints(p, correctAnswersFor30Days);
+        }
+        catch (WrongQuestionsSetException exception)
+        {
+            Log.e("iScoreAnalyzer", "WrongQuestionsSetException:" + exception);
         }
 
-        int iScorePoints = countPoints(p, correctAnswersFor30Days);
-        int nihssScore = p.getNihssOnAdmission();
+
+        int nihssScore = p.getNihss();
         if (nihssScore > 22) {
             iScorePoints += 105;
         }
@@ -98,11 +115,17 @@ public final class iScoreAnalyzer {
      */
     private static int getPointsFor1Year(Patient p)
     {
-        if (correctAnswersFor1Year == null) {
-            Initialize();
+        int iScorePoints=0;
+        try{
+            iScorePoints = countPoints(p, correctAnswersFor1Year);
         }
-        int iScorePoints = countPoints(p, correctAnswersFor1Year);
-        int nihssScore = NihssAnalyzer.CountNihssSum(p.getLatestNihssExamination());
+        catch (WrongQuestionsSetException exception)
+        {
+            Log.e("iScoreAnalyzer", "WrongQuestionsSetException:" + exception);
+        }
+
+
+        int nihssScore = p.getNihss();
         if (nihssScore > 22) {
             iScorePoints += 70;
     }
@@ -279,27 +302,38 @@ public final class iScoreAnalyzer {
      *                       udzielone przez użytkownika
      * @return (int) suma punktów w skali iScore dla podanego pacjenta i zbioru poprawnych odpowiedzi
      */
-    private static int countPoints(Patient p, Dictionary<Integer, ExpectedAnswer> correctAnswers) {
+    private static int countPoints(Patient p, Dictionary<Integer, ExpectedAnswer> correctAnswers) throws WrongQuestionsSetException {
+        //adding age to the points sum
         int pointsSum = (int)((NumericAnswer)(p.PatientAnswers.get(200))).Value;
-        List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.iScore);
-        questionIDs.remove(0);
+        List<Integer> questionIDs = new ArrayList<>(FormsStructure.QuestionsUsedForForm.get(Form.iScore));
+        questionIDs.remove(questionIDs.indexOf(200));
 
-        for(int i=0;i<questionIDs.size();i++) {
-            Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
-            ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
+        try
+        {
+            //points from other questions
+            for(int i=0;i<questionIDs.size();i++) {
+                Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
+                ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
 
-            if (userAnswer != null && expectedAnswer != null) {
-                if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
-                    pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
-                } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
-                    if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
-                        pointsSum += ((ExpectedTrueFalseAnswer) expectedAnswer).Score;
+                if (userAnswer != null && expectedAnswer != null) {
+                    if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
+                        pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
+                    } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
+                        if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
+                            pointsSum += ((ExpectedTrueFalseAnswer) expectedAnswer).Score;
+                        }
+                    } else {
+                        throw new WrongQuestionsSetException();
                     }
-                } else {
-                    //throw new WrongQuestionsSetException();
                 }
             }
         }
+        catch (NoAnswerException e)
+        {
+            return 0;
+        }
+
+
         return pointsSum;
     }
 
@@ -319,6 +353,7 @@ public final class iScoreAnalyzer {
         correctAnswersFor1Year.put(201, answer201b);
 
         correctAnswersFor1Year.put(202,  new ExpectedTrueFalseAnswer(202, true, 5));
+        correctAnswersFor30Days.put(202, new ExpectedTrueFalseAnswer(202,true,0));
 
         correctAnswersFor30Days.put(204, new ExpectedTrueFalseAnswer(204, true, 15));
         correctAnswersFor1Year.put(204, new ExpectedTrueFalseAnswer(204, true, 20));
@@ -350,6 +385,7 @@ public final class iScoreAnalyzer {
         correctAnswersFor30Days.put(402, new ExpectedTrueFalseAnswer(402, true, 10));
         correctAnswersFor1Year.put(402, new ExpectedTrueFalseAnswer(402, true, 10));
 
+        correctAnswersFor30Days.put(403, new ExpectedTrueFalseAnswer(403, true, 0));
         correctAnswersFor1Year.put(403, new ExpectedTrueFalseAnswer(403, true, 5));
 
         correctAnswersFor30Days.put(404, new ExpectedTrueFalseAnswer(404, true, 35));

@@ -283,19 +283,20 @@ public final class FormsStructure {
         id = 203;
         TrueFalseQuestion question203 = new TrueFalseQuestion(id, "Czy pacjent choruje na cukrzycę?");
         questionsUsedForThrombolysis.add(id);
+        questionsUsedForHat.add(id);
 
         id = 204;
-        TrueFalseQuestion question204 = new TrueFalseQuestion(id, "Niepełnosprawność przed przyjęciem? (mRS > 1?)");
+        TrueFalseQuestion question204 = new TrueFalseQuestion(id, "Poziom niepełnosprawności przed przyjęciem (mRS > 1)");
         questionsUsedForDragon.add(id);
         questionsUsedForIscore.add(id);
 
         id = 205;
-        NumericQuestion question205 = new NumericQuestion(id, "Czas", new RangeClassifier(0,6000));
+        NumericQuestion question205 = new NumericQuestion(id, "Czas od wystąpienia objawów (minuty)", new RangeClassifier(0,6000));
         questionsUsedForDragon.add(id);
         questionsUsedForThrombolysis.add(id);
 
         id = 206;
-        NumericQuestion question206 = new NumericQuestion(id, "Poziom glukozy we krwi", new RangeClassifier(0,1000));
+        NumericQuestion question206 = new NumericQuestion(id, "Poziom glukozy we krwi (mg/dL)", new RangeClassifier(0,1000));
         questionsUsedForDragon.add(id);
         questionsUsedForIscore.add(id);
         questionsUsedForHat.add(id);
@@ -315,25 +316,32 @@ public final class FormsStructure {
 
         id = 210;
         Map<Integer, String> answers210 = new Hashtable<>();
-        answers210.put(0, "Brak");
-        answers210.put(1, "Poniżej 1/3 powierzchni MCA");
-        answers210.put(2, "Powyżej 1/3 powierzchni MCA");
-        BulletedQuestion question210 = new BulletedQuestion(id, "Świeży udar widoczny w CT", answers210);
+        answers210.put(0, "Nie");
+        answers210.put(1, "Tak, ale zajmuje <1/3 terytorium MCA");
+        answers210.put(2, "Tak, zajmuje >=1/3 terytorium MCA");
+        BulletedQuestion question210 = new BulletedQuestion(id, "Widoczny świeży udar na obrazie CT mózgu", answers210);
         questionsUsedForDragon.add(id);
         questionsUsedForHat.add(id);
         questionsUsedForThrombolysis.add(id);
 
         id = 211;
         Map<Integer, String> answers211 = new Hashtable<>();
-        answers211.put(0, "Lakularny");
-        answers211.put(1, "Nielakularny");
-        answers211.put(2, "Nieznanego typu");
+        answers211.put(0, "Lakunarny");
+        answers211.put(1, "Nielakunarny");
+        answers211.put(2, "Nieznanej etiologii");
         BulletedQuestion question211 = new BulletedQuestion(id, "Podtyp udaru", answers211);
         questionsUsedForIscore.add(id);
 
         id = 212;
         TrueFalseQuestion question212 = new TrueFalseQuestion(id, "Krwotok śródmózgowy w TK/MR");
         questionsUsedForThrombolysis.add(id);
+
+        id=213;
+        Map<Integer, String> answers213 = new Hashtable<>();
+        answers213.put(0, "Lewa");
+        answers213.put(1, "Prawa");
+        BulletedQuestion question213 = new BulletedQuestion(id, "Dominująca półkula mózgu", answers213);
+        questionsUsedForStrokeBricks.add(id);
 
         Questions.put(200,question200);
         Questions.put(201, question201);
@@ -348,6 +356,7 @@ public final class FormsStructure {
         Questions.put(210, question210);
         Questions.put(211, question211);
         Questions.put(212, question212);
+        Questions.put(213,question213);
 
         ArrayList<Integer> questionsDemographic = new ArrayList<>();
         questionsDemographic.add(200);
@@ -363,6 +372,7 @@ public final class FormsStructure {
         questionsDemographic.add(210);
         questionsDemographic.add(211);
         questionsDemographic.add(212);
+        questionsDemographic.add(213);
         QuestionsPrintedInForm.put(Form.DemographicAndClinic,questionsDemographic);
 
         //LECZENIE
@@ -447,6 +457,22 @@ public final class FormsStructure {
         TrueFalseQuestion question320 = new TrueFalseQuestion(id, "Ciśnienie skurczowe (SBP)> 185 mmHg lub rozkurczowe (DBP) >110 mmHg nie ulegające obniżeniu po podaniu labetalolu, urapidylu lub innych leków iv");
         questionsUsedForThrombolysis.add(id);
 
+        id=321;
+        NumericQuestion question321 = new NumericQuestion(id, "Liczba płytek krwi", new RangeClassifier(0,Double.MAX_VALUE));
+        questionsUsedForThrombolysis.add(id);
+
+        id = 322;
+        TrueFalseQuestion question322 = new TrueFalseQuestion(id, "Wykluczenie uogólnionego niedokrwienia mózgu (np. omdlenie), napadem drgawkowym i migreną oraz hipoglikemią");
+        questionsUsedForThrombolysis.add(id);
+
+        id=323;
+        TrueFalseQuestion question323 = new TrueFalseQuestion(id, "Czy czas trwania objawów bez znaczącej poprawy wynosi ≥ 30 minut?");
+        questionsUsedForThrombolysis.add(id);
+
+        id=324;
+        TrueFalseQuestion question324 = new TrueFalseQuestion(id, "Ostry udaru niedokrwiennego mózgu z istotnym deficytem neurologicznym.");
+        questionsUsedForThrombolysis.add(id);
+
         Questions.put(301, question301);
         Questions.put(302, question302);
         Questions.put(303, question303);
@@ -467,6 +493,10 @@ public final class FormsStructure {
         Questions.put(318, question318);
         Questions.put(319, question319);
         Questions.put(320, question320);
+        Questions.put(321, question321);
+        Questions.put(322, question322);
+        Questions.put(323,question323);
+        Questions.put(324, question324);
 
         ArrayList<Integer> questionsTreatment = new ArrayList<>();
         questionsTreatment.add(301);
@@ -489,6 +519,10 @@ public final class FormsStructure {
         questionsTreatment.add(318);
         questionsTreatment.add(319);
         questionsTreatment.add(320);
+        questionsTreatment.add(321);
+        questionsTreatment.add(322);
+        questionsTreatment.add(323);
+        questionsTreatment.add(324);
         QuestionsPrintedInForm.put(Form.ThrombolyticTreatment,questionsTreatment);
 
         //iScore
@@ -525,6 +559,9 @@ public final class FormsStructure {
         QuestionsUsedForForm.put(Form.Dragon, questionsUsedForDragon);
         QuestionsUsedForForm.put(Form.Hat, questionsUsedForHat);
         QuestionsUsedForForm.put(Form.StrokeBricks, questionsUsedForStrokeBricks);
+
+        NumericQuestion nihssQuestion = new NumericQuestion(500, "Liczba punktów w skali NIHSS", new RangeClassifier(0,50));
+        Questions.put(500,nihssQuestion);
 
     }
 }

@@ -1,6 +1,8 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
+import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
+import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
@@ -50,8 +52,7 @@ public final class DragonAnalyzer {
      * @return (DragonResult) wynik przeprowadzanej analizy; zawiera liczbę punktów skali Dragon,
      *          procent powodzenia oraz procent niepowodzenia leczenia trombolitycznego
      */
-    public static DragonResult AnalyzePrognosis(Patient p)
-    {
+    public static DragonResult AnalyzePrognosis(Patient p) throws WrongQuestionsSetException {
         if (correctAnswers == null) {
             Initialize();
         }
@@ -62,7 +63,7 @@ public final class DragonAnalyzer {
         DragonResult result = new DragonResult();
         int pointsSum=0;
 
-        int nihss = p.getNihssOnAdmission();
+        int nihss = p.getNihss();
         if (nihss >= 5 && nihss <= 9) {
             pointsSum += 1;
         }
@@ -76,23 +77,31 @@ public final class DragonAnalyzer {
         //getting list of questions for analysis
         List<Integer> questionIDs = FormsStructure.QuestionsUsedForForm.get(Form.Dragon);
 
-        //check if user's answer was correct and count points for given answers
-        for(int i=0;i<questionIDs.size();i++) {
-            Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
-            ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
+        try
+        {
+            //check if user's answer was correct and count points for given answers
+            for(int i=0;i<questionIDs.size();i++) {
+                Answer userAnswer = p.PatientAnswers.get(questionIDs.get(i));
+                ExpectedAnswer expectedAnswer = correctAnswers.get(questionIDs.get(i));
 
-            if (userAnswer != null && expectedAnswer != null) {
-                if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
-                    pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
-                } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
-                    if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
-                        pointsSum += 1;
+                if (userAnswer != null && expectedAnswer != null) {
+                    if (userAnswer instanceof NumericAnswer && expectedAnswer instanceof ExpectedNumericAnswer) {
+                        pointsSum += ((ExpectedNumericAnswer) expectedAnswer).CalculatePoints(((NumericAnswer) userAnswer).Value);
+                    } else if (userAnswer instanceof TrueFalseAnswer && expectedAnswer instanceof ExpectedTrueFalseAnswer) {
+                        if (((TrueFalseAnswer) userAnswer).Value == ((ExpectedTrueFalseAnswer) expectedAnswer).CorrectValue) {
+                            pointsSum += ((ExpectedTrueFalseAnswer) expectedAnswer).Score;
+                        }
+                    } else {
+                        throw new WrongQuestionsSetException();
                     }
-                } else {
-                    //throw new WrongQuestionsSetException();
-                }
 
+                }
             }
+
+        }
+        catch (NoAnswerException e)
+        {
+            return null;
         }
 
         result.Score = pointsSum;
@@ -172,23 +181,23 @@ public final class DragonAnalyzer {
 
         ExpectedNumericAnswer answer200 = new ExpectedNumericAnswer(200);
         answer200.Ranges.add(new RangeClassifier(65,79,1));
-        answer200.Ranges.add(new RangeClassifier(80,120,2));
-        correctAnswers.put(200, answer200);
-
-        correctAnswers.put(204, new ExpectedTrueFalseAnswer(204, true, 1));
+        answer200.Ranges.add(new RangeClassifier(80,Double.MAX_VALUE,2));
 
         ExpectedNumericAnswer answer205 = new ExpectedNumericAnswer(205);
-        answer205.Ranges.add(new RangeClassifier(1.5, Double.MAX_VALUE, 1));
-        correctAnswers.put(205, answer205);
+        answer205.Ranges.add(new RangeClassifier(91, Double.MAX_VALUE, 1));
 
         ExpectedNumericAnswer answer206 = new ExpectedNumericAnswer(206);
-        answer206.Ranges.add(new RangeClassifier(144, Double.MAX_VALUE, 1));
-        correctAnswers.put(206, answer206);
-
-        correctAnswers.put(209, new ExpectedTrueFalseAnswer(209, true, 1));
+        answer206.Ranges.add(new RangeClassifier(145, Double.MAX_VALUE, 1));
 
         ExpectedNumericAnswer answer210 = new ExpectedNumericAnswer(210);
-        answer206.Ranges.add(new RangeClassifier(1, 2));
+        answer210.Ranges.add(new RangeClassifier(1, 2,1));
+
+
         correctAnswers.put(210, answer210);
+        correctAnswers.put(200, answer200);
+        correctAnswers.put(204, new ExpectedTrueFalseAnswer(204, true, 1));
+        correctAnswers.put(209, new ExpectedTrueFalseAnswer(209, true, 1));
+        correctAnswers.put(205, answer205);
+        correctAnswers.put(206, answer206);
     }
 }

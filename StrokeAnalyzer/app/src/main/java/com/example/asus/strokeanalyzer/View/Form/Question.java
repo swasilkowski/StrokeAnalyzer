@@ -1,7 +1,9 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
 /**
- * Created by Asus on 04.12.2017.
+ * Interfejs do rozróżniania rodzaju pytania w RecyclerView.
+ *
+ * @author Marta Marciszewicz
  */
 
 public interface Question {
