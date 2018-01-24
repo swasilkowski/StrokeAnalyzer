@@ -87,15 +87,17 @@ public class Patient {
      *          leczenia trombolitycznego
      */
     public TreatmentResult getTreatmentDecision() {
+        TreatmentResult result = null;
+
         try
         {
-            return TreatmentAnalyzer.MakeTreatmentDecision(this);
+            result= TreatmentAnalyzer.MakeTreatmentDecision(this);
         }
         catch (WrongQuestionsSetException exception)
         {
             Log.e("TreatmentAnalyzer", "WrongQuestionsSetException:" + exception);
         }
-        return null;
+        return result;
 
     }
 

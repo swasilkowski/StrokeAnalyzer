@@ -89,27 +89,39 @@ public final class StrokeBricksAnalyzer {
     private static List<Region> getRegions(int questionID, Patient patient)
     {
         //only left hemisphere
-        if(questionID==102 || questionID==103 || questionID==108 || questionID==110)
+        if(questionID==108 || questionID==110)
             return regionsAffectionL.get(questionID);
 
         //only right hemisphere
-        if(questionID==107 || questionID==109 || questionID==105 || questionID==112 || questionID==114)
+        if(questionID==107 || questionID==109)
             return regionsAffectionR.get(questionID);
 
-        //combination of both right and left hemispheres
-        if(questionID==104 || questionID==106)
+        //depending on dominant hemisphere
+        if(questionID==102 || questionID==103 || questionID==113)
         {
-            List<Region> tmpList = new ArrayList<Region>(regionsAffectionR.get(questionID));
-            tmpList.addAll(regionsAffectionL.get(questionID));
-            return tmpList;
+            ////right hemisphere dominant
+            if(((NumericAnswer)patient.PatientAnswers.get(116)).Value>0)
+                return regionsAffectionR.get(questionID);
+            else return  regionsAffectionL.get(questionID);
+
         }
 
-        //special analysis for question 9
-        if(questionID==113)
+        //depending on symptoms side
+        if(questionID==105 || questionID==106 || questionID==112 || questionID==114 )
         {
-            if(((NumericAnswer)patient.PatientAnswers.get(213)).Value>0)
+            //right side symptoms
+            if(((NumericAnswer)patient.PatientAnswers.get(117)).Value>0)
+                return regionsAffectionL.get(questionID);
+            else return  regionsAffectionR.get(questionID);
+        }
+
+        //special analysis for question 2
+        if(questionID==104)
+        {
+            //right side symptoms
+            if(((NumericAnswer)patient.PatientAnswers.get(117)).Value>0)
                 return regionsAffectionR.get(questionID);
-            else return regionsAffectionL.get(questionID);
+            else return  regionsAffectionL.get(questionID);
 
         }
         //special analyzis for question 11
@@ -121,17 +133,19 @@ public final class StrokeBricksAnalyzer {
                 {
                     return new ArrayList<>();
                 }
-                else
-                    return regionsAffectionR.get(questionID);
             }
-            else if(((NumericAnswer)patient.PatientAnswers.get(115)).Value==2)
+
+            List<Region> tmpList;
+            ////right hemisphere dominant
+            if(((NumericAnswer)patient.PatientAnswers.get(116)).Value>0)
+                tmpList= regionsAffectionL.get(questionID);
+            else tmpList=  regionsAffectionR.get(questionID);
+
+            if(((NumericAnswer)patient.PatientAnswers.get(115)).Value==2)
             {
-                List<Region> tmpList = new ArrayList<Region>(regionsAffectionR.get(questionID));
-                if(((NumericAnswer)patient.PatientAnswers.get(213)).Value>0)
-                    tmpList.addAll(regionsAffectionL.get(105));
-                else tmpList.addAll(regionsAffectionR.get(105));
-                return tmpList;
+                tmpList.addAll(getRegions(105, patient));
             }
+            return tmpList;
 
         }
 
@@ -201,11 +215,19 @@ public final class StrokeBricksAnalyzer {
         tmpRegionList.add(Region.M1_L);
         tmpRegionList.add(Region.M4_L);
         regionsAffectionL.put(102,new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M1_R);
+        tmpRegionList.add(Region.M4_R);
+        regionsAffectionR.put(102,new ArrayList<Region>(tmpRegionList));
         //1c
         tmpRegionList.clear();
         tmpRegionList.add(Region.M3_L);
         tmpRegionList.add(Region.M6_L);
         regionsAffectionL.put(103, new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.M3_R);
+        tmpRegionList.add(Region.M6_R);
+        regionsAffectionR.put(103, new ArrayList<Region>(tmpRegionList));
         //2
         tmpRegionList.clear();
         tmpRegionList.add(Region.M1_L);
@@ -307,6 +329,10 @@ public final class StrokeBricksAnalyzer {
         tmpRegionList.add(Region.A3_R);
         tmpRegionList.add(Region.M6_R);
         regionsAffectionR.put(115, new ArrayList<Region>(tmpRegionList));
+        tmpRegionList.clear();
+        tmpRegionList.add(Region.A3_L);
+        tmpRegionList.add(Region.M6_L);
+        regionsAffectionL.put(115, new ArrayList<Region>(tmpRegionList));
 
 
     }

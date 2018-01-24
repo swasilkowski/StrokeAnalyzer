@@ -146,8 +146,8 @@ public class ResultsFragment extends Fragment {
         iScoreResult resultiScore = patient.getIscorePrognosis();
         if(resultiScore!=null)
         {
-            ((TextView) view.findViewById(R.id.iscore30Days)).setText(String.valueOf(resultiScore.ScoreFor30Days));
-            ((TextView) view.findViewById(R.id.iscore1Year)).setText(String.valueOf(resultiScore.ScoreFor1Year));
+            ((TextView) view.findViewById(R.id.iscore30Days)).setText(String.valueOf(resultiScore.PrognosisFor30DaysDescription));
+            ((TextView) view.findViewById(R.id.iscore1Year)).setText(String.valueOf(resultiScore.PrognosisFor1YearDescription));
         }
 
         //button leading to CT pictures

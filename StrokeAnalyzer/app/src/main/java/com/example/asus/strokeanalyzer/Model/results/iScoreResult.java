@@ -14,4 +14,6 @@ public final class iScoreResult {
     public double PrognosisFor1Year;
     public int ScoreFor30Days;
     public int ScoreFor1Year;
+    public String PrognosisFor30DaysDescription;
+    public String PrognosisFor1YearDescription;
 }

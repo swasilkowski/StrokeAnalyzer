@@ -67,6 +67,8 @@ public final class iScoreAnalyzer {
         result.ScoreFor1Year = getPointsFor1Year(patient);
         result.PrognosisFor30Days = getPredictionFor30Days(result.ScoreFor30Days);
         result.PrognosisFor1Year = getPredictionFor1Year(result.ScoreFor1Year);
+        result.PrognosisFor30DaysDescription = getDescriptionFor30Days(result.ScoreFor30Days, result.PrognosisFor30Days);
+        result.PrognosisFor1YearDescription = getDescriptionFor1Year(result.ScoreFor1Year, result.PrognosisFor1Year);
         return result;
     }
 
@@ -222,6 +224,87 @@ public final class iScoreAnalyzer {
         return 100;
     }
 
+    private static String getDescriptionFor30Days(int points, double procent) {
+        String text;
+        if (points < 59) {
+            text= "0-58: ";
+        }
+        if (points >= 59 && points <= 70) {
+            text ="59-70: ";
+        }
+        if (points >= 71 && points <= 80) {
+            text= "71-80: ";
+        }
+        if (points >= 81 && points <= 90) {
+            text= "81-90: ";
+        }
+        if (points >= 91 && points <= 100) {
+            text= "91-100: ";
+        }
+        if (points >= 101 && points <= 110) {
+            text= "101-110: ";
+        }
+        if (points >= 111 && points <= 120) {
+            text= "111-120: ";
+        }
+        if (points >= 121 && points <= 130) {
+            text= "121-130: ";
+        }
+        if (points >= 131 && points <= 140) {
+            text= "131-140: ";
+        }
+        if (points >= 141 && points <= 150) {
+            text= "141-150: ";
+        }
+        if (points >= 151 && points <= 160) {
+            text= "151-160: ";
+        }
+        if (points >= 161 && points <= 170) {
+            text= "161-170: ";
+        }
+        if (points >= 171 && points <= 180) {
+            text= "171-180: ";
+        }
+        if (points >= 181 && points <= 190) {
+            text= "181-190: ";
+        }
+        if (points >= 191 && points <= 200) {
+            text= "191-200: ";
+        }
+        if (points >= 201 && points <= 210) {
+            text= "201-210: ";
+        }
+        if (points >= 211 && points <= 220) {
+            text= "211-220: ";
+        }
+        if (points >= 221 && points <= 230) {
+            text= "221-230: ";
+        }
+        if (points >= 231 && points <= 240) {
+            text= "231-240: ";
+        }
+        if (points >= 241 && points <= 250) {
+            text= "241-250: ";
+        }
+        if (points >= 251 && points <= 260) {
+            text= "251-260: ";
+        }
+        if (points >= 261 && points <= 270) {
+            text= "261-270: ";
+        }
+        if (points >= 271 && points <= 280) {
+            text= "271-280: ";
+        }
+        if (points >= 281 && points <= 285) {
+            text= "281-285: ";
+        }
+        else
+            text=">285: ";
+
+        return text+procent+"%";
+    }
+
+
     /**
      * Metoda wyznaczająca procentową wartość prawdopodobieństwa zgodnu pacjenta w przeciągu 1 roku
      * od wystąpienia udaru. Wartość wyznaczana jest na podstawie zakresu do którego przynależy suma punktó points
@@ -289,6 +372,70 @@ public final class iScoreAnalyzer {
             return 97.7;
         }
         return 100;
+    }
+
+    private static String getDescriptionFor1Year(int points, double procent) {
+        String text;
+        if (points < 59) {
+            text= "0-58: ";
+        }
+        if (points >= 59 && points <= 70) {
+            text= "59-70: ";
+        }
+        if (points >= 71 && points <= 80) {
+            text= "71-80: ";
+        }
+        if (points >= 81 && points <= 90) {
+            text= "81-90: ";
+        }
+        if (points >= 91 && points <= 100) {
+            text= "91-100: ";
+        }
+        if (points >= 101 && points <= 110) {
+            text= "101-110: ";
+        }
+        if (points >= 111 && points <= 120) {
+            text= "111-120: ";
+        }
+        if (points >= 121 && points <= 130) {
+            text= "121-130: ";
+        }
+        if (points >= 131 && points <= 140) {
+            text= "131-140: ";
+        }
+        if (points >= 141 && points <= 150) {
+            text= "141-150: ";
+        }
+        if (points >= 151 && points <= 160) {
+            text= "151-160: ";
+        }
+        if (points >= 161 && points <= 170) {
+            text= "161-170: ";
+        }
+        if (points >= 171 && points <= 180) {
+            text= "171-180: ";
+        }
+        if (points >= 181 && points <= 190) {
+            text= "181-190: ";
+        }
+        if (points >= 191 && points <= 200) {
+            text= "191-200: ";
+        }
+        if (points >= 201 && points <= 210) {
+            text= "201-210: ";
+        }
+        if (points >= 211 && points <= 220) {
+            text= "211-220: ";
+        }
+        if (points >= 221 && points <= 230) {
+            text= "221-230: ";
+        }
+        if (points >= 231 && points <= 240) {
+            text= "231-240: ";
+        }
+        else
+            text= ">240: ";
+        return text+procent+"%";
     }
 
     /**
