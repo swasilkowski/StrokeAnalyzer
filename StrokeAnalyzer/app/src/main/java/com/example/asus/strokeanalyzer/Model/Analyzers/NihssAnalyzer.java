@@ -25,6 +25,9 @@ public final class NihssAnalyzer {
 
         for (Answer answer:
              examination.Answers) {
+            if (answer.GetQuestionID() > 115) {
+                continue;
+            }
             NumericAnswer numericAnswer = answer instanceof NumericAnswer? ((NumericAnswer)answer) : null;
             if(numericAnswer != null && numericAnswer.Value>=0)
                 pointsSum += numericAnswer.Value;

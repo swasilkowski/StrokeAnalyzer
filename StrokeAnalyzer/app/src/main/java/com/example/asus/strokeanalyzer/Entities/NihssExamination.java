@@ -28,6 +28,12 @@ public class NihssExamination {
     @ColumnInfo(name = "added_on")
     public long addedOn;
 
+    @ColumnInfo(name = "dominant_hemisphere")
+    public double DominantHemisphere;
+
+    @ColumnInfo(name = "symptoms_side")
+    public double SymptomsSide;
+
     public double Question1;
     public double Question2;
     public double Question3;

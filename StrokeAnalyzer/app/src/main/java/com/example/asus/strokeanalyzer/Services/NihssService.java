@@ -159,6 +159,12 @@ public class NihssService {
                 case 115:
                     entity.Question15 = numericAnswer.Value;
                     break;
+                case 116:
+                    entity.DominantHemisphere = numericAnswer.Value;
+                    break;
+                case 117:
+                    entity.SymptomsSide = numericAnswer.Value;
+                    break;
                 default:
                     throw new IndexOutOfBoundsException();
             }
@@ -231,6 +237,12 @@ public class NihssService {
         model.Answers.add(answer);
         answer = new NumericAnswer(115);
         answer.Value = entity.Question15;
+        model.Answers.add(answer);
+        answer = new NumericAnswer(116);
+        answer.Value = entity.DominantHemisphere;
+        model.Answers.add(answer);
+        answer = new NumericAnswer(117);
+        answer.Value = entity.SymptomsSide;
         model.Answers.add(answer);
 
         return model;
