@@ -227,6 +227,21 @@ public final class FormsStructure {
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
+        //dodatkowe pomocnicze pytania
+        id=116;
+        Map<Integer, String> answers116 = new Hashtable<>();
+        answers116.put(0, "Lewa");
+        answers116.put(1, "Prawa");
+        BulletedQuestion question116 = new BulletedQuestion(id, "* Dominująca półkula mózgu", answers116);
+        questionsUsedForStrokeBricks.add(id);
+
+        id=117;
+        Map<Integer, String> answers117 = new Hashtable<>();
+        answers117.put(0, "Lewa");
+        answers117.put(1, "Prawa");
+        BulletedQuestion question117 = new BulletedQuestion(id, "* Strona ciała, po której występują zaznaczone objawy", answers117);
+        questionsUsedForStrokeBricks.add(id);
+
         Questions.put(101, question101);
         Questions.put(102, question102);
         Questions.put(103, question103);
@@ -242,6 +257,9 @@ public final class FormsStructure {
         Questions.put(113, question113);
         Questions.put(114, question114);
         Questions.put(115, question115);
+        Questions.put(116, question116);
+        Questions.put(117, question117);
+
 
         ArrayList<Integer> questionsForNihss = new ArrayList<>();
         questionsForNihss.add(101);
@@ -259,7 +277,9 @@ public final class FormsStructure {
         questionsForNihss.add(113);
         questionsForNihss.add(114);
         questionsForNihss.add(115);
-        QuestionsUsedForForm.put(Form.NIHSS,questionsForNihss);
+        questionsForNihss.add(116);
+        questionsForNihss.add(117);
+        QuestionsUsedForForm.put(Form.NIHSS,questionsUsedForNihhs);
         QuestionsPrintedInForm.put(Form.NIHSS, questionsForNihss);
 
         //DEMOGRAFICZNE I KLINICZNE
@@ -336,13 +356,6 @@ public final class FormsStructure {
         TrueFalseQuestion question212 = new TrueFalseQuestion(id, "Krwotok śródmózgowy w TK/MR");
         questionsUsedForThrombolysis.add(id);
 
-        id=213;
-        Map<Integer, String> answers213 = new Hashtable<>();
-        answers213.put(0, "Lewa");
-        answers213.put(1, "Prawa");
-        BulletedQuestion question213 = new BulletedQuestion(id, "Dominująca półkula mózgu", answers213);
-        questionsUsedForStrokeBricks.add(id);
-
         Questions.put(200,question200);
         Questions.put(201, question201);
         Questions.put(202, question202);
@@ -356,7 +369,6 @@ public final class FormsStructure {
         Questions.put(210, question210);
         Questions.put(211, question211);
         Questions.put(212, question212);
-        Questions.put(213,question213);
 
         ArrayList<Integer> questionsDemographic = new ArrayList<>();
         questionsDemographic.add(200);
@@ -372,7 +384,6 @@ public final class FormsStructure {
         questionsDemographic.add(210);
         questionsDemographic.add(211);
         questionsDemographic.add(212);
-        questionsDemographic.add(213);
         QuestionsPrintedInForm.put(Form.DemographicAndClinic,questionsDemographic);
 
         //LECZENIE
