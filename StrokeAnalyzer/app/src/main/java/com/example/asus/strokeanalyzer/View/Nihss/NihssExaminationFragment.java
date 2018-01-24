@@ -130,7 +130,7 @@ public class NihssExaminationFragment extends Fragment {
                     if(position==0)
                     {
                         //move to proper form
-                        FormFragment setFragment = FormFragment.newInstance(Form.NIHSS, patientID, false, false);
+                        FormFragment setFragment = FormFragment.newInstance(Form.NIHSS, patientID,  false);
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragmentFrame, setFragment, null)
                                 .addToBackStack(null)
@@ -178,7 +178,7 @@ public class NihssExaminationFragment extends Fragment {
             if(activity!=null)
             {
                 //move to proper form
-                FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID, false, true);
+                FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID, true);
                 activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentFrame, setFragment, null)
                         .addToBackStack(null)

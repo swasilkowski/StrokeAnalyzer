@@ -92,12 +92,8 @@ public class PatientsListFragment extends Fragment  {
                 @Override
                 public void onClick(View view, int position) {
 
-                    // Creating Bundle object
-                    Bundle bundel = new Bundle();
-
                     // Storing data into bundle
                     final Patient patient = patients.get(position);
-                    bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
 
                     //print dialog with actions for patient
                     PatientsListActionFragment.DeleteListener listener = new PatientsListActionFragment.DeleteListener() {
@@ -110,8 +106,7 @@ public class PatientsListFragment extends Fragment  {
                             pAdapter.notifyDataSetChanged();
                         }
                     };
-                    DialogFragment dialog =PatientsListActionFragment.newInstance(listener);
-                    dialog.setArguments(bundel);
+                    DialogFragment dialog =PatientsListActionFragment.newInstance( patient.Id, listener);
                     dialog.show(getActivity().getSupportFragmentManager(), "PatientsListActionFragment");
                 }
             }));

@@ -1,30 +1,19 @@
 package com.example.asus.strokeanalyzer.View.DialogWindows;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-
-import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
-import com.example.asus.strokeanalyzer.Services.PatientService;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link ReportFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Klasa będąca podklasą {@link DialogFragment}. Wykorzystywana jest w celu potwierdzenia przez
+ * użytkownika chęci wygenerowania raportu z wynikami pacjenta.
+ * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link ReportFragment#newInstance}.
  */
 public class ReportFragment extends DialogFragment {
 
@@ -34,7 +23,9 @@ public class ReportFragment extends DialogFragment {
     //Patient patient;
     Integer patientID;
 
-
+    /**
+     * Interfejs akcji przycisków w oknie dialogowym
+     */
     public interface GenerateReportDialogListener {
         void onDialogReportPositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
         void onDialogReportNegativeClick(android.support.v4.app.DialogFragment dialog);
@@ -43,16 +34,30 @@ public class ReportFragment extends DialogFragment {
     // Use this instance of the interface to deliver action events
     GenerateReportDialogListener _listener;
 
-    public static ReportFragment newInstance(Patient patient) {
+     /**
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
+     *
+     * @param patientID Id pacjenta, dla którego ma zostać wygenerowany raport
+     * @return (ReportFragment) nowa instancja fragmentu ReportFragment
+     */
+    public static ReportFragment newInstance(int patientID, GenerateReportDialogListener listener) {
         ReportFragment fragment = new ReportFragment();
+        fragment._listener = listener;
 
         Bundle args = new Bundle();
-        args.putInt(ARG_PATIENT_ID, patient.Id);
+        args.putInt(ARG_PATIENT_ID, patientID);
         fragment.setArguments(args);
 
         return fragment;
     }
 
+    /**
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}
+     *
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,21 +66,14 @@ public class ReportFragment extends DialogFragment {
         }
     }
 
-    // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        // Verify that the host activity implements the callback interface
-        try {
-            // Instantiate the NoticeDialogListener so we can send events to the host
-            _listener = (GenerateReportDialogListener) activity;
-        } catch (ClassCastException e) {
-            // The activity doesn't implement the interface, throw exception
-            throw new ClassCastException(activity.toString()
-                    + " must implement ChooseNameDialogListener");
-        }
-    }
-
+    /**
+     * Metoda pozwala na stowrzenie własnego kontenera na okno dialogowe. Wstrzykuje widok oraz
+     * odpowiada za wywoływanie operacji listnera.
+     *
+     * @param savedInstanceState poprzedni zapisany stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     * @return (Dialog) nowa instancja okna dialogowego, która ma być wyświetlona we fragmencie
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -84,7 +82,6 @@ public class ReportFragment extends DialogFragment {
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.fragment_report, null);
-       // final EditText emailView = (EditText) dialogView.findViewById(R.id.emailAddress);
 
         builder.setTitle(R.string.report_generation)
                 .setView(dialogView)
@@ -107,78 +104,4 @@ public class ReportFragment extends DialogFragment {
         return builder.create();
     }
 
-    /*
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public ReportFragment() {
-        // Required empty public constructor
-    }
-
-    *//**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ReportFragment.
-     *//*
-    // TODO: Rename and change types and number of parameters
-
-
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

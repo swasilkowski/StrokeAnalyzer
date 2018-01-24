@@ -22,7 +22,7 @@ import java.io.File;
 
 import static java.security.AccessController.getContext;
 
-public class MainStartActivity extends AppCompatActivity implements ReportFragment.GenerateReportDialogListener {
+public class MainStartActivity extends AppCompatActivity{
 
     private FragmentManager fm;
 
@@ -66,32 +66,4 @@ public class MainStartActivity extends AppCompatActivity implements ReportFragme
                 .commit();
     }
 
-    @Override
-    public void onDialogReportPositiveClick(DialogFragment dialog, int patientID) {
-
-        //generate report about the patient
-        PatientService patientService = new PatientService(dialog.getContext());
-        String fileName = Report.GenerateReport( patientService.GetPatientById(patientID), dialog.getContext());
-
-        if(fileName!=null)
-            share(fileName, patientService.GetPatientById(patientID).PatientNumber);
-    }
-
-    @Override
-    public void onDialogReportNegativeClick(DialogFragment dialog) {
-        dialog.dismiss();
-    }
-
-    private void share(String fileName, long patientNumber) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        File file = new File(fileName);
-
-        if(file.exists()) {
-            intent.setType("application/pdf");
-            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_share_msg_title));
-            intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.report_share_msg_text)+ String.valueOf(patientNumber));
-            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+fileName));
-            startActivity(Intent.createChooser(intent, getString(R.string.report_share_title)));
-        }
-    }
 }

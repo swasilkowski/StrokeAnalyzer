@@ -139,7 +139,7 @@ public class FormListFragment extends Fragment {
     public void printForm(Form form)
     {
         //move to proper form
-        FormFragment setFragment = FormFragment.newInstance(form, patientID, false, false);
+        FormFragment setFragment = FormFragment.newInstance(form, patientID, false);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentFrame, setFragment, null)
                 .addToBackStack(null)

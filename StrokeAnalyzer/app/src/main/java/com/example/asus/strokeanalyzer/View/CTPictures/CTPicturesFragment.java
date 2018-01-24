@@ -12,18 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-
 import com.example.asus.strokeanalyzer.Model.CTPictures;
-import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link CTPicturesFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Klasa będąca podklasą {@link Fragment}. Pozwala na wyświetlenie miniatur obrazów CT móżgu
+ *  z naniesionymi obszarami prawdopodobnego występowania udaru móżgu u pacjenta.
+ * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link CTPicturesFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class CTPicturesFragment extends Fragment {
 
@@ -35,31 +33,20 @@ public class CTPicturesFragment extends Fragment {
     private PatientService patientService;
     Bitmap[] editedPictures;
 
-    //int logos[] = {R.drawable.brain, R.drawable.brain, R.drawable.brain, R.drawable.brain};
-
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-   // private static final String ARG_PARAM1 = "param1";
-   // private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private Patient patient;
-
-   // private OnFragmentInteractionListener mListener;
-
+    /**
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
+     *
+     */
     public CTPicturesFragment() {
         // Required empty public constructor
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-
-     * @return A new instance of fragment CTPicturesFragment.
+     * @param patientID Id pacjenta, którego dotyczą obrazy mózgu wyświetlane we fragmencie
+     * @return (CTPicturesFragment) nowa instancja fragmentu CTPicturesFragment
      */
-    // TODO: Rename and change types and number of parameters
     public static CTPicturesFragment newInstance(Integer patientID) {
         CTPicturesFragment fragment = new CTPicturesFragment();
 
@@ -70,6 +57,13 @@ public class CTPicturesFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}
+     *
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +72,17 @@ public class CTPicturesFragment extends Fragment {
         }
     }
 
+    /**
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
+     * fragmentu inicjalizuje obiekt klasy RecyclerView odpowiedzialny za prezentację obrazów CT przy wykorzystaniu
+     * klasy {@link CTPicturesAdapter}
+     *
+     * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
+     * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,43 +124,4 @@ public class CTPicturesFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-/*
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

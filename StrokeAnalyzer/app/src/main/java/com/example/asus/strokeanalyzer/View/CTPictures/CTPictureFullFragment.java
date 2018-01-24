@@ -14,28 +14,50 @@ import android.widget.ImageView;
 import com.example.asus.strokeanalyzer.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link CTPictureFullFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Klasa będąca podklasą {@link Fragment}. Pozwala na wyświetlenie powiększonego obrazu CT mózgu
+ * z nanesionymi obszarami prawdopodobnego występowania udaru.
+ * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link CTPictureFullFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class CTPictureFullFragment extends Fragment {
 
     ImageView selectedImage;
     Bitmap image;
 
+    /**
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
+     *
+     * @param image obraz, który ma zostać powiększony
+     * @return (CTPictureFullFragment) nowa instancja fragmentu CTPictureFullFragment
+     */
     public static CTPictureFullFragment newInstance(Bitmap image) {
         CTPictureFullFragment fragment = new CTPictureFullFragment();
         fragment.image = image;
         return fragment;
     }
 
+    /**
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu.
+     *
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
+     * fragmentu ustawia obraz w nim wyświetlany.
+     *
+     * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
+     * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,74 +69,4 @@ public class CTPictureFullFragment extends Fragment {
 
         return view;
     }
-
-
-   /* // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public CTPictureFullFragment() {
-        // Required empty public constructor
-    }
-
-    *//**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CTPictureFullFragment.
-     *//*
-    // TODO: Rename and change types and number of parameters
-
-
-
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

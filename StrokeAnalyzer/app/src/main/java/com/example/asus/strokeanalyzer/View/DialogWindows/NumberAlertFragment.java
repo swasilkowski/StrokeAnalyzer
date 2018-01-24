@@ -2,32 +2,24 @@ package com.example.asus.strokeanalyzer.View.DialogWindows;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.asus.strokeanalyzer.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * create an instance of this fragment.
+ * Klasa będąca podklasą {@link DialogFragment}. Wykorzystywana jest w celu poinformowania użytkownika,
+ * iż próbuje on dodać pacjenta o takim samym numerze, jak już istniejący pacjent w aplikacji.
+ * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link NumberAlertFragment#newInstance}.
  */
 public class NumberAlertFragment extends DialogFragment {
 
-
-    //Patient patient;
-    Integer patientID;
-
-
+    /**
+     * Interfejs akcji przycisków w oknie dialogowym
+     */
     public interface NumberAlertDialogListener {
         void onDialogNumberPositiveClick(android.support.v4.app.DialogFragment dialog);
         void onDialogNumberNegativeClick(android.support.v4.app.DialogFragment dialog);
@@ -36,35 +28,39 @@ public class NumberAlertFragment extends DialogFragment {
     // Use this instance of the interface to deliver action events
     NumberAlertDialogListener _listener;
 
+    /**
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów. Inicjalizuje ona listener.
+     *
+     * @param listener obiekt klasy {@link NumberAlertDialogListener}, wykorzystywany w oknie dialogowym
+     *                do monitorowania akcji przycisków okna
+     * @return (NumberAlertFragment) nowa instancja fragmentu NumberAlertFragment
+     */
     public static NumberAlertFragment newInstance(NumberAlertDialogListener listener) {
         NumberAlertFragment fragment = new NumberAlertFragment();
         fragment._listener = listener;
         return fragment;
     }
 
+    /**
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}
+     *
+     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*        if (getArguments() != null) {
-            patientID = getArguments().getInt(getString(R.string.patient_id_tag));
-        }*/
     }
 
-/*    // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        // Verify that the host activity implements the callback interface
-        try {
-            // Instantiate the NoticeDialogListener so we can send events to the host
-            _listener = (DeletePatientDialogListener) activity;
-        } catch (ClassCastException e) {
-            // The activity doesn't implement the interface, throw exception
-            throw new ClassCastException(activity.toString()
-                    + " must implement ChooseNameDialogListener");
-        }
-    }*/
-
+    /**
+     * Metoda pozwala na stowrzenie własnego kontenera na okno dialogowe. Wstrzykuje widok oraz
+     * odpowiada za wywoływanie operacji listnera.
+     *
+     * @param savedInstanceState poprzedni zapisany stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     * @return (Dialog) nowa instancja okna dialogowego, która ma być wyświetlona we fragmencie
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -73,7 +69,6 @@ public class NumberAlertFragment extends DialogFragment {
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.fragment_number_alert, null);
-        // final EditText emailView = (EditText) dialogView.findViewById(R.id.emailAddress);
 
         builder.setTitle(R.string.number_alert_title)
                 .setView(dialogView)
@@ -96,91 +91,4 @@ public class NumberAlertFragment extends DialogFragment {
         return builder.create();
     }
 
-   /* // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public NumberAlertFragment() {
-        // Required empty public constructor
-    }
-
-    *//**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NumberAlertFragment.
-     *//*
-    // TODO: Rename and change types and number of parameters
-    public static NumberAlertFragment newInstance(String param1, String param2) {
-        NumberAlertFragment fragment = new NumberAlertFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_number_alert, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

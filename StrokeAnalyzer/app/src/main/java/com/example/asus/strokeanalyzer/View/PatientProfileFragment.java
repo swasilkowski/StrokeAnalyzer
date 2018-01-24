@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.View;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
@@ -13,9 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.asus.strokeanalyzer.Model.Patient;
+import com.example.asus.strokeanalyzer.Model.Report;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
+
+import java.io.File;
 
 /**
  * Klasa będąca podklasą {@link Fragment}. Fragment wyświetla profil pacjenta wybranego przez użytkownika
@@ -152,18 +157,48 @@ public class PatientProfileFragment extends Fragment {
     {
         if(activity!=null)
         {
-            // Creating Bundle object
-            Bundle bundel = new Bundle();
+            ReportFragment.GenerateReportDialogListener listener = new ReportFragment.GenerateReportDialogListener() {
+                @Override
+                public void onDialogReportPositiveClick(DialogFragment dialog, int patientID) {
+                    //generate report about the patient
+                    PatientService patientService = new PatientService(dialog.getContext());
+                    String fileName = Report.GenerateReport( patientService.GetPatientById(patientID), dialog.getContext());
 
-            // Storing data into bundle
-            bundel.putInt(getString(R.string.patient_id_tag), patient.Id);
+                    if(fileName!=null)
+                        share(fileName, patientService.GetPatientById(patientID).PatientNumber);
+                }
+
+                @Override
+                public void onDialogReportNegativeClick(DialogFragment dialog) {
+                    dialog.dismiss();
+                }
+            };
 
             //print dialog with actions for patient
-            DialogFragment dialog = ReportFragment.newInstance(patient);
-            dialog.setArguments(bundel);
+            DialogFragment dialog = ReportFragment.newInstance(patient.Id, listener);
             dialog.show(activity.getSupportFragmentManager(), "ReportFragment");
         }
 
+    }
+
+    /**
+     * Metoda dpowiedzialna za udostępnianie wygenerowanego pliku raportu innym aplikacjom na urządzeniu
+     * mobilnym.
+     *
+     * @param fileName nazwa pliku, w którym zapisany został wygenerowany raport
+     * @param patientNumber numer identyfikacyjny pacjenta, którego raportu ma zostać udostępniony
+     */
+    private void share(String fileName, long patientNumber) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        File file = new File(fileName);
+
+        if(file.exists()) {
+            intent.setType("application/pdf");
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.report_share_msg_title));
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.report_share_msg_text)+ String.valueOf(patientNumber));
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+fileName));
+            startActivity(Intent.createChooser(intent, getString(R.string.report_share_title)));
+        }
     }
 
     /**
