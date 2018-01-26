@@ -3,6 +3,7 @@ package com.example.asus.strokeanalyzer.View;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,17 @@ public class FormListFragment extends Fragment {
         if (getArguments() != null) {
             patientID = getArguments().getInt(ARG_PATIENT_ID);
         }
+    }
+
+    /**
+     * Metoda wywoływana w momencie, gdy fragment jest wyświetlany użytkownikowi. Aplikacja wykorzystuje tę metodę
+     * do kontrolowania elementu ActionBar.
+     */
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
     }
 
     /**

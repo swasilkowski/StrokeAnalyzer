@@ -46,6 +46,17 @@ public class PatientsListFragment extends Fragment  {
     }
 
     /**
+     * Metoda wywoływana w momencie, gdy fragment jest wyświetlany użytkownikowi. Aplikacja wykorzystuje tę metodę
+     * do kontrolowania elementu ActionBar.
+     */
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+    }
+
+    /**
      * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
      * fragmentu inicjalizuje obiekt klasy RecyclerView odpowiedzialny za prezentację listy pacjentów przy wykorzystaniu
      * klasy {@link PatientAdapter}
