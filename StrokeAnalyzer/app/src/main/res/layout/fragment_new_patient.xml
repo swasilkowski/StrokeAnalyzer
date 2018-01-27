@@ -9,20 +9,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/nextBt"
         android:layout_alignParentTop="true"
         android:layout_margin="20dp">
 
         <include layout="@layout/content_new_patient" />
     </FrameLayout>
-
-
-    <Button
-        android:id="@+id/nextBt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/next_bt"
-        android:layout_alignParentBottom="true"
-        style="@style/MenuButton"/>
 
 </RelativeLayout>

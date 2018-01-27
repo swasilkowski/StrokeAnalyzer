@@ -23,6 +23,8 @@ import com.example.asus.strokeanalyzer.R;
  */
 public class CTPictureFullFragment extends Fragment {
 
+    private static final String ARG_PICTURE = "picture";
+
     ImageView selectedImage;
     Bitmap image;
 
@@ -34,7 +36,12 @@ public class CTPictureFullFragment extends Fragment {
      */
     public static CTPictureFullFragment newInstance(Bitmap image) {
         CTPictureFullFragment fragment = new CTPictureFullFragment();
-        fragment.image = image;
+        //fragment.image = image;
+
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_PICTURE, image);
+        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -47,6 +54,9 @@ public class CTPictureFullFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            image = getArguments().getParcelable(ARG_PICTURE);
+        }
     }
 
     /**
@@ -75,6 +85,7 @@ public class CTPictureFullFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ctpicture_full, container, false);
+        view.setClickable(true);
         view.setBackgroundColor(getResources().getColor(R.color.pictureBackground, null));
         selectedImage = view.findViewById(R.id.basicPicFullsize);
         selectedImage.setImageBitmap(image);

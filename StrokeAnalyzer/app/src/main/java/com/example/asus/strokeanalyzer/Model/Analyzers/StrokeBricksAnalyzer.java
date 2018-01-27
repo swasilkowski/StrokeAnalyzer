@@ -68,6 +68,8 @@ public final class StrokeBricksAnalyzer {
         Set<Region> affectedRegions = new HashSet<>();
 
         NihssExamination nihssExamination = p.getLatestNihssExamination();
+        if(nihssExamination==null)
+            return null;
 
         for (Answer answer: nihssExamination.Answers) {
             if (!(answer instanceof NumericAnswer)) {

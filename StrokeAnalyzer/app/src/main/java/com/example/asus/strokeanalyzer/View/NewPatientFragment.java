@@ -5,6 +5,9 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -66,17 +69,6 @@ public class NewPatientFragment extends Fragment {
         surname = (EditText) view.findViewById(R.id.surname);
         number = (EditText) view.findViewById(R.id.patientNumber);
 
-        final Button nextBt= (Button) view.findViewById(R.id.nextBt);
-        nextBt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                if(!createPatient(v))
-                    Toast.makeText(v.getContext(), getString(R.string.toast_new_patient), Toast.LENGTH_LONG).show();
-            }
-        });
-
         return view;
     }
 
@@ -90,6 +82,40 @@ public class NewPatientFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         patientService = new PatientService(getContext());
+        setHasOptionsMenu(true);
+    }
+
+    /**
+     * Metoda umożliwiająca zainicjowanie standardowego menu aktywności.
+     *
+     * @param menu obiekt klasy Menu, w którym umieszczone powinno zostać umieszczone menu dla stworzone
+     *             tego fragmentu
+     * @param inflater obiekt klasy MenuInflater pozwalający na pozyskanie menu z zasobów aplikacji
+     */
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.form, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.done) {
+
+            //creating new patient profile
+            if(!createPatient())
+                Toast.makeText(getContext(), getString(R.string.toast_new_patient), Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -120,11 +146,10 @@ public class NewPatientFragment extends Fragment {
      * prosi o potwierdzenie przez uzytkownika chęci utowrzenia profilu pacjenta o tym samym numerze., w przypadku zaistnienia
      * takiej sytuacji.
      *
-     * @param v obiekt klasy View pozwalający na pozyskanie kontekstu aplikacji
      * @return (boolean) true - jeżeli stowrzenie profilu nowego pacjenta zakończyło się sukcesem;
      *          false - jeżeli nie udało się utworzyć profilu nowego pacjenta
      */
-    public boolean createPatient(View v)
+    public boolean createPatient()
     {
         final String name = this.name.getText().toString();
         final String surname = this.surname.getText().toString();
@@ -163,7 +188,7 @@ public class NewPatientFragment extends Fragment {
         }
         catch(NumberFormatException exception)
         {
-            Toast.makeText(v.getContext(),"Numer pacjenta jest za długi. Wprwadź inny numer", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Numer pacjenta jest za długi. Wprwadź inny numer", Toast.LENGTH_LONG).show();
         }
 
         return true;
