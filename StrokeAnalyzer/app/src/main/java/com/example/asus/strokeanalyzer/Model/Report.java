@@ -1,15 +1,19 @@
 package com.example.asus.strokeanalyzer.Model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
 import com.example.asus.strokeanalyzer.R;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -136,6 +140,23 @@ public final class Report {
             p8.setAlignment(Paragraph.ALIGN_LEFT);
             p8.setFont(paraFont);
             doc.add(p8);
+
+            String strokeBrickResultText = noResult;
+            if (patient.getStrokeBricksAffectedRegions() != null) {
+                for (Region region:
+                     patient.getStrokeBricksAffectedRegions()) {
+                    strokeBrickResultText += region.toString() + "\n";
+                }
+            }
+            Paragraph p9 = new Paragraph(context.getString(R.string.report_stroke_bricks) + "\n" + strokeBrickResultText);
+            CTPictures.InitializeCTPictures(context);
+            Bitmap[] sbImages = CTPictures.GenerateOutputImage(patient.getStrokeBricksAffectedRegions());
+            Image i = Image.getInstance(sbImages[0].getNinePatchChunk());
+            Chunk c = new Chunk(i, 0, 0);
+            p9.add(c);
+            p9.setAlignment(Paragraph.ALIGN_LEFT);
+            p9.setFont(paraFont);
+            doc.add(p9);
 
             filePath=file.getPath();
 
