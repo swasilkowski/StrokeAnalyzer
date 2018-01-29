@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -97,6 +98,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             questionObject = question;
             this.question.setText(((DescriptiveQ)question).getText());
             this.answer.setText(((DescriptiveQ)questionObject).getAnswer());
+            answer.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
             answer.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -154,6 +156,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             this.question.setText(((NumericQ)question).getText());
             if(((NumericQ)questionObject).getAnswerSet())
                 this.answer.setText(numericAnswerTransform(String.valueOf(((NumericQ)questionObject).getAnswer())));
+            answer.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
             answer.addTextChangedListener(new TextWatcher() {
                 @Override

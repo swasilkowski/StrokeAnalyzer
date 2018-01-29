@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="@color/colorStartBackground"
+    tools:context="com.example.asus.strokeanalyzer.View.MainStartActivity"
+    tools:showIn="@layout/activity_main_start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/logo"
+            style="@style/LogoPicture"
+            app:srcCompat="@drawable/logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                style="@style/HugeButton"
+                android:id="@+id/listBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list_bt_text"
+                android:onClick="showList" />
+
+            <Button
+                style="@style/HugeButton"
+                android:id="@+id/newPatientBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/new_patient_bt_text"
+                android:onClick="addPatient"
+                android:background="@color/colorAccent"
+                android:shadowColor="@color/colorAccentDark"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
