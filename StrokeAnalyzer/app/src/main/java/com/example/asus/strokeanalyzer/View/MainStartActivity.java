@@ -39,6 +39,7 @@ public class MainStartActivity extends AppCompatActivity{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
     }
 
