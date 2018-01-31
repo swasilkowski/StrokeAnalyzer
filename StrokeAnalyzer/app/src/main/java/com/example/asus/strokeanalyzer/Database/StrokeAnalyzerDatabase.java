@@ -10,9 +10,8 @@ import com.example.asus.strokeanalyzer.Entities.OtherData;
 import com.example.asus.strokeanalyzer.Entities.Patient;
 
 /**
- * Abstrakcyjna klasa określająca definicję bazy danych aplikacji
- * Jest rozszerzeniem klasy RoomDatabase. Zawiera metody zwracające interfejsy DAO
- * (Data Access Object) bazy danych.
+ * Abstrakcyjna klasa określająca definicję bazy danych aplikacji. Jest rozszerzeniem
+ * klasy RoomDatabase. Zawiera metody zwracające interfejsy DAO(Data Access Object) bazy danych.
  *
  * @author Stanisław Wasilkowski
  */
@@ -20,10 +19,25 @@ import com.example.asus.strokeanalyzer.Entities.Patient;
 @Database(entities = {Patient.class, NihssExamination.class, OtherData.class}, version = 6, exportSchema = false)
 public abstract class StrokeAnalyzerDatabase extends RoomDatabase {
 
+    /**
+     * Metoda zwracająca interfejs DAO dla tabeli zawierającej dane pacjetów.
+     *
+     * @return interfejs DAO tabeli zawierającej dane pacjetów
+     */
     public abstract PatientDao patientDao();
 
+    /**
+     * Metoda zwracająca interfejs DAO dla tabeli zawierającej badania pacjentów w skali NIHSS.
+     *
+     * @return interfejs DAO dla tabeli zawierającej badania pacjentów w skali NIHSS.
+     */
     public abstract NihssDao nihssDao();
 
+    /**
+     * Metoda zwracająca interfejs DAO dla tabeli zawierającej odpowiedzi pacjentów na pytania.
+     *
+     * @return interfejs DAO dla tabeli zawierającej odpowiedzi pacjentów na pytania
+     */
     public abstract OtherDataDao otherDataDao();
 
 }

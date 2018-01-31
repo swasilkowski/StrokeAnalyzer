@@ -7,7 +7,7 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Klasa definiująca tabelę w bazie danych zawierającą odpowiedzi na pytania formularzy aplikacji
+ * Klasa definiująca tabelę w bazie danych zawierającą odpowiedzi na pytania formularzy aplikacji.
  *
  * @author Stanisław Wasilkowski
  */

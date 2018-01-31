@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Klasa definująca operacje na bazie danych związane z tablą zawierająca badania w skali NIHSS
+ * Klasa udostępniająca operacje na bazie danych związane z tablą zawierająca badania w skali NIHSS.
  *
  * @author Stanisław Wasilkowski
  */
@@ -20,13 +20,10 @@ public class NihssService {
     final private static StrokeAnalyzerDatabase db = DatabaseAccess.getInstance().database;
 
     /**
-     * Metoda pobierająca z bazy danych listę badań w skali NIHSS dla pacjenta o podanym Id
-     * Funkcja pobiera, z tabeli bazy danych przechowującej badania w skali NIHSS, listę badań pacjenta,
-     * a następnie dokoknuje ich konwersji na obiekty klasy Model.NihssExamination
+     * Metoda zwracająca z bazy danych listę badań w skali NIHSS dla pacjenta o podanym id.
      *
-     * @param patientId Id pacjenta, którego badania mają zostać pobrane z bazy danych
-     * @return
-     * {@code List<NihssExamination>} lista badań w skali NIHSS pacjenta o podanym Id
+     * @param patientId id pacjenta, którego badania mają zostać pobrane z bazy danych
+     * @return lista badań w skali NIHSS pacjenta o podanym id
      */
     public static List<NihssExamination> getNihssExaminationsForPatient(int patientId){
         List<NihssExamination> examinations = new ArrayList<>();
@@ -43,12 +40,10 @@ public class NihssService {
     }
 
     /**
-     * Metoda pobierająca z bazy danych najnowsze badanie w skali NIHSS dla pacjenta o podany Id
-     * Funkcja pobiera z tabeli przechowującej badania w skali NIHSS ostatnie badanie pacjetna,
-     * a następnie dokonuje jego konwersji na typ Model.NihssExamination
+     * Metoda zwracająca z bazy danych najnowsze badanie w skali NIHSS dla pacjenta o podanym id.
      *
-     * @param patientId Id pacjenta, którego badanie ma zostać pobrane z bazy danych
-     * @return (NihssExamination) obiekt zawierający dane najświeższego badania w skali NIHSS
+     * @param patientId id pacjenta, którego badanie ma zostać pobrane z bazy danych
+     * @return obiekt zawierający dane najświeższego badania w skali NIHSS
      */
     public static NihssExamination getLatestNihssExaminationForPatient(int patientId) {
         com.example.asus.strokeanalyzer.Entities.NihssExamination entity;
@@ -57,12 +52,10 @@ public class NihssService {
     }
 
     /**
-     * Metoda pobierająca z bazy danych nastarsze badanie w skali NIHSS dla pacjenta o podany Id
-     * Funkcja pobiera z tabeli przechowującej badania w skali NIHSS pierwsze badanie pacjetna,
-     * a następnie dokonuje jego konwersji na typ Model.NihssExamination
+     * Metoda zwracająca z bazy danych nastarsze badanie w skali NIHSS dla pacjenta o podany id.
      *
-     * @param patientId Id pacjenta, którego badanie ma zostać pobrane z bazy danych
-     * @return (NihssExamination) obiekt zawierający dane nastarszego badania w skali NIHSS
+     * @param patientId id pacjenta, którego badanie ma zostać pobrane z bazy danych
+     * @return obiekt zawierający dane nastarszego badania w skali NIHSS
      */
     public static NihssExamination getEarliestNihssExaminationForPatient(int patientId) {
         com.example.asus.strokeanalyzer.Entities.NihssExamination entity;
@@ -71,27 +64,23 @@ public class NihssService {
     }
 
     /**
-     * Metoda umożliwiająca dodanie do bazy danych nowego badania w skali NIHSS dla pacjenta o podanym Id
-     * Funkcja dodaje obiekt pojedynczego badania do tabeli przechowującej dane badań w skali NIHSS
+     * Metoda umożliwiająca dodanie do bazy danych nowego badania w skali NIHSS dla pacjenta o podanym id.
      *
      * @param examination obiekt przechowujący dane badania w skali NIHSS
-     * @param patientId Id pacjenta, dla którego badanie w skali NIHSS chcemy dodać do bazy danych
-     * @return (long) Id badanie w bazie danych
+     * @param patientId id pacjenta, dla którego badanie w skali NIHSS chcemy dodać do bazy danych
+     * @return id badanie w bazie danych
      */
     public static long addNihssExaminationForPatient(NihssExamination examination, int patientId){
         return db.nihssDao().insert(ModelToEntity(examination, patientId));
     }
 
     /**
-     * Metoda mapująca pojedyncze badanie w skalii NIHSS z modelu apliakcji na obiekty
-     * typu Entities.NihssExamination przechowywane w tabeli z badaniami w skali NIHSS
-     * Funkcja przepisuje odpowiednie dane do nowego typu obiektu a następnie dla każdej odpowiedzi
-     * dotyczącej pacjenta w tym badaniu obierana jest liczba punktów i zapisywana w odpowiedniej
-     * polu obiektu bazodanowego
+     * Metoda mapująca pojedyncze badanie w skalii NIHSS z modelu aplikacji na obiekty
+     * typu Entities.NihssExamination przechowywane w tabeli z badaniami w skali NIHSS.
      *
      * @param model obiekt klasy Model.NihssExamination, który ma zostać zmapowany na obiekt bazodanowy
-     * @param patientId Id pacjenta, którego badanie ma zostać przekonwertowane do obiektu bazodanowego
-     * @return (Entities.NihssExamination) zmapowany obiekt, zawirający dane pojedynczego badania w skali NIHSS
+     * @param patientId id pacjenta, którego badanie ma zostać przekonwertowane do obiektu bazodanowego
+     * @return zmapowany obiekt, zawierający dane pojedynczego badania w skali NIHSS
      * @throws IndexOutOfBoundsException niepoprawny indeks pytania, na które została udzielona odpowiedź
      *                                      (najprawdopodobniej nie dotyczy badania NIHSS)
      */
@@ -175,11 +164,10 @@ public class NihssService {
 
     /**
      * Metoda mapująca badanie w skali NIHSS typu Entites.NihssExamination przechowywane w tabeli bazy danych
-     * zawierającej badania tej skali na obiekty klasy Model.NihssExamination
-     * Funkcja pobiera poszczególne pola obiektu i mapuje je na ich odpowiedniki w obiekcie modelu
+     * zawierającej badania tej skali na obiekty klasy Model.NihssExamination.
      *
      * @param entity obiekt bazodanowy przechowujący badanie w skali NIHSS, które ma zostać zmapowane na obiekt modelu aplikacji
-     * @return (Model.NihssExamination) zmapowany obiekt modelu aplikacji przechowujący dane dotyczące
+     * @return zmapowany obiekt modelu aplikacji przechowujący dane dotyczące
      *          pojedynczego badania w skali NIHSS
      */
     private static NihssExamination EntityToModel(com.example.asus.strokeanalyzer.Entities.NihssExamination entity){

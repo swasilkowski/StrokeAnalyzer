@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 
 /**
- * Klasa umożliwiająca dostęp do bazy danych
- * Zawiera obiekt bazy danych oraz metody pozwalające na jej zainicjowanie
+ * Klasa umożliwiająca dostęp do bazy danych. Zawiera obiekt bazy danych oraz metody
+ * pozwalające na jej zainicjowanie.
  *
  * @author Stanisław Wasilkowski
  */
@@ -16,7 +16,7 @@ public final class DatabaseAccess {
     private static DatabaseAccess instance;
 
     /**
-     * Prywatny konstruktor wywoływany przez metodę getInstance inicjalizujący obiekt bazy danych
+     * Prywatny konstruktor wywoływany przez metodę getInstance inicjalizujący obiekt bazy danych.
      *
      * @param context kontekst aplikacji wymagany do zbudowania obiektu bazy danych
      */
@@ -27,10 +27,10 @@ public final class DatabaseAccess {
 
     /**
      * Metoda tworząca i zwracająca nową instancję klasy dostępu do bazy danych. Powoduje
-     * zainicjowanie bazy danych
+     * zainicjowanie bazy danych.
      *
      * @param context kontekst aplikacji wymagany do zbudowania obiektu bazy danych
-     * @return (DatabaseAccess) instancja klasy zapewniająca dostęp do bazy danych
+     * @return instancja klasy zapewniająca dostęp do bazy danych
      */
     public static DatabaseAccess getInstance(Context context) {
         if (instance == null) {
@@ -42,7 +42,7 @@ public final class DatabaseAccess {
     /**
      * Metoda zwracająca istniejącą instację klasy dostępu do bazy danych.
      *
-     * @return (DatabaseAccess) instancja klasy zapewniająca dostęp do bazy danych
+     * @return instancja klasy zapewniająca dostęp do bazy danych
      * @throws SQLiteCantOpenDatabaseException nie istnieje instancja klasy oraz baza danych nie
      *                                          została utworzona
      */

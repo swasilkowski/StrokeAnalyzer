@@ -14,8 +14,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Klasa definująca operacje na bazie danych związane z tablą zawierająca dane pacjenta oraz tablą zawierającą odpowiedzi
- * pacjenta na pytania
+ * Klasa udostępniająca operacje na bazie danych związane z tabelą zawierającą dane pacjenta oraz tabelą zawierającą odpowiedzi
+ * pacjenta na pytania formularzy aplikacji.
  *
  * @author Stanisław Wasilkowski
  */
@@ -24,8 +24,7 @@ public final class PatientService {
     final private StrokeAnalyzerDatabase db;
 
     /**
-     * Konstruktor umożliwiający pozyskanie obiektu bazy danych, na którym wykonywane będą operacje
-     * Funkcja pobiera instancję klasy DatabaseAccess, z której następnie pobiera obiekt bazy danych
+     * Konstruktor umożliwiający pozyskanie obiektu bazy danych, na którym wykonywane będą operacje.
      *
      * @param context kontekst aplikacji wymagany do zbudowania obiektu bazy danych
      */
@@ -34,13 +33,9 @@ public final class PatientService {
     }
 
     /**
-     * Metoda pobierająca listę pacjentów z bazy danych
-     * Funkcja pobiera z bazy danych obiekty klasy Entities.Patient i mapuje je przy użyciu funkcji
-     * EntityToModel na obiekty klasy Model.Patient. Tak zmapowane obiekty są dodawane do wynikowej
-     * listy wszystkich pacjentów
+     * Metoda pobierająca listę pacjentów z bazy danych.
      *
-     * @return
-     * {@code List<Patient>} lista wszystkich pacjentów zapisanych w bazie danych
+     * @return lista wszystkich pacjentów zapisanych w bazie danych
      */
     public List<Patient> GetPatientsList(){
         List<Patient> patientsList = new LinkedList<>();
@@ -56,25 +51,22 @@ public final class PatientService {
     }
 
     /**
-     * Metoda pobierająca dane pacjenta z bazy danych na podstawie jego ID
-     * Metoda pobiera z bazy danych obiekt Entities.PAtient a następnie mapuje go przy użyciu funkcji
-     * EntityToModel na obiekt klasy Model.Patient
+     * Metoda pobierająca dane pacjenta z bazy danych na podstawie jego id.
      *
-     * @param id Id pacjenta, którego dane chcemy pozyskać
-     * @return (Patient) obiekt zawierający dane pacjenta
+     * @param id id pacjenta, którego dane chcemy pozyskać
+     * @return obiekt zawierający dane pacjenta
      */
     public Patient GetPatientById(int id) {
-        //patient.PatientAnswers = entityDataToModelData(db.otherDataDao().SelectByPatientId(id));
         return EntityToModel(db.patientDao().selectById(id));
     }
 
     /**
-     * Metoda umożliwiając dodanie pacjenta do bazy danych
-     * Funkcja dodaje obiekt pacjenta do tabeli przechowującej dane pacjenta oraz dodaje wszystkie
-     * odpowiedzi pacjenta znajdujące się w obiekcie patient do tabeli przechowującej odpowiedzi na pytania
+     * Metoda umożliwiając dodanie obiektu pacjenta do bazy danych. Funkcja dodaje obiekt pacjenta
+     * do tabeli przechowującej dane pacjenta oraz dodaje wszystkie odpowiedzi pacjenta znajdujące się
+     * w obiekcie patient do tabeli przechowującej odpowiedzi na pytania.
      *
      * @param patient obiekt klasy Patient, który chcemy umieścić w bazie danych
-     * @return (long) id pacjenta wygenerowane przy dodawaniu obiektu do bazy danych
+     * @return id pacjenta wygenerowane przy dodawaniu obiektu do bazy danych
      */
     public long AddPatient(Patient patient) {
         long id = db.patientDao().insert(ModelToEntity(patient));
@@ -88,9 +80,7 @@ public final class PatientService {
     }
 
     /**
-     * Metoda aktualizująca dane pacjenta w bazie danych
-     * Funkcja aktualizuje profil pacjenta w tabeli przechowującej dane pacjenta, a następnie
-     * dodaje bądź aktualizuje odpowiedzi na pytania z tabeli je przechowującej
+     * Metoda aktualizująca dane pacjenta w bazie danych.
      *
      * @param patient obiekt klasy Patient, którego dane mają zostać zaktualizowane
      */
@@ -108,11 +98,9 @@ public final class PatientService {
     }
 
     /**
-     * Metoda usuwająca pacjenta z bazy danych
-     * Funkcja tworzy obiekt pacjenta na podstawie podanego Id, a następnie usuwa wszytkie jego odpowiedzi na pytania,
-     * wszystkie badania w skali NIHSS oraz dane pacjenta z odpowiednich tabel
+     * Metoda usuwająca pacjenta z bazy danych.
      *
-     * @param patientID Id pacjenta, którego dane mają zostać usunięte z bazy danych
+     * @param patientID id pacjenta, którego dane mają zostać usunięte z bazy danych
      */
     public void DeletePatient(Integer patientID) {
         Patient patient = GetPatientById(patientID);
@@ -122,12 +110,10 @@ public final class PatientService {
     }
 
     /**
-     * Metoda sprawdzająca, czy pacjent o danym numerze identyfikacyjnym istnieje już w bazie danych
-     * Funkcja poiera liczbępacjentów o podanym numerze i jeżeli jest ona większa od 0 zwraca wynik informujący
-     * o istnieniu pacjenta o podanym numerze.
+     * Metoda sprawdzająca, czy pacjent o danym numerze identyfikacyjnym istnieje już w bazie danych.
      *
      * @param patientNumber numer identyfikacyjny pacjenta
-     * @return (boolean) true - jeżeli pacjent o takim numerze już istnieje w bazie; false - jeżeli pacjent o
+     * @return true - jeżeli pacjent o takim numerze już istnieje w bazie; false - jeżeli pacjent o
      *          takim numerze nie istnieje w bazie
      */
     public boolean isPatientNumberTaken(long patientNumber) {
@@ -135,14 +121,11 @@ public final class PatientService {
     }
 
     /**
-     * Metoda mapująca odpowiedzi na pytania formularzy aplikacji dotyczące pacjenta na obiekty
-     * typu OtherData przechowywane w tabeli z odpowiedziami bazy danych
-     * Funkcja przechodzi po wszystkich odpowiedziach udzielonych przez użytkownika i w zależności
-     * od typu odpowiedzi wprowadza odpowiednie dane do odpowiedniego pola obiektu typu OtherData
+     * Metoda mapująca odpowiedzi użytkownika pozyskane z formularzy aplikacji na obiekty
+     * typu OtherData przechowywane w bazie danych.
      *
-     * @param model obiekt klasy Patient, które odpowiedzi mają zostać przekonwertowane
-     * @return
-     * {@code List<OtherData>} lista obiektów typu OtherData otrzymanych z odpowiedi udzielonych przez
+     * @param model obiekt klasy Patient, którego odpowiedzi mają zostać przekonwertowane
+     * @return lista obiektów typu OtherData otrzymanych z odpowiedi udzielonych przez
      * użytkownika
      */
     private List<OtherData> modelDataToEntityData(Patient model){
@@ -176,11 +159,11 @@ public final class PatientService {
     }
 
     /**
-     * Metoda mapująca profil pacjenta pacjenta typu Model.Patient na obiekty klasy Entites.Patient
-     * przechowywane w tabeli bazy danych zawierającej dane pacjentów
+     * Metoda mapująca profil pacjenta typu Model.Patient na obiekt klasy Entites.Patient
+     * przechowywany w tabeli bazy danych zawierającej dane pacjentów.
      *
      * @param model obiekt klasy Model.Patient, który ma zostać zmapowany na obiekt bazodanowy
-     * @return (Entities.Patient) obiekt bazodanowy reprezentujący pacjenta
+     * @return obiekt bazodanowy reprezentujący pacjenta
      */
     private com.example.asus.strokeanalyzer.Entities.Patient ModelToEntity(Patient model) {
         com.example.asus.strokeanalyzer.Entities.Patient entity;
@@ -194,15 +177,11 @@ public final class PatientService {
     }
 
     /**
-     * Metoda mapująca profil pacjenta pacjenta typu Entites.Patient przechowywane w tabeli bazy danych
-     * zawierającej dane pacjentów na obiekty klasy Model.Patient
-     * Funkcja przepisuje odpowiednie dane do nowego typu obiektu oraz pobiera z bazy danych wszystkie
-     * odpowiedzi udzielone przez pacjenta a następnie po ich przekonwertowaniu dodaje je do listy
-     * odpowiedzi w obiekcie Model.Patient
-     *
+     * Metoda mapująca profil pacjenta typu Entites.Patient przechowywany w tabeli bazy danych
+     * zawierającej dane pacjentów na obiekty klasy Model.Patient.
      *
      * @param entity obiekt klasy Entities.Patient, który ma zostać zmapowany na obiekt klasy modelu aplikacji
-     * @return (Model.Patient) obiekt z modelu aplikacji reprezentujący pacjenta
+     * @return obiekt z modelu aplikacji reprezentujący pacjenta
      */
     private Patient EntityToModel(com.example.asus.strokeanalyzer.Entities.Patient entity) {
         Patient patient = new Patient();

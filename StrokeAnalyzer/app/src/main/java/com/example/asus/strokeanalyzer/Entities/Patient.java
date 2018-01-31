@@ -6,7 +6,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Klasa definiująca tabelę bazy danych zawierającą dane pacjentów
+ * Klasa definiująca tabelę bazy danych zawierającą dane pacjentów.
  *
  * @author Stanisław Wasilkowski
  */

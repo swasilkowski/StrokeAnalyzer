@@ -7,7 +7,7 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Klasa definiująca tabelę bazy danych zawierającą badania pacjenta w skali NIHSS
+ * Klasa definiująca tabelę bazy danych zawierającą badania pacjenta w skali NIHSS.
  *
  * @author Stanisław Wasilkowski
  */
