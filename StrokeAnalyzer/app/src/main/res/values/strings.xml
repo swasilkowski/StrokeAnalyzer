@@ -70,6 +70,7 @@
     <string name="report_probability_of_30_days_death">Prawdopodobieństwo śmierci po 30 dniach: </string>
     <string name="report_probability_of_1_year_death">Prawdopodobieństwo śmierci po roku: </string>
     <string name="report_iscore_prognosis">Rokowania iScore:</string>
+    <string name="report_stroke_bricks">Prawdopodobne regiony udaru na podstawie StrokeBricks:</string>
 
     <string name="content_desc_logo">Logo aplikacji.</string>
     <string name="content_desc_brain">Bazowy obraz CT mózgu.</string>
