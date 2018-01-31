@@ -64,9 +64,8 @@ public final class PatientService {
      * @return (Patient) obiekt zawierający dane pacjenta
      */
     public Patient GetPatientById(int id) {
-        Patient patient = EntityToModel(db.patientDao().selectById(id));
         //patient.PatientAnswers = entityDataToModelData(db.otherDataDao().SelectByPatientId(id));
-        return patient;
+        return EntityToModel(db.patientDao().selectById(id));
     }
 
     /**

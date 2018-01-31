@@ -3,12 +3,10 @@ package com.example.asus.strokeanalyzer.Model.Form;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
-import com.example.asus.strokeanalyzer.Model.Form.Question.DescriptiveQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.NumericQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.Question;
 import com.example.asus.strokeanalyzer.Model.Form.Question.TrueFalseQuestion;
 import com.example.asus.strokeanalyzer.Model.Patient;
-import com.example.asus.strokeanalyzer.View.Form.DescriptiveQ;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -55,6 +53,7 @@ public final class FormsStructure {
      *          false - jeżeli nie wszystkie pytania formularza form posiadają odpowiedź w obiekcie klasy
      *          Patient
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean patientReady(Patient p, Form form)
     {
         List<Integer> questions = FormsStructure.QuestionsUsedForForm.get(form);

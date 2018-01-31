@@ -22,7 +22,6 @@
     <dimen name="huge_text_size">25sp</dimen>
     <dimen name="small_text_size">18sp</dimen>
     <dimen name="text_margin">12dp</dimen>
-    <dimen name="small_text_margin">1dp</dimen>
     <dimen name="label_text_size">25sp</dimen>
     <dimen name="question_text_size">22sp</dimen>
 
@@ -37,25 +36,19 @@
     <dimen name="edit_text_size">20sp</dimen>
     <dimen name="edit_text_margin">7dp</dimen>
 
-    <dimen name="button_padding">7dp</dimen>
     <dimen name="text_size">20sp</dimen>
 
     <dimen name="text_padding">5dp</dimen>
 
     <dimen name="text_margin_vertical">3dp</dimen>
 
-    <dimen name="patient_text_margin_vertical">2dp</dimen>
     <dimen name="logo_size">250dp</dimen>
     <dimen name="logo_margin">20dp</dimen>
-    <dimen name="pic_size">180dp</dimen>
     <dimen name="patient_row_padding">12dp</dimen>
     <dimen name="examination_row_padding">12dp</dimen>
-    <dimen name="examination_text_size">23sp</dimen>
-    <dimen name="examination_sum_text_size">18sp</dimen>
     <dimen name="dialog_padding">30dp</dimen>
     <dimen name="dialog_padding_horizontal">20dp</dimen>
     <dimen name="question_margin">10dp</dimen>
-    <dimen name="result_label_text_size">25dp</dimen>
     <dimen name="result_label_padding">7dp</dimen>
     <dimen name="result_left_padding">20dp</dimen>
     <dimen name="answer_padding">12dp</dimen>

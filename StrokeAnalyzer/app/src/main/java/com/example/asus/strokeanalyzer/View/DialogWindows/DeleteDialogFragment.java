@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
 import com.example.asus.strokeanalyzer.R;
 
 /**
@@ -20,7 +18,7 @@ public class DeleteDialogFragment extends DialogFragment {
     private static final String ARG_PATIENT_ID = "patient_id";
 
     //Patient patient;
-    Integer patientID;
+    private Integer patientID;
 
 
     /**
@@ -32,7 +30,7 @@ public class DeleteDialogFragment extends DialogFragment {
     }
 
     // Use this instance of the interface to deliver action events
-    DeletePatientDialogListener _listener;
+    private DeletePatientDialogListener _listener;
 
 
     /**
@@ -81,12 +79,9 @@ public class DeleteDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_delete_dialog, null);
 
         builder.setTitle(R.string.delete_patient)
-                .setView(dialogView)
+                .setView(R.layout.fragment_delete_dialog)
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //generate report

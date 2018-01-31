@@ -31,7 +31,6 @@ public class PatientsListFragment extends Fragment  {
     private RecyclerView recyclerView;
     private PatientAdapter pAdapter;
     private List<Patient> patients = new ArrayList<>();
-    PatientService patientService;
 
     /**
      * Metoda wołana w celu zainicjowania tworzenia fragmentu.
@@ -53,7 +52,13 @@ public class PatientsListFragment extends Fragment  {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
     }
 
     /**
@@ -89,7 +94,7 @@ public class PatientsListFragment extends Fragment  {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
-            patientService = new PatientService(getContext());
+            PatientService patientService = new PatientService(getContext());
 
             //get patients list from database
             patients = patientService.GetPatientsList();

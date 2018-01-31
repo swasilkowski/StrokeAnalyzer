@@ -2,7 +2,6 @@ package com.example.asus.strokeanalyzer.Model.Analyzers;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
-import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedAnswer;
@@ -72,15 +71,12 @@ public final class StrokeBricksAnalyzer {
             return null;
 
         for (Answer answer: nihssExamination.Answers) {
-            if (!(answer instanceof NumericAnswer)) {
-                //throw new WrongQuestionsSetException();
-            }
-            NumericAnswer numericAnswer = (NumericAnswer)answer;
-            int answerId = numericAnswer.GetQuestionID();
-            double answerValue = numericAnswer.Value;
 
-            if (answerValue > 0) {
+            NumericAnswer numericAnswer = answer instanceof NumericAnswer? ((NumericAnswer)answer) : null;
 
+            if(numericAnswer != null && numericAnswer.Value>0)
+            {
+                int answerId = numericAnswer.GetQuestionID();
                 affectedRegions.addAll(getRegions(answerId, p));
             }
         }
@@ -167,13 +163,13 @@ public final class StrokeBricksAnalyzer {
     {
         String description = "Obszar objęty udarem zawiera: \n";
 
+        StringBuilder sb = new StringBuilder(description);
         for(Region r :regions)
         {
-            description+= regionsDescription.get(r);
-            description+="\n";
+            sb.append(regionsDescription.get(r)).append("\n");
         }
 
-        return description;
+        return sb.toString();
     }
 
     /**
@@ -216,75 +212,75 @@ public final class StrokeBricksAnalyzer {
         //1b
         tmpRegionList.add(Region.M1_L);
         tmpRegionList.add(Region.M4_L);
-        regionsAffectionL.put(102,new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(102,new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.M1_R);
         tmpRegionList.add(Region.M4_R);
-        regionsAffectionR.put(102,new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(102,new ArrayList<>(tmpRegionList));
         //1c
         tmpRegionList.clear();
         tmpRegionList.add(Region.M3_L);
         tmpRegionList.add(Region.M6_L);
-        regionsAffectionL.put(103, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(103, new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.M3_R);
         tmpRegionList.add(Region.M6_R);
-        regionsAffectionR.put(103, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(103, new ArrayList<>(tmpRegionList));
         //2
         tmpRegionList.clear();
         tmpRegionList.add(Region.M1_L);
         tmpRegionList.add(Region.M4_L);
-        regionsAffectionL.put(104, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(104, new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.M1_R);
         tmpRegionList.add(Region.M4_R);
-        regionsAffectionR.put(104, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(104, new ArrayList<>(tmpRegionList));
         //3
         tmpRegionList.clear();
         tmpRegionList.add(Region.P_L);
         tmpRegionList.add(Region.M2_L);
         tmpRegionList.add(Region.M3_L);
-        regionsAffectionL.put(105, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(105, new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.P_R);
         tmpRegionList.add(Region.M2_R);
         tmpRegionList.add(Region.M3_R);
-        regionsAffectionR.put(105, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(105, new ArrayList<>(tmpRegionList));
         //4
         tmpRegionList.clear();
         tmpRegionList.add(Region.M5_L);
         tmpRegionList.add(Region.CR_L);
         tmpRegionList.add(Region.BGIC_L);
-        regionsAffectionL.put(106, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(106, new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.M5_R);
         tmpRegionList.add(Region.CR_R);
         tmpRegionList.add(Region.BGIC_R);
-        regionsAffectionR.put(106, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(106, new ArrayList<>(tmpRegionList));
         //5a
         tmpRegionList.clear();
         tmpRegionList.add(Region.M5_R);
         tmpRegionList.add(Region.CR_R);
         tmpRegionList.add(Region.BGIC_R);
-        regionsAffectionR.put(107, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(107, new ArrayList<>(tmpRegionList));
         //5b
         tmpRegionList.clear();
         tmpRegionList.add(Region.M5_L);
         tmpRegionList.add(Region.CR_L);
         tmpRegionList.add(Region.BGIC_L);
-        regionsAffectionL.put(108, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(108, new ArrayList<>(tmpRegionList));
         //6a
         tmpRegionList.clear();
         tmpRegionList.add(Region.A2_R);
         tmpRegionList.add(Region.CR_R);
         tmpRegionList.add(Region.BGIC_R);
-        regionsAffectionR.put(109, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(109, new ArrayList<>(tmpRegionList));
         //6b
         tmpRegionList.clear();
         tmpRegionList.add(Region.A2_L);
         tmpRegionList.add(Region.CR_L);
         tmpRegionList.add(Region.BGIC_L);
-        regionsAffectionL.put(110, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(110, new ArrayList<>(tmpRegionList));
         //8
         tmpRegionList.clear();
         tmpRegionList.add(Region.M5_L);
@@ -292,49 +288,49 @@ public final class StrokeBricksAnalyzer {
         tmpRegionList.add(Region.BGIC_L);
         tmpRegionList.add(Region.T_L);
         tmpRegionList.add(Region.A2_L);
-        regionsAffectionL.put(112, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(112, new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.M5_R);
         tmpRegionList.add(Region.CR_R);
         tmpRegionList.add(Region.BGIC_R);
         tmpRegionList.add(Region.T_R);
         tmpRegionList.add(Region.A2_R);
-        regionsAffectionR.put(112, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(112, new ArrayList<>(tmpRegionList));
         //9
         tmpRegionList.clear();
         tmpRegionList.add(Region.M1_L);
         tmpRegionList.add(Region.M4_L);
         tmpRegionList.add(Region.M3_L);
         tmpRegionList.add(Region.M6_L);
-        regionsAffectionL.put(113, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(113, new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.M1_R);
         tmpRegionList.add(Region.M4_R);
         tmpRegionList.add(Region.M3_R);
         tmpRegionList.add(Region.M6_R);
-        regionsAffectionR.put(113, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(113, new ArrayList<>(tmpRegionList));
         //10
         tmpRegionList.clear();
         tmpRegionList.add(Region.A1_L);
         tmpRegionList.add(Region.M1_L);
         tmpRegionList.add(Region.M4_L);
         tmpRegionList.add(Region.BGIC_L);
-        regionsAffectionL.put(114, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(114, new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.A1_R);
         tmpRegionList.add(Region.M1_R);
         tmpRegionList.add(Region.M4_R);
         tmpRegionList.add(Region.BGIC_R);
-        regionsAffectionR.put(114, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(114, new ArrayList<>(tmpRegionList));
         //11
         tmpRegionList.clear();
         tmpRegionList.add(Region.A3_R);
         tmpRegionList.add(Region.M6_R);
-        regionsAffectionR.put(115, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionR.put(115, new ArrayList<>(tmpRegionList));
         tmpRegionList.clear();
         tmpRegionList.add(Region.A3_L);
         tmpRegionList.add(Region.M6_L);
-        regionsAffectionL.put(115, new ArrayList<Region>(tmpRegionList));
+        regionsAffectionL.put(115, new ArrayList<>(tmpRegionList));
 
 
     }

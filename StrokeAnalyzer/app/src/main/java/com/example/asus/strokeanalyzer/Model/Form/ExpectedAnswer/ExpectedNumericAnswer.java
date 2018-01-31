@@ -50,15 +50,9 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
         {
             for(RangeClassifier r:Ranges)
             {
-                try
-                {
                     if(r.withinARange(value))
                         return r.Points;
-                }
-                catch (NoAnswerException exception)
-                {
-                    throw exception;
-                }
+
 
             }
         }
@@ -83,16 +77,8 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
         {
             for(RangeClassifier r:Ranges)
             {
-                try
-                {
                     if(r.withinARange(value))
                         return true;
-                }
-                catch (NoAnswerException exception)
-                {
-                    throw exception;
-                }
-
             }
         }
         return false;

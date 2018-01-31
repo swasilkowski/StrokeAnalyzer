@@ -39,7 +39,7 @@ public class ResultsFragment extends Fragment {
     private static final String ARG_PATIENT_ID = "patient_id";
 
     private Integer patientID;
-    FragmentActivity activity;
+    private FragmentActivity activity;
 
     /**
      * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
@@ -88,7 +88,13 @@ public class ResultsFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
     }
 
     /**
@@ -178,7 +184,7 @@ public class ResultsFragment extends Fragment {
     /**
      * Metoda dokonująca przejścia do fragmentu wyświetlającego zdjęcia CT mózgu
      */
-    public void showCTPictures()
+    private void showCTPictures()
     {
         if(activity!=null)
         {
@@ -210,23 +216,5 @@ public class ResultsFragment extends Fragment {
 
         return text.toString();
     }
-
-/* ----TODO------usun
-    private String answerText(Answer answer)
-    {
-        if(answer instanceof NumericAnswer)
-        {
-            return String.valueOf(((NumericAnswer) answer).Value);
-        }
-        else if(answer instanceof TextAnswer)
-        {
-            return ((TextAnswer) answer).Value;
-        }
-        else if(answer instanceof TrueFalseAnswer)
-        {
-            return ((TrueFalseAnswer) answer).Value?"Tak":"Nie";
-        }
-        return "Brak odpowiedzi";
-    }*/
 
 }

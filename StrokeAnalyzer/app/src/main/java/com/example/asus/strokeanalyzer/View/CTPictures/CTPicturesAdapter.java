@@ -17,7 +17,7 @@ import com.example.asus.strokeanalyzer.R;
  * @author Marta Marciszewicz
  */
 
-public class CTPicturesAdapter extends BaseAdapter {
+class CTPicturesAdapter extends BaseAdapter {
 
     private Bitmap CTpictures[];
 

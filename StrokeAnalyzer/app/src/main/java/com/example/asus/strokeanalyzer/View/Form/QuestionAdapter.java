@@ -1,5 +1,6 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -136,6 +137,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
          *
          * @param view widok pojedynczego elementu listy
          */
+        @SuppressLint("ShowToast")
         ViewHolderNumericQ(View view) {
             super(view);
 

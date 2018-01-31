@@ -41,6 +41,7 @@ public class ExpectedTrueFalseAnswer extends ExpectedAnswer {
      * @param correctValue oczekiwana wartość odpowiedzi
      * @param score liczba przyznanych punktów dla odpowiedzi
      */
+    @SuppressWarnings("SameParameterValue")
     public ExpectedTrueFalseAnswer(int questionId, boolean correctValue, int score)
     {
         super(questionId);

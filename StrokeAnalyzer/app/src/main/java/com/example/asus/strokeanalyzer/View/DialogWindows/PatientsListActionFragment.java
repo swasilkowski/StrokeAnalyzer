@@ -3,6 +3,8 @@ package com.example.asus.strokeanalyzer.View.DialogWindows;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +22,8 @@ public class PatientsListActionFragment extends DialogFragment {
 
     private static final String ARG_PATIENT_ID = "patient_id";
 
-    Integer patientID;
-    PatientService patientService;
+    private Integer patientID;
+    private PatientService patientService;
     private DeleteListener dListener;
 
     /**
@@ -111,7 +113,7 @@ public class PatientsListActionFragment extends DialogFragment {
      * Powoduje pojawienie się okna dialogowego {@link DeleteDialogFragment}
      *
      */
-    public void openDeleteDialog()
+    private void openDeleteDialog()
     {
         DeleteDialogFragment.DeletePatientDialogListener listener = new DeleteDialogFragment.DeletePatientDialogListener() {
             @Override
@@ -126,16 +128,21 @@ public class PatientsListActionFragment extends DialogFragment {
             }
         };
 
-        //print dialog with actions for patient
-        DialogFragment dialog = DeleteDialogFragment.newInstance(patientID,listener);
-        dialog.show(getActivity().getSupportFragmentManager(), "DeleteDialogFragment");
+        AppCompatActivity activity = (AppCompatActivity)getActivity();
+        if(activity!=null)
+        {
+            //print dialog with actions for patient
+            DialogFragment dialog = DeleteDialogFragment.newInstance(patientID,listener);
+            dialog.show(activity.getSupportFragmentManager(), "DeleteDialogFragment");
+        }
+
     }
 
     /**
      * Metoda służaca do usunięcia pacjenta. Powoduje usunięcie danych pacjenta z bazy danych aplikacji.
      *
      */
-    public void deletePatient()
+    private void deletePatient()
     {
         //remove patient from database
         patientService.DeletePatient(patientID);
@@ -148,14 +155,25 @@ public class PatientsListActionFragment extends DialogFragment {
     /**
      * Metoda służąca do przejścia do okna profilu pacjenta
      */
-    public void setPatientProfile()
+    private void setPatientProfile()
     {
-        //move to patient profile view
-        PatientProfileFragment setFragment= PatientProfileFragment.newInstance(patientID);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrame, setFragment, null)
-                .addToBackStack(null)
-                .commit();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+
+            FragmentManager _fmanager = activity.getSupportFragmentManager();
+            if(_fmanager!=null)
+            {
+                //move to patient profile view
+                PatientProfileFragment setFragment= PatientProfileFragment.newInstance(patientID);
+                _fmanager.beginTransaction()
+                        .replace(R.id.fragmentFrame, setFragment, null)
+                        .addToBackStack(null)
+                        .commit();
+            }
+
+        }
+
 
         //close dialog
         dismiss();

@@ -35,12 +35,9 @@ public class PatientProfileFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PATIENT_ID = "patient_id";
 
-    TextView name;
-    TextView number;
     private Integer patientID;
     private Patient patient;
-    PatientService patientService;
-    FragmentActivity activity;
+    private FragmentActivity activity;
 
     /**
      * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
@@ -89,7 +86,13 @@ public class PatientProfileFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
     }
 
     /**
@@ -111,7 +114,7 @@ public class PatientProfileFragment extends Fragment {
 
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
-        patientService = new PatientService(view.getContext());
+        PatientService patientService = new PatientService(view.getContext());
         patient = patientService.GetPatientById(patientID);
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
@@ -124,10 +127,11 @@ public class PatientProfileFragment extends Fragment {
         }
 
         //set patient data
-        name = view.findViewById(R.id.patientNameShow);
-        number = view.findViewById(R.id.patientNumberShow);
-        name.setText(patient.Name +" "+ patient.Surname);
-        number.setText(Long.toString(patient.PatientNumber));
+        TextView name = view.findViewById(R.id.patientNameShow);
+        TextView number = view.findViewById(R.id.patientNumberShow);
+        String nameText = patient.Name +" "+ patient.Surname;
+        name.setText(nameText);
+        number.setText(String.valueOf(patient.PatientNumber));
 
         final Button resultBt=  view.findViewById(R.id.resultBt);
         resultBt.setOnClickListener(new View.OnClickListener()
@@ -164,7 +168,7 @@ public class PatientProfileFragment extends Fragment {
      * Metoda wyświetlająca okno dialogowe do potwierdzenia przez użtykownika chęci wygenerowania raportu.
      *
      */
-    public void generateReport()
+    private void generateReport()
     {
         if(activity!=null)
         {
@@ -215,7 +219,7 @@ public class PatientProfileFragment extends Fragment {
     /**
      * Metoda przechodząca fragmentu zawierającego wyniki analizy stanu pacjenta.
      */
-    public void showResults()
+    private void showResults()
     {
         if(activity!=null)
         {
@@ -231,7 +235,7 @@ public class PatientProfileFragment extends Fragment {
     /**
      * Metoda przechodząca do fragmentu pozwalającego wybrać formularz do uzupełnienia.
      */
-    public void chooseForm()
+    private void chooseForm()
     {
         if(activity!=null)
         {

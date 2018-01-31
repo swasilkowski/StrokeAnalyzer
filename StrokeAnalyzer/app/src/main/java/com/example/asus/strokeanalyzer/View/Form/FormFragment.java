@@ -48,10 +48,8 @@ public class FormFragment extends Fragment {
     private Patient patient; //patient whose data is supposed to be changed
     private Integer patientID; //id of this patient
     private boolean newForm; //true if new form is being created
-    private List<Answer> answers = new ArrayList<>(); //list of users answers
     private List<Question> printQuestions = new ArrayList<>(); // list of questions printed in this form
-    private List<com.example.asus.strokeanalyzer.Model.Form.Question.Question> questions = new ArrayList<>(); //list of questions printed in a form but from Model package
-    PatientService patientService; //serwis used for communication with database
+    private PatientService patientService; //serwis used for communication with database
 
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
@@ -89,7 +87,13 @@ public class FormFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
     }
 
     /**
@@ -262,7 +266,6 @@ public class FormFragment extends Fragment {
                     ((NumericQ)printedQuestion).setAnswer(((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
 
-            questions.add(question);
             printQuestions.add(printedQuestion);
         }
     }
@@ -286,10 +289,10 @@ public class FormFragment extends Fragment {
      * Metoda zapisująca w obiekcie klasy {@link Patient} odpowiedzi udzielone przez użytkownika na
      * pytania formularza.
      */
-    public void SaveAnswers()
+    private void SaveAnswers()
     {
-        answers = qAdapter.returnAnswers();
-        for(Answer ans:answers)
+        List<Answer> answers = qAdapter.returnAnswers();
+        for(Answer ans: answers)
         {
             if(patient.PatientAnswers.containsKey(ans.GetQuestionID()))
                 patient.PatientAnswers.remove(ans.GetQuestionID());

@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <Button
-        android:id="@+id/answerTextB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:duplicateParentState="true" />
-  style="@style/NormalButton"/>
-     android:background="@drawable/selected_button"-->
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="@dimen/answer_frame_padding">
+    android:padding="@dimen/answer_frame_padding"
+    tools:ignore="Overdraw">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/answerTextB"
@@ -26,7 +16,3 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall" />
 
 </FrameLayout>
-
-
-<!--
-</LinearLayout>-->

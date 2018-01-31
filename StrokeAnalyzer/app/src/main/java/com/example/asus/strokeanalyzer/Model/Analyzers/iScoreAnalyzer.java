@@ -1,7 +1,6 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
 import android.util.Log;
-
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
 import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
@@ -15,9 +14,7 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.Patient;
 import com.example.asus.strokeanalyzer.Model.results.iScoreResult;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;

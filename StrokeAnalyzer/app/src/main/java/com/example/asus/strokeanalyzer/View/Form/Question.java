@@ -6,7 +6,7 @@ package com.example.asus.strokeanalyzer.View.Form;
  * @author Marta Marciszewicz
  */
 
-public interface Question {
+interface Question {
     int BULLETED = 1;
     int DESCRIPTIVE = 2;
     int TRUEFALSE = 3;

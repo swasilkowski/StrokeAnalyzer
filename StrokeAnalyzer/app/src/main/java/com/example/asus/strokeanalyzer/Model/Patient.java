@@ -1,9 +1,6 @@
 package com.example.asus.strokeanalyzer.Model;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.example.asus.strokeanalyzer.Model.Analyzers.DragonAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.HatAnalyzer;
 import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
@@ -13,20 +10,11 @@ import com.example.asus.strokeanalyzer.Model.Analyzers.iScoreAnalyzer;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
-import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.results.DragonResult;
 import com.example.asus.strokeanalyzer.Model.results.HatResult;
 import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
 import com.example.asus.strokeanalyzer.Model.results.iScoreResult;
 import com.example.asus.strokeanalyzer.Services.NihssService;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -161,11 +149,8 @@ public class Patient {
      * @return (boolean) wartość true jeżeli obiekty są sobie równe, wartość false w przeciwnym przypadku
      */
     @Override
-    public boolean equals(Object p)
-    {
-        if(!(p instanceof Patient))
-            return false;
-        return ((Patient)p).Id == Id;
+    public boolean equals(Object p) {
+        return p instanceof Patient && ((Patient) p).Id == Id;
     }
 
     /**

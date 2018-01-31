@@ -7,7 +7,7 @@ package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
  * @author Marta Marciszewicz
  */
 
-public class ExpectedTextAnswer extends  ExpectedAnswer {
+class ExpectedTextAnswer extends  ExpectedAnswer {
 
     public String CorrectValue;
 

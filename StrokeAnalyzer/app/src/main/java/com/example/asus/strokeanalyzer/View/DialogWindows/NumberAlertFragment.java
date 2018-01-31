@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
 import com.example.asus.strokeanalyzer.R;
 
 /**
@@ -26,7 +24,7 @@ public class NumberAlertFragment extends DialogFragment {
     }
 
     // Use this instance of the interface to deliver action events
-    NumberAlertDialogListener _listener;
+    private NumberAlertDialogListener _listener;
 
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów. Inicjalizuje ona listener.
@@ -66,12 +64,9 @@ public class NumberAlertFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_number_alert, null);
 
         builder.setTitle(R.string.number_alert_title)
-                .setView(dialogView)
+                .setView(R.layout.fragment_number_alert)
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //generate report

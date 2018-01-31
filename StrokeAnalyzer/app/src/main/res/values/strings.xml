@@ -2,13 +2,9 @@
     <string name="app_name">StrokeAnalyzer</string>
     <string name="list_bt_text">Lista pacjentów</string>
     <string name="new_patient_bt_text">Dodaj nowego pacjenta</string>
-    <string name="name_string">Imię:</string>
-    <string name="surname_string">Nazwisko:</string>
-    <string name="patient_number_string">Numer pacjenta:</string>
     <string name="name_hint">Imię pacjenta</string>
     <string name="surname_hint">Nazwisko pacjenta</string>
     <string name="patient_number_hint">Numer pacjenta</string>
-    <string name="next_bt">Dalej</string>
     <string name="nihss"><u>NIHSS</u></string>
     <string name="stroke_bricks"><u>Stroke Bricks</u></string>
     <string name="treatment_decision"><u>Leczenie trombolityczne</u></string>
@@ -38,7 +34,6 @@
     <string name="delete_dialog">Czy jesteś pewny, że chcesz usunąć dane pacjenta?</string>
     <string name="number_alert_dialog">Pacjent o takim numerze już istnieje. Czy jesteś pewny, że chcesz utworzyć
         pacjenta z tym samym numerem?</string>
-    <string name="email_hint">email</string>
     <string name="report_generation">Generowanie raportu</string>
     <string name="number_alert_title">Powtórzony numer</string>
     <string name="ok_bt">OK</string>
@@ -50,10 +45,8 @@
     <string name="report_share_msg_title">[Stroke Analyzer]Raport z badania</string>
     <string name="report_share_msg_text">Aplikacja Stroke Analyzer przesyła raport z analizy stanu zdrowia pacjenta o numerze: \n</string>
 
-    <string name="patient_id_tag">patient_id</string>
     <string name="done_tag">done</string>
     <string name="new_patient_tag">new_patient</string>
-    <string name="picture_tag">picture</string>
     <string name="add_tag">add</string>
 
     <string name="reports_folder_name">Raporty</string>
@@ -77,5 +70,10 @@
     <string name="report_probability_of_30_days_death">Prawdopodobieństwo śmierci po 30 dniach: </string>
     <string name="report_probability_of_1_year_death">Prawdopodobieństwo śmierci po roku: </string>
     <string name="report_iscore_prognosis">Rokowania iScore:</string>
+
+    <string name="content_desc_logo">Logo aplikacji.</string>
+    <string name="content_desc_brain">Bazowy obraz CT mózgu.</string>
+    <string name="content_desc_mod_brain">Obraz CT mózgu z obszarami występowania udaru.</string>
+
 
 </resources>

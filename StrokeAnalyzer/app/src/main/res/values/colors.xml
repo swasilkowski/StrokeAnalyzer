@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#2c94ff</color>
     <color name="colorPrimaryDark">#2072c6</color>
-    <color name="colorPrimaryLight">#97caff</color>
+    <color name="colorPrimaryLight" tools:keep="@color/colorPrimaryLight">#97caff</color>
     <color name="colorBackground">#e1f0ff</color>
     <color name="colorStartBackground">#51a7ff</color>
     <color name="colorAccent">#ff1a65</color>
     <color name="colorAccentDark">#de0049</color>
-    <color name="colorAccentLight">#ff89b0</color>
+    <color name="colorAccentLight" tools:keep="@color/colorAccentLight">#ff89b0</color>
     <color name="white">#ffffff</color>
     <color name="colorText">#333333</color>
     <color name="buttonBackgroundColor">#88333333</color>

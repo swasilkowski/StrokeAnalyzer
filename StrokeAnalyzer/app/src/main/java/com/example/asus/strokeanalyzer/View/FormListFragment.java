@@ -3,6 +3,8 @@ package com.example.asus.strokeanalyzer.View;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +77,13 @@ public class FormListFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
     }
 
     /**
@@ -104,11 +112,23 @@ public class FormListFragment extends Fragment {
             public void onClick(View v)
             {
                 //move to proper form
-                NihssExaminationFragment setFragment = NihssExaminationFragment.newInstance(patientID);
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentFrame, setFragment, null)
-                        .addToBackStack(null)
-                        .commit();
+
+                AppCompatActivity activity = ((AppCompatActivity)getActivity());
+                if(activity!=null)
+                {
+
+                    FragmentManager _fmanager = activity.getSupportFragmentManager();
+                    if(_fmanager!=null)
+                    {
+                        NihssExaminationFragment setFragment = NihssExaminationFragment.newInstance(patientID);
+                        _fmanager.beginTransaction()
+                                .replace(R.id.fragmentFrame, setFragment, null)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+
+
+                }
             }
         });
 
@@ -148,14 +168,20 @@ public class FormListFragment extends Fragment {
      *
      * @param form formularz wybrany przez użytkownika
      */
-    public void printForm(Form form)
+    private void printForm(Form form)
     {
         //move to proper form
         FormFragment setFragment = FormFragment.newInstance(form, patientID, false);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrame, setFragment, null)
-                .addToBackStack(null)
-                .commit();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            FragmentManager _fmanager = activity.getSupportFragmentManager();
+            if(_fmanager!=null)
+                _fmanager.beginTransaction()
+                        .replace(R.id.fragmentFrame, setFragment, null)
+                        .addToBackStack(null)
+                        .commit();
+        }
     }
 
 /*    @Override

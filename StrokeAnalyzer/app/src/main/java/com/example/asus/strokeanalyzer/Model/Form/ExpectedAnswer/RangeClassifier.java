@@ -25,9 +25,7 @@ public class RangeClassifier
     public boolean withinARange(double value) throws NoAnswerException {
         if(value==(-1))
             throw  new NoAnswerException();
-        if(value>MaxValue || value<MinValue)
-            return false;
-        return true;
+        return !(value > MaxValue || value < MinValue);
     }
 
     /**

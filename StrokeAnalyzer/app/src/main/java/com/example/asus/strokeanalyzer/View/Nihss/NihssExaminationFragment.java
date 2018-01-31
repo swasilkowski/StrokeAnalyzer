@@ -42,9 +42,8 @@ public class NihssExaminationFragment extends Fragment {
     private RecyclerView recyclerView;
     private NihssAdapter nAdapter;
     private List<NihssExamination> examinations = new ArrayList<>();
-    PatientService patientService;
-    int patientID;
-    FragmentActivity activity;
+    private int patientID;
+    private FragmentActivity activity;
 
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
@@ -87,7 +86,13 @@ public class NihssExaminationFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
     }
 
     /**
@@ -123,7 +128,7 @@ public class NihssExaminationFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
-            patientService = new PatientService(getContext());
+            PatientService patientService = new PatientService(getContext());
 
             //get patients list from database
             examinations = patientService.GetPatientById(patientID).getNihssHistory();

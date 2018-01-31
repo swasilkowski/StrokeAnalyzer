@@ -1,8 +1,12 @@
 package com.example.asus.strokeanalyzer.View;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.asus.strokeanalyzer.Model.Patient;
@@ -53,21 +56,33 @@ public class NewPatientFragment extends Fragment {
      * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_patient, container, false);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Tworzenie profilu pacjenta");
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+            {
+                bar.show();
+                bar.setTitle("Tworzenie profilu pacjenta");
+            }
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorBackground));
+        }
+
+
+        Context context = getContext();
+        if(context!=null)
+            view.setBackgroundColor(ContextCompat.getColor(context,R.color.colorBackground));
         view.setClickable(true);
         //mListener.setTitleName(getString(R.string.title_fragmet_change_name));
-        name = (EditText) view.findViewById(R.id.name);
-        surname = (EditText) view.findViewById(R.id.surname);
-        number = (EditText) view.findViewById(R.id.patientNumber);
+        name = view.findViewById(R.id.name);
+        surname =  view.findViewById(R.id.surname);
+        number =  view.findViewById(R.id.patientNumber);
 
         return view;
     }
@@ -126,7 +141,13 @@ public class NewPatientFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
     }
 
     /**
@@ -136,7 +157,13 @@ public class NewPatientFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.hide();
+        }
     }
 
     /**
@@ -149,7 +176,7 @@ public class NewPatientFragment extends Fragment {
      * @return (boolean) true - jeżeli stowrzenie profilu nowego pacjenta zakończyło się sukcesem;
      *          false - jeżeli nie udało się utworzyć profilu nowego pacjenta
      */
-    public boolean createPatient()
+    private boolean createPatient()
     {
         final String name = this.name.getText().toString();
         final String surname = this.surname.getText().toString();
@@ -177,10 +204,16 @@ public class NewPatientFragment extends Fragment {
                     }
                 };
 
-                //print dialog with actions for patient
-                DialogFragment dialog = NumberAlertFragment.newInstance(listener);
+
                 //dialog.setArguments(bundel);
-                dialog.show(getActivity().getSupportFragmentManager(), "NumberAlertFragment");
+                AppCompatActivity activity = (AppCompatActivity)getActivity();
+                if(activity!=null)
+                {
+                    //print dialog with actions for patient
+                    DialogFragment dialog = NumberAlertFragment.newInstance(listener);
+                    dialog.show(activity.getSupportFragmentManager(), "NumberAlertFragment");
+                }
+
                 return true;
             }
 
@@ -203,7 +236,7 @@ public class NewPatientFragment extends Fragment {
      * @param surname nazwisko nowego pacjenta
      * @param number numer nowego pacjenta
      */
-    public void addPatient(String name, String surname, long number)
+    private void addPatient(String name, String surname, long number)
     {
         //add patient to database - create profile
         Patient newPatient = new Patient();
@@ -214,19 +247,28 @@ public class NewPatientFragment extends Fragment {
         PatientService patientService = new PatientService(getContext());
         long patientID = patientService.AddPatient(newPatient);
 
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            android.support.v4.app.FragmentManager _fmanager = activity.getSupportFragmentManager();
+            if(_fmanager!=null)
+            {
+                _fmanager.popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
 
-        getFragmentManager().popBackStack(getString(R.string.new_patient_tag), POP_BACK_STACK_INCLUSIVE);
+                PatientsListFragment listFragment= new PatientsListFragment();
+                _fmanager.beginTransaction()
+                        .replace(R.id.fragmentFrame, listFragment, null)
+                        .addToBackStack(null)
+                        .commit();
 
-        PatientsListFragment listFragment= new PatientsListFragment();
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrame, listFragment, null)
-                .addToBackStack(null)
-                .commit();
+                PatientProfileFragment setFragment = PatientProfileFragment.newInstance((int)patientID);
+                _fmanager.beginTransaction()
+                        .replace(R.id.fragmentFrame, setFragment, null)
+                        .addToBackStack(null)
+                        .commit();
 
-        PatientProfileFragment setFragment = PatientProfileFragment.newInstance((int)patientID);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentFrame, setFragment, null)
-                .addToBackStack(null)
-                .commit();
+            }
+
+        }
     }
 }

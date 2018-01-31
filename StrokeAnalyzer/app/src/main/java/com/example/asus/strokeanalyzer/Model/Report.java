@@ -90,10 +90,13 @@ public final class Report {
                 } else {
                     treatmentDecisionText = context.getString(R.string.report_no) + "\n"
                             + context.getString(R.string.report_treatment_exclusion_reasons) + "\n";
+
+                    StringBuilder sb = new StringBuilder(treatmentDecisionText);
                     for (Answer badAnswer:
                             treatmentResult.badAnswers) {
-                        treatmentDecisionText += FormsStructure.Questions.get(badAnswer.GetQuestionID()).GetText()+"\n";
+                        sb.append(FormsStructure.Questions.get(badAnswer.GetQuestionID()).GetText()).append("\n");
                     }
+                    treatmentDecisionText = sb.toString();
                 }
             }
             Paragraph p5 = new Paragraph(context.getString(R.string.report_qualification_for_treatment) + treatmentDecisionText + "\n");

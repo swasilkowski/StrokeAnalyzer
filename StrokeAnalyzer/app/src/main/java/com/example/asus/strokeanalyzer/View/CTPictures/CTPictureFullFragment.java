@@ -1,11 +1,10 @@
 package com.example.asus.strokeanalyzer.View.CTPictures;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +24,7 @@ public class CTPictureFullFragment extends Fragment {
 
     private static final String ARG_PICTURE = "picture";
 
-    ImageView selectedImage;
-    Bitmap image;
+    private Bitmap image;
 
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
@@ -67,7 +65,14 @@ public class CTPictureFullFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
+
     }
 
     /**
@@ -87,7 +92,7 @@ public class CTPictureFullFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ctpicture_full, container, false);
         view.setClickable(true);
         view.setBackgroundColor(getResources().getColor(R.color.pictureBackground, null));
-        selectedImage = view.findViewById(R.id.basicPicFullsize);
+        ImageView selectedImage = view.findViewById(R.id.basicPicFullsize);
         selectedImage.setImageBitmap(image);
 
         return view;

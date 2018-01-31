@@ -26,48 +26,12 @@
         <item name="android:layout_width">@dimen/logo_size</item>
     </style>
 
-    <style name="OtherPicture" parent="@style/Picture">
-        <item name="android:layout_height">@dimen/pic_size</item>
-        <item name="android:layout_width">@dimen/pic_size</item>
-    </style>
-
     <style name="Dialog">
         <item name="android:background">@color/colorStartBackground</item>
         <item name="android:paddingBottom">@dimen/dialog_padding</item>
         <item name="android:paddingTop">@dimen/dialog_padding</item>
         <item name="android:paddingLeft">@dimen/dialog_padding_horizontal</item>
         <item name="android:paddingRight">@dimen/dialog_padding_horizontal</item>
-    </style>
-
-    <style name="Text">
-        <item name="android:textSize">@dimen/text_size</item>
-        <item name="android:padding">@dimen/text_padding</item>
-        <item name="android:layout_marginLeft">@dimen/text_margin</item>
-        <item name="android:layout_marginRight">@dimen/text_margin</item>
-        <item name="android:layout_marginBottom">@dimen/text_margin_vertical</item>
-        <item name="android:layout_marginTop">@dimen/text_margin_vertical</item>
-    </style>
-
-<!--    <style name="StandardText" parent="@style/Text">
-        <item name="android:textColor">@color/colorText</item>
-    </style>-->
-
-<!--    <style name="QuestionText" parent="@style/Text">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAlignment">center</item>
-    </style>-->
-    
-    <style name="ResultLabel">
-        <item name="android:textSize">@dimen/result_label_text_size</item>
-<!--        <item name="android:padding">@dimen/result_label_padding</item>-->
-        <item name="android:layout_marginLeft">@dimen/text_margin</item>
-        <item name="android:layout_marginRight">@dimen/text_margin</item>
-        <item name="android:layout_marginBottom">@dimen/text_margin_vertical</item>
-        <item name="android:layout_marginTop">@dimen/text_margin_vertical</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="Question">

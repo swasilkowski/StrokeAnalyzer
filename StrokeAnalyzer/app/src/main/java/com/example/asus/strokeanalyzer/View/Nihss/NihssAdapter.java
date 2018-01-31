@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.example.asus.strokeanalyzer.Model.Analyzers.NihssAnalyzer;
 import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.R;
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.List;
 
 /**
@@ -38,9 +38,9 @@ public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder> 
             super(view);
             mView = view;
 
-            date = (TextView) view.findViewById(R.id.examinationDate);
-            time = (TextView) view.findViewById(R.id.examinationTime);
-            sum = (TextView) view.findViewById(R.id.pointsSum);
+            date =  view.findViewById(R.id.examinationDate);
+            time =  view.findViewById(R.id.examinationTime);
+            sum =  view.findViewById(R.id.pointsSum);
         }
     }
 
@@ -83,10 +83,12 @@ public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder> 
 
         final NihssExamination examination = examinations.get(position);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-        holder.date.setText(dateFormat.format(examination.Date));
-        holder.time.setText(timeFormat.format(examination.Date));
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        //SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        //holder.date.setText(dateFormat.format(examination.Date));
+        //holder.time.setText(timeFormat.format(examination.Date));
+        holder.date.setText(DateFormat.getDateInstance().format(examination.Date));
+        holder.time.setText(DateFormat.getTimeInstance().format(examination.Date));
         holder.sum.setText(String.valueOf(NihssAnalyzer.CountNihssSum(examination)));
 
     }

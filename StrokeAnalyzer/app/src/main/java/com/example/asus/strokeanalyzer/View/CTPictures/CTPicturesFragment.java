@@ -28,10 +28,8 @@ public class CTPicturesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PATIENT_ID = "patient_id";
 
-    GridView picturesGrid;
     private Integer patientID;
-    private PatientService patientService;
-    Bitmap[] editedPictures;
+    private Bitmap[] editedPictures;
 
     /**
      * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
@@ -80,7 +78,13 @@ public class CTPicturesFragment extends Fragment {
     public void onResume()
     {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        AppCompatActivity activity = ((AppCompatActivity)getActivity());
+        if(activity!=null)
+        {
+            ActionBar bar = activity.getSupportActionBar();
+            if(bar!=null)
+                bar.show();
+        }
     }
 
     /**
@@ -114,9 +118,9 @@ public class CTPicturesFragment extends Fragment {
 
         Context context = view.getContext();
         CTPictures.InitializeCTPictures(context);
-        picturesGrid = view.findViewById(R.id.CTPicturesView); // init GridView
+        GridView picturesGrid = view.findViewById(R.id.CTPicturesView);
         // Create an object of CustomAdapter and set Adapter to GirdView
-        patientService = new PatientService(context);
+        PatientService patientService = new PatientService(context);
         editedPictures = CTPictures.GenerateOutputImage(patientService.GetPatientById(patientID).getStrokeBricksAffectedRegions());
         CTPicturesAdapter customAdapter = new CTPicturesAdapter(editedPictures);
         picturesGrid.setAdapter(customAdapter);

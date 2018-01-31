@@ -6,8 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import com.example.asus.strokeanalyzer.R;
 
 /**
@@ -21,7 +19,7 @@ public class ReportFragment extends DialogFragment {
     private static final String ARG_PATIENT_ID = "patient_id";
 
     //Patient patient;
-    Integer patientID;
+    private Integer patientID;
 
     /**
      * Interfejs akcji przycisków w oknie dialogowym
@@ -32,7 +30,7 @@ public class ReportFragment extends DialogFragment {
     }
 
     // Use this instance of the interface to deliver action events
-    GenerateReportDialogListener _listener;
+    private GenerateReportDialogListener _listener;
 
      /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
@@ -79,12 +77,9 @@ public class ReportFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_report, null);
 
         builder.setTitle(R.string.report_generation)
-                .setView(dialogView)
+                .setView(R.layout.fragment_report)
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //generate report

@@ -1,7 +1,10 @@
 package com.example.asus.strokeanalyzer;
 
+import android.util.Log;
+
 import com.example.asus.strokeanalyzer.Model.Analyzers.TreatmentAnalyzer;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
+import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TrueFalseAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
@@ -30,6 +33,14 @@ public class TreatmentAnalyzerUnitTest {
                 patient.PatientAnswers.put(questionId, new TrueFalseAnswer(questionId, false));
             }
         }
-        assertFalse(TreatmentAnalyzer.MakeTreatmentDecision(patient).Decision);
+        try
+        {
+            assertFalse(TreatmentAnalyzer.MakeTreatmentDecision(patient).Decision);
+        }
+        catch(WrongQuestionsSetException exp)
+        {
+            Log.e("TEST", "Exception has been thrown while testing method MakeTreatmentDecision");
+        }
+
     }
 }

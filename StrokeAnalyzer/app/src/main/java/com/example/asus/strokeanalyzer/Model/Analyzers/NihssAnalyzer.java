@@ -1,6 +1,5 @@
 package com.example.asus.strokeanalyzer.Model.Analyzers;
 
-import com.example.asus.strokeanalyzer.Model.Exceptions.WrongQuestionsSetException;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.NihssExamination;

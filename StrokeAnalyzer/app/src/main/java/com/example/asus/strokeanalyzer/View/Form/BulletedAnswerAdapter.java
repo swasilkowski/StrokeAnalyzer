@@ -43,7 +43,7 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
         public ViewHolder(View view) {
             super(view);
 
-            answer = (TextView) view.findViewById(R.id.answerTextB);
+            answer = view.findViewById(R.id.answerTextB);
         }
     }
 
@@ -128,7 +128,7 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
      */
     public void clearColors()
     {
-        for(Integer ans: new ArrayList<Integer>(buttons.keySet()))
+        for(Integer ans: new ArrayList<>(buttons.keySet()))
         {
             color(buttons.get(ans),ans);
         }
@@ -143,69 +143,5 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
     public int getItemCount() {
         return answers.size();
     }
-
-
-
-    //--------TODO---------usun
-   /*
-
-
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view == null) {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.answer_row, viewGroup, false);
-        }
-
-
-    }
-
-
-
-
-*//*    public class ViewHolder extends RecyclerView.ViewHolder {
-        public Button answer;
-
-        public ViewHolder(View view) {
-            super(view);
-
-            answer = (Button) view.findViewById(R.id.answerTextB);
-        }
-    }*//*
-
-
-
-
-
-*//*    @Override
-    public void onBindViewHolder(final BulletedAnswerAdapter.ViewHolder holder, int position) {
-
-        final BulletedAnswer answer = answers.get(position);
-
-        holder.answer.setText(answer.getText());
-        holder.answer.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                chooseAnswer(holder.answer, answer.getId());
-            }
-        });
-    }*//*
-
-    public void chooseAnswer(View view, int id)
-    {
-
-        view.setBackgroundColor(view.getResources().getColor(R.color.colorAccent));
-            //kolorowanie elementu
-           // ListPoint elem = productsList.get(position);
-           // elem.setisBought(val);
-           // notifyItemChanged(position);
-    }*/
-
-
-
-
-
 
 }

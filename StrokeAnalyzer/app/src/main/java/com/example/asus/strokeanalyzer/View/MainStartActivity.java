@@ -1,27 +1,16 @@
 package com.example.asus.strokeanalyzer.View;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-
-import com.example.asus.strokeanalyzer.Model.CTPictures;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
-import com.example.asus.strokeanalyzer.Model.Patient;
-import com.example.asus.strokeanalyzer.Model.Report;
 import com.example.asus.strokeanalyzer.R;
-import com.example.asus.strokeanalyzer.Services.PatientService;
-import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
 import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
 
-import java.io.File;
-
-import static java.security.AccessController.getContext;
 
 public class MainStartActivity extends AppCompatActivity{
 
@@ -37,9 +26,9 @@ public class MainStartActivity extends AppCompatActivity{
         fm = getSupportFragmentManager();
         FormsStructure.InitializeQuestionsList();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
 
     }
 

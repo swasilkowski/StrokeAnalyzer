@@ -6,7 +6,7 @@ package com.example.asus.strokeanalyzer.View.Form;
  * @author Marta Marciszewicz
  */
 
-public class BulletedAnswer {
+class BulletedAnswer {
 
     private Integer id;
     private String text;

@@ -9,7 +9,7 @@ package com.example.asus.strokeanalyzer.Model.Form.Answer;
 
 public class Answer {
 
-    private int questionId;
+    final private int questionId;
 
     /**
      * Konstruktor ustawiający Id pytania

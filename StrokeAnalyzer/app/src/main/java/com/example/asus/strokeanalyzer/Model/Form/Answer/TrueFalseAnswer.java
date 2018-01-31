@@ -20,6 +20,7 @@ public class TrueFalseAnswer extends Answer {
         super(questionId);
     }
 
+    @SuppressWarnings("SameParameterValue")
     public TrueFalseAnswer(int questionId, boolean value) {
         super(questionId);
         Value = value;

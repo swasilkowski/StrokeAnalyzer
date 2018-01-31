@@ -41,8 +41,8 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
             super(view);
             mView = view;
 
-            name = (TextView) view.findViewById(R.id.patientNameSurname);
-            number = (TextView) view.findViewById(R.id.patientID);
+            name =  view.findViewById(R.id.patientNameSurname);
+            number =  view.findViewById(R.id.patientID);
         }
     }
 
@@ -85,8 +85,9 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
 
         final Patient patient = patients.get(position);
 
-        holder.name.setText(patient.Name + " " + patient.Surname);
-        holder.number.setText(Long.toString(patient.PatientNumber));
+        String name = patient.Name + " " + patient.Surname;
+        holder.name.setText(name);
+        holder.number.setText(String.valueOf(patient.PatientNumber));
 
     }
 

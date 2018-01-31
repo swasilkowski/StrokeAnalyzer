@@ -22,6 +22,6 @@ public class TreatmentResult {
     public TreatmentResult()
     {
         Decision = true;
-        badAnswers = new ArrayList<Answer>();
+        badAnswers = new ArrayList<>();
     }
 }
