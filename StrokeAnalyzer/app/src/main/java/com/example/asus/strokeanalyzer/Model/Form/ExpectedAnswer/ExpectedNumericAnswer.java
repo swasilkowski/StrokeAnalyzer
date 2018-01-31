@@ -22,7 +22,7 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
     //null value indicates that particular parameter should not be taken into consideration
     //if correctValue is considered we give 1 point
     private Double CorrectValue;
-    public List<RangeClassifier> Ranges;
+    final public List<RangeClassifier> Ranges;
 
     /**
      * Konstruktor ustawiający ID pytania, którego dotyczy odpowiedź oraz inicjujący listę przedziałów wartości

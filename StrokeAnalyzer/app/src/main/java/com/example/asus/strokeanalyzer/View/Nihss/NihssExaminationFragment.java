@@ -24,7 +24,6 @@ import com.example.asus.strokeanalyzer.View.Helpers.LineDecoration;
 import com.example.asus.strokeanalyzer.View.Form.FormFragment;
 import com.example.asus.strokeanalyzer.View.Helpers.ClickListener;
 import com.example.asus.strokeanalyzer.View.Helpers.RecyclerClickListener;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,8 +39,6 @@ public class NihssExaminationFragment extends Fragment {
     private static final String ARG_PATIENT_ID = "patient_id";
 
     private RecyclerView recyclerView;
-    private NihssAdapter nAdapter;
-    private List<NihssExamination> examinations = new ArrayList<>();
     private int patientID;
     private FragmentActivity activity;
 
@@ -131,10 +128,10 @@ public class NihssExaminationFragment extends Fragment {
             PatientService patientService = new PatientService(getContext());
 
             //get patients list from database
-            examinations = patientService.GetPatientById(patientID).getNihssHistory();
+            List<NihssExamination> examinations = patientService.GetPatientById(patientID).getNihssHistory();
             Collections.reverse(examinations);
 
-            nAdapter = new NihssAdapter(examinations,context);
+            NihssAdapter nAdapter = new NihssAdapter(examinations, context);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(nAdapter);
             recyclerView.addItemDecoration(new LineDecoration(this.getContext()));

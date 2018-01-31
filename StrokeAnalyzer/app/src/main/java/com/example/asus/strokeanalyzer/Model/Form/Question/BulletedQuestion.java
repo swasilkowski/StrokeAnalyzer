@@ -14,7 +14,7 @@ public class BulletedQuestion extends Question {
 
     //key - value of a particular answer, value - description for this answer to be printed
     //possibleValues - field containing all of the values user may pick
-    private Map<Integer, String> possibleValues;
+    final private Map<Integer, String> possibleValues;
 
     /**
      * Konstruktor ustawiający ID pytania, jego treść oraz możliwe odpowiedi na pytanie

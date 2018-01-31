@@ -20,7 +20,7 @@ import java.util.List;
 
 public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHolder> {
 
-    private List<Patient> patients;
+    final private List<Patient> patients;
 
     /**
      *  Klasa zarządzająca elementami związanymi z widokiem pojedynczego elementu listy przechowywanej w adaptorze.
@@ -28,8 +28,8 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
      *
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name;
-        public TextView number;
+        final public TextView name;
+        final public TextView number;
         public final View mView;
 
         /**

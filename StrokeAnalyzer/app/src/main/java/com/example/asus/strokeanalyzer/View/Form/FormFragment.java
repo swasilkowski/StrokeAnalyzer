@@ -48,7 +48,7 @@ public class FormFragment extends Fragment {
     private Patient patient; //patient whose data is supposed to be changed
     private Integer patientID; //id of this patient
     private boolean newForm; //true if new form is being created
-    private List<Question> printQuestions = new ArrayList<>(); // list of questions printed in this form
+    final private List<Question> printQuestions = new ArrayList<>(); // list of questions printed in this form
     private PatientService patientService; //serwis used for communication with database
 
     /**

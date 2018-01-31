@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 public final class PatientService {
-    private StrokeAnalyzerDatabase db;
+    final private StrokeAnalyzerDatabase db;
 
     /**
      * Konstruktor umożliwiający pozyskanie obiektu bazy danych, na którym wykonywane będą operacje

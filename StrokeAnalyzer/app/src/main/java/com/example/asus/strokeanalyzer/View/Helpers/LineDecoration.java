@@ -22,7 +22,7 @@ public class LineDecoration extends RecyclerView.ItemDecoration {
             android.R.attr.listDivider
     };
 
-    private Drawable divider;
+    final private Drawable divider;
 
     /**
      * Konstruktor klasy pozwala na pobranie atrybutów stylu z kontekstu aplikacji.

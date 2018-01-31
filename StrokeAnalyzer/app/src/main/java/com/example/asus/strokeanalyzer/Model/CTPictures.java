@@ -29,9 +29,9 @@ public final class CTPictures {
 
     private static Context appContext;
     //key - region's id, value - list of resoruce id of images connected with this region
-    private static Map<Region, List<Integer>> regions = new Hashtable<>();
+    final private static Map<Region, List<Integer>> regions = new Hashtable<>();
     //key - region's picture ID, value - ID of a basic brain picture on which particular region's image is visible
-    private static Map<Integer, Integer> pictureBasicPictureRelation = new Hashtable<>();
+    final private static Map<Integer, Integer> pictureBasicPictureRelation = new Hashtable<>();
 
     /**
      * Domyślny konstruktor klasy
@@ -210,7 +210,7 @@ public final class CTPictures {
     public static Bitmap[] GenerateOutputImage(List<Region> _regions)
     {
         Bitmap[] brainPictures = new Bitmap[4];
-        Bitmap tmp = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1);
+        @SuppressWarnings("unused") Bitmap tmp = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1);
         brainPictures[0] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_1);
         brainPictures[1] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_2);
         brainPictures[2] = BitmapFactory.decodeResource( appContext.getResources(), R.drawable.brain_3);

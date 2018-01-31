@@ -39,17 +39,6 @@ public class NumberAlertFragment extends DialogFragment {
         return fragment;
     }
 
-    /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
-     * jako argumenty poprzez {@link Bundle}
-     *
-     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
-     *                           (może przyjmować wartość null)
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     /**
      * Metoda pozwala na stowrzenie własnego kontenera na okno dialogowe. Wstrzykuje widok oraz

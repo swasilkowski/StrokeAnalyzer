@@ -10,13 +10,13 @@ package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
 public class ExpectedAnswer {
 
-    private int questionId;
+    final private int questionId;
 
     /**
      * Konstruktor ustawiający Id pytania
      * @param questionId ID pytania, którego dotyczy odpowiedź
      */
-    public ExpectedAnswer(int questionId)
+    ExpectedAnswer(int questionId)
     {
         this.questionId = questionId;
     }

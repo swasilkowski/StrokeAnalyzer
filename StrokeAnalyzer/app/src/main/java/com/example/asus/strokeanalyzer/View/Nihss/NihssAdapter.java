@@ -22,16 +22,16 @@ import java.util.List;
 
 public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder>  {
 
-    private List<NihssExamination> examinations;
+    final private List<NihssExamination> examinations;
 
     /**
      *  Klasa zarządzająca elementami związanymi z widokiem pojedynczego elementu listy przechowywanej w adaptorze.
      *  Pozwala na wyświetlenie w widoku danych zawartych w obiekcie z listy.
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView date;
-        public TextView time;
-        public TextView sum;
+        final public TextView date;
+        final public TextView time;
+        final public TextView sum;
         public final View mView;
 
         public ViewHolder(View view) {

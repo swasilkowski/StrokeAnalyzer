@@ -14,8 +14,8 @@ import android.view.View;
 
 public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
 
-    private ClickListener clickListener;
-    private GestureDetector gestureDetector;
+    final private ClickListener clickListener;
+    final private GestureDetector gestureDetector;
 
     /**
      * Konstruktor inicjalizujący detektor gestów oraz obiekt klasy {@link ClickListener}.

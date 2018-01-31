@@ -12,13 +12,13 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 
 public class NumericQ implements Question {
     //id pytania
-    private int id;
+    final private int id;
     //tresc pytania
-    private String text;
+    final private String text;
     //wartosc odpowiedzi
     private double answer;
     private boolean answerSet;
-    private RangeClassifier range;
+    final private RangeClassifier range;
 
     /**
      * Konstruktor ustawiający odpowiednie pola klasy.

@@ -38,7 +38,7 @@ import java.util.List;
  */
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
-    private List<Question> questions;
+    final private List<Question> questions;
 
     /**
      * Klasa bazowa dla klas zarządzających elementami związanymi z widokiem pojedynczego pytania
@@ -130,7 +130,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private final TextView question;
         private final EditText answer;
         private Question questionObject;
-        private Toast toast;
+        final private Toast toast;
 
         /**
          * Kontruktor pobierający kontrolki z widoku pojedynczego elementu listy.

@@ -10,7 +10,7 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 
 public class NumericQuestion extends Question {
 
-    public RangeClassifier Range;
+    final public RangeClassifier Range;
     /**
      * onstruktor ustawiający ID pytania oraz jego treść
      * @param id ID pytania

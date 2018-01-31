@@ -8,8 +8,8 @@ package com.example.asus.strokeanalyzer.View.Form;
 
 class BulletedAnswer {
 
-    private Integer id;
-    private String text;
+    final private Integer id;
+    final private String text;
 
     /**
      * Konstruktor ustawiający odpowiednie pola klasy.

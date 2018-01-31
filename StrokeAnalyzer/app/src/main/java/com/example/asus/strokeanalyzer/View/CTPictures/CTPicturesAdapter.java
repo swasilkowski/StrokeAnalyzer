@@ -19,7 +19,7 @@ import com.example.asus.strokeanalyzer.R;
 
 class CTPicturesAdapter extends BaseAdapter {
 
-    private Bitmap CTpictures[];
+    final private Bitmap CTpictures[];
 
     /**
      * Kontruktor ustawiający listę obrazów CT wykorzystywaną przez adapter do wyświetlenia we fragmencie.

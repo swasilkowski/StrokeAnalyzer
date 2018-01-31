@@ -17,7 +17,7 @@ public class TreatmentResult {
     //final decision whether treatment should be conducted
     public boolean Decision;
     //list of answers that were different than expected answers, and influenced final decision
-    public List<Answer> badAnswers;
+    final public List<Answer> badAnswers;
 
     public TreatmentResult()
     {

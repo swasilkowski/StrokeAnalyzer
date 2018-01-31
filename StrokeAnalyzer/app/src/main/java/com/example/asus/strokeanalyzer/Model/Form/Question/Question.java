@@ -9,15 +9,15 @@ package com.example.asus.strokeanalyzer.Model.Form.Question;
 
 public class Question {
 
-    private int ID;
-    private String Text;
+    final private int ID;
+    final private String Text;
 
     /**
      * Konstruktor ustawiający pola klasy
      * @param id ID pytania
      * @param text treść pytania
      */
-    public Question(int id, String text)
+    Question(int id, String text)
     {
         ID = id;
         Text = text;

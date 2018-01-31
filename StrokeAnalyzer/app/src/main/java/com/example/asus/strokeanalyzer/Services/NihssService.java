@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 public class NihssService {
-    private static StrokeAnalyzerDatabase db = DatabaseAccess.getInstance().database;
+    final private static StrokeAnalyzerDatabase db = DatabaseAccess.getInstance().database;
 
     /**
      * Metoda pobierająca z bazy danych listę badań w skali NIHSS dla pacjenta o podanym Id

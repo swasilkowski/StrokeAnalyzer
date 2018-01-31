@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
  */
 
 public final class DatabaseAccess {
-    public StrokeAnalyzerDatabase database;
+    final public StrokeAnalyzerDatabase database;
     private static DatabaseAccess instance;
 
     /**

@@ -32,17 +32,6 @@ public class PatientsListFragment extends Fragment  {
     private PatientAdapter pAdapter;
     private List<Patient> patients = new ArrayList<>();
 
-    /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu.
-     *
-     * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
-     *                           (może przyjmować wartość null)
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     /**
      * Metoda wywoływana w momencie, gdy fragment jest wyświetlany użytkownikowi. Aplikacja wykorzystuje tę metodę

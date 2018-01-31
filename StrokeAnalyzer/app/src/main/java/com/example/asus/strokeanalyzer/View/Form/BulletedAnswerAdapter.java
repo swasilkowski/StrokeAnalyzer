@@ -23,9 +23,9 @@ import java.util.Map;
 
 public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerAdapter.ViewHolder>  {
 
-    private List<BulletedAnswer> answers;
+    final private List<BulletedAnswer> answers;
     private final Context context;
-    private Map<Integer, TextView> buttons;
+    final private Map<Integer, TextView> buttons;
     private Integer answerID;
 
     /**
@@ -33,7 +33,7 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
      * Pozwala na wyświetlenie w widoku danych zawartych w obiekcie z listy.
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView answer;
+        final public TextView answer;
 
         /**
          * Kontruktor pobierający kontrolki z widoku pojedynczego elementu listy.

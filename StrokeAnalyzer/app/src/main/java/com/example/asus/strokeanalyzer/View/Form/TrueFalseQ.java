@@ -8,8 +8,8 @@ package com.example.asus.strokeanalyzer.View.Form;
 
 public class TrueFalseQ implements Question
 {
-    private int id;
-    private String text;
+    final private int id;
+    final private String text;
     private boolean answer;
 
     /**

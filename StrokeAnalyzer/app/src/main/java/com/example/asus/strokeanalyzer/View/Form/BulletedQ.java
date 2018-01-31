@@ -12,10 +12,10 @@ import java.util.Map;
 
 public class BulletedQ implements Question{
 
-    private int id;
-    private String text;
+    final private int id;
+    final private String text;
     private int answerId;
-    private List<BulletedAnswer> answers;
+    final private List<BulletedAnswer> answers;
 
     /**
      * Konstruktor ustawiający odpowiednie pola klasy.

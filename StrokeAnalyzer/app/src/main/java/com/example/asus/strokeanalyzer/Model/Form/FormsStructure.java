@@ -28,13 +28,13 @@ import java.util.Map;
 public final class FormsStructure {
     //key - particular form, value - list of question identifiers
     //QuestionsUsedForForm - contains list of questions used in a particular dictionary for analysis
-    public static Map<Form, List<Integer>> QuestionsUsedForForm = new Hashtable<>();
+    final public static Map<Form, List<Integer>> QuestionsUsedForForm = new Hashtable<>();
     //key - particular form, value - list of question identifiers
     //QuestionsPrintedInForm - contains list of questions printed while showing particular form
-    public static Map<Form, List<Integer>> QuestionsPrintedInForm = new Hashtable<>();
+    final public static Map<Form, List<Integer>> QuestionsPrintedInForm = new Hashtable<>();
     //key - question id, value - question object
     //Questions - container for all questions used in an application
-    public static Map<Integer, Question> Questions = new Hashtable<>();
+    final public static Map<Integer, Question> Questions = new Hashtable<>();
 
 
     /**

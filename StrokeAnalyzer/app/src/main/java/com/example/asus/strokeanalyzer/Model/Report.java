@@ -9,7 +9,6 @@ import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.results.TreatmentResult;
 import com.example.asus.strokeanalyzer.R;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -150,10 +149,12 @@ public final class Report {
             List<Region> regions = patient.getStrokeBricksAffectedRegions();
             if (regions != null) {
                 strokeBrickResultText = "";
+                StringBuilder sb = new StringBuilder(strokeBrickResultText);
                 for (Region region:
                      regions) {
-                    strokeBrickResultText += region.toString() + "\n";
+                    sb.append(region.toString()).append("\n");
                 }
+                strokeBrickResultText = sb.toString();
             }
             Paragraph p9 = new Paragraph(context.getString(R.string.report_stroke_bricks) + "\n" + strokeBrickResultText);
             p9.setAlignment(Paragraph.ALIGN_LEFT);

@@ -12,8 +12,8 @@ import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
 
 public class RangeClassifier
 {
-    private double MinValue;
-    private double MaxValue;
+    final private double MinValue;
+    final private double MaxValue;
     public int Points;
 
     /**
