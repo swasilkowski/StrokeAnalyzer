@@ -1,9 +1,9 @@
 package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
 /**
- * Klasa bazowa dla oczekiwanych odpowiedzi. Pozwala na sprawdzenie, czy udzielona przez użytkownika odpowiedź
- * jest zgodna z oczekiwaną odpowiedzią na dane pytanie dla danej skali.
- * Zawiera Id pytania, którego dotyczy odpowiedź
+ * Klasa bazowa dla klas reprezentujących różnego typu oczekiwane odpowiedzi.
+ * Pozwala na sprawdzenie, czy udzielona przez użytkownika odpowiedź jest zgodna z oczekiwaną
+ * odpowiedzią na dane pytanie dla danej skali. Zawiera id pytania, którego dotyczy odpowiedź
  *
  * @author Marta Marciszewicz
  */
@@ -13,8 +13,9 @@ public class ExpectedAnswer {
     final private int questionId;
 
     /**
-     * Konstruktor ustawiający Id pytania
-     * @param questionId ID pytania, którego dotyczy odpowiedź
+     * Konstruktor ustawiający id pytania.
+     *
+     * @param questionId id pytania, którego dotyczy odpowiedź
      */
     ExpectedAnswer(int questionId)
     {
@@ -22,8 +23,9 @@ public class ExpectedAnswer {
     }
 
     /**
-     * Metoda zwracająca ID pytania, którego dotyczy odpowiedź
-     * @return (int) ID pytania, którgo dotyczy odpowiedź
+     * Metoda zwracająca id pytania, którego dotyczy odpowiedź.
+     *
+     * @return id pytania, którego dotyczy odpowiedź
      */
     public int GetQuestionID()
     {

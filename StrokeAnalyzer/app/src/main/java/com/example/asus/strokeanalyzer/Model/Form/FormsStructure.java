@@ -14,13 +14,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Klasa zarządzająca formularzami.
- * Przechowuje mapę łączącą formularz z listą pytań używanych przy wyznaczaniu wyniku tego formularza oraz
- * mapę wiążącą formualrz z listą pytań wyświetlanych w danym formularzu. Ponadto przechowuje mapę
- * przypisującą ID do pytania. Mapa ta zawiera wszystkie pytania występujące w aplikacji.
- *<p>
- * Zawiera głównie metodę inicjalizującą poszczególne mapy. Dodatkowo klasa umożliwie też sprawdzenie
- * czy zostały przez użytkownika udzielone odpowiedzi na wszystkie pytania wymagane dla danego formularza.
+ * Klasa zarządzająca formularzami dostępnymi w aplikacji. Przechowuje listę wszystkich pytań aplikacji oraz
+ * definiuje powiązania formularzy z pytaniami używanymi przy wyznaczaniu wyniku i wyświetlaniu danego formularza.
+ * Dodatkowo klasa umożliwia też sprawdzenie, czy zostały przez użytkownika udzielone odpowiedzi na
+ * wszystkie pytania wymagane dla analizy danego formularza.
  *
  * @author Marta Marciszewicz & Stanisław Wasilkowski
  */
@@ -38,20 +35,20 @@ public final class FormsStructure {
 
 
     /**
-     * Domyślny konstruktor klasy
-     * Oznaczony jako prywatny, by uniemożliwić jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     * Domyślny konstruktor bezparametrowy klasy oznaczony jako prywatny, by uniemożliwić
+     * jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
      */
     private FormsStructure(){
     }
 
     /**
-     * Sprawdzenie, czy obiekt klasy Patient zawiera odpowiedzi na wszytkie pytania wykorzystywane w formularzu
-     * przekazanym jako paramter
+     * Metoda sprawdzająca, czy obiekt klasy Patient zawiera odpowiedzi na wszytkie pytania wykorzystywane w formularzu
+     * przekazanym jako parametr.
+     *
      * @param p obiekt klasy Patient, dla którego sprawdzamy możliwość analizy we wskazanej skali
-     * @param form rodzaj skali, której analizę chcemy przeprwadzić dla obiektu p
-     * @return (boolean) true - jeżeli obiekt p zawiera wszystkie odpowiedzi na pytania formularza form,
-     *          false - jeżeli nie wszystkie pytania formularza form posiadają odpowiedź w obiekcie klasy
-     *          Patient
+     * @param form rodzaj skali, której analizę chcemy przeprowadzić dla obiektu p
+     * @return true - jeżeli obiekt p zawiera wszystkie odpowiedzi na pytania formularza form;
+     *          false - jeżeli obiekt p nie posiada odpowiedzi na wszystkie pytania formularza form
      */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean patientReady(Patient p, Form form)
@@ -66,7 +63,7 @@ public final class FormsStructure {
     }
 
     /**
-     * Metoda inicjalizująca słowniki klasy FormsStructure
+     * Metoda inicjalizująca słowniki klasy FormsStructure.
      */
     public static void InitializeQuestionsList()
     {

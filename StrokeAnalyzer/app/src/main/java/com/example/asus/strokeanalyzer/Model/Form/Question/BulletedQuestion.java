@@ -3,9 +3,8 @@ package com.example.asus.strokeanalyzer.Model.Form.Question;
 import java.util.Map;
 
 /**
- * Klasa reprezentująca pytanie, które zawiera zbiór gotowych odpowiedzi
- * Przechowuje ono mapę łączącą pewną wartość liczbową z treścią odpowiedzi. Wartość ta może stanowić
- * liczbę punktów przyznawanych odpowiedzi bądź jej Id w zależności od pytania.
+ * Klasa stanowiąca rozszerzenie klasy {@link Question} reprezentująca pytanie zamknięte,
+ * które posiada zbiór możliwych odpowiedzi.
  *
  * @author Marta Marciszewicz
  */
@@ -17,10 +16,11 @@ public class BulletedQuestion extends Question {
     final private Map<Integer, String> possibleValues;
 
     /**
-     * Konstruktor ustawiający ID pytania, jego treść oraz możliwe odpowiedi na pytanie
-     * @param id ID pytania
+     * Konstruktor ustawiający id pytania, jego treść oraz możliwe odpowiedi na pytanie.
+     *
+     * @param id id pytania
      * @param text treść pytania
-     * @param answers mapa zawierająca możliwe odpowiedzi na dane pytanie
+     * @param answers mapa zawierająca możliwe odpowiedzi na dane pytanie powiązane z pewną daną liczbową
      */
     public BulletedQuestion(int id, String text, Map<Integer, String> answers)
     {
@@ -29,9 +29,10 @@ public class BulletedQuestion extends Question {
     }
 
     /**
-     * Metoda wracająca treść danej odpowiedzi
+     * Metoda zwracająca treść wybranej odpowiedzi.
+     *
      * @param ind liczba charakteryzująca daną odpowiedż
-     * @return (String) tekst odpowiedzi
+     * @return tekst odpowiedzi
      */
     public String GetValueDescription(int ind)
     {
@@ -39,9 +40,9 @@ public class BulletedQuestion extends Question {
     }
 
     /**
-     * Metoda zwracająca możliwe odpowiedzi na dane pytnaie
-     * @return
-     * {@code Map<Integer, String>} mapa możliwych do wyboru odpowiedzi na pytanie
+     * Metoda zwracająca wszystkie możliwe odpowiedzi na dane pytanie.
+     *
+     * @return mapa możliwych do wyboru odpowiedzi na pytanie powiązanych z pewną daną liczbową
      */
     public Map<Integer, String> GetPosiibleValues()
     {

@@ -1,8 +1,8 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
 /**
- * Klasa bazowa dla pytań wykorzystywanych w formualrzach aplikacji
- * Zawiera ID pytania oraz jest treść
+ * Klasa bazowa dla klas reprezentujących różne rodzaje pytań wykorzystywanych w formularzach aplikacji.
+ * Zawiera id pytania oraz jest treść
  *
  * @author Marta Marciszewicz
  */
@@ -13,8 +13,9 @@ public class Question {
     final private String Text;
 
     /**
-     * Konstruktor ustawiający pola klasy
-     * @param id ID pytania
+     * Konstruktor ustawiający id pytania oraz jego treść.
+     *
+     * @param id id pytania
      * @param text treść pytania
      */
     Question(int id, String text)
@@ -24,8 +25,9 @@ public class Question {
     }
 
     /**
-     * Metoda zwracajaca ID pytania
-     * @return (int) ID pytania
+     * Metoda zwracająca id pytania.
+     *
+     * @return id pytania
      */
     public int GetID()
     {
@@ -33,8 +35,9 @@ public class Question {
     }
 
     /**
-     * Metoda zwracająca treść pytania
-     * @return (String) treść pytania
+     * Metoda zwracająca treść pytania.
+     *
+     * @return treść pytania
      */
     public String GetText()
     {

@@ -1,8 +1,8 @@
 package com.example.asus.strokeanalyzer.Model.Form.Answer;
 
 /**
- * Klasa reprezentująca odpowiedź będącą tekstem.
- * Zawiera wartość udzielonej odpowiedzi typu String
+ * Klasa stanowiąca rozszerzenie klasy {@link Answer} reprezentująca odpowiedź będącą tekstem.
+ * Zawiera wartość udzielonej odpowiedzi typu String.
  *
  * @author Marta Marciszewicz
  */
@@ -12,8 +12,9 @@ public class TextAnswer extends Answer {
     public String Value;
 
     /**
-     * Konstruktor ustawiający ID pytania, którego dotyczy odpowiedź
-     * @param questionId ID pytania, którego dotyczy odpowiedź
+     * Konstruktor ustawiający id pytania, którego dotyczy odpowiedź.
+     *
+     * @param questionId id pytania, którego dotyczy odpowiedź
      */
     public TextAnswer(int questionId)
     {

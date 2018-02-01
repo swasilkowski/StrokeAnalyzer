@@ -1,7 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
 /**
- * Klasa reprezentująca pytanie, na które odpowiedż jest typu prawda/fałsz.
+ * Klasa stanowiąca rozszerzenie klasy {@link Question} reprezentująca pytanie, na które odpowiedż jest typu prawda/fałsz.
  *
  * @author Marta Marciszewicz
  */
@@ -9,8 +9,9 @@ package com.example.asus.strokeanalyzer.Model.Form.Question;
 public class TrueFalseQuestion extends Question {
 
     /**
-     * Konstruktor ustawiający ID pytania oraz jego treść
-     * @param id ID pytania
+     * Konstruktor ustawiający id pytania oraz jego treść.
+     *
+     * @param id id pytania
      * @param text treść pytania
      */
     public TrueFalseQuestion(int id, String text)

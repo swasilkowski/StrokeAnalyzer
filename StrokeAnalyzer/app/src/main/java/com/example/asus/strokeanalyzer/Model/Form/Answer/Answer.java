@@ -1,8 +1,8 @@
 package com.example.asus.strokeanalyzer.Model.Form.Answer;
 
 /**
- * Klasa bazowa dla odpowiedzi udzielanych przez użytkownika.
- * Zawiera Id pytania, którego dotyczy odpowiedź.
+ * Klasa bazowa dla klas reprezentujących różnego typu odpowiedzi udzielane przez użytkownika.
+ * Zawiera id pytania, którego dotyczy odpowiedź.
  *
  * @author Marta Marciszewicz
  */
@@ -12,8 +12,9 @@ public class Answer {
     final private int questionId;
 
     /**
-     * Konstruktor ustawiający Id pytania
-     * @param questionId ID pytania, którego dotyczy odpowiedź
+     * Konstruktor ustawiający id pytania.
+     *
+     * @param questionId id pytania, którego dotyczy odpowiedź
      */
     public Answer(int questionId)
     {
@@ -21,8 +22,9 @@ public class Answer {
     }
 
     /**
-     * Metoda zwracająca ID pytania, którego dotyczy odpowiedź
-     * @return (int) ID pytania, którgo dotyczy odpowiedź
+     * Metoda zwracająca id pytania, którego dotyczy odpowiedź.
+     *
+     * @return id pytania, którgo dotyczy odpowiedź
      */
     public int GetQuestionID()
     {

@@ -6,13 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Klasa reprezentująca oczekiwaną odpowiedź będącą liczbą.
- * Zawiera wartość prawidłowej odpowiedzi typu Double oraz listę klasyfikatorów przechowującą zakresu,
+ * Klasa stanowiąca rozszerzenie klasy {@link ExpectedAnswer} reprezentująca oczekiwaną odpowiedź będącą liczbą.
+ * Zawiera wartość prawidłowej odpowiedzi typu Double oraz listę klasyfikatorów przechowującą zakresy,
  * w których może znajdować się udzielona odpowiedź.
- * <p>
- * Klasa zawiera metodę sprawdzającą, czy podana wartość odpowiedzi jest zgodna z poprawną odpowiedzią
- * bądź należy do któregoś z zakresów, oraz metodę wyznaczającą liczbę przyznanych punktów dla wartości
- * odpowiedzi użytkownika
  *
  * @author Stanisław Wasilkowski
  */
@@ -25,8 +21,9 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
     final public List<RangeClassifier> Ranges;
 
     /**
-     * Konstruktor ustawiający ID pytania, którego dotyczy odpowiedź oraz inicjujący listę przedziałów wartości
-     * @param questionId ID pytania, którego dotyczy odpowiedź
+     * Konstruktor ustawiający id pytania, którego dotyczy odpowiedź.
+     *
+     * @param questionId id pytania, którego dotyczy odpowiedź
      */
     public ExpectedNumericAnswer(int questionId)
     {
@@ -35,13 +32,17 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
     }
 
     /**
-     * Klasa wyliczająca przyznane punkty w zależności od wartości odpowiedzi wprowadząnej jako parametr
-     * Jeżeli w obiekcie ustawiona jest wartość pola CorrectValue to metoda przyznaje 1 punkt za zgodność
+     * Metoda wyliczająca przyznane punkty w zależności od wartości odpowiedzi podanej jako parametr.
+     *
+     * Uwaga: Jeżeli w obiekcie ustawiona jest pojedyncza poprawna wartość to metoda przyznaje 1 punkt za zgodność
      * podanych wartości. W przeciwnym przypadku sprawdzana jest przynależność odpowiedzi do któregokolwiek
-     * z zakresów znajdujących się na liście Ranges. Jeżeli odpowiedź należy do danego zakresu zwracana jest
+     * z możliwych zakresów. Jeżeli odpowiedź należy do danego zakresu zwracana jest
      * liczba punktów jego klasyfikatora.
-     * @param value wartość odpowiedzi udzielonej na pytanie, któego dotyczy obiekt tej klasy
-     * @return (int) liczba punktów uzyskanych dla podanej odpowiedzi
+     *
+     * @param value wartość odpowiedzi udzielonej na pytanie
+     * @return liczba punktów uzyskanych dla podanej odpowiedzi
+     * @throws NoAnswerException podana wartość to wartość domyślna, może to oznaczać, że na to pytanie
+     *                           nie została jeszcze udzielona odpowiedź
      */
     public int CalculatePoints(double value) throws NoAnswerException {
         if(CorrectValue!= null && CorrectValue.equals(value))
@@ -60,15 +61,16 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
     }
 
     /**
-     * Klasa sprawdzająca poprawność wartości odpowiedzi wprowadząnej jako parametr
-     * Jeżeli w obiekcie ustawiona jest wartość pola CorrectValue to metoda zwraca true za zgodność
+     * Metoda sprawdzająca poprawność wartości odpowiedzi podanej jako parametr.
+     *
+     * Uwaga: Jeżeli w obiekcie ustawiona jest pojedyncza poprawna wartość to metoda zwraca wynik zgodności
      * podanych wartości. W przeciwnym przypadku sprawdzana jest przynależność odpowiedzi do któregokolwiek
-     * z zakresów znajdujących się na liście Ranges. Jeżeli odpowiedź należy do jednego z zakresów zwracana jest
-     * wartość true. Jeżeli odpowiedź nie jest zgodna z odpowiedzią CorrectValue ani nie przynależy
-     * do żadnego z zakresów to zwracana jest wartość false.
-     * @param value wartość odpowiedzi udzielonej na pytanie, któego dotyczy obiekt tej klasy
-     * @return (boolean) true - jeżeli wartość odpowiedzi jest zgodna z oczekiwaną odpowiedzią; false
-     *          - w przeciwnym przypadku
+     * z możliwych zakresów.
+     *
+     * @param value wartość odpowiedzi udzielonej na pytanie
+     * @return true - jeżeli wartość odpowiedzi jest zgodna z oczekiwaną odpowiedzią bądź należy do jednego z
+     *          możliwych zakresów; false - jeżeli odpowiedź nie jest zgodna z oczekiwaną odpowiedzią,
+     *          ani nie przynależy do żadnego z zakresów
      */
     public boolean CheckCorrectness(double value) throws NoAnswerException {
         if(CorrectValue!= null && CorrectValue.equals(value))
