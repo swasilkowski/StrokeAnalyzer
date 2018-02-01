@@ -207,19 +207,13 @@ public class FormFragment extends Fragment {
     }
 
     /**
-     * Metoda wywoływana w momencie, gdy widok został odłączony od fragmentu. Funkcja odpowiedzialna
-     * jest za zapisanie odpowiedzi użytkownika w jego profilu oraz aktualizację bazy danych. Dodatkowo
-     * aplikacja wykorzystuje tę metodę do usunięcia dodatkowego fragmentu ze stosu fragmentów.
-     *
+     * Metoda wywoływana w momencie, gdy widok został odłączony od fragmentu. Aplikacja wykorzystuje
+     * tę metodę do usunięcia dodatkowego fragmentu ze stosu fragmentów i powrotu do profilu pacjenta.
      */
     @Override
     public void onDestroyView ()
     {
         super.onDestroyView();
-        SaveAnswers();
-        patientService.UpdatePatient(patient);
-        if(formType == Form.NIHSS)
-            return;
 
         FragmentManager manager = getFragmentManager();
         if(manager!=null)
