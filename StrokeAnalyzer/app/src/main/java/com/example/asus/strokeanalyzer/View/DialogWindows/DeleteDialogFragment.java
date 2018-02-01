@@ -9,7 +9,7 @@ import android.support.v4.app.DialogFragment;
 import com.example.asus.strokeanalyzer.R;
 
 /**
- * Klasa będąca podklasą {@link DialogFragment}. Wykorzystywana jest w celu potwierdzenia przez
+ * Klasa będąca rozszerzeniem klasy {@link DialogFragment}. Wykorzystywana jest w celu otrzymania potwierdzenia od
  * użytkownika chęci usunięcia profilu pacjenta z aplikacji.
  * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link DeleteDialogFragment#newInstance}.
  */
@@ -22,7 +22,7 @@ public class DeleteDialogFragment extends DialogFragment {
 
 
     /**
-     * Interfejs akcji przycisków w oknie dialogowym
+     * Interfejs akcji przycisków w oknie dialogowym.
      */
     public interface DeletePatientDialogListener {
         void onDialogDeletePositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
@@ -34,12 +34,12 @@ public class DeleteDialogFragment extends DialogFragment {
 
 
     /**
-     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów. Inicjalizuje ona listener.
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     * @param id Id pacjenta, którego profil ma zostać usunięty
+     * @param id id pacjenta, którego profil ma zostać usunięty
      * @param listener obiekt klasy {@link DeletePatientDialogListener}, wykorzystywany w oknie dialogowym
      *                do monitorowania akcji przycisków okna
-     * @return (DeleteDialogFragment) nowa instancja fragmentu DeleteDialogFragment
+     * @return nowa instancja fragmentu DeleteDialogFragment
      */
     public static DeleteDialogFragment newInstance(int id, DeletePatientDialogListener listener) {
         DeleteDialogFragment fragment = new DeleteDialogFragment();
@@ -52,8 +52,8 @@ public class DeleteDialogFragment extends DialogFragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
-     * jako argumenty poprzez {@link Bundle}
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartości pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
@@ -68,11 +68,11 @@ public class DeleteDialogFragment extends DialogFragment {
 
     /**
      * Metoda pozwala na stowrzenie własnego kontenera na okno dialogowe. Wstrzykuje widok oraz
-     * odpowiada za wywoływanie operacji listnera.
+     * odpowiada za wywoływanie operacji listenera.
      *
      * @param savedInstanceState poprzedni zapisany stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (Dialog) nowa instancja okna dialogowego, która ma być wyświetlona we fragmencie
+     * @return nowa instancja okna dialogowego, która ma być wyświetlona we fragmencie
      */
     @NonNull
     @Override

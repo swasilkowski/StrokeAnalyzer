@@ -23,9 +23,8 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
     final private List<Patient> patients;
 
     /**
-     *  Klasa zarządzająca elementami związanymi z widokiem pojedynczego elementu listy przechowywanej w adaptorze.
+     *  Klasa zarządzająca elementami związanymi z widokiem pojedynczego elementu listy przechowywanej w adapterze.
      *  Pozwala na wyświetlenie w widoku danych zawartych w obiekcie z listy.
-     *
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
         final public TextView name;
@@ -62,7 +61,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
      *
      * @param parent grupa, do której dodany zostanie widok po jego utworzeniu
      * @param viewType rodzaj widoku
-     * @return (ViewHolder) nowoutworzony ViewHolder, który przechowuje widok podanego typu
+     * @return nowoutworzony ViewHolder, który przechowuje widok podanego typu
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -73,7 +72,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
     }
 
     /**
-     * Metoda wywoływana w celu wyświetlanie danych konkretnego elementu listy. Powoduje modyfikację
+     * Metoda wywoływana w celu wyświetlenia danych konkretnego elementu listy. Powoduje modyfikację
      * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi na podanej jako parametr pozycji.
      *
      * @param holder obiekt klasy ViewHolder, który powinien zostać zaktualizowany, tak by przechowywał dane zawarte w
@@ -93,9 +92,9 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
 
 
     /**
-     * Metoda pobierająca liczbę elentów listy do wyświetlenia
+     * Metoda pobierająca liczbę elementów wyświetlanej listy.
      *
-     * @return (int) liczba pacjentów wyświetlanych we fragmencie
+     * @return liczba pacjentów wyświetlanych we fragmencie
      */
     @Override
     public int getItemCount() {

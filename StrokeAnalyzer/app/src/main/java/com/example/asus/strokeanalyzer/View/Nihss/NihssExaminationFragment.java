@@ -30,7 +30,7 @@ import java.util.List;
 import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Pozwala na wyświetlenie listy badań w skali NIHSS pacjenta.
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie listy badań w skali NIHSS pacjenta.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link NihssExaminationFragment#newInstance}.
  */
 public class NihssExaminationFragment extends Fragment {
@@ -45,8 +45,8 @@ public class NihssExaminationFragment extends Fragment {
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     * @param patientID Id pacjenta, którego badania w skali NIHSS mają zostać wyświetlone
-     * @return (NihssExaminationFragment) nowa instancja fragmentu NihssExaminationFragment
+     * @param patientID id pacjenta, którego badania w skali NIHSS mają zostać wyświetlone
+     * @return nowa instancja fragmentu NihssExaminationFragment
      */
     public static NihssExaminationFragment newInstance(long patientID) {
         NihssExaminationFragment fragment = new NihssExaminationFragment();
@@ -59,7 +59,7 @@ public class NihssExaminationFragment extends Fragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartości pól klasy przekazane
      * jako argumenty poprzez {@link Bundle}. Dodatkowo zapisuje obiekt aktywności fragmentu.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
@@ -95,13 +95,13 @@ public class NihssExaminationFragment extends Fragment {
     /**
      * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
      * fragmentu inicjalizuje obiekt klasy RecyclerView odpowiedzialny za prezentację listy badań skali NIHSS przy wykorzystaniu
-     * klasy {@link NihssAdapter}
+     * klasy {@link NihssAdapter}.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -160,7 +160,7 @@ public class NihssExaminationFragment extends Fragment {
     /**
      * Metoda umożliwiająca zainicjowanie standardowego menu aktywności.
      *
-     * @param menu obiekt klasy Menu, w którym umieszczone powinno zostać umieszczone menu dla stworzone
+     * @param menu obiekt klasy Menu, w którym powinna znajdować się definicja menu dla
      *             tego fragmentu
      * @param inflater obiekt klasy MenuInflater pozwalający na pozyskanie menu z zasobów aplikacji
      */
@@ -172,10 +172,10 @@ public class NihssExaminationFragment extends Fragment {
 
     /**
      * Metoda wywoływana w momencie wyboru przez użytkownika jednej z opcji w menu fragmentu.
-     * Funkcja jest odpowiedzialna za przejście do fragmentu z formaularzem skali NIHSS.
+     * Funkcja jest odpowiedzialna za przejście do fragmentu z formularzem skali NIHSS.
      *
      * @param item elementu menu, który został wybrany przez użytkownika
-     * @return (boolean) false - jeżeli element menu ma być przetworzony standardowo;
+     * @return false - jeżeli element menu ma być przetworzony standardowo;
      *          true - jeżeli element menu został obsłużony wewnątrz funkcji
      */
     @Override

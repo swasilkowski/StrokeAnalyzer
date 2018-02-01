@@ -10,7 +10,7 @@ import android.view.View;
 
 /**
  * Klasa odpowiedzialna za rysowanie linii oddzielającej od siebie elementy RecyclerView.
- * Jest to klasa stanowiąca podklasę {@link RecyclerView.ItemDecoration} i służy do uatrakcyjnienia wyglądu
+ * Jest to klasa stanowiąca rozszerzenie klasy {@link RecyclerView.ItemDecoration} i służy do uatrakcyjnienia wyglądu
  * aplikacji.
  *
  * @author Marta Marciszewicz
@@ -37,7 +37,7 @@ public class LineDecoration extends RecyclerView.ItemDecoration {
 
     /**
      * Metoda pozwalająca na odrysowanie dekoracji na obiekcie klasy Canvas dostarczonym przez
-     * widok z RecyclerView. Metoda odrysowuje linie na każdym elemencie RecyclerView
+     * widok z RecyclerView. Metoda odrysowuje linie na każdym elemencie RecyclerView.
      *
      * @param c obiekt klasy Canvas, na którym rysowana będzie dekoracja
      * @param parent obiekt RecyclerView, do którego dołączona ma zostać dekoracja

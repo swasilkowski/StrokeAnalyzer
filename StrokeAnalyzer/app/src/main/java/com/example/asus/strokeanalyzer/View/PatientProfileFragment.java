@@ -23,8 +23,8 @@ import com.example.asus.strokeanalyzer.View.DialogWindows.ReportFragment;
 import java.io.File;
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Fragment wyświetla profil pacjenta wybranego przez użytkownika
- * i pozwala na wykonanie różnych czyności związanych z danym pacjentem, np. sprawdzenie jego wyników, czy
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Odpowiada za wyświetlenie profilu pacjenta wybranego przez użytkownika
+ * i pozwala na wykonanie dla niego różnych czynności, np. sprawdzenie jego wyników, czy
  * wygenerowanie raportu o stanie zdrowia.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormListFragment#newInstance}.
  *
@@ -40,7 +40,7 @@ public class PatientProfileFragment extends Fragment {
     private FragmentActivity activity;
 
     /**
-     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany.
      */
     public PatientProfileFragment() {
         // Required empty public constructor
@@ -49,8 +49,8 @@ public class PatientProfileFragment extends Fragment {
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     * @param patientID Id pacjenta, którego wyniki mają zostać wyświetlone we fragmencie
-     * @return (PatientProfileFragment) nowa instancja fragmentu PatientProfileFragment
+     * @param patientID id pacjenta, którego wyniki mają zostać wyświetlone we fragmencie
+     * @return nowa instancja fragmentu PatientProfileFragment
      */
     public static PatientProfileFragment newInstance(Integer patientID) {
         PatientProfileFragment fragment = new PatientProfileFragment();
@@ -63,7 +63,7 @@ public class PatientProfileFragment extends Fragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartości pól klasy przekazane
      * jako argumenty poprzez {@link Bundle}. Dodatkowo zapisuje obiekt aktywności fragmentu.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
@@ -96,15 +96,13 @@ public class PatientProfileFragment extends Fragment {
     }
 
     /**
-     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
-     * fragmentu pobiera poszczególne jego elementy i zapisuje je w obiekcie oraz ustawia akcje dla przycisków
-     * fragmentu.
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -165,8 +163,7 @@ public class PatientProfileFragment extends Fragment {
     }
 
     /**
-     * Metoda wyświetlająca okno dialogowe do potwierdzenia przez użtykownika chęci wygenerowania raportu.
-     *
+     * Metoda wyświetlająca okno dialogowe do potwierdzenia przez użytkownika chęci wygenerowania raportu.
      */
     private void generateReport()
     {
@@ -217,7 +214,7 @@ public class PatientProfileFragment extends Fragment {
     }
 
     /**
-     * Metoda przechodząca fragmentu zawierającego wyniki analizy stanu pacjenta.
+     * Metoda dokonująca przejścia do fragmentu zawierającego wyniki analizy stanu pacjenta.
      */
     private void showResults()
     {
@@ -233,7 +230,7 @@ public class PatientProfileFragment extends Fragment {
     }
 
     /**
-     * Metoda przechodząca do fragmentu pozwalającego wybrać formularz do uzupełnienia.
+     * Metoda dokonująca przejścia do fragmentu pozwalającego wybrać formularz do uzupełnienia.
      */
     private void chooseForm()
     {

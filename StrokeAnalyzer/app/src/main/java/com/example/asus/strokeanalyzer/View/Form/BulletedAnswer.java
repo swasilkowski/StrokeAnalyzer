@@ -12,9 +12,9 @@ class BulletedAnswer {
     final private String text;
 
     /**
-     * Konstruktor ustawiający odpowiednie pola klasy.
+     * Konstruktor ustawiający daną liczbową przypisaną do odpowiedzi oraz treść odpowiedzi.
      *
-     * @param id Id odpowiedzi (często Id powiedzi równoważne jest liczbie punktów przyznawanych za dane pytanie)
+     * @param id dana liczbowa powiązana z odpowiedzią (może to być przykładowo jej id, bądź liczba punktów za odpowiedź)
      * @param text treść pytania
      */
     public BulletedAnswer(int id ,String text)
@@ -24,16 +24,16 @@ class BulletedAnswer {
     }
 
     /**
-     * Metoda pobierająca treść odpowiedzi
+     * Metoda pobierająca treść odpowiedzi.
      *
-     * @return (String) treść odpowiedzi
+     * @return treść odpowiedzi
      */
     public String getText() { return text; }
 
     /**
-     * Metoda pobierająca Id odpowiedzi
+     * Metoda pobierająca daną liczbową powiązaną z odpowiedzią.
      *
-     * @return (Integer) Id odpowiedzi
+     * @return dana liczbowa powiązana z odpowiedzią
      */
     public Integer getId()
     {

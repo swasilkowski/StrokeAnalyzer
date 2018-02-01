@@ -40,12 +40,12 @@ public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
 
     /**
      * Metoda nasłuchująca zdarzeń związanych z dotknięciem ekranu, pozwalająca na ich przechwycenie i
-     * obsługę. Funkcja wywołuje metodę onClick listenera {@link ClickListener}, jeżeli użytkownik kliknął
-     * na jeden z elementów RecyclerView.
+     * obsługę. Funkcja wywołuje metodę onClick listenera {@link ClickListener}, jeżeli użytkownik wybrał
+     * jeden z elementów RecyclerView.
      *
      * @param rv obiekt klasy RecyclerView, na którym zostało zaobserwowane kliknięcie
      * @param e obiekt klasy MotionEvent opisujące zdarzenie dotknięcia
-     * @return (boolean) true - jeżeli zdarzenie dotknięcia ma zostać interpretowane przez obiekt;
+     * @return true - jeżeli zdarzenie dotknięcia ma zostać interpretowane przez obiekt;
      *          false - jeżeli obiekt ma kontynuować nasłuchiwanie zdarzeń
      */
     @Override
@@ -58,7 +58,7 @@ public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
     }
 
     /**
-     * Metoda wymagana przy implrementacji interfejsu {@link RecyclerView.OnItemTouchListener} - nie
+     * Metoda wymagana przy implementacji interfejsu {@link RecyclerView.OnItemTouchListener} - nie
      * jest wykorzystywana w programie.
      *
      * @param rv obiekt klasy RecyclerView, na którym zostało zaobserwowane kliknięcie
@@ -70,7 +70,7 @@ public class RecyclerClickListener implements RecyclerView.OnItemTouchListener{
     }
 
     /**
-     * Metoda wymagana przy implrementacji interfejsu {@link RecyclerView.OnItemTouchListener} - nie
+     * Metoda wymagana przy implementacji interfejsu {@link RecyclerView.OnItemTouchListener} - nie
      * jest wykorzystywana w programie.
      *
      * @param disallowIntercept parametr informujący o tym, czy zdarzenie na elemencie RecyclerView ma

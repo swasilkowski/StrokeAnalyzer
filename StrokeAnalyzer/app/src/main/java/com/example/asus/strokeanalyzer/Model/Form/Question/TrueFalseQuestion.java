@@ -1,7 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
 /**
- * Klasa stanowiąca rozszerzenie klasy {@link Question} reprezentująca pytanie, na które odpowiedż jest typu prawda/fałsz.
+ * Klasa stanowiąca rozszerzenie klasy {@link Question} reprezentująca pytanie, na które odpowiedź jest typu prawda/fałsz.
  *
  * @author Marta Marciszewicz
  */

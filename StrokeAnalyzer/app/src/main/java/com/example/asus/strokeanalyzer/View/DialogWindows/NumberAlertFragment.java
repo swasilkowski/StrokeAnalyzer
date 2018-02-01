@@ -9,14 +9,14 @@ import android.support.v4.app.DialogFragment;
 import com.example.asus.strokeanalyzer.R;
 
 /**
- * Klasa będąca podklasą {@link DialogFragment}. Wykorzystywana jest w celu poinformowania użytkownika,
+ * Klasa będąca rozszerzeniem klasy {@link DialogFragment}. Wykorzystywana jest w celu poinformowania użytkownika,
  * iż próbuje on dodać pacjenta o takim samym numerze, jak już istniejący pacjent w aplikacji.
  * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link NumberAlertFragment#newInstance}.
  */
 public class NumberAlertFragment extends DialogFragment {
 
     /**
-     * Interfejs akcji przycisków w oknie dialogowym
+     * Interfejs akcji przycisków w oknie dialogowym.
      */
     public interface NumberAlertDialogListener {
         void onDialogNumberPositiveClick(android.support.v4.app.DialogFragment dialog);
@@ -27,11 +27,11 @@ public class NumberAlertFragment extends DialogFragment {
     private NumberAlertDialogListener _listener;
 
     /**
-     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów. Inicjalizuje ona listener.
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
      * @param listener obiekt klasy {@link NumberAlertDialogListener}, wykorzystywany w oknie dialogowym
      *                do monitorowania akcji przycisków okna
-     * @return (NumberAlertFragment) nowa instancja fragmentu NumberAlertFragment
+     * @return nowa instancja fragmentu NumberAlertFragment
      */
     public static NumberAlertFragment newInstance(NumberAlertDialogListener listener) {
         NumberAlertFragment fragment = new NumberAlertFragment();
@@ -42,11 +42,11 @@ public class NumberAlertFragment extends DialogFragment {
 
     /**
      * Metoda pozwala na stowrzenie własnego kontenera na okno dialogowe. Wstrzykuje widok oraz
-     * odpowiada za wywoływanie operacji listnera.
+     * odpowiada za wywoływanie operacji listenera.
      *
      * @param savedInstanceState poprzedni zapisany stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (Dialog) nowa instancja okna dialogowego, która ma być wyświetlona we fragmencie
+     * @return nowa instancja okna dialogowego, która ma być wyświetlona we fragmencie
      */
     @NonNull
     @Override

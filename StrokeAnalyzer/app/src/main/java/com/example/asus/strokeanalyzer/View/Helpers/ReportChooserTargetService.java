@@ -7,9 +7,8 @@ import android.service.chooser.ChooserTargetService;
 import java.util.List;
 
 /**
- * Klasa umożliwiająca udostępnianie raportu innym aplikacjom. Wymagana przez mechanizm udostępniania - nie zawiera
- * żadnej implementacji.
- *
+ * Klasa umożliwiająca udostępnianie raportu innym aplikacjom zainstalowanym na urządzeniu mobilnym.
+ * Wymagana przez mechanizm udostępniania - nie zawiera żadnej implementacji.
  */
 
 public class ReportChooserTargetService extends ChooserTargetService {

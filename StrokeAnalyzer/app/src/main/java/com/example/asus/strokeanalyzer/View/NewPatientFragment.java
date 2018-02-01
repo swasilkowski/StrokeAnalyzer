@@ -24,7 +24,7 @@ import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
 import static android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Pozwala na utworzenie nowego profilu pacjenta w aplikacji i
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na utworzenie nowego profilu pacjenta w aplikacji i
  * zapisanie go w bazie danych.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormListFragment#newInstance}.
  *
@@ -38,22 +38,20 @@ public class NewPatientFragment extends Fragment {
     private PatientService patientService;
 
     /**
-     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany.
      */
     public NewPatientFragment() {
         // Required empty public constructor
     }
 
     /**
-     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
-     * fragmentu pobiera poszczególne jego elementy i zapisuje w obiekcie.
-     *
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -103,7 +101,7 @@ public class NewPatientFragment extends Fragment {
     /**
      * Metoda umożliwiająca zainicjowanie standardowego menu aktywności.
      *
-     * @param menu obiekt klasy Menu, w którym umieszczone powinno zostać umieszczone menu dla stworzone
+     * @param menu obiekt klasy Menu, w którym powinna znajdować się definicja menu dla
      *             tego fragmentu
      * @param inflater obiekt klasy MenuInflater pozwalający na pozyskanie menu z zasobów aplikacji
      */
@@ -113,6 +111,15 @@ public class NewPatientFragment extends Fragment {
         super.onCreateOptionsMenu(menu,inflater);
     }
 
+    /**
+     * Metoda wywoływana w momencie wyboru przez użytkownika jednej z opcji w menu fragmentu.
+     * Funkcja jest odpowiedzialna za stworzenie nowego profilu pacjenta na podstawie
+     * wprowadzonych przez użytkownika danych i zapisanie go w bazie danych.
+     *
+     * @param item elementu menu, który został wybrany przez użytkownika
+     * @return false - jeżeli element menu ma być przetworzony standardowo;
+     *          true - jeżeli element menu został obsłużony wewnątrz funkcji
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -168,12 +175,12 @@ public class NewPatientFragment extends Fragment {
 
     /**
      * Metoda tworząca profil nowego pacjenta w bazie danych.
-     * Funkcja pobiera z widoku fragmentu dane pacjenta wprowadzone przez użytkownika. Następnie wywołuje metodę
-     * tworzącą profil nowego pacjenta. Metoda sprawdza dodatkowo istnienie pacjent o podanym numerze w bazie i
-     * prosi o potwierdzenie przez uzytkownika chęci utowrzenia profilu pacjenta o tym samym numerze., w przypadku zaistnienia
+     *
+     * Uwaga: Metoda sprawdza dodatkowo istnienie pacjent o podanym numerze w bazie danych i
+     * prosi o potwierdzenie przez uzytkownika chęci utowrzenia profilu pacjenta o tym samym numerze, w przypadku zaistnienia
      * takiej sytuacji.
      *
-     * @return (boolean) true - jeżeli stowrzenie profilu nowego pacjenta zakończyło się sukcesem;
+     * @return true - jeżeli stowrzenie profilu nowego pacjenta zakończyło się sukcesem;
      *          false - jeżeli nie udało się utworzyć profilu nowego pacjenta
      */
     private boolean createPatient()
@@ -228,9 +235,8 @@ public class NewPatientFragment extends Fragment {
     }
 
     /**
-     * Metoda dodająca nowego pacjenta do listy wszystkich pacjentów.
-     * Funkcja tworzy obiekt klasy Patient na podstawie danych podanych jako argumenty, a następnie
-     * wywołuje metodę dodającą nowego pacjenta do bazy. Dodatkowo metoda wywołuje przejście do kolejnego fragmentu.
+     * Metoda pomocnicza dodająca nowego pacjenta do listy wszystkich pacjentów w bazie danych.
+     * Dodatkowo metoda wywołuje przejście do fragmentu z profilem nowo utworzonego pacjenta.
      *
      * @param name imię nowego pacjenta
      * @param surname nazwisko nowego pacjenta

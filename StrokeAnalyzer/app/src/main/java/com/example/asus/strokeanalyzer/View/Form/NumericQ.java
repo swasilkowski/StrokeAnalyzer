@@ -4,8 +4,8 @@ import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 
 /**
- * Klasa reprezentująca pytanie, na które odpowiedź udzielana jest w postaci wprowadzenia przez użytkownika
- * liczby.
+ * Klasa implementująca interfejs {@link Question}, która reprezentuje pytanie, na które odpowiedź
+ * udzielana jest w postaci wprowadzenia przez użytkownika danej liczbowej.
  *
  * @author Marta Marciszewicz
  */
@@ -21,9 +21,10 @@ public class NumericQ implements Question {
     final private RangeClassifier range;
 
     /**
-     * Konstruktor ustawiający odpowiednie pola klasy.
+     * Konstruktor ustawiający id pytania, jego treść oraz klasyfikator, określający przedział dopuszczalnych
+     * wartości dla wprowadzanej odpowiedzi.
      *
-     * @param id Id pytania
+     * @param id id pytania
      * @param text treść pytania
      * @param _range przedział liczbowy, do którego powinna należeć odpowiedź udzielana przez
      *               użytkownika
@@ -37,18 +38,19 @@ public class NumericQ implements Question {
     }
 
     /**
-     * Metoda pozwalająca na pobranie treści pytania
+     * Metoda pozwalająca na pobranie treści pytania.
      *
-     * @return (String) treść pytania
+     * @return treść pytania
      */
     public String getText() { return text; }
 
     /**
-     * Metoda pozwalająca na ustawienie odpowiedzi wprowadzonej przez użytkownika
+     * Metoda pozwalająca na ustawienie odpowiedzi wprowadzonej przez użytkownika.
      *
      * @param ans wartość odpowiedzi wprowadzonej przez użytkwonika
-     * @return (boolean) true - jeżeli odpowiedź jest dopuszczalna i została ustawiona,
-     *          false - jeżeli odpowiedź nie może zostać ustawiona
+     * @return true - jeżeli odpowiedź jest dopuszczalna i została ustawiona;
+     *          false - jeżeli odpowiedź nie może zostać ustawiona, ponieważ nie należy do przedziału
+     *          dopuszczalnych wartości
      */
     public boolean setAnswer(double ans)
     {
@@ -69,7 +71,7 @@ public class NumericQ implements Question {
     }
 
     /**
-     * Metoda czyszcząca odpowiedź ustawioną przez użytkownika
+     * Metoda czyszcząca odpowiedź ustawioną przez użytkownika.
      */
     public void clearAnswer()
     {
@@ -78,30 +80,30 @@ public class NumericQ implements Question {
     }
 
     /**
-     * Metoda zwracająca odpowiedź na pytanie.
+     * Metoda zwracająca ustawioną odpowiedź na pytanie.
      *
-     * @return (double) wartość odpowiedzi na pytanie
+     * @return wartość ustawionej odpowiedzi na pytanie
      */
     public double getAnswer() { return answer;}
 
     /**
-     * Metoda pobierająca Id pytania
+     * Metoda pobierająca id pytania.
      *
-     * @return (int) Id pytania
+     * @return id pytania
      */
     public int getID() {return id;}
 
     /**
-     * Metoda sprawdzająca, czy odpowiedź została jużustawiona
+     * Metoda sprawdzająca, czy odpowiedź na pytanie jest ustawiona.
      *
-     * @return (boolean) true - odpowiedź jest ustawiona; false - odpowiedź nie była jeszce ustawiana
+     * @return true - odpowiedź jest ustawiona; false - odpowiedź nie była jeszcze ustawiana
      */
     public boolean getAnswerSet() {return answerSet;}
 
     /**
-     * Metoda zwracająca typ pytania z interfejsu {@link Question}
+     * Metoda zwracająca typ pytania jako wartość z interfejsu {@link Question}.
      *
-     * @return (int) typ pytania
+     * @return typ pytania
      */
     @Override
     public int getListItemType() {

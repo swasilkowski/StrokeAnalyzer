@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.example.asus.strokeanalyzer.R;
 
 /**
- * Klasa będąca podklasą {@link DialogFragment}. Wykorzystywana jest w celu potwierdzenia przez
+ * Klasa będąca rozszerzeniem klasy {@link DialogFragment}. Wykorzystywana jest w celu potwierdzenia przez
  * użytkownika chęci wygenerowania raportu z wynikami pacjenta.
  * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link ReportFragment#newInstance}.
  */
@@ -22,7 +22,7 @@ public class ReportFragment extends DialogFragment {
     private Integer patientID;
 
     /**
-     * Interfejs akcji przycisków w oknie dialogowym
+     * Interfejs akcji przycisków w oknie dialogowym.
      */
     public interface GenerateReportDialogListener {
         void onDialogReportPositiveClick(android.support.v4.app.DialogFragment dialog, int patientID);
@@ -35,8 +35,8 @@ public class ReportFragment extends DialogFragment {
      /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     * @param patientID Id pacjenta, dla którego ma zostać wygenerowany raport
-     * @return (ReportFragment) nowa instancja fragmentu ReportFragment
+     * @param patientID id pacjenta, dla którego ma zostać wygenerowany raport
+     * @return nowa instancja fragmentu ReportFragment
      */
     public static ReportFragment newInstance(int patientID, GenerateReportDialogListener listener) {
         ReportFragment fragment = new ReportFragment();
@@ -50,8 +50,8 @@ public class ReportFragment extends DialogFragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
-     * jako argumenty poprzez {@link Bundle}
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartości pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
@@ -66,11 +66,11 @@ public class ReportFragment extends DialogFragment {
 
     /**
      * Metoda pozwala na stowrzenie własnego kontenera na okno dialogowe. Wstrzykuje widok oraz
-     * odpowiada za wywoływanie operacji listnera.
+     * odpowiada za wywoływanie operacji listenera.
      *
      * @param savedInstanceState poprzedni zapisany stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (Dialog) nowa instancja okna dialogowego, która ma być wyświetlona we fragmencie
+     * @return nowa instancja okna dialogowego, która ma być wyświetlona we fragmencie
      */
     @NonNull
     @Override

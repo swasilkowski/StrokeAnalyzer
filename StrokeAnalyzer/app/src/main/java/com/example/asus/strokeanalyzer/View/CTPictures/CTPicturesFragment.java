@@ -17,8 +17,8 @@ import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.Services.PatientService;
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Pozwala na wyświetlenie miniatur obrazów CT móżgu
- *  z naniesionymi obszarami prawdopodobnego występowania udaru móżgu u pacjenta.
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie miniatur obrazów CT mózgu
+ * z naniesionymi obszarami prawdopodobnego występowania udaru mózgu u pacjenta.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link CTPicturesFragment#newInstance}.
  *
  * @author Marta Marciszewicz
@@ -32,8 +32,7 @@ public class CTPicturesFragment extends Fragment {
     private Bitmap[] editedPictures;
 
     /**
-     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
-     *
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany.
      */
     public CTPicturesFragment() {
         // Required empty public constructor
@@ -42,8 +41,8 @@ public class CTPicturesFragment extends Fragment {
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     * @param patientID Id pacjenta, którego dotyczą obrazy mózgu wyświetlane we fragmencie
-     * @return (CTPicturesFragment) nowa instancja fragmentu CTPicturesFragment
+     * @param patientID id pacjenta, z którym powiązane są obrazy mózgu wyświetlane we fragmencie
+     * @return nowa instancja fragmentu CTPicturesFragment
      */
     public static CTPicturesFragment newInstance(Integer patientID) {
         CTPicturesFragment fragment = new CTPicturesFragment();
@@ -57,7 +56,7 @@ public class CTPicturesFragment extends Fragment {
 
     /**
      * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
-     * jako argumenty poprzez {@link Bundle}
+     * jako argumenty poprzez {@link Bundle}.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
@@ -96,7 +95,7 @@ public class CTPicturesFragment extends Fragment {
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

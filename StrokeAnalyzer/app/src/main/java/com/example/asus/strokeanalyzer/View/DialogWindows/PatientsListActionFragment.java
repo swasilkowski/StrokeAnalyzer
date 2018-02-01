@@ -14,7 +14,7 @@ import com.example.asus.strokeanalyzer.Services.PatientService;
 import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
 
 /**
- * Klasa będąca podklasą {@link DialogFragment}. Pozwala na wybór akcji, którą użytkownik chce wykonać
+ * Klasa będąca rozszerzeniem klasy {@link DialogFragment}. Pozwala na wybór akcji, którą użytkownik chce wykonać
  * dla wybranego z listy pacjenta.
  * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link PatientsListActionFragment#newInstance}.
  */
@@ -41,6 +41,14 @@ public class PatientsListActionFragment extends DialogFragment {
     }
 
 
+    /**
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
+     *
+     * @param patientID id pacjenta, dla którego będzie wykonywana wybrana akcja
+     * @param _dListener obiekt klasy {@link DeleteListener}, wykorzystywany w oknie dialogowym
+     *                do monitorowania akcji przycisku do usunięcia pacjenta
+     * @return nowa instancja fragmentu PatientsListActionFragment
+     */
     public static PatientsListActionFragment newInstance(int patientID, DeleteListener _dListener) {
         PatientsListActionFragment fragment = new PatientsListActionFragment();
         fragment.dListener = _dListener;
@@ -53,8 +61,8 @@ public class PatientsListActionFragment extends DialogFragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
-     * jako argumenty poprzez {@link Bundle}
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartości pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
@@ -68,14 +76,13 @@ public class PatientsListActionFragment extends DialogFragment {
     }
 
     /**
-     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla okna dialogowego. Funkcja oprócz wstrzyknięcia widoku
-     * fragmentu ustawia akcje dla poszczególnych przycisków w oknie dialogowym.
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla okna dialogowego.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @NonNull
     @Override
@@ -109,9 +116,8 @@ public class PatientsListActionFragment extends DialogFragment {
     }
 
     /**
-     * Metoda wywoływana w momencie, gdy użytkownik zdecyduje się na usunięcie profilu pacjenta.
-     * Powoduje pojawienie się okna dialogowego {@link DeleteDialogFragment}
-     *
+     * Metoda wywoływana w momencie, gdy użytkownik wybierze opcję usunięcia profilu pacjenta.
+     * Powoduje pojawienie się okna dialogowego {@link DeleteDialogFragment}.
      */
     private void openDeleteDialog()
     {
@@ -139,8 +145,8 @@ public class PatientsListActionFragment extends DialogFragment {
     }
 
     /**
-     * Metoda służaca do usunięcia pacjenta. Powoduje usunięcie danych pacjenta z bazy danych aplikacji.
-     *
+     * Metoda służąca do usunięcia pacjenta z listy pacjentów przechowywanej w aplikacji.
+     * Powoduje usunięcie danych pacjenta z bazy danych aplikacji.
      */
     private void deletePatient()
     {
@@ -153,7 +159,7 @@ public class PatientsListActionFragment extends DialogFragment {
     }
 
     /**
-     * Metoda służąca do przejścia do okna profilu pacjenta
+     * Metoda służąca do przejścia do widoku profilu wybranego pacjenta.
      */
     private void setPatientProfile()
     {
@@ -173,8 +179,6 @@ public class PatientsListActionFragment extends DialogFragment {
             }
 
         }
-
-
         //close dialog
         dismiss();
 

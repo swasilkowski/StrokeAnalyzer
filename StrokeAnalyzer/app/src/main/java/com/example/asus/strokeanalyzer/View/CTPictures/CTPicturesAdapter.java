@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import com.example.asus.strokeanalyzer.R;
 
 /**
- * Klasa będąca rozszerzeniem klasy {@link BaseAdapter}.
- * Odpowiedzialna jest za zarządzanie widokiem listy obrazów CT mózgu reprezentujących rozległość udaru.
- * Zarządza obiektami przechowującymi widoki dla pojedynczego elementu listy oraz odpowiada za uzupełnianie ich.
+ * Klasa będąca rozszerzeniem klasy {@link BaseAdapter}. Odpowiedzialna jest za zarządzanie widokiem
+ * listy obrazów CT mózgu reprezentujących rozległość udaru. Zarządza obiektami przechowującymi
+ * widoki dla pojedynczego elementu listy oraz odpowiada za uzupełnianie ich.
  *
  * @author Marta Marciszewicz
  */
@@ -33,7 +33,7 @@ class CTPicturesAdapter extends BaseAdapter {
     /**
      * Metoda zwracająca liczbę obrazów CT do wyświetlenia.
      *
-     * @return (int) liczba obrazów CT mózgu
+     * @return liczba obrazów CT mózgu
      */
     @Override
     public int getCount() {
@@ -44,7 +44,7 @@ class CTPicturesAdapter extends BaseAdapter {
      * Metoda zwracająca element listy na wskazanej pozycji.
      *
      * @param i pozycja na liście, z której element powinien być zwrócony
-     * @return (Object) wybrany element listy
+     * @return wybrany element listy
      */
     @Override
     public Object getItem(int i) {
@@ -52,10 +52,10 @@ class CTPicturesAdapter extends BaseAdapter {
     }
 
     /**
-     * Metoda zwracająca id elementu listy ze wskazanej pozycji
+     * Metoda zwracająca id elementu listy ze wskazanej pozycji.
      *
      * @param i pozycja na liście, z której id elementu ma zostać zwrócone
-     * @return (long) Id elementu listy
+     * @return id elementu listy
      */
     @Override
     public long getItemId(int i) {
@@ -69,7 +69,7 @@ class CTPicturesAdapter extends BaseAdapter {
      * @param view widok, który chcemy ponownie wykorzystać (może przyjmować wartość null jeżeli nie
      *             ma widoku do ponownego wykorzystania)
      * @param viewGroup widok-rodzic, do którego przypięty zostanie utworzony widok
-     * @return (View) widok dla danych ze wskazanej pozycji
+     * @return widok dla danych ze wskazanej pozycji
      */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {

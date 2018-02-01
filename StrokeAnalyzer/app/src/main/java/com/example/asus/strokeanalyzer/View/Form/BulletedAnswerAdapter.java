@@ -29,7 +29,7 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
     private Integer answerID;
 
     /**
-     * Klasa zarządzająca elementami związanymi z widokiem pojedynczego elementu listy przechowywanej w adaptorze.
+     * Klasa zarządzająca elementami związanymi z widokiem pojedynczego elementu listy przechowywanej w adapterze.
      * Pozwala na wyświetlenie w widoku danych zawartych w obiekcie z listy.
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,10 +49,10 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
 
     /**
      * Kontruktor ustawiający listę pacjentów wykorzystywaną przez adapter do wyświetlenia we fragmencie
-     * oraz Id odpowiedzi, która została uprzednio wybrana przez użytkownika.
+     * oraz daną liczbową przypisaną do odpowiedzi, która została uprzednio wybrana przez użytkownika.
      *
      * @param answers lista możliwych odpowiedzi, która powinna zostać wyświetlona pod pytaniem
-     * @param pickedAnswer Id odpowiedzi, którą wybrał uprzednio użytkownik
+     * @param pickedAnswer dana liczbowa odpowiedzi, którą wybrał uprzednio użytkownik
      * @param context kontekst aplikacji
      */
     public BulletedAnswerAdapter(final List<BulletedAnswer> answers, int pickedAnswer, Context context) {
@@ -68,7 +68,7 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
      *
      * @param parent grupa, do której dodany zostanie widok po jego utworzeniu
      * @param viewType rodzaj widoku
-     * @return (ViewHolder) nowoutworzony ViewHolder, który przechowuje widok podanego typu
+     * @return nowoutworzony ViewHolder, który przechowuje widok podanego typu
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -79,7 +79,7 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
     }
 
     /**
-     * Metoda wywoływana w celu wyświetlanie danych konkretnego elementu listy. Powoduje modyfikację
+     * Metoda wywoływana w celu wyświetlenia danych konkretnego elementu listy. Powoduje modyfikację
      * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi na podanej jako parametr pozycji.
      *
      * @param holder obiekt klasy ViewHolder, który powinien zostać zaktualizowany, tak by przechowywał dane zawarte w
@@ -96,9 +96,9 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
     }
 
     /**
-     * Metoda ustawiająca Id wybranej przez użytkwonika odpowiedz
+     * Metoda ustawiająca daną liczbową wybranej przez użytkownika odpowiedzi.
      *
-     * @param id id wybranej odpowiedzi
+     * @param id dana liczbowa przypisana do wybranej odpowiedzi
      */
     public void SetAnswerID(int id)
     {
@@ -109,7 +109,7 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
      * Metoda ustawiająca kolor danego elementu listy.
      *
      * @param view widok, któremu ustawiane jest tło
-     * @param id Id aktualnie sprawdzanego elementu, którego widok przekazany jest jako pierwszy parametr
+     * @param id dana liczbowa aktualnie sprawdzanego elementu, którego widok przekazany jest jako pierwszy parametr
      */
     public void color(View view,int id)
     {
@@ -124,7 +124,7 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
     }
 
     /**
-     * Metoda przerysowująca wszystkie elmenty w celu zmiany ich koloru
+     * Metoda przerysowująca wszystkie elementy w celu zmiany ich koloru.
      */
     public void clearColors()
     {
@@ -135,9 +135,9 @@ public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerA
     }
 
     /**
-     * Metoda pobierająca liczbę elentów listy do wyświetlenia
+     * Metoda pobierająca liczbę elementów listy do wyświetlenia.
      *
-     * @return (int) liczba pacjentów wyświetlanych we fragmencie
+     * @return liczba możliwych odpowiedzi wyświetlanych we fragmencie
      */
     @Override
     public int getItemCount() {

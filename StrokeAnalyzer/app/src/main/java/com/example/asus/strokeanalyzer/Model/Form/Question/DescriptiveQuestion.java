@@ -1,7 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
 /**
- *  Klasa stanowiąca rozszerzenie klasy {@link Question} reprezentująca pytanie, na które odpowiedż jest tekstem.
+ *  Klasa stanowiąca rozszerzenie klasy {@link Question} reprezentująca pytanie, na które odpowiedź jest tekstem.
  *
  *  @author Marta Marciszewicz
  */

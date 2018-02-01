@@ -11,16 +11,26 @@ import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.R;
 import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
 
-
+/**
+ * Klasa stanowiąca rozszerzenie klasy {@link AppCompatActivity}. Jest to główna i jedyna aktywność w aplikacji.
+ * Wyświetlane są w niej fragmenty reprezentujące poszczególne ekrany aplikacji. Jednocześnie stanowi ona
+ * ekran startowy aplikacji.
+ */
 public class MainStartActivity extends AppCompatActivity{
 
     private FragmentManager fm;
 
+    /**
+     * Metoda wywoływana w momencie startowania aktywności. W jej wnętrzu dokonywana jest inicjalizacja
+     * UI aktywności oraz innych pól klasy.
+     *
+     * @param savedInstanceState poprzedni stan aktywności, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
+     *                           (może przyjmować wartość null)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_start);
-        //getSupportActionBar().hide();
 
         //inicialization of fragment manager
         fm = getSupportFragmentManager();
@@ -32,6 +42,10 @@ public class MainStartActivity extends AppCompatActivity{
 
     }
 
+    /**
+     * Metoda wywoływana, w momencie, gdy aktywność jest wyświetlana użytkownikowi. Aplikacja wykorzystuje tę metodę
+     * do kontrolowania elementu ActionBar.
+     */
     @Override
     protected  void onResume()
     {
@@ -41,6 +55,11 @@ public class MainStartActivity extends AppCompatActivity{
             bar.hide();
     }
 
+    /**
+     * Metoda dokonująca przejścia do fragmentu wyświetlającego listę pacjentów, których profile przechowuje aplikacja.
+     *
+     * @param v obiekt przycisku wybranego przez użytkownika
+     */
     public void showList(View v)
     {
         PatientsListFragment setFragment= new PatientsListFragment();
@@ -51,6 +70,11 @@ public class MainStartActivity extends AppCompatActivity{
 
     }
 
+    /**
+     * Metoda dokonująca przejścia do fragmentu umożliwiającego stworzenie nowego profilu pacjenta.
+     *
+     * @param v obiekt przycisku wybranego przez użytkownika
+     */
     public void addPatient(View v)
     {
         NewPatientFragment setFragment= new NewPatientFragment();

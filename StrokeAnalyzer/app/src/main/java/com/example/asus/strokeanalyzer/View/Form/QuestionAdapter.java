@@ -42,9 +42,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     /**
      * Klasa bazowa dla klas zarządzających elementami związanymi z widokiem pojedynczego pytania
-     * przechowywanego w adapterze.
-     * Pozwala na wyświetlenie w widoku danych zawartych w obiekcie z listy pytań.
-     *
+     * przechowywanego w adapterze. Pozwala na wyświetlenie w widoku danych zawartych w obiekcie z listy pytań.
      */
     public abstract class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -58,16 +56,16 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
 
         /**
-         * Metoda powodująca modyfikację elementów przetrzymywanych w ViewHolderze zgodnie z danymi
-         * przechowywanymi na podanym jako parametr pytaniu.
+         * Metoda abstrakcyjna, która w klasach dziedziczących powoduje modyfikację elementów przetrzymywanych w ViewHolderze zgodnie z danymi
+         * przechowywanymi w podanym jako parametr pytaniu.
          *
-         * @param question pytanie, które ma zostać wyświetlone przy pomocy elmenetów ViewHoldera
+         * @param question pytanie, które ma zostać wyświetlone przy pomocy elementów ViewHoldera
          */
         public abstract void bindType(Question question);
     }
 
     /**
-     * Klasa będąca podklasą {@link ViewHolder}. Zarządza elementami związanymi z widokiem pytania
+     * Klasa będąca rozszerzeniem klasy {@link ViewHolder}. Zarządza elementami związanymi z widokiem pytania
      * typu {@link DescriptiveQ}.
      *
      */
@@ -89,8 +87,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
 
         /**
-         * Metoda wywoływana w celu wyświetlanie danych konkretnego elementu listy. Powoduje modyfikację
-         * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi na podanym jako parametr pytaniu.
+         * Metoda wywoływana w celu wyświetlenia danych konkretnego elementu listy. Powoduje modyfikację
+         * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi w podanym jako parametr pytaniu.
          *
          * @param question pytanie, które ma zostać wyświetlone przy pomocy elmenetów ViewHoldera
          */
@@ -122,7 +120,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     }
 
     /**
-     * Klasa będąca podklasą {@link ViewHolder}. Zarządza elementami związanymi z widokiem pytania
+     * Klasa będąca rozszerzeniem klasy {@link ViewHolder}. Zarządza elementami związanymi z widokiem pytania
      * typu {@link NumericQ}.
      *
      */
@@ -147,8 +145,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
 
         /**
-         * Metoda wywoływana w celu wyświetlanie danych konkretnego elementu listy. Powoduje modyfikację
-         * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi na podanym jako parametr pytaniu.
+         * Metoda wywoływana w celu wyświetlenia danych konkretnego elementu listy. Powoduje modyfikację
+         * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi w podanym jako parametr pytaniu.
          *
          * @param question pytanie, które ma zostać wyświetlone przy pomocy elmenetów ViewHoldera
          */
@@ -200,10 +198,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
         /**
          * Metoda pomocnicza, która modyfikuje sposób wyświetlania odpowiedzi, tak by był on bardziej
-         * przyjazny dla użytkownika
+         * przyjazny dla użytkownika.
          *
          * @param answer wartość odpowiedzi w postaci tekstu, który należy zmodyfikować
-         * @return (String) przetworzony tekst
+         * @return przetworzony tekst opowiedzi
          */
         private String numericAnswerTransform(String answer)
         {
@@ -217,7 +215,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
 
     /**
-     * Klasa będąca podklasą {@link ViewHolder}. Zarządza elementami związanymi z widokiem pytania
+     * Klasa będąca rozszerzeniem klasy {@link ViewHolder}. Zarządza elementami związanymi z widokiem pytania
      * typu {@link TrueFalseQ}.
      *
      */
@@ -239,8 +237,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
 
         /**
-         * Metoda wywoływana w celu wyświetlanie danych konkretnego elementu listy. Powoduje modyfikację
-         * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi na podanym jako parametr pytaniu.
+         * Metoda wywoływana w celu wyświetlenia danych konkretnego elementu listy. Powoduje modyfikację
+         * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi w podanym jako parametr pytaniu.
          *
          * @param question pytanie, które ma zostać wyświetlone przy pomocy elmenetów ViewHoldera
          */
@@ -261,7 +259,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     }
 
     /**
-     * Klasa będąca podklasą {@link ViewHolder}. Zarządza elementami związanymi z widokiem pytania
+     * Klasa będąca rozszerzeniem klasy {@link ViewHolder}. Zarządza elementami związanymi z widokiem pytania
      * typu {@link BulletedQ}.
      *
      */
@@ -285,8 +283,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
 
         /**
-         * Metoda wywoływana w celu wyświetlanie danych konkretnego elementu listy. Powoduje modyfikację
-         * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi na podanym jako parametr pytaniu.
+         * Metoda wywoływana w celu wyświetlenia danych konkretnego elementu listy. Powoduje modyfikację
+         * elementów przetrzymywanych w ViewHolderze zgodnie z danymi przechowywanymi w podanym jako parametr pytaniu.
          *
          * @param question pytanie, które ma zostać wyświetlone przy pomocy elmenetów ViewHoldera
          */
@@ -321,19 +319,19 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     }
 
     /**
-     * Kontruktor ustawiający listę pytań formulalrza wykorzystywaną przez adapter do wyświetlenia we fragmencie.
+     * Konstruktor ustawiający listę pytań formularza wykorzystywaną przez adapter do wyświetlenia we fragmencie.
      *
-     * @param questions lista pytań, która powinna zostać wyświetlona w formularzu
+     * @param questions lista pytań, która powinna zostać wyświetlona we fragmencie
      */
     QuestionAdapter(final List<Question> questions) {
         this.questions = questions;
     }
 
     /**
-     * Metoda zwracająca typ pytania na pozycji podanej jako parametr
+     * Metoda zwracająca typ pytania na pozycji podanej jako parametr.
      *
      * @param position pozycja pytania na liście pytań
-     * @return (int) typ pytania
+     * @return typ pytania
      */
     @Override
     public int getItemViewType(int position) {
@@ -346,7 +344,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
      *
      * @param parent grupa, do której dodany zostanie widok po jego utworzeniu
      * @param viewType rodzaj widoku związany z rodzajem pytania
-     * @return (ViewHolder) nowoutworzony ViewHolder, który przechowuje widok podanego typu
+     * @return nowoutworzony ViewHolder, który przechowuje widok podanego typu
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -379,8 +377,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     }
 
     /**
-     * Metoda wywoływana w celu wyświetlanie danych konkretnego elementu listy. Powoduje wywołanie
-     * odpowiedniej metody {@code bindType} w zależności od typu pytania.
+     * Metoda wywoływana w celu wyświetlenia danych konkretnego elementu listy. Powoduje wywołanie
+     * odpowiedniej metody {@code bindType} w zależności od typu pytania na podanej pozycji.
      *
      * @param holder obiekt klasy ViewHolder, który powinien zostać zaktualizowany, tak by przechowywał dane zawarte w
      *               obiekcie znajdującym się na podanej pozycji w liście wszystkich elementów zarządzanych przez adapter
@@ -394,9 +392,9 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     }
 
     /**
-     * Metoda pobierająca liczbę elentów listy do wyświetlenia
+     * Metoda pobierająca liczbę elementów listy do wyświetlenia.
      *
-     * @return (int) liczba pacjentów wyświetlanych we fragmencie
+     * @return liczba pytań wyświetlanych we fragmencie
      */
     @Override
     public int getItemCount() {
@@ -404,12 +402,9 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     }
 
     /**
-     * Metoda pobierająca odpowiedzi na pytania wprowadzone przez użytkownika. Funkcja przechodzi po
-     * wszystkich elementach z listy pytań i generuje dla nich obiekty odpowiednich klas pochodzących
-     * od klas {@link Answer}
+     * Metoda pobierająca odpowiedzi na pytania wprowadzone przez użytkownika.
      *
-     * @return
-     * {@code List<Answer>} lista odpowiedzi użytkownika na pytania formularza
+     * @return lista odpowiedzi użytkownika na pytania formularza
      */
     List<Answer> returnAnswers()
     {

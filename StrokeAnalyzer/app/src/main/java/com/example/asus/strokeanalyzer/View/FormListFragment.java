@@ -17,7 +17,7 @@ import com.example.asus.strokeanalyzer.View.Nihss.NihssExaminationFragment;
 
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Pozwala na wybór formularza, którego modyfikacji chce dokonać użytkownik.
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wybór formularza, którego modyfikacji chce dokonać użytkownik.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormListFragment#newInstance}.
  *
  * @author Marta Marciszewicz
@@ -31,7 +31,7 @@ public class FormListFragment extends Fragment {
     private Integer patientID;
 
     /**
-     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany.
      */
     public FormListFragment() {
         // Required empty public constructor
@@ -40,9 +40,9 @@ public class FormListFragment extends Fragment {
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     * @param id Id pacjenta, w którego profilu otworzony został widok fragmentu (dane pacjenta o tym Id będą edytowane
+     * @param id id pacjenta, w którego profilu otworzony został widok fragmentu (dane pacjenta o tym id będą edytowane
      *           w formularzach)
-     * @return (FormListFragment) nowa instancja fragmentu FormListFragment
+     * @return nowa instancja fragmentu FormListFragment
      */
     public static FormListFragment newInstance(Integer id) {
         FormListFragment fragment = new FormListFragment();
@@ -55,7 +55,7 @@ public class FormListFragment extends Fragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartości pól klasy przekazane
      * jako argumenty poprzez {@link Bundle}
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
@@ -87,14 +87,13 @@ public class FormListFragment extends Fragment {
     }
 
     /**
-     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
-     * fragmentu ustawia akcje dla poszczególnych przycisków we fragmencie.
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -164,7 +163,7 @@ public class FormListFragment extends Fragment {
     }
 
     /**
-     * Metoda dokonująca przejścia do kolejnego fragmentu zawierającego formularz konkretnej skali wskazanej w parametrze
+     * Metoda dokonująca przejścia do kolejnego fragmentu zawierającego formularz konkretnej skali wskazanej w parametrze.
      *
      * @param form formularz wybrany przez użytkownika
      */
@@ -183,12 +182,5 @@ public class FormListFragment extends Fragment {
                         .commit();
         }
     }
-
-/*    @Override
-    public void onDetach()
-    {
-        super.onDetach();
-        getFragmentManager().popBackStack("forms_list", POP_BACK_STACK_INCLUSIVE);
-    }*/
 
 }

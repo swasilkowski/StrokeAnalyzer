@@ -12,5 +12,10 @@ interface Question {
     int TRUEFALSE = 3;
     int NUMERIC = 4;
 
+    /**
+     * Metoda zwracająca rodzaj pytania.
+     *
+     * @return rodzaj pytania
+     */
     int getListItemType();
 }

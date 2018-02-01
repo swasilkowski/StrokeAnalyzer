@@ -27,8 +27,8 @@ import com.example.asus.strokeanalyzer.View.CTPictures.CTPicturesFragment;
 import java.util.List;
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Fragment wyświetla zgromadzone wyniki wszystkich skal wykorzystywanych w aplikacji
- * dla konkretnego pacjenta.
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie zgromadzonych wyników
+ * wszystkich skal wykorzystywanych w aplikacji dla konkretnego pacjenta.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormListFragment#newInstance}.
  *
  * @author Marta Marciszewicz
@@ -42,7 +42,7 @@ public class ResultsFragment extends Fragment {
     private FragmentActivity activity;
 
     /**
-     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany
+     * Publiczny konstruktor bezparametrowy - jest wymagany, ale nie jest wykorzystywany.
      */
     public ResultsFragment() {
         // Required empty public constructor
@@ -51,8 +51,8 @@ public class ResultsFragment extends Fragment {
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     * @param patientID Id pacjenta, które wyniki analizy skal mają zostać wyświetlone
-     * @return (ResultsFragment) nowa instancja fragmentu ResultsFragment
+     * @param patientID id pacjenta, którego wyniki analizy skal mają zostać wyświetlone
+     * @return nowa instancja fragmentu ResultsFragment
      */
     public static ResultsFragment newInstance(Integer patientID) {
         ResultsFragment fragment = new ResultsFragment();
@@ -65,7 +65,7 @@ public class ResultsFragment extends Fragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartości pól klasy przekazane
      * jako argumenty poprzez {@link Bundle}. Dodatkowo zapisuje obiekt aktywności fragmentu.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
@@ -98,15 +98,13 @@ public class ResultsFragment extends Fragment {
     }
 
     /**
-     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
-     * fragmentu pobiera wyniki poszczególnych skal dla pacjenta, zamieszcza otrzymane wartości w konkretnych
-     * elementach widoku i ustawia akcje przycisku przechodzącego do zdjęć CT mózgu.
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState  poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -182,7 +180,7 @@ public class ResultsFragment extends Fragment {
     }
 
     /**
-     * Metoda dokonująca przejścia do fragmentu wyświetlającego zdjęcia CT mózgu
+     * Metoda dokonująca przejścia do fragmentu wyświetlającego zdjęcia CT mózgu.
      */
     private void showCTPictures()
     {
@@ -198,11 +196,11 @@ public class ResultsFragment extends Fragment {
     }
 
     /**
-     * Metoda generuje tekst zawierający wszystkie pytania, na które udzielona przez użytkownika odpowiedź
+     * Metoda pomocnicza generująca tekst zawierający wszystkie pytania, na które udzielona przez użytkownika odpowiedź
      * była nieprawidłowa i spowodowała wykluczenie pacjenta z leczenia trombolitycznego.
      *
      * @param answers lista odpowiedzi, które wpłynęły na wykluczenie pacjenta z leczenia trombolitycznego
-     * @return (String) zgrupowany tekst wszystkich błędnych pytań
+     * @return wygenerowany tekst składający się ze wszystkich pytań, dla których udzielona została błędna odpowiedź
      */
     private String wrongAnswersText(List<Answer> answers)
     {

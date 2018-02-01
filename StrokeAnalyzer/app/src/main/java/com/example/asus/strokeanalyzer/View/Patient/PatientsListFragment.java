@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Pozwala na wyświetlenie listy pacjentów, których
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie listy pacjentów, których
  * profile przechowywane są w bazie danych aplikacji.
  */
 public class PatientsListFragment extends Fragment  {
@@ -53,13 +53,13 @@ public class PatientsListFragment extends Fragment  {
     /**
      * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
      * fragmentu inicjalizuje obiekt klasy RecyclerView odpowiedzialny za prezentację listy pacjentów przy wykorzystaniu
-     * klasy {@link PatientAdapter}
+     * klasy {@link PatientAdapter}.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

@@ -3,7 +3,7 @@ package com.example.asus.strokeanalyzer.Model.Form.Question;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 
 /**
- *  Klasa stanowiąca rozszerzenie klasy {@link Question} reprezentująca pytanie, na które odpowiedż jest liczbą.
+ *  Klasa stanowiąca rozszerzenie klasy {@link Question} reprezentująca pytanie, na które odpowiedź jest liczbą.
  *
  *  @author Marta Marciszewicz
  */

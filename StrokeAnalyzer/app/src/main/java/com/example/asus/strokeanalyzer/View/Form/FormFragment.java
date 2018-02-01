@@ -36,7 +36,7 @@ import java.util.List;
 import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Pozwala na wyświetlenie listy pytań wybranego przez użytkownika
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie listy pytań wybranego przez użytkownika
  * formularza, ich uzupełnienie oraz zapisanie zebranych danych w bazie danych.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormFragment#newInstance}.
  */
@@ -55,9 +55,10 @@ public class FormFragment extends Fragment {
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
      * @param form typ formularza, który ma zostać wyświetlony we fragmencie
-     * @param patientID Id pacjenta, którego dane będą modyfikowane w formularzu
-     * @param newForm true - jeżeli formularz będzie tworzony na nowo, false - jeżeli następuje edycja formularza
-     * @return (FormFragment) nowa instancja fragmentu FormFragment
+     * @param patientID id pacjenta, którego dane będą modyfikowane w formularzu
+     * @param newForm wartość informująca o tym, czy formularz tworzony jest na nowo (true - jeżeli
+     *                formularz będzie tworzony na nowo; false - jeżeli następuje edycja formularza)
+     * @return nowa instancja fragmentu FormFragment
      */
     public static FormFragment newInstance(Form form, long patientID, boolean newForm) {
         FormFragment fragment = new FormFragment();
@@ -68,7 +69,7 @@ public class FormFragment extends Fragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda dodaje także menu do fragmentu.
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
@@ -99,13 +100,13 @@ public class FormFragment extends Fragment {
     /**
      * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
      * fragmentu inicjalizuje obiekt klasy RecyclerView odpowiedzialny za prezentację listy pytań formularza przy wykorzystaniu
-     * klasy {@link QuestionAdapter}
+     * klasy {@link QuestionAdapter}.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -157,7 +158,7 @@ public class FormFragment extends Fragment {
     /**
      * Metoda umożliwiająca zainicjowanie standardowego menu aktywności.
      *
-     * @param menu obiekt klasy Menu, w którym umieszczone powinno zostać umieszczone menu dla stworzone
+     * @param menu obiekt klasy Menu, w którym powinna znajdować się definicja menu dla
      *             tego fragmentu
      * @param inflater obiekt klasy MenuInflater pozwalający na pozyskanie menu z zasobów aplikacji
      */
@@ -173,7 +174,7 @@ public class FormFragment extends Fragment {
      * powrót do widoku profilu pacjenta.
      *
      * @param item elementu menu, który został wybrany przez użytkownika
-     * @return (boolean) false - jeżeli element menu ma być przetworzony standardowo;
+     * @return false - jeżeli element menu ma być przetworzony standardowo;
      *          true - jeżeli element menu został obsłużony wewnątrz funkcji
      */
     @Override
@@ -228,10 +229,12 @@ public class FormFragment extends Fragment {
     }
 
     /**
-     * Metoda generująca obiekty klasy {@link Question} z obiektów klasy {@link com.example.asus.strokeanalyzer.Model.Form.Question.Question}
-     * Funkcja sprawdza dodatkowo, czy użytkownik odpowiedział już na dane pytanie i ustawia odpowiednią odpowiedź.
+     * Metoda generująca obiekty klasy {@link Question} wykorzystywane w widoku
+     * z obiektów klasy {@link com.example.asus.strokeanalyzer.Model.Form.Question.Question}
+     * Funkcja sprawdza dodatkowo, czy użytkownik odpowiedział już na dane pytanie i ustawia ewentualną wybraną przez
+     * niego odpowiedź.
      *
-     * @param questionIDs lista Id pytań, które powinny zostać wyświetlone w formularzu
+     * @param questionIDs lista id pytań, które powinny zostać wyświetlone w formularzu
      */
     private void prepareQuestions(List<Integer> questionIDs)
     {
@@ -303,9 +306,7 @@ public class FormFragment extends Fragment {
     }
 
     /**
-     * Metoda zapisująca w obiekcie klasy {@link Patient} nowe badanie w skali NIHSS. Funkcja pobiera
-     * odpowiedzi udzielone przez użytkownika na pytania formularza skali NIHSS, a następnie tworzy obiekt
-     * klasy {@link NihssExamination}, który zapisywany jest do bazy danych.
+     * Metoda zapisująca w obiekcie klasy {@link Patient} nowe badanie w skali NIHSS.
      */
     private void SaveExamination()
     {

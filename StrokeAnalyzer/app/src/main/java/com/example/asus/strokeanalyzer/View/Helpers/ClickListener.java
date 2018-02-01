@@ -10,7 +10,7 @@ import android.view.View;
 
 public interface ClickListener {
     /**
-     * Nagłówek funkcji informującej o wystąpieniu kliknięcia jednego z elementów RecyclerView
+     * Nagłówek funkcji informującej o wystąpieniu kliknięcia jednego z elementów RecyclerView.
      *
      * @param view widok klikniętego obiektu
      * @param position pozycja klikniętego obiektu

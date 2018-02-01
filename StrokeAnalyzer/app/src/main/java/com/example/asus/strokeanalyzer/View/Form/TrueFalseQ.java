@@ -1,7 +1,7 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
 /**
- * Klasa reprezentująca pytanie, na które odpowiedź może być 'tak' lub 'nie'.
+ * Klasa implementująca interfejs {@link Question}, która reprezentuje pytanie, na które odpowiedź jest typu prawda/fałsz.
  *
  * @author Marta Marciszewicz
  */
@@ -13,9 +13,9 @@ public class TrueFalseQ implements Question
     private boolean answer;
 
     /**
-     * Konstruktor ustawiający odpowiednie pola klasy.
+     * Konstruktor ustawiający id pytania oraz jego treść.
      *
-     * @param id Id pytania
+     * @param id id pytania
      * @param text treść pytania
      */
     public TrueFalseQ(int id ,String text)
@@ -25,16 +25,16 @@ public class TrueFalseQ implements Question
     }
 
     /**
-     * Metoda pozwalająca na pobranie treści pytania
+     * Metoda pozwalająca na pobranie treści pytania.
      *
-     * @return (String) treść pytania
+     * @return treść pytania
      */
     public String getText() { return text; }
 
     /**
-     * Metoda pobierająca Id pytania
+     * Metoda pobierająca id pytania.
      *
-     * @return (int) Id pytania
+     * @return id pytania
      */
     public int getId()
     {
@@ -42,9 +42,9 @@ public class TrueFalseQ implements Question
     }
 
     /**
-     * Metoda pozwalająca na ustawienie odpowiedzi wprowadzonej przez użytkownika
+     * Metoda pozwalająca na ustawienie odpowiedzi wprowadzonej przez użytkownika.
      *
-     * @param answer wartość odpowiedzi wprowadzonej przez użytkwonika
+     * @param answer wartość odpowiedzi wprowadzonej przez użytkownika
      */
     public void setAnswer(boolean answer)
     {
@@ -52,16 +52,16 @@ public class TrueFalseQ implements Question
     }
 
     /**
-     * Metoda zwracająca odpowiedź na pytanie.
+     * Metoda zwracająca ustawioną odpowiedź na pytanie.
      *
-     * @return (boolean) wartość odpowiedzi na pytanie
+     * @return wartość ustawionej odpowiedzi na pytanie
      */
     public boolean getAnswer() {return answer;}
 
     /**
-     * Metoda zwracająca typ pytania z interfejsu {@link Question}
+     * Metoda zwracająca typ pytania jako wartość z interfejsu {@link Question}.
      *
-     * @return (int) typ pytania
+     * @return typ pytania
      */
     @Override
     public int getListItemType() {

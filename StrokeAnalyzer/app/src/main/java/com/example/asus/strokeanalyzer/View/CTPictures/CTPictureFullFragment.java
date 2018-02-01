@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import com.example.asus.strokeanalyzer.R;
 
 /**
- * Klasa będąca podklasą {@link Fragment}. Pozwala na wyświetlenie powiększonego obrazu CT mózgu
+ * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie powiększonego obrazu CT mózgu
  * z nanesionymi obszarami prawdopodobnego występowania udaru.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link CTPictureFullFragment#newInstance}.
  *
@@ -30,7 +30,7 @@ public class CTPictureFullFragment extends Fragment {
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
      * @param image obraz, który ma zostać powiększony
-     * @return (CTPictureFullFragment) nowa instancja fragmentu CTPictureFullFragment
+     * @return nowa instancja fragmentu CTPictureFullFragment
      */
     public static CTPictureFullFragment newInstance(Bitmap image) {
         CTPictureFullFragment fragment = new CTPictureFullFragment();
@@ -44,7 +44,8 @@ public class CTPictureFullFragment extends Fragment {
     }
 
     /**
-     * Metoda wołana w celu zainicjowania tworzenia fragmentu.
+     * Metoda wołana w celu zainicjowania tworzenia fragmentu. Metoda ustawia wartość pól klasy przekazane
+     * jako argumenty poprzez {@link Bundle}.
      *
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
@@ -76,14 +77,13 @@ public class CTPictureFullFragment extends Fragment {
     }
 
     /**
-     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu. Funkcja oprócz wstrzyknięcia widoku
-     * fragmentu ustawia obraz w nim wyświetlany.
+     * Metoda pozwalająca na zainicjowanie interfejsu użytkownika dla fragmentu.
      *
      * @param inflater obiekt umożliwiający wstrzyknięcie widoku do fragmentu
      * @param container widok-rodzic, do którego powinien być podpięty UI fragmentu
      * @param savedInstanceState poprzedni stan fragmentu, w przypadku, gdy jest on odtwarzany z zapisanego wcześniej stanu
      *                           (może przyjmować wartość null)
-     * @return (View) widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
+     * @return widok interfejsu użytkownika fragmentu (może przyjąć wartość null)
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
