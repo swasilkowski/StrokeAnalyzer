@@ -18,9 +18,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Klasa dokonująca analizy możliwości zastosowania leczenia trombolitycznego.
- * Zawiera słownik poprawnych odpowiedzi dla pytań o danym ID oraz metodę pozwalającą na wyznaczenie
- * wyniku analizy stanu pacjenta
+ * Klasa dokonująca analizy możliwości zastosowania leczenia trombolitycznego u pacjenta.
  *
  * @author Marta Marciszewicz & Stanisław Wasilkowski
  */
@@ -31,21 +29,22 @@ public final class TreatmentAnalyzer {
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
     /**
-     * Metoda dokonująca analizy możliwości dopuszczenia leczenia trombolitycznego na podstawie
-     * odpowiedzi udzielonych przez pacjenta w formularzach apliakcji. Metoda pobiera listę ID
-     * pytań wykorzystywanych do analizy i dla każdego dokonuje porównania odpowiedzi przechowywanej
-     * w profilu pacjenta p z prawidłową odpowiedzią zawartą w słowniku correctAnswers.
-     * W przypadku pytań typu prawda/fałsz porównywana jest wartość bool przechowywana w odpowiedzi.
-     * Dla pytań zawierających odpowiedź w postaci wartości liczbowej sprawdzana jest przynależność
-     * danej wartości do odpowiedniego zakresu. Jeżeli, którekolwiek porównanie zwróci wartość false
-     * decyzja dotycząca leczenia trombolitycznego ustawiana jest jako negatywna.
-     * Analizator dokonują porównania wszystkich pytań, w celu wygenerowania listy pytań, na które
-     * udzielona odpowiedź jest niepoprawna.
+     * Domyślny konstruktor bezparametrowy klasy oznaczony jako prywatny, by uniemożliwić
+     * jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     */
+    private TreatmentAnalyzer() {
+    }
+
+    /**
+     * Metoda dokonująca analizy możliwości dopuszczenia pacjenta do leczenia trombolitycznego na podstawie
+     * odpowiedzi udzielonych przez użytkownika w formularzach apliakcji.
      *
      * @param p obiekt klasy Patient, dla którego dokonywana jest analiza
-     * @return (TreatmentResult) wynik przeprowadzonej analizy; zawiera zarówno decyzję dotyczącą
-     *          zastosowania leczenia trombolitycznego jak również listę odpowiedzi, które wpłynęły
-     *          na ostateczną decyję w przypadku gdy jest ona negatywna
+     * @return wynik przeprowadzonej analizy; zawiera zarówno decyzję dotyczącą
+     *          zastosowania leczenia trombolitycznego, jak również listę odpowiedzi, które wpłynęły
+     *          na ostateczną decyję w przypadku gdy jest ona negatywna; wynik może
+     *          przyjąć wartość null jeżeli nie wszystkie wymagane odpowiedzi zostały udzielone przez
+     *          użytkownika
      */
     public static TreatmentResult MakeTreatmentDecision(Patient p) throws WrongQuestionsSetException {
         if (correctAnswers == null) {
@@ -110,7 +109,7 @@ public final class TreatmentAnalyzer {
     }
 
     /**
-     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza
+     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza.
      */
     private static void Initialize() {
         correctAnswers = new Hashtable<>();

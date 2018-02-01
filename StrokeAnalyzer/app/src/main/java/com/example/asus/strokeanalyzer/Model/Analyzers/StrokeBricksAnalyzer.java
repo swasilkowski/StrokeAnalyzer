@@ -17,11 +17,9 @@ import java.util.Set;
 
 /**
  * Klasa wyznaczająca zbiór regionów mózgu dotkniętych udarem przy wykorzystaniu modelu Stroke Bricks
- * Zawiera słownik opisów regionów oraz słownik łączący ID pytania z listą regionów. Klasa StrokeBricksAnalyzer
- * posiada metodę pozwalającą na wyznaczenie listy regionów mózgu objętych udarem oraz metodę generującą opis
- * rozległości udaru.
+ * oraz skali NIHSS.
  *
- * @author Stanisław Wasilkowski
+ * @author Marta Marciszewicz & Stanisław Wasilkowski
  */
 
 public final class StrokeBricksAnalyzer {
@@ -39,22 +37,23 @@ public final class StrokeBricksAnalyzer {
 
 
     /**
-     * Bezparametrowy konstruktor klasy
-     * Oznaczony jako prywatny, by uniemożliwić jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     * Domyślny konstruktor bezparametrowy klasy oznaczony jako prywatny, by uniemożliwić
+     * jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
      */
     private StrokeBricksAnalyzer() {
     }
 
     /**
      * Metoda dokonująca wyznaczenia regionów objętych udarem niedokrwiennym mózgu na podstawie
-     * modelu Stroke Bricks dla pacjenta p.
-     * Funkcja pobiera odpowiedzi udzielone przez użytkownika w najświeższym badaniu NIHSS i jeżeli
-     * wartość punktowa odpowiedzi jest większa niż 0, regiony przypisane do pytania na które udzielona
-     * została odpowiedź dołączane są do listy uszkodzonych w wyniku udaru regionów.
+     * modelu Stroke Bricks dla pacjenta p. Funkcja pobiera odpowiedzi udzielone przez użytkownika
+     * w najświeższym badaniu NIHSS i jeżeli wartość punktowa odpowiedzi jest większa niż 0,
+     * regiony przypisane do pytania, na które udzielona została odpowiedź dołączane
+     * są do listy uszkodzonych w wyniku udaru regionów.
      *
      * @param p obiekt klasy Patient, dla którego dokonywana jest analiza
-     * @return
-     * {@literal List<Region>} lista regionów potencjalnego występowania udaru wyznaczonych na podstawie modelu Stroke Bricks
+     * @return lista regionów potencjalnego występowania udaru wyznaczonych na podstawie modelu Stroke Bricks;
+     *          wynik może przyjąć wartość null jeżeli nie wszystkie wymagane odpowiedzi zostały udzielone przez
+     *          użytkownika
      */
     public static List<Region> AnalyzeRegionsAffection(Patient p) {
         if (correctAnswers == null || regionsDescription == null) {
@@ -84,6 +83,13 @@ public final class StrokeBricksAnalyzer {
         return new ArrayList<>(affectedRegions);
     }
 
+    /**
+     * Metoda pobierająca listę regionów powiązaną z konkretnym pytaniem formularza skali NIHSS.
+     *
+     * @param questionID id pytania, dla którego pobierana jest lista regionów
+     * @param patient obiekt klasy Patient, który analizowany jest w celu zwrócenia listy regionów
+     * @return lista regionów potencjalnego występowania udaru powiązana z pytaniem
+     */
     private static List<Region> getRegions(int questionID, Patient patient)
     {
         //only left hemisphere
@@ -152,12 +158,10 @@ public final class StrokeBricksAnalyzer {
 
     /**
      * Metoda generująca opsi rozległości udaru.
-     * Funkcja pobiera opis regionu dla każdego z regionów dostarczonych w parametrze regions i następnie
-     * dodaje go do wynikowego tekstu opisującego rozległość udaru
      *
      * @param regions lista regionów
-     * @return (String) opis rozległości udaru (opis zawiera listę regionów możliwego występowania udaru
-     *          niedokriwennego mózgu)
+     * @return opis rozległości udaru (opis zawiera listę regionów możliwego występowania udaru
+     *          niedokrwiennego mózgu)
      */
     public static String CreateStrokeRangeDescription(List<Region> regions)
     {
@@ -173,7 +177,8 @@ public final class StrokeBricksAnalyzer {
     }
 
     /**
-     * Metoda inicjalizująca słownik zawierający opisy poszczególnych regionów (nazwy)
+     * Metoda inicjalizująca słownik zawierający opisy (nazwy) poszczególnych regionów oraz słownik
+     * wiążący pytania skali NIHSS z regionami modelu Stroke Bricks.
      */
     private static void Initialize() {
         //correctAnswers = new Hashtable<>();

@@ -6,9 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Klasa reprezentująca pojedyncze badanie w skali NIHSS.
- * Zawiera datę wykonanego badania oraz listę odpowiedzi, które wybrał użytkownik w trakcie wypełniania
- * formularza skali NIHSS.
+ * Klasa reprezentująca pojedyncze badanie w skali NIHSS. Zawiera datę wykonanego badania oraz
+ * listę odpowiedzi, które wybrał użytkownik w trakcie wypełniania formularza skali NIHSS.
  *
  * @author Stanisław Wasilkowski
  */
@@ -18,6 +17,9 @@ public class NihssExamination {
     public Date Date;
     public List<Answer> Answers;
 
+    /**
+     * Konstruktor bezparametrowy klasy.
+     */
     public NihssExamination() {
         Answers = new LinkedList<>();
     }

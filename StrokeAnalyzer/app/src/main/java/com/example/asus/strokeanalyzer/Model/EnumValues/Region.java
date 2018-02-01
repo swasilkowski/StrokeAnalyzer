@@ -1,7 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.EnumValues;
 
 /**
- * Wyliczenie regionów na które podzielony zostaje mózg w modelu StrokeBricks
+ * Typ wyliczeniowy regionów, na które podzielony zostaje mózg w modelu Stroke Bricks.
  *
  * @author Marta Marciszewicz
  */

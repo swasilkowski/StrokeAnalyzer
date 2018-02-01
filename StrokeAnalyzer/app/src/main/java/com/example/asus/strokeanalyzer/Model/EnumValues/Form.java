@@ -1,8 +1,9 @@
 package com.example.asus.strokeanalyzer.Model.EnumValues;
 
 /**
- * Wyliczenie rodzaji skal.
+ * Typ wyliczeniowy rodzaji skal wykorzystywanych w aplikacji.
  * Klasa zawiera również metodę Print, która pozwala na wypisanie nazwy danej wartości typu wyliczeniowego
+ * (tu: nazwę skali).
  *
  * @author Marta Marciszewicz
  */
@@ -17,8 +18,9 @@ public enum Form {
     Dragon;
 
     /**
-     * Wypisanie nazwy danej wartości typu wyliczeniowego
-     * @return (String) poprawna nazwa danego elementu typu wyliczeniowego Form
+     * Metoda zwracająca nazwę danej wartości typu wyliczeniowego.
+     *
+     * @return poprawna nazwa danego elementu typu wyliczeniowego {@link Form}
      */
     public String Print()
     {

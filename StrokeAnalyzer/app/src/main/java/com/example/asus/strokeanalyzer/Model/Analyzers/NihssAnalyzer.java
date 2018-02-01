@@ -13,10 +13,17 @@ import com.example.asus.strokeanalyzer.Model.NihssExamination;
 public final class NihssAnalyzer {
 
     /**
-     * Metoda wylicza sumę punktów dla adania examination w skali NIHSS.
-     * Dla każdej odpowiedzi znajdującej się w badaniu pobierana jesli liczba punktów i dodawana do wynikowej sumy
-     * @param examination badanie dla którego wyliczana jest suma punktów
-     * @return (int) suma punktów w skali NIHSS
+     * Domyślny konstruktor bezparametrowy klasy oznaczony jako prywatny, by uniemożliwić
+     * jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     */
+    private NihssAnalyzer() {
+    }
+
+    /**
+     * Metoda wyliczająca sumę punktów dla badania examination w skali NIHSS.
+     *
+     * @param examination badanie, dla którego wyliczana jest suma punktów
+     * @return suma punktów w skali NIHSS
      */
     public static int CountNihssSum(NihssExamination examination)
     {

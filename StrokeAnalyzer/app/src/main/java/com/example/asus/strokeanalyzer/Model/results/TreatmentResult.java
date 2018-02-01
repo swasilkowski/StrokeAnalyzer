@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Klasa przechowująca wynik analizy dotyczącej możliwości zastosowania leczenia trombolitycznego.
  * Zawiera pole przechowujące ostateczną decyzję odnoszącą się do leczenia oraz listę odpowiedzi,
- * które różniły się od spodziewanej odpowiedzi na dane pytanie
+ * które przyczyniły się do decyzji negatywnej.
  *
  * @author Marta Marciszewicz
  */

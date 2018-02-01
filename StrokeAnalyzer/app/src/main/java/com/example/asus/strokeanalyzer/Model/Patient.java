@@ -21,9 +21,6 @@ import java.util.Map;
 
 /**
  * Klasa przechowująca informację o pacjencie.
- * Zawiera jego ID z bazy danych, które wykorzystywane jest do przekazywania informacji
- * o bierzącym pacjencie pomiędzy poszczególnymi widokami. Ponadto przechowuje jego imię,
- * nazwisko, numer identyfikacyjny wprowadzony przez użytkownika oraz mapę odpowiedzi dla danego pytania
  *
  * @author Marta Marciszewicz & Stanisław Wasilkowski
  */
@@ -37,8 +34,9 @@ public class Patient {
     public Map<Integer, Answer> PatientAnswers;
 
     /**
-     * Wyliczenie sumy w skali NIHSS dla najświeższego badania
-     * @return (int) suma punktów w skali NIHSS dla najświeższego badania
+     * Metoda wyliczająca sumę punktów w skali NIHSS dla najświeższego badania pacjenta.
+     *
+     * @return suma punktów w skali NIHSS dla najświeższego badania
      */
     public int getNihss()
     {
@@ -49,8 +47,9 @@ public class Patient {
     }
 
     /**
-     * Wyliczenie sumy punktów w skalii NIHSS dla najstarszego (pierwszego) badania
-     * @return (int) suma punktów w skali NIHSS dla najstarszego badania
+     * Metoda wyliczająca sumę punktów w skalii NIHSS dla najstarszego (pierwszego) badania pacjenta.
+     *
+     * @return suma punktów w skali NIHSS dla najstarszego badania
      */
     public int getNihssOnAdmission() {
         NihssExamination examination = NihssService.getEarliestNihssExaminationForPatient(Id);
@@ -60,18 +59,19 @@ public class Patient {
     }
 
     /**
-     * Wyzaczenie regionów możliwego wystąpienia udaru mózgu
-     * @return
-     * {@code List<Region>} lista regionów możliwego wystąpienia udaru mózgu
+     * Metoda wyzaczająca regiony możliwego wystąpienia udaru mózgu przy wykorzystaniu modelu Stroke Bricks.
+     *
+     * @return lista regionów możliwego wystąpienia udaru mózgu
      */
     public List<Region> getStrokeBricksAffectedRegions() {
         return StrokeBricksAnalyzer.AnalyzeRegionsAffection(this);
     }
 
     /**
-     * Wyznaczenie decyzji odnoszącej się do leczenia trombolitycznego oraz, w przypadku decyzji negatywnej,
-     * wyznaczenie pytań, które wpłynęły na ostateczną decyzję
-     * @return (TreatmentResult) obiekt przechowujący wyniki analizy możliwości zastosowania
+     * Metoda wyznaczająca decyzję dotyczącą zastosowania leczenia trombolitycznego oraz, w przypadku decyzji negatywnej,
+     * listująca pytania, które wpłynęły na ostateczną decyzję.
+     *
+     * @return obiekt przechowujący wyniki analizy możliwości zastosowania
      *          leczenia trombolitycznego
      */
     public TreatmentResult getTreatmentDecision() {
@@ -90,9 +90,11 @@ public class Patient {
     }
 
     /**
-     * Analiza stanu pacjenta w skali Hat. Określa liczbę zdobytych przez pacjenta punktów w tej
-     * skali oraz prawdopodobieństwo wystąpienia śmiertelengo i objawowego krwotoku śródczaszkowego
-     * @return (HatResult) obiekt przechowujący wyniki analizy prawdopodobieństwa wystąpienia
+     * Metoda analizująca ryzyko wystąpienia u pacjenta krwotoku śródmózgowego po zastosowaniu
+     * leczenia trombolitycznego w skali HAT. Określa liczbę zdobytych przez pacjenta punktów w tej
+     * skali oraz prawdopodobieństwo wystąpienia śmiertelengo i objawowego krwotoku śródczaszkowego.
+     *
+     * @return obiekt przechowujący wyniki analizy prawdopodobieństwa wystąpienia
      *          krwotoku śródczaskowego u pacjenta
      */
     public HatResult getHatPrognosis() {
@@ -108,19 +110,24 @@ public class Patient {
     }
 
     /**
-     * Analiza stanu pacjenta w skali iScore. Określa liczbę zdobytych przez pacjenta punktów w tej
+     * Metoda analizująca prawdopodobieństwo zgonu lub niepełnosprawności pacjenta w przeciągu 30 dni
+     * oraz 1 roku od wystąpienia udaru w skali iScore. Określa liczbę zdobytych przez pacjenta punktów w tej
      * skali dla progonozy zarówno 30-dniowej jak i 1-rocznej oraz prawdopodobieństwo
-     * zgonu pacjenta w przeciągu 30 dni oraz 1 roku od wystąpienia udaru
-     * @return (iScoreResult) obiekt przechowujący wyniki analizy prawdopodobieństwa zgonu pacjenta
+     * zgonu pacjenta w przeciągu 30 dni oraz 1 roku od wystąpienia udaru.
+     *
+     * @return obiekt przechowujący wyniki analizy prawdopodobieństwa zgonu pacjenta
      */
     public iScoreResult getIscorePrognosis() {
         return iScoreAnalyzer.AnalyzePrognosis(this);
     }
 
     /**
-     * Analiza stanu pacjenta w skali Dragon. Określa liczbę zdobytych przez pacjenta punktów w tej
-     * skali oraz prawdopodobieństwo powodzenia oraz niepowodzenia terapii trombolitycznej.
-     * @return (DragonResult) obiekt przechowujący wyniki analizy prawdopodobieństwa powodzenia
+     * Metoda analizująca rezultat zastosowania u pacjenta leczenia trombolitycznego
+     * za pomocą rekombinowanego tkankowego aktywatora plazminogenu (rt-PA) w skali Dragon.
+     * Określa liczbę zdobytych przez pacjenta punktów w tej skali oraz prawdopodobieństwo powodzenia
+     * i niepowodzenia terapii trombolitycznej.
+     *
+     * @return obiekt przechowujący wyniki analizy prawdopodobieństwa powodzenia
      *          leczenia trombolitycznego u pacjenta
      */
     public DragonResult getDragonPrognosis() {
@@ -136,17 +143,18 @@ public class Patient {
     }
 
     /**
-     * Konstruktor bezparametrowy inicjalizujący mapę zawierającą odpowiedzi pacjenta
+     * Konstruktor bezparametrowy klasy.
      */
     public Patient() {
         PatientAnswers = new Hashtable<>();
     }
 
     /**
-     * Metoda z klasy Object pozwalająca na przyrównanie elementów klasy Patient.
+     * Nadpisana metoda z klasy Object pozwalająca na przyrównanie elementów klasy Patient.
      * Elementy są sobie równe, jeżeli mają takie same Id.
+     *
      * @param p obiekty klasy Patient, z którym porównujemy bierzący obiekt
-     * @return (boolean) wartość true jeżeli obiekty są sobie równe, wartość false w przeciwnym przypadku
+     * @return true - jeżeli obiekty są sobie równe; false - jeżeli obiekty mają różne id
      */
     @Override
     public boolean equals(Object p) {
@@ -154,9 +162,9 @@ public class Patient {
     }
 
     /**
-     * Pobranie wszystkich badań pacjenta dla skali NIHSS
-     * @return
-     * {@code List<NihssExamination>} lista obiektów przechowujących odpowiedzi pacjenta na pytania
+     * Metoda zwracająca wszystkie badania pacjenta dla skali NIHSS.
+     *
+     * @return lista obiektów przechowujących odpowiedzi pacjenta na pytania
      * formularza skali NIHSS
      */
     public List<NihssExamination> getNihssHistory() {
@@ -164,16 +172,18 @@ public class Patient {
     }
 
     /**
-     * Pobranie najświeższego badania w skali NIHSS
-     * @return (NihssExamination) obiekt przechowujący najstarsze badanie pacjenta w skali NIHSS
+     * Metoda pobierająca najświeższe badanie w skali NIHSS.
+     *
+     * @return obiekt przechowujący najstarsze badanie pacjenta w skali NIHSS
      */
     public NihssExamination getLatestNihssExamination() {
         return NihssService.getLatestNihssExaminationForPatient(Id);
     }
 
     /**
-     * Dodanie pojedynczego badania w skali NIHSS do profilu pacjenta przechowywanego w bazie danych
-     * (zapisanie badania w bazie danych)
+     * Metoda umożliwiająca dodanie pojedynczego badania w skali NIHSS do profilu pacjenta przechowywanego w bazie danych
+     * (zapisanie badania w bazie danych).
+     *
      * @param nihssExamination obiekt przechowujący pojedyncze badanie w skalii NIHSS, które ma zostać
      *                         zapisane w bazie danych
      */

@@ -1,9 +1,9 @@
 package com.example.asus.strokeanalyzer.Model.results;
 
 /**
- * Klasa przechowująca wynik analizy dotyczącej skali Dragon.
- * Zawiera pole przechowujące liczbę punktów w skali Dragon oraz pola przechowujące prawdopodobieństwo
- * powodzenia oraz niepowodzenia leczenia trombolitycznego
+ * Klasa przechowująca wynik analizy skali DRAGON.
+ * Zawiera pole przechowujące liczbę punktów w skali DRAGON oraz pola przechowujące prawdopodobieństwo
+ * powodzenia i niepowodzenia leczenia trombolitycznego.
  *
  * @author Stanisław Wasilkowski
  */

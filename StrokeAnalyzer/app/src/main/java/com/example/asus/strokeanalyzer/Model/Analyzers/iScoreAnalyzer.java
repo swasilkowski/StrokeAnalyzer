@@ -20,10 +20,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Klasa dokonująca analizy prawdopodobieństwa zgonu pacjenta w skali iScore
- * Zawiera słowniki poprawnych odpowiedzi dla pytań o danym ID z podziałem na analizę dotyczącą okresu
- * 1 roku o raz 30 dni od momentu wystąpienia udaru niedokrwiennego mózgu. Klasa iScoreAnalyzer posiada
- * metodę pozwalającą na wyznaczenie wyniku skali iScore oraz metody pomocnicze.
+ * Klasa dokonująca analizy prawdopodobieństwa zgonu pacjenta w przeciągu 30 dni
+ * oraz 1 roku od wystąpienia udaru w skali iScore.
  *
  * @author Stanisław Wasilkowski
  */
@@ -38,16 +36,22 @@ public final class iScoreAnalyzer {
     private static Dictionary<Integer, ExpectedAnswer> correctAnswersFor1Year;
 
     /**
+     * Domyślny konstruktor bezparametrowy klasy oznaczony jako prywatny, by uniemożliwić
+     * jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     */
+    private iScoreAnalyzer() {
+    }
+
+    /**
      * Metoda dokonująca wyliczenia wyniku w skali iScore dla pacjenta p.
-     * Zlicza ona osobno sumy punktów dla analizy dotyczącej 1 roku oraz 30 dni, a następnie przelicza to
-     * na wartości procentowe prawdopodobieństwa zgonu pacjenta w przeciągu 1 roku oraz 30 dni od wystąpienia
-     * uadru niedokriennego mózgu
      *
      * @param patient obiekt klasy Patient, dla którego dokonywana jest analiza
-     * @return (iScoreResult) wynik przeprowadzanej analizy; zawiera liczbę punktów skali iScore dla przewidywań
+     * @return wynik przeprowadzanej analizy; zawiera liczbę punktów skali iScore dla przewidywań
      *          dotyczących 1 roku i 30 dni od wystąpienia udaru mózgu, procent określający prawdopodobieństwo
      *          zgonu pacjenta w przeciągu 1 roku oraz procent określający prawdopodobieństwo
-     *          zgonu pacjenta w przeciągu 30 dni od zajścia udaru mózgu.
+     *          zgonu pacjenta w przeciągu 30 dni od zajścia udaru mózgu; wynik może
+     *          przyjąć wartość null jeżeli nie wszystkie wymagane odpowiedzi zostały udzielone przez
+     *          użytkownika
      */
     public static iScoreResult AnalyzePrognosis(Patient patient) {
 
@@ -70,13 +74,11 @@ public final class iScoreAnalyzer {
     }
 
     /**
-     * Metoda wyznaczająca sumę punktów w skali iScore w zależności od podanego zbioru poprawnych odpowiedzi
-     * dla prawdopodobieństwa zgonu pacjenta w przeciągu 30 dni od wystąpienia udaru mózgu
-     * Metoda zlicza punkty na podstawie odpowiedzi udzielonych przez użytkowniak oraz dodaje punkty
-     * przyznane w zależności od liczby punktów najświeższego badania pacjenta w skali NIHSS
+     * Metoda wyznaczająca sumę punktów w skali iScore dla prawdopodobieństwa zgonu pacjenta
+     * w przeciągu 30 dni od wystąpienia udaru mózgu.
      *
      * @param p obiekt klasy Patient, dla którego dokonywane jest zliczenie sumy punktów
-     * @return (int) suma punktów w skali iScore dla przewidywań dotyczących 30 dni od wystąpienia udaru
+     * @return suma punktów w skali iScore dla przewidywań dotyczących 30 dni od wystąpienia udaru
      */
     private static int getPointsFor30Days(Patient p)
     {
@@ -104,13 +106,11 @@ public final class iScoreAnalyzer {
     }
 
     /**
-     * Metoda wyznaczająca sumę punktów w skali iScore w zależności od podanego zbioru poprawnych odpowiedzi
-     * dla prawdopodobieństwa zgonu pacjenta w przeciągu 1 roku od wystąpienia udaru mózgu
-     * Metoda zlicza punkty na podstawie odpowiedzi udzielonych przez użytkowniak oraz dodaje punkty
-     * przyznane w zależności od liczby punktów najświeższego badania pacjenta w skali NIHSS
+     * Metoda wyznaczająca sumę punktów w skali iScore dla prawdopodobieństwa zgonu pacjenta
+     * w przeciągu 1 roku od wystąpienia udaru mózgu.
      *
      * @param p obiekt klasy Patient, dla którego dokonywane jest zliczenie sumy punktów
-     * @return (int) suma punktów w skali iScore dla przewidywań dotyczących 1 roku od wystąpienia udaru
+     * @return suma punktów w skali iScore dla przewidywań dotyczących 1 roku od wystąpienia udaru
      */
     private static int getPointsFor1Year(Patient p)
     {
@@ -139,11 +139,11 @@ public final class iScoreAnalyzer {
 
     /**
      * Metoda wyznaczająca procentową wartość prawdopodobieństwa zgodnu pacjenta w przeciągu 30 dni
-     * od wystąpienia udaru. Wartość wyznaczana jest na podstawie zakresu do którego przynależy suma punktó points
+     * od wystąpienia udaru. Wartość wyznaczana jest na podstawie zakresu do którego przynależy suma punktów points.
      *
-     * @param points suma punktów w skali iScore
-     * @return (double) wartość procentowa prawdopodobieństwa zgodnu pacjenta w przeciągu 30 dni
-     *          od wystąpienia udaru.
+     * @param points suma punktów w skali iScore dla 30-dniowej prognozy
+     * @return wartość procentowa prawdopodobieństwa zgodnu pacjenta w przeciągu 30 dni
+     *          od wystąpienia udaru
      */
     private static double getPredictionFor30Days(int points) {
         if (points < 59) {
@@ -221,6 +221,14 @@ public final class iScoreAnalyzer {
         return 100;
     }
 
+    /**
+     * Metoda zwracająca opis wyniku skali iScore dla przewidywań 30-dniowych.
+     *
+     * @param points suma punktów w skali iScore dla 30-dniowej prognozy
+     * @param procent wartość procentowa prawdopodobieństwa zgodnu pacjenta w przeciągu 30 dni
+     *          od wystąpienia udaru
+     * @return opis wyniku zawierający przedział punktowy oraz wartość procentową
+     */
     private static String getDescriptionFor30Days(int points, double procent) {
         String text;
         if (points < 59) {
@@ -304,11 +312,11 @@ public final class iScoreAnalyzer {
 
     /**
      * Metoda wyznaczająca procentową wartość prawdopodobieństwa zgodnu pacjenta w przeciągu 1 roku
-     * od wystąpienia udaru. Wartość wyznaczana jest na podstawie zakresu do którego przynależy suma punktó points
+     * od wystąpienia udaru. Wartość wyznaczana jest na podstawie zakresu do którego przynależy suma punktów points.
      *
-     * @param points suma punktów w skali iScore
-     * @return (double) wartość procentowa prawdopodobieństwa zgodnu pacjenta w przeciągu 1 roku
-     *          od wystąpienia udaru.
+     * @param points suma punktów w skali iScore dla 1-rocznej prognozy
+     * @return wartość procentowa prawdopodobieństwa zgodnu pacjenta w przeciągu 1 roku
+     *          od wystąpienia udaru
      */
     private static double getPredictionFor1Year(int points) {
         if (points < 59) {
@@ -371,6 +379,14 @@ public final class iScoreAnalyzer {
         return 100;
     }
 
+    /**
+     * Metoda zwracająca opis wyniku skali iScore dla przewidywań 1-rocznych.
+     *
+     * @param points suma punktów w skali iScore dla 1-rocznej prognozy
+     * @param procent wartość procentowa prawdopodobieństwa zgodnu pacjenta w przeciągu 1 roku
+     *          od wystąpienia udaru
+     * @return opis wyniku zawierający przedział punktowy oraz wartość procentową
+     */
     private static String getDescriptionFor1Year(int points, double procent) {
         String text;
         if (points < 59) {
@@ -436,15 +452,14 @@ public final class iScoreAnalyzer {
     }
 
     /**
-     * Metoda wyznaczająca sumę punktów w skali iScore w zależności od podanego zbioru poprawnych odpowiedzi,
-     * która nie uwzględnia punktów przydzielanych przez skalę NIHSS
-     * Metoda porównuje oczekiwane odpowiedzi z odpowiedziami udzielonymi przez użytkownika i na tej podstawie
-     * dodaje punkty w skali iScore.
+     * Metoda pomocniczna wyznaczająca sumę punktów w skali iScore dla podanego zbioru poprawnych odpowiedzi
+     * (bez uwzględnienia punktów przydzielanych przez skalę NIHSS).
      *
      * @param p obiekt klasy Patient, dla którego dokonywane jest zliczenie sumy punktów
      * @param correctAnswers słownik zawierający poprawne odpowiedzi, z którymi porównywane są odpowiedzi
      *                       udzielone przez użytkownika
-     * @return (int) suma punktów w skali iScore dla podanego pacjenta i zbioru poprawnych odpowiedzi
+     * @return suma punktów w skali iScore dla podanego pacjenta i zbioru poprawnych odpowiedzi
+     * @throws WrongQuestionsSetException przekazany zbiór poprawnych odpowiedzi jest niepoprawny (zły zestaw odpowiedzi)
      */
     private static int countPoints(Patient p, Dictionary<Integer, ExpectedAnswer> correctAnswers) throws WrongQuestionsSetException {
         //adding age to the points sum
@@ -482,7 +497,7 @@ public final class iScoreAnalyzer {
     }
 
     /**
-     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza
+     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza.
      */
     private static void Initialize() {
         correctAnswersFor30Days = new Hashtable<>();

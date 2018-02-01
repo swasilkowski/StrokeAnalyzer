@@ -18,10 +18,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Klasa dokonująca analizy prawdopodobieństwa wystąpienia krwotoku śródczaszkowego w skali Hat
- * Zawiera słownik poprawnych odpowiedzi dla pytań o danym ID. Klasa HatAnalyzer posiada metodę
- * pozwalającą na wyznaczenie wyniku skali Hat oraz metody rzutujące wyznaczoną liczbę punktów na
- * prawdopodobieństwo wystąpienia krwotoku śródczaszkowego oraz śmiertelnego krwotoku śródczaszkowego.
+ * Klasa dokonująca analizy prawdopodobieństwa wystąpienia krwotoku śródczaszkowego po zastosowaniu
+ * leczenia trombolitycznego w skali HAT.
  *
  * @author Stanisław Wasilkowski
  */
@@ -32,24 +30,21 @@ public final class HatAnalyzer {
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
     /**
-     * Bezparametrowy konstruktor klasy
-     * Oznaczony jako prywatny, by uniemożliwić jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     * Domyślny konstruktor bezparametrowy klasy oznaczony jako prywatny, by uniemożliwić
+     * jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
      */
     private HatAnalyzer() {
     }
 
     /**
-     * Metoda dokonująca wyliczenia wyniku w skali Hat dla pacjenta p.
-     * Funkcja pobiera sumę punktów najświeższego badania w skali NIHSS i w zależności od jej wartości
-     * dodaje odpowiednią liczbę punktów. Następnie przechodzi po pytaniach dotyczących tego formularza
-     * i dla każdego wyznacza odpowiednią liczbę punktów w zależności od odpowiedzi udzielonej przez użytkownika.
-     * Następnie w zależności od liczby uzyskanych punktów zwracane są procentowe prawdopodobieństwa
-     * wystąpienia krwotoku.
+     * Metoda dokonująca wyliczenia wyniku w skali HAT dla pacjenta p.
      *
      * @param p obiekt klasy Patient, dla którego dokonywana jest analiza
-     * @return (HatResult) wynik przeprowadzanej analizy; zawiera liczbę punktów skali Hat,
+     * @return wynik przeprowadzanej analizy; zawiera liczbę punktów skali Hat,
      *          procent określający prawdopodobieństwo wystąpienia krwotoku śródczaszkowego oraz
-     *          procent określający prawdopodobieństwo śmiertelnego krwotoku śródczaszkowego.
+     *          procent określający prawdopodobieństwo śmiertelnego krwotoku śródczaszkowego; wynik może
+     *          przyjąć wartość null jeżeli nie wszystkie wymagane odpowiedzi zostały udzielone przez
+     *          użytkownika
      */
     public static HatResult AnalyzePrognosis(Patient p) throws WrongQuestionsSetException {
         if (correctAnswers == null) {
@@ -112,9 +107,10 @@ public final class HatAnalyzer {
 
     /**
      * Metoda wyznaczająca procentowe prawdopodobieństwo wystąpienia krwotoku śródczaszkowego
-     * po zastosowaniu leczenia trombolitycznego
-     * @param score liczba punktów skali Hat
-     * @return (int) procent określający prawdopodobieństwo wystąpienia krwotoku śródczaszkowego
+     * po zastosowaniu leczenia trombolitycznego.
+     *
+     * @param score liczba punktów skali HAT
+     * @return procent określający prawdopodobieństwo wystąpienia krwotoku śródczaszkowego
      */
     private static int getRiskOfSymptomaticICH(int score) {
         switch (score) {
@@ -137,9 +133,10 @@ public final class HatAnalyzer {
 
     /**
      * Metoda wyznaczająca procentowe prawdopodobieństwo wystąpienia śmiertelnego krwotoku śródczaszkowego
-     * po zastosowaniu leczenia trombolitycznego
-     * @param score liczba punktów skali Hat
-     * @return (int) procent określający prawdopodobieństwo wystąpienia śmiertelnego krwotoku śródczaszkowego
+     * po zastosowaniu leczenia trombolitycznego.
+     *
+     * @param score liczba punktów skali HAT
+     * @return procent określający prawdopodobieństwo wystąpienia śmiertelnego krwotoku śródczaszkowego
      */
     private static int getRiskOfFatalICH(int score) {
         switch (score) {
@@ -161,7 +158,7 @@ public final class HatAnalyzer {
     }
 
     /**
-     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza
+     * Metoda inicjalizująca słownik zawierający oczekiwane odpowiedzi dla formularza.
      */
     private static void Initialize() {
         correctAnswers = new Hashtable<>();

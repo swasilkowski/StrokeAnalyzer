@@ -3,7 +3,6 @@ package com.example.asus.strokeanalyzer.Model;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
-
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
@@ -15,7 +14,6 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,23 +21,30 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Asus on 13.01.2018.
+ * Klasa wykorzystywana do generowania raportu dla pacjenta zawierającego wyniki analiz przeprowadzanych
+ * w aplikacji.
+ *
+ * @author Stanisław Wasilkowski
  */
 
 public final class Report {
 
+    /**
+     * Domyślny konstruktor bezparametrowy klasy oznaczony jako prywatny, by uniemożliwić
+     * jego wywoływanie, co ma na celu zasymulowanie statyczności klasy.
+     *
+     */
     private Report(){
 
     }
 
     /**
-     *     /**
-     * Metoda pozwalająca na wygenerowanie raportu zawierającego dane pacjenta.
-     * Funkcja tworzy katalog 'Dir', w którym przechowywane będą wygenerowane raporty.
-     * Następnie generuje dokument, do którego wprowadzane są dane zawarte w profilu pacjenta.
-     * Plik zapisywany jest w wygenerowanym katalogu
-     * @param patient Obiekt klasy Patient, zawierająca dane pacjenta, które mają zostać zawarte w raporcie
-     * @param context Kontekst aplikacji niezbędny do stworzenia nowego pliku z danymi
+     * Metoda pozwalająca na wygenerowanie raportu zawierającego dane pacjenta. Funkcja tworzy
+     * katalog 'Dir', w którym przechowywane będą wygenerowane raporty. Następnie generuje dokument,
+     * do którego wprowadzane są dane zawarte w profilu pacjenta. Plik zapisywany jest w wygenerowanym katalogu.
+     *
+     * @param patient obiekt klasy Patient, zawierający dane pacjenta, które mają zostać umieszczone w raporcie
+     * @param context kontekst aplikacji niezbędny do stworzenia nowego pliku z danymi
      */
     public static String GenerateReport(Patient patient, Context context)
     {
