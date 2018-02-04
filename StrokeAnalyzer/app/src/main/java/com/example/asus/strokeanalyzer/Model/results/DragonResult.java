@@ -9,7 +9,16 @@ package com.example.asus.strokeanalyzer.Model.results;
  */
 
 public final class DragonResult {
+    /**
+     * Liczba punktów uzyskana w skali DRAGON.
+     */
     public int Score;
+    /**
+     * Procentowe prawdopodobieństwo pozytywnego rezultatu zastosowania leczenia trombolitycznego.
+     */
     public int GoodOutcomePrognosis;
+    /**
+     * Procentowe prawdopodobieństwo niepomyślnego rezultatu zastosowania leczenia trombolitycznego.
+     */
     public int MiserableOutcomePrognosis;
 }

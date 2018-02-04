@@ -25,8 +25,11 @@ import java.util.List;
 
 public final class DragonAnalyzer {
 
-    //key - question id, value - object containing correct answer for a question
-    //correctAnswers - contains proper answers in this scale for particular question
+    /**
+     * Słownik przechowujący oczekiwane odpowiedzi na pytania formularza skali DRAGON.
+     * Klucz: id pytania formularza.
+     * Wartość: Obiekt klasy {@link ExpectedAnswer} przechowujący poprawną bądź możliwą odpowiedź na dane pytanie.
+     */
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
     /**

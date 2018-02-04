@@ -10,7 +10,13 @@ package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
 public class ExpectedTrueFalseAnswer extends ExpectedAnswer {
 
+    /**
+     * Oczekiwana wartość odpowiedzi.
+     */
     public boolean CorrectValue;
+    /**
+     * Liczba punktów przydzielana w przypadku, gdy odpowiedź jest poprawna.
+     */
     public int Score;
 
     /**

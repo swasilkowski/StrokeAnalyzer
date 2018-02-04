@@ -24,15 +24,34 @@ import java.util.Set;
 
 public final class StrokeBricksAnalyzer {
 
-    //key - question id, value - list of regions affected if the answer for a question was correc
-    //regionsAffection - dependency between question and regions affected by stroke
+    /**
+     * Słownik defniujący powiązanie pomiędzy pytaniem formularza skali NIHSS a regionami modelu
+     * Stroke Bricks uszkodzonymi w wyniku udaru dla prawej półkuli mózgu.
+     * Klucz: id pytania formularza.
+     * Wartość: lista regionów modelu Stroke Bricks, które zostały uszkodzone w przypadku, gdy wartość
+     * punktowa odpowiedzi na pytanie była większa niż 0.
+     */
     private static Dictionary<Integer, List<Region>> regionsAffectionR;
+    /**
+     * Słownik defniujący powiązanie pomiędzy pytaniem formularza skali NIHSS a regionami modelu
+     * Stroke Bricks uszkodzonymi w wyniku udaru dla lewej półkuli mózgu.
+     * Klucz: id pytania formularza.
+     * Wartość: lista regionów modelu Stroke Bricks, które zostały uszkodzone w przypadku, gdy wartość
+     * punktowa odpowiedzi na pytanie była większa niż 0.
+     */
     private static Dictionary<Integer, List<Region>> regionsAffectionL;
-    //key - region, value - description of this part of a brain that is characeterising it
-    //regionsDescription - descriptions of regions
+    /**
+     * Słownik przechowujący opisy dla poszczególnych regionów (ich nazwy).
+     * Klucz: region modelu Stroke Bricks
+     * Wartość: opis regionu
+     */
     private static Dictionary<Region,String> regionsDescription;
-    //key - question id, value - object containing correct answer for a question
-    //correctAnswers - contains answers that indicates regions connected with a particular question should be marked
+    /**
+     * Słownik przechowujący oczekiwane odpowiedzi na pytania formularza skali NIHSS w odniesieniu do
+     * powiązania z modelem Stroke Bricks.
+     * Klucz: id pytania formularza.
+     * Wartość: Obiekt klasy {@link ExpectedAnswer} przechowujący poprawną bądź możliwą odpowiedź na dane pytanie.
+     */
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
 

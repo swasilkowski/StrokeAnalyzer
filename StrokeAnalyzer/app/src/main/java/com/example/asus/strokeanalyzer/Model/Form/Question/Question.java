@@ -9,7 +9,13 @@ package com.example.asus.strokeanalyzer.Model.Form.Question;
 
 public class Question {
 
+    /**
+     * Id pytania.
+     */
     final private int ID;
+    /**
+     * Treść pytania.
+     */
     final private String Text;
 
     /**

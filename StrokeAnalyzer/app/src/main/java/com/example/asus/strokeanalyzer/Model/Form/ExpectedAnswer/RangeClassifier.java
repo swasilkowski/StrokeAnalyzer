@@ -12,8 +12,18 @@ import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
 
 public class RangeClassifier
 {
+    /**
+     * Dolna granica przedziału.
+     */
     final private double MinValue;
+    /**
+     * Górna granica przedziału.
+     */
     final private double MaxValue;
+    /**
+     * Liczba przyznawanych punktów w przypadku, gdy podana wartość odpowiedzi należy do przedziału
+     * definiowanego przez klasyfikator.
+     */
     public int Points;
 
 

@@ -27,10 +27,27 @@ import java.util.Map;
 
 public class Patient {
 
+    /**
+     * Unikatowe id pacjenta, wykorzystywane jako klucz główny w bazie danych aplikacji.
+     */
     public int Id;
+    /**
+     * Imię pacjenta.
+     */
     public String Name;
+    /**
+     * Nazwisko pacjenta.
+     */
     public String Surname;
+    /**
+     * Indywidualny numer pacjenta wprowadzany przez użytkownika.
+     */
     public long PatientNumber;
+    /**
+     * Mapa przechowująca odpowiedzi udzielone przez użytkownika.
+     * Klucz: id pytania, którego dotyczy odpowiedź.
+     * Wartość: Obiekt klasy {@link Answer} przechowujący odpowiedź wprowadzoną przez użytkownika.
+     */
     public Map<Integer, Answer> PatientAnswers;
 
     /**

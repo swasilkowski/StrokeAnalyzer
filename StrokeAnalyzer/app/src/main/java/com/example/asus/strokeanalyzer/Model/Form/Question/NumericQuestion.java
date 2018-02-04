@@ -10,12 +10,17 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 
 public class NumericQuestion extends Question {
 
-    final public RangeClassifier Range;
     /**
-     * Konstruktor ustawiający id pytania oraz jego treść.
+     * Klasyfikator zakresu dopuszczalnych wartości odpowiedzi na pytanie.
+     */
+    final public RangeClassifier Range;
+
+    /**
+     * Konstruktor ustawiający id pytania, jego treść oraz zakres dopuszczalnych wartości odpowiedzi.
      *
      * @param id id pytania
      * @param text treść pytania
+     * @param _range zakres dopuszczalnych wartości odpowiedzi
      */
     public NumericQuestion(int id, String text, RangeClassifier _range)
     {

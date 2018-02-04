@@ -22,8 +22,15 @@ import com.example.asus.strokeanalyzer.R;
  */
 public class CTPictureFullFragment extends Fragment {
 
+    /**
+     * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
+     * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
+     */
     private static final String ARG_PICTURE = "picture";
 
+    /**
+     * Obiekt zawierający obraz do wyświetlenia we fragmencie.
+     */
     private Bitmap image;
 
     /**

@@ -25,7 +25,11 @@ import java.util.List;
 
 public final class TreatmentAnalyzer {
 
-    //key - question ID; value - expected answer for question with given ID
+    /**
+     * Słownik przechowujący oczekiwane odpowiedzi na pytania formularza dotyczącego leczenia trombolitycznego.
+     * Klucz: id pytania formularza.
+     * Wartość: Obiekt klasy {@link ExpectedAnswer} przechowujący poprawną bądź możliwą odpowiedź na dane pytanie.
+     */
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
     /**

@@ -28,11 +28,17 @@ import java.util.List;
 
 public final class iScoreAnalyzer {
 
-    //key - question id, value - object containing correct answer for a question
-    //correctAnswers - contains propwer answers in this scale for particular question in 30 days prediction
+    /**
+     * Słownik przechowujący oczekiwane odpowiedzi na pytania formularza skali iScore odnośnie prognozy 30-dniowej.
+     * Klucz: id pytania formularza.
+     * Wartość: Obiekt klasy {@link ExpectedAnswer} przechowujący poprawną bądź możliwą odpowiedź na dane pytanie.
+     */
     private static Dictionary<Integer, ExpectedAnswer> correctAnswersFor30Days;
-    //key - question id, value - object containing correct answer for a question
-    //correctAnswers - contains propwer answers in this scale for particular question in 1 year prediction
+    /**
+     * Słownik przechowujący oczekiwane odpowiedzi na pytania formularza skali iScore odnośnie prognozy 1-rocznej.
+     * Klucz: id pytania formularza.
+     * Wartość: Obiekt klasy {@link ExpectedAnswer} przechowujący poprawną bądź możliwą odpowiedź na dane pytanie.
+     */
     private static Dictionary<Integer, ExpectedAnswer> correctAnswersFor1Year;
 
     /**

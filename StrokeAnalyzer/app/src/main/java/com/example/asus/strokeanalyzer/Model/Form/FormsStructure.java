@@ -25,12 +25,27 @@ import java.util.Map;
 public final class FormsStructure {
     //key - particular form, value - list of question identifiers
     //QuestionsUsedForForm - contains list of questions used in a particular dictionary for analysis
+    /**
+     * Mapa wiążąca formualrz z listą pytań wykorzystywaną w nim podczas analizy wyniku.
+     * Klucz: formularz.
+     * Wartość: lista id pytań wykorzystywanych w formularzu w trakcie analizy.
+     */
     final public static Map<Form, List<Integer>> QuestionsUsedForForm = new Hashtable<>();
     //key - particular form, value - list of question identifiers
     //QuestionsPrintedInForm - contains list of questions printed while showing particular form
+    /**
+     * Mapa wiążąca formularz z listą pytań wyświetlanych w momencie uzupełniania danego formularza.
+     * Klucz: formularz.
+     * Wartość: lista id pytań wyświetlanych w danym formularzu.
+     */
     final public static Map<Form, List<Integer>> QuestionsPrintedInForm = new Hashtable<>();
     //key - question id, value - question object
     //Questions - container for all questions used in an application
+    /**
+     * Mapa przechowujący wszystkie pytania wykorzystywane w aplikacji.
+     * Klucz: id pytania.
+     * Wartość: obiekt klasy {@link Question} zawierający pytanie.
+     */
     final public static Map<Integer, Question> Questions = new Hashtable<>();
 
 

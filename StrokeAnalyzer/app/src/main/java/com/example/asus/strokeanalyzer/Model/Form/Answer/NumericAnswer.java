@@ -9,6 +9,9 @@ package com.example.asus.strokeanalyzer.Model.Form.Answer;
 
 public class NumericAnswer extends Answer {
 
+    /**
+     * Liczbowa wartość odpowiedzi.
+     */
     public double Value;
 
     /**

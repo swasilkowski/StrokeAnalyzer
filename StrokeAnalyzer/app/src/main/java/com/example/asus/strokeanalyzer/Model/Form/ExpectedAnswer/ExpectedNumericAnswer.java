@@ -15,9 +15,15 @@ import java.util.List;
 
 public class ExpectedNumericAnswer extends ExpectedAnswer {
 
-    //null value indicates that particular parameter should not be taken into consideration
     //if correctValue is considered we give 1 point
+    /**
+     * Poprawna wartość odpowiedzi w przypadku, gdy oczekiwana wartość jest konkretną liczbą.
+     * Może przyjmować wartość null, co oznacza, że wartość ta nie powinna być brana pod uwagę.
+     */
     private Double CorrectValue;
+    /**
+     * Lista klasyfikatorów możliwych zakresów odpowiedzi.
+     */
     final public List<RangeClassifier> Ranges;
 
     /**

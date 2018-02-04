@@ -9,6 +9,9 @@ package com.example.asus.strokeanalyzer.Model.Form.Answer;
 
 public class Answer {
 
+    /**
+     * Id pytania, którego dotyczy odpowiedź.
+     */
     final private int questionId;
 
     /**

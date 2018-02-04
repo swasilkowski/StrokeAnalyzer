@@ -9,6 +9,9 @@ package com.example.asus.strokeanalyzer.Model.Form.Answer;
 
 public class TrueFalseAnswer extends Answer {
 
+    /**
+     * Wartość odpowiedzi.
+     */
     public boolean Value;
 
     /**

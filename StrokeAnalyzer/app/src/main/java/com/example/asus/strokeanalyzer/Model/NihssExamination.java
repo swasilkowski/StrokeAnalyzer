@@ -14,7 +14,13 @@ import java.util.List;
 
 public class NihssExamination {
 
+    /**
+     * Data powstania badania w skali NIHSS.
+     */
     public Date Date;
+    /**
+     * Lista odpowiedzi udzielonych przez użytkownika na pytania skali NIHSS.
+     */
     public List<Answer> Answers;
 
     /**

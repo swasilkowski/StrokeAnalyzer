@@ -9,6 +9,9 @@ package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
 class ExpectedTextAnswer extends  ExpectedAnswer {
 
+    /**
+     * Oczekiwana wartość odpowiedzi.
+     */
     public String CorrectValue;
 
     /**

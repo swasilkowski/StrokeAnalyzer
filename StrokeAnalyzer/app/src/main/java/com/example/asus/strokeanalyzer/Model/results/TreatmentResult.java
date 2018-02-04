@@ -14,11 +14,21 @@ import java.util.List;
 
 public class TreatmentResult {
 
-    //final decision whether treatment should be conducted
+    /**
+     * Decyzja dotycząca leczenia. true - leczenie trombolityczne jest zalecane; false - leczenie
+     * trombolityczne jest niezalecane
+     */
     public boolean Decision;
-    //list of answers that were different than expected answers, and influenced final decision
+    /**
+     * Lista obiektów typu {@link Answer} zawierających odpowiedzi róźniące się od odpowiedzi oczekiwanej
+     * dla formularza dotyczącego zastosowania leczenia trombolitycznego i tym samym wpływające na ostateczną decyzję
+     * dotyczącą leczenia.
+     */
     final public List<Answer> badAnswers;
 
+    /**
+     * Bezparametrowy konstruktor klasy inicjalizujący jej pola.
+     */
     public TreatmentResult()
     {
         Decision = true;

@@ -10,6 +10,9 @@ package com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer;
 
 public class ExpectedAnswer {
 
+    /**
+     * Id pytania, którego dotyczy oczekiwana odpowiedź.
+     */
     final private int questionId;
 
     /**

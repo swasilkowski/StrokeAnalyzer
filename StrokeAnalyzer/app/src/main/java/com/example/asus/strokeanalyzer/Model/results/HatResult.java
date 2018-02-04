@@ -9,7 +9,16 @@ package com.example.asus.strokeanalyzer.Model.results;
  */
 
 public final class HatResult {
+    /**
+     * Liczba punktów uzyskana w skali HAT.
+     */
     public int Score;
+    /**
+     * Procentowe prawdopodobieństwo wystąpienia krwotoku śródmózgowego u pacjenta.
+     */
     public int RiskOfSymptomaticICH;
+    /**
+     * Procentowe prawdopodobieństwo wystąpienia śmiertelnego krwotoku śródmózgowego u pacjenta.
+     */
     public int RiskOfFatalICH;
 }

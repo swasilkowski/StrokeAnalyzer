@@ -17,6 +17,9 @@ import java.util.List;
  */
 
 public class NihssService {
+    /**
+     * Obiekt bazy danych aplikacji.
+     */
     final private static StrokeAnalyzerDatabase db = DatabaseAccess.getInstance().database;
 
     /**

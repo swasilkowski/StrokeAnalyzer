@@ -27,6 +27,11 @@ import java.util.List;
 public final class HatAnalyzer {
     //key - question id, value - object containing correct answer for a question
     //correctAnswers - contains propwer answers in this scale for particular question
+    /**
+     * Słownik przechowujący oczekiwane odpowiedzi na pytania formularza skali HAT.
+     * Klucz: id pytania formularza.
+     * Wartość: Obiekt klasy {@link ExpectedAnswer} przechowujący poprawną bądź możliwą odpowiedź na dane pytanie.
+     */
     private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
 
     /**

@@ -22,10 +22,21 @@ import java.util.Map;
  */
 public final class CTPictures {
 
+    /**
+     * Kontekst aplikacji wykorzystywany do pobierania obrazów z zasobów aplikacji.
+     */
     private static Context appContext;
-    //key - region's id, value - list of resoruce id of images connected with this region
+    /**
+     * Mapa definująca powiązanie regionów modelu Stroke Bricks z przedstawiającymi je obrazami.
+     * Klucz: id regionu.
+     * Wartość: lista id zasobów z obarazami danego regionu
+     */
     final private static Map<Region, List<Integer>> regions = new Hashtable<>();
-    //key - region's picture ID, value - ID of a basic brain picture on which particular region's image is visible
+    /**
+     * Mapa definująca powiązanie bazowego obrazu CT mózgu z obarzem przedstawiającym region modelu Stroke Bricks.
+     * Klucz: id zasobu z obrazem danego regionu
+     * Wartość: id zasobu z podstawowym obrazem CT mózgu, na którym zaznaczony może zostać obraz regionu
+     */
     final private static Map<Integer, Integer> pictureBasicPictureRelation = new Hashtable<>();
 
     /**

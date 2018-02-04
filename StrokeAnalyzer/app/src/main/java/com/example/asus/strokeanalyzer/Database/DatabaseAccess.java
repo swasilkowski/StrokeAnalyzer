@@ -12,7 +12,13 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
  */
 
 public final class DatabaseAccess {
+    /**
+     * Baza danych aplikacji.
+     */
     final public StrokeAnalyzerDatabase database;
+    /**
+     * Statyczna instancja klasy {@link DatabaseAccess} zwracana w metodzie {@code getInstance()}.
+     */
     private static DatabaseAccess instance;
 
     /**

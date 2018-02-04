@@ -11,8 +11,11 @@ import java.util.Map;
 
 public class BulletedQuestion extends Question {
 
-    //key - value of a particular answer, value - description for this answer to be printed
-    //possibleValues - field containing all of the values user may pick
+    /**
+     * Mapa zawierająca możliwe odpowiedzi na pytanie powiązane z pewną daną liczbową.
+     * Klucz: dana liczbowa powiązana z odpowiedzią.
+     * Wartość: treść odpowiedzi.
+     */
     final private Map<Integer, String> possibleValues;
 
     /**

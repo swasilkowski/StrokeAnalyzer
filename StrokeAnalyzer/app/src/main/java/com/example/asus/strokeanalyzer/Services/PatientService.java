@@ -21,6 +21,9 @@ import java.util.List;
  */
 
 public final class PatientService {
+    /**
+     * Obiekt bazy danych aplikacji.
+     */
     final private StrokeAnalyzerDatabase db;
 
     /**
