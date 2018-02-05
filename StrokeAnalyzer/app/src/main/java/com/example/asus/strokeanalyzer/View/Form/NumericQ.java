@@ -13,13 +13,31 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
 
 public class NumericQ implements Question {
     //id pytania
+    /**
+     * Id pytania.
+     */
     final private int id;
     //tresc pytania
+    /**
+     * Treść pytania.
+     */
     final private String text;
     //wartosc odpowiedzi
+    /**
+     * Wartość odpowiedzi udzielonej przez użytkownika.
+     */
     private double answer;
+    /**
+     * Wartość mówiąca o tym, czy użytkownik udzielił już odpowiedzi na pytanie.
+     */
     private boolean answerSet;
+    /**
+     * Zakres dopuszczalnej wielkości odpowiedzi wprowadzanej przez użytkownika.
+     */
     final private RangeClassifier range;
+    /**
+     * Waga pytania wykorzystywana do kolorowania tekstu treści pytania.
+     */
     private QuestionStrength strength;
 
     /**

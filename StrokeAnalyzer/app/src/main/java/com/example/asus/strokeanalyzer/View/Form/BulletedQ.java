@@ -15,10 +15,25 @@ import java.util.Map;
 
 public class BulletedQ implements Question{
 
+    /**
+     * Id pytania.
+     */
     final private int id;
+    /**
+     * Treść pytania.
+     */
     final private String text;
+    /**
+     * Id odpowiedzi wybranej przez użytkownika.
+     */
     private int answerId;
+    /**
+     * Lista wszystkich możliwych odpowiedzi na pytanie.
+     */
     final private List<BulletedAnswer> answers;
+    /**
+     * Waga pytania wykorzystywana do kolorowania tekstu treści pytania.
+     */
     private QuestionStrength strength;
 
     /**

@@ -10,9 +10,21 @@ import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
 
 public class TrueFalseQ implements Question
 {
+    /**
+     * Id pytania.
+     */
     final private int id;
+    /**
+     * Treść pytania.
+     */
     final private String text;
+    /**
+     * Wartość odpowiedzi udzielonej przez użytkownika.
+     */
     private boolean answer;
+    /**
+     * Waga pytania wykorzystywana do kolorowania tekstu treści pytania.
+     */
     private QuestionStrength strength;
 
     /**

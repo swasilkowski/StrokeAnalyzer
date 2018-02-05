@@ -23,9 +23,23 @@ import java.util.Map;
 
 public class BulletedAnswerAdapter  extends RecyclerView.Adapter<BulletedAnswerAdapter.ViewHolder>  {
 
+    /**
+     * Lista możliwych odpowiedzi dla pytania.
+     */
     final private List<BulletedAnswer> answers;
+    /**
+     * Kontekst aplikacji.
+     */
     private final Context context;
+    /**
+     * Mapa wiążąca daną liczbową odpowiedzi z widokiem prezentującym odpowiedź.
+     * Klucz: dana liczbowa powiązana z odpowiedzią
+     * Wartość: Obiekt wyświetlający odpowiedź
+     */
     final private Map<Integer, TextView> buttons;
+    /**
+     * Dana liczbowa odpowiedzi zaznaczonej uprzednio przez użytkownika.
+     */
     private Integer answerID;
 
     /**

@@ -36,10 +36,23 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 public class NihssExaminationFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    /**
+     * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
+     * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
+     */
     private static final String ARG_PATIENT_ID = "patient_id";
 
+    /**
+     * Obiekt stanowiący kontener do wyświetlania informacji o przeprowadzonych badaniach w skali NIHSS.
+     */
     private RecyclerView recyclerView;
+    /**
+     * Id pacjenta, którego badania w skali NIHSS mają zostać wyświetlone.
+     */
     private int patientID;
+    /**
+     * Aktywność związana z fragmentem.
+     */
     private FragmentActivity activity;
 
     /**

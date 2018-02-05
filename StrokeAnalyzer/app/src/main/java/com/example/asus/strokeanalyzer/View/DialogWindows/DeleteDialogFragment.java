@@ -36,6 +36,9 @@ public class DeleteDialogFragment extends DialogFragment {
     }
 
     // Use this instance of the interface to deliver action events
+    /**
+     * Obiekt odpowiadający za kontrolowanie akcji przycisków okna dialogowego.
+     */
     private DeletePatientDialogListener _listener;
 
 

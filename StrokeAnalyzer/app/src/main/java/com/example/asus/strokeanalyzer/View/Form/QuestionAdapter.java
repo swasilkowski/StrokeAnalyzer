@@ -42,8 +42,18 @@ import java.util.List;
  */
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
+
+    /**
+     * Lista wszystkich pytań wyświetlanych w formularzu.
+     */
     final private List<Question> questions;
+    /**
+     * Kontekst aplikacji.
+     */
     Context context;
+    /**
+     * Zmienna informująca o tym, czy odpowiedzi użytkownika mają być edytowalne czy jedynie wyświetlane.
+     */
     private boolean editable;
 
     /**

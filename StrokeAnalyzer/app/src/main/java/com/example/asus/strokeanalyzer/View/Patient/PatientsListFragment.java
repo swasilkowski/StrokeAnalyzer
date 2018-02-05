@@ -28,8 +28,18 @@ import java.util.List;
  */
 public class PatientsListFragment extends Fragment  {
 
+    /**
+     * Obiekt stanowiący kontener do wyświetlania listy pacjentów, których dane przechowywane są w aplikacji.
+     */
     private RecyclerView recyclerView;
+    /**
+     * Adapter zapewniający powiązanie zestawu danych (listy pacjentów) z widokami wyświetlanymi wewnątrz
+     * obiektu klasy {@link RecyclerView}.
+     */
     private PatientAdapter pAdapter;
+    /**
+     * Lista pacjentów wyświetlana w widoku.
+     */
     private List<Patient> patients = new ArrayList<>();
 
 

@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Klasa odpowiedzialna za rysowanie linii oddzielającej od siebie elementy RecyclerView.
+ * Klasa odpowiedzialna za rysowanie linii oddzielającej od siebie elementy {@link RecyclerView}.
  * Jest to klasa stanowiąca rozszerzenie klasy {@link RecyclerView.ItemDecoration} i służy do uatrakcyjnienia wyglądu
  * aplikacji.
  *
@@ -18,10 +18,16 @@ import android.view.View;
 
 public class LineDecoration extends RecyclerView.ItemDecoration {
 
+    /**
+     * Atrybuty stylu aplikacji.
+     */
     private static final int[] attributes = new int[]{
             android.R.attr.listDivider
     };
 
+    /**
+     * Obiekt odrysowywany jako separator elementów {@link RecyclerView}.
+     */
     final private Drawable divider;
 
     /**

@@ -20,6 +20,9 @@ import java.util.List;
 
 public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHolder> {
 
+    /**
+     * Lista pacjentów, których dane przechowywane są w aplikacji.
+     */
     final private List<Patient> patients;
 
     /**

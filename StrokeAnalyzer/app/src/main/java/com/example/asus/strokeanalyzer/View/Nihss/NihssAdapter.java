@@ -22,6 +22,9 @@ import java.util.List;
 
 public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder>  {
 
+    /**
+     * Lista badań w skali NIHSS prezentowanych w widoku.
+     */
     final private List<NihssExamination> examinations;
 
     /**

@@ -11,9 +11,21 @@ import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
 
 public class DescriptiveQ implements Question {
 
+    /**
+     * Id pytania.
+     */
     final private int id;
+    /**
+     * Treść pytania
+     */
     final private String text;
+    /**
+     * Wartość odpowiedzi na pytanie udzielonej przez użytkownika.
+     */
     private String answer;
+    /**
+     * Waga pytania wykorzystywana do kolorowania tekstu treści pytania.
+     */
     private QuestionStrength strength;
 
     /**

@@ -8,7 +8,13 @@ package com.example.asus.strokeanalyzer.View.Form;
 
 class BulletedAnswer {
 
+    /**
+     * Dana liczbowa związana odpowiedzią.
+     */
     final private Integer id;
+    /**
+     * Tekst odpowiedzi.
+     */
     final private String text;
 
     /**

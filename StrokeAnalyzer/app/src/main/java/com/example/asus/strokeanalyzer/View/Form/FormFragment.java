@@ -42,15 +42,51 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
  */
 public class FormFragment extends Fragment {
 
+    /**
+     * Obiekt stanowiący kontener do wyświetlania pytań formularza.
+     */
     private RecyclerView recyclerView; //list of questions
+    /**
+     * Adapter zapewniający powiązanie zestawu danych (pytań formularza) z widokami wyświetlanymi wewnątrz
+     * obiektu klasy {@link RecyclerView}.
+     */
     private QuestionAdapter qAdapter; //questions list adapter
+    /**
+     * Rodzaj wyświetlanego formularza.
+     */
     private Form formType; //typ of a form
+    /**
+     * Pacjent, którego dane będą edytowane w formularzu.
+     */
     private Patient patient; //patient whose data is supposed to be changed
+    /**
+     * Id pacjenta, którego dane będą edytowane w formularzu.
+     */
     private Integer patientID; //id of this patient
+    /**
+     * Wartość mówiąca o tym, czy formularz tworzony jest na nowo.
+     * True - jeżeli formularz będzie tworzony na nowo;
+     * False - jeżeli następuje edycja formularza
+     */
     private boolean newForm; //true if new form is being created
+    /**
+     * Lista pytań wyświetlanych w formularzu.
+     */
     final private List<Question> printQuestions = new ArrayList<>(); // list of questions printed in this form
+    /**
+     * Obiekt umożliwiający wykonywanie operacji na bazie danych aplikacji.
+     */
     private PatientService patientService; //serwis used for communication with database
+    /**
+     * Wartość informująca o tym, czy formularz ma być edytowalny, czy jedynie przeznaczony do podglądu.
+     * True - formularz jest edytowalny;
+     * False - formularz służy do podglądu)
+     */
     private boolean editable;
+    /**
+     * Badanie w skali NIHSS, którego formularz ma zostać wyświetlony wraz z zaznaczonymi udzielonymi
+     * przez użytkownika odpowiedziami. (wykorzystywane do podglądu starszych badań w skali NIHSS)
+     */
     private NihssExamination examination = null;
 
     /**
@@ -60,6 +96,8 @@ public class FormFragment extends Fragment {
      * @param patientID id pacjenta, którego dane będą modyfikowane w formularzu
      * @param newForm wartość informująca o tym, czy formularz tworzony jest na nowo (true - jeżeli
      *                formularz będzie tworzony na nowo; false - jeżeli następuje edycja formularza)
+     * @param editable wartość informująca o tym, czy formularz ma być edytowalny, czy jedynie przeznaczony do podglądu
+     *                 (true - formularz jest edytowalny; false - formularz służy do podglądu)
      * @return nowa instancja fragmentu FormFragment
      */
     public static FormFragment newInstance(Form form, long patientID, boolean newForm, boolean editable) {
@@ -67,14 +105,17 @@ public class FormFragment extends Fragment {
     }
 
     /**
+     * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
-     *
-     * @param form
-     * @param patientID
-     * @param newForm
-     * @param editable
-     * @param examination
-     * @return
+     * @param form typ formularza, który ma zostać wyświetlony we fragmencie
+     * @param patientID id pacjenta, którego dane będą modyfikowane w formularzu
+     * @param newForm wartość informująca o tym, czy formularz tworzony jest na nowo (true - jeżeli
+     *                formularz będzie tworzony na nowo; false - jeżeli następuje edycja formularza)
+     * @param editable wartość informująca o tym, czy formularz ma być edytowalny, czy jedynie przeznaczony do podglądu
+     *                 (true - formularz jest edytowalny; false - formularz służy do podglądu)
+     * @param examination badanie w skali NIHSS, którego uzupełniony formularz ma zostać wyświetlony (przyjmuje wartość NULL,
+     *                    jeżeli wyświetlony ma być edytowalny formularz skali NIHSS, bądź inny typ formularza)
+     * @return nowa instancja fragmentu FormFragment
      */
     public static FormFragment newInstance(Form form, long patientID, boolean newForm, boolean editable, NihssExamination examination) {
         FormFragment fragment = new FormFragment();
@@ -293,9 +334,12 @@ public class FormFragment extends Fragment {
     }
 
     /**
+     * Metoda generująca obiekty klasy {@link Question} wykorzystywane w widoku skali NIHSS
+     * z obiektów klasy {@link com.example.asus.strokeanalyzer.Model.Form.Question.Question}.
+     * Funkcja zaznacza dodatkowo wybraną przez użytkownika odpowiedź na dane pytanie.
+     * Funkcja wykorzystywana jest jedynie przy formularzu skali NIHSS.
      *
-     *
-     * @param examination
+     * @param examination badanie skali NIHSS, dla którego wyświetlany jest formularz i wybrane odpowiedzi
      */
     private void prepareQuestions(NihssExamination examination)
     {
