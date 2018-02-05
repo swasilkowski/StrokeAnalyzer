@@ -249,8 +249,8 @@ public final class FormsStructure {
 
         id=117;
         Map<Integer, String> answers117 = new Hashtable<>();
-        answers117.put(0, "Lewa");
-        answers117.put(1, "Prawa");
+        answers117.put(0, "Prawa");
+        answers117.put(1, "Lewa");
         BulletedQuestion question117 = new BulletedQuestion(id, "* Strona ciała, po której występują zaznaczone objawy", answers117);
         questionsUsedForStrokeBricks.add(id);
 

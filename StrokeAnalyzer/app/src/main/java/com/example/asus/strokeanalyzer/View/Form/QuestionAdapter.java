@@ -17,6 +17,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.TextAnswer;
@@ -432,12 +434,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         return questions.size();
     }
 
+
     /**
      * Metoda pobierająca odpowiedzi na pytania wprowadzone przez użytkownika.
      *
+     * @param form typ formularza, dla którego zwracane są odpowiedzi
      * @return lista odpowiedzi użytkownika na pytania formularza
      */
-    List<Answer> returnAnswers()
+    List<Answer> returnAnswers(Form form)
     {
         List<Answer> answers = new ArrayList<>();
         for(Question q:questions)
@@ -456,12 +460,18 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             else if (q instanceof BulletedQ)
             {
                 answer = new NumericAnswer(((BulletedQ) q).getID());
-                ((NumericAnswer)answer).Value = ((BulletedQ) q).getAnswer();
+                if(form == Form.NIHSS && ((BulletedQ) q).getAnswer()==-1)
+                    ((NumericAnswer)answer).Value = 0;
+                else
+                    ((NumericAnswer)answer).Value = ((BulletedQ) q).getAnswer();
             }
             else if (q instanceof NumericQ)
             {
                 answer = new NumericAnswer(((NumericQ) q).getID());
-                ((NumericAnswer) answer).Value = ((NumericQ) q).getAnswer();
+                if(form==Form.NIHSS && !((NumericQ) q).getAnswerSet())
+                    ((NumericAnswer) answer).Value = 0;
+                else
+                    ((NumericAnswer) answer).Value = ((NumericQ) q).getAnswer();
             }
             answers.add(answer);
         }

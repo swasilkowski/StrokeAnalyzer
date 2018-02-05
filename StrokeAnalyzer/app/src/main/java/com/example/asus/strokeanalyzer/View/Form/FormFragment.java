@@ -215,6 +215,9 @@ public class FormFragment extends Fragment {
     {
         super.onDestroyView();
 
+        if(formType == Form.NIHSS)
+            return;
+
         FragmentManager manager = getFragmentManager();
         if(manager!=null)
         {
@@ -288,7 +291,7 @@ public class FormFragment extends Fragment {
      */
     private void SaveAnswers()
     {
-        List<Answer> answers = qAdapter.returnAnswers();
+        List<Answer> answers = qAdapter.returnAnswers(formType);
         for(Answer ans: answers)
         {
             if(patient.PatientAnswers.containsKey(ans.GetQuestionID()))
