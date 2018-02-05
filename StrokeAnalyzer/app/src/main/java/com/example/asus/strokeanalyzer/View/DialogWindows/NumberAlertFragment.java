@@ -24,6 +24,9 @@ public class NumberAlertFragment extends DialogFragment {
     }
 
     // Use this instance of the interface to deliver action events
+    /**
+     * Obiekt odpowiadający za kontrolowanie akcji przycisków okna dialogowego.
+     */
     private NumberAlertDialogListener _listener;
 
     /**

@@ -20,10 +20,23 @@ import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
  */
 public class PatientsListActionFragment extends DialogFragment {
 
+    /**
+     * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
+     * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
+     */
     private static final String ARG_PATIENT_ID = "patient_id";
 
+    /**
+     * Id pacjenta, dla którego ma zostać wykonana wskazana przez użytkownika akcja.
+     */
     private Integer patientID;
+    /**
+     * Obiekt umożliwiający wykonywanie operacji na bazie danych aplikacji.
+     */
     private PatientService patientService;
+    /**
+     * Obiekt informujący o chęci usunięcia pacjenta. Pozwala na aktualizację listy pacjentów.
+     */
     private DeleteListener dListener;
 
     /**

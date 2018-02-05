@@ -313,7 +313,6 @@ public final class FormsStructure {
 
         id = 203;
         TrueFalseQuestion question203 = new TrueFalseQuestion(id, "Czy pacjent choruje na cukrzycę?");
-        questionsUsedForThrombolysis.add(id);
         questionsUsedForHat.add(id);
 
         id = 204;

@@ -15,9 +15,15 @@ import com.example.asus.strokeanalyzer.R;
  */
 public class DeleteDialogFragment extends DialogFragment {
 
+    /**
+     * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
+     * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
+     */
     private static final String ARG_PATIENT_ID = "patient_id";
 
-    //Patient patient;
+    /**
+     * Id pacjenta, którego profil ma zostać usunięty.
+     */
     private Integer patientID;
 
 

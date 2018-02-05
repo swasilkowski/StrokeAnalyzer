@@ -15,10 +15,15 @@ import com.example.asus.strokeanalyzer.R;
  */
 public class ReportFragment extends DialogFragment {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    /**
+     * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
+     * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
+     */
     private static final String ARG_PATIENT_ID = "patient_id";
 
-    //Patient patient;
+    /**
+     * Id pacjenta, dla którego raport chcemy wygenerować.
+     */
     private Integer patientID;
 
     /**
@@ -30,6 +35,9 @@ public class ReportFragment extends DialogFragment {
     }
 
     // Use this instance of the interface to deliver action events
+    /**
+     * Obiekt odpowiadający za kontrolowanie akcji przycisków okna dialogowego.
+     */
     private GenerateReportDialogListener _listener;
 
      /**

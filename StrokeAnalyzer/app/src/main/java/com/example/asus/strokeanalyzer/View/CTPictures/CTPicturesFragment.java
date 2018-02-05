@@ -25,10 +25,19 @@ import com.example.asus.strokeanalyzer.Services.PatientService;
  */
 public class CTPicturesFragment extends Fragment {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    /**
+     * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
+     * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
+     */
     private static final String ARG_PATIENT_ID = "patient_id";
 
+    /**
+     * Id pacjenta, którego dotyczą prezentowane obrazu CT mózgu.
+     */
     private Integer patientID;
+    /**
+     * Tablica przechowująca obrazy CT mózgu do wyświetlenia.
+     */
     private Bitmap[] editedPictures;
 
     /**

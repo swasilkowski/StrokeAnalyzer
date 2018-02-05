@@ -19,6 +19,9 @@ import com.example.asus.strokeanalyzer.R;
 
 class CTPicturesAdapter extends BaseAdapter {
 
+    /**
+     * Tablica przechowująca obrazy CT mózgu do wyświetlenia.
+     */
     final private Bitmap CTpictures[];
 
     /**
