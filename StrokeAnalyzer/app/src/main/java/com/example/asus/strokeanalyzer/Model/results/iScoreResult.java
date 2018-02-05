@@ -34,4 +34,9 @@ public final class iScoreResult {
      * Opis otrzymanego wyniku dla prognozy 1-rocznej.
      */
     public String PrognosisFor1YearDescription;
+
+    /**
+     * Opis mówiący o tym, czy leczenie trombolityczne jest zalecane.
+     */
+    public String ThrombolyticRecommendation;
 }

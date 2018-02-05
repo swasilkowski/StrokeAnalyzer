@@ -163,6 +163,8 @@ public class ResultsFragment extends Fragment {
         {
             ((TextView) view.findViewById(R.id.iscore30Days)).setText(String.valueOf(resultiScore.PrognosisFor30DaysDescription));
             ((TextView) view.findViewById(R.id.iscore1Year)).setText(String.valueOf(resultiScore.PrognosisFor1YearDescription));
+            ((TextView) view.findViewById(R.id.iscoreTreatment)).setText(String.valueOf(resultiScore.ThrombolyticRecommendation));
+
         }
 
         //button leading to CT pictures

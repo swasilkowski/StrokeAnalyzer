@@ -76,6 +76,7 @@ public final class iScoreAnalyzer {
         result.PrognosisFor1Year = getPredictionFor1Year(result.ScoreFor1Year);
         result.PrognosisFor30DaysDescription = getDescriptionFor30Days(result.ScoreFor30Days, result.PrognosisFor30Days);
         result.PrognosisFor1YearDescription = getDescriptionFor1Year(result.ScoreFor1Year, result.PrognosisFor1Year);
+        result.ThrombolyticRecommendation = getThrombolyticRecommendation(result.ScoreFor30Days);
         return result;
     }
 
@@ -456,6 +457,25 @@ public final class iScoreAnalyzer {
             text= ">240: ";
         return text+procent+"%";
     }
+
+    /**
+     * Metoda wyznaczająca wskazania dla leczenia trombolitycznego na podstawie punktacji skali iScore.
+     *
+     * @param points suma punktów w skali iScore dla przewidywań 30-dniowych
+     * @return tekst zawierający zalecenia dotyczące leczenia
+     */
+    private static String getThrombolyticRecommendation(int points)
+    {
+        if(points>=0 && points<=130)
+            return "Zalecane";
+        else if(points>130 && points<=200)
+            return "Zachowaj ostrożność przy leczeniu";
+        else if (points>200)
+            return "NIE zalecane";
+        else
+            return "Brak wyniku";
+    }
+
 
     /**
      * Metoda pomocniczna wyznaczająca sumę punktów w skali iScore dla podanego zbioru poprawnych odpowiedzi
