@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
+import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
+
 /**
  * Klasa bazowa dla klas reprezentujących różne rodzaje pytań wykorzystywanych w formularzach aplikacji.
  * Zawiera id pytania oraz jest treść
@@ -19,6 +21,11 @@ public class Question {
     final private String Text;
 
     /**
+     * Waga pytania. Informuje w jakim kolorze wyświetlona powinna być treść pytania.
+     */
+    private QuestionStrength Strength;
+
+    /**
      * Konstruktor ustawiający id pytania oraz jego treść.
      *
      * @param id id pytania
@@ -28,7 +35,23 @@ public class Question {
     {
         ID = id;
         Text = text;
+        Strength = QuestionStrength.NEUTRAL;
     }
+
+    /**
+     * Konstruktor ustawiający id pytania, jego treść oraz jego wagę.
+     *
+     * @param id id pytania
+     * @param text treść pytania
+     * @param _strength waga pytania
+     */
+    Question(int id, String text, QuestionStrength _strength)
+    {
+        ID=id;
+        Text = text;
+        Strength = _strength;
+    }
+
 
     /**
      * Metoda zwracająca id pytania.
@@ -48,5 +71,14 @@ public class Question {
     public String GetText()
     {
         return Text;
+    }
+
+    /**
+     * Metoda zwracająca wagę pytania.
+     *
+     * @return waga pytania
+     */
+    public QuestionStrength GetStrength(){
+        return Strength;
     }
 }

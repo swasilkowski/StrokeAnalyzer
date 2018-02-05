@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
+import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
+
 /**
  * Klasa implementująca interfejs {@link Question}, która reprezentuje pytanie, na które odpowiedź
  * udzielana jest w postaci wprowadzenia przez użytkownika tekstu.
@@ -12,6 +14,7 @@ public class DescriptiveQ implements Question {
     final private int id;
     final private String text;
     private String answer;
+    private QuestionStrength strength;
 
     /**
      * Konstruktor ustawiający id pytania oraz jego treść.
@@ -19,10 +22,11 @@ public class DescriptiveQ implements Question {
      * @param id id pytania
      * @param text treść pytania
      */
-    public DescriptiveQ(int id ,String text)
+    public DescriptiveQ(int id ,String text, QuestionStrength strength)
     {
         this.id = id;
         this.text = text;
+        this.strength = strength;
     }
 
     /**
@@ -64,5 +68,15 @@ public class DescriptiveQ implements Question {
     @Override
     public int getListItemType() {
         return Question.DESCRIPTIVE;
+    }
+
+    /**
+     * Metoda zwracająca wagę pytania.
+     *
+     * @return waga pytania
+     */
+    @Override
+    public QuestionStrength getStrength() {
+        return strength;
     }
 }

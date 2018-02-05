@@ -1,5 +1,6 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
+import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
 import com.example.asus.strokeanalyzer.Model.Exceptions.NoAnswerException;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 
@@ -19,6 +20,7 @@ public class NumericQ implements Question {
     private double answer;
     private boolean answerSet;
     final private RangeClassifier range;
+    private QuestionStrength strength;
 
     /**
      * Konstruktor ustawiający id pytania, jego treść oraz klasyfikator, określający przedział dopuszczalnych
@@ -29,12 +31,13 @@ public class NumericQ implements Question {
      * @param _range przedział liczbowy, do którego powinna należeć odpowiedź udzielana przez
      *               użytkownika
      */
-    public NumericQ(int id ,String text, RangeClassifier _range)
+    public NumericQ(int id ,String text, QuestionStrength strength, RangeClassifier _range)
     {
         this.id = id;
         this.text = text;
         this.answerSet = false;
         this.range = _range;
+        this.strength = strength;
     }
 
     /**
@@ -108,5 +111,15 @@ public class NumericQ implements Question {
     @Override
     public int getListItemType() {
         return Question.NUMERIC;
+    }
+
+    /**
+     * Metoda zwracająca wagę pytania.
+     *
+     * @return waga pytania
+     */
+    @Override
+    public QuestionStrength getStrength() {
+        return strength;
     }
 }

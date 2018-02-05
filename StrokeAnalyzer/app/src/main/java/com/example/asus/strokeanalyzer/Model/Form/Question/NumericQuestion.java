@@ -1,5 +1,6 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
+import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 
 /**
@@ -27,4 +28,19 @@ public class NumericQuestion extends Question {
         super(id,text);
         this.Range = _range;
     }
+
+    /**
+     * Konstruktor ustawiający id pytania, jego treść i wagę oraz zakres dopuszczalnych wartości odpowiedzi.
+     *
+     * @param id id pytania
+     * @param text treść pytania
+     * @param _strength waga pytania
+     * @param _range zakres dopuszczalnych wartości odpowiedzi
+     */
+    public NumericQuestion(int id, String text, QuestionStrength _strength, RangeClassifier _range)
+    {
+        super(id,text,_strength);
+        this.Range = _range;
+    }
+
 }

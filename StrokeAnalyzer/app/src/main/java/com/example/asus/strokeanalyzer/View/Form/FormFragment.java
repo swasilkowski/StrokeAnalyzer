@@ -144,7 +144,7 @@ public class FormFragment extends Fragment {
             //zmienia sie rozmiar na dwa razy wieksze
             prepareQuestions(questionIDs);
 
-            qAdapter = new QuestionAdapter(printQuestions);
+            qAdapter = new QuestionAdapter(getContext(), printQuestions);
             RecyclerView.LayoutManager layout = new LinearLayoutManager(context);
             layout.setAutoMeasureEnabled(true);
             recyclerView.setLayoutManager(layout);
@@ -240,25 +240,25 @@ public class FormFragment extends Fragment {
 
             if(question instanceof DescriptiveQuestion)
             {
-                printedQuestion = new DescriptiveQ(question.GetID(), question.GetText());
+                printedQuestion = new DescriptiveQ(question.GetID(), question.GetText(), question.GetStrength());
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((DescriptiveQ)printedQuestion).setAnswer(((TextAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
             else if(question instanceof TrueFalseQuestion)
             {
-                printedQuestion = new TrueFalseQ(question.GetID(), question.GetText());
+                printedQuestion = new TrueFalseQ(question.GetID(), question.GetText(), question.GetStrength());
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((TrueFalseQ)printedQuestion).setAnswer(((TrueFalseAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
             else if(question instanceof BulletedQuestion)
             {
-                printedQuestion = new BulletedQ(question.GetID(), question.GetText(), ((BulletedQuestion) question).GetPosiibleValues());
+                printedQuestion = new BulletedQ(question.GetID(), question.GetText(),question.GetStrength(), ((BulletedQuestion) question).GetPosiibleValues());
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((BulletedQ)printedQuestion).setAnswer((int)((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }
             else if(question instanceof NumericQuestion)
             {
-                printedQuestion = new NumericQ(question.GetID(), question.GetText(), ((NumericQuestion) question).Range);
+                printedQuestion = new NumericQ(question.GetID(), question.GetText(), question.GetStrength(), ((NumericQuestion) question).Range);
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((NumericQ)printedQuestion).setAnswer(((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
             }

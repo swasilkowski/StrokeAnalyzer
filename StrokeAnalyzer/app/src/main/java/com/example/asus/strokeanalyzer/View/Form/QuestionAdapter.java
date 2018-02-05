@@ -2,6 +2,8 @@ package com.example.asus.strokeanalyzer.View.Form;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -39,6 +41,7 @@ import java.util.List;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
     final private List<Question> questions;
+    Context context;
 
     /**
      * Klasa bazowa dla klas zarządzających elementami związanymi z widokiem pojedynczego pytania
@@ -96,6 +99,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((DescriptiveQ)question).getText());
+            this.question.setTextColor(ContextCompat.getColor( context,textColor(questionObject)));
             this.answer.setText(((DescriptiveQ)questionObject).getAnswer());
             answer.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
@@ -154,6 +158,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((NumericQ)question).getText());
+            this.question.setTextColor(ContextCompat.getColor( context,textColor(questionObject)));
             if(((NumericQ)questionObject).getAnswerSet())
                 this.answer.setText(numericAnswerTransform(String.valueOf(((NumericQ)questionObject).getAnswer())));
             answer.setImeOptions(EditorInfo.IME_ACTION_DONE);
@@ -246,6 +251,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((TrueFalseQ)question).getText());
+            this.question.setTextColor(ContextCompat.getColor( context,textColor(questionObject)));
             this.answer.setChecked(((TrueFalseQ)questionObject).getAnswer());
 
             answer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -292,6 +298,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public void bindType(Question question) {
             questionObject = question;
             this.question.setText(((BulletedQ)question).getText());
+            this.question.setTextColor(ContextCompat.getColor( context,textColor(questionObject)));
 
             // Set the adapter
             if (answers != null) {
@@ -319,12 +326,36 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     }
 
     /**
+     * Metoda zwracająca id zasobu z kolorem, w którym ma być wyświetlona treść pytania ustawionym na podstawie wagi pytania.
+     *
+     * @param question pytanie, dla którego chcemy określić kolor tekstu
+     * @return id zasobu wybranego koloru
+     */
+    private int textColor(Question question)
+    {
+        switch(question.getStrength())
+        {
+            case NEUTRAL:
+                return R.color.colorPrimary;
+            case WEAK:
+                return R.color.weakQuestion;
+            case MIDSTRONG:
+                return R.color.midstrongQuestion;
+            case STRONG:
+                return R.color.colorAccentDark;
+            default:
+                return R.color.colorPrimary;
+        }
+    }
+
+    /**
      * Konstruktor ustawiający listę pytań formularza wykorzystywaną przez adapter do wyświetlenia we fragmencie.
      *
      * @param questions lista pytań, która powinna zostać wyświetlona we fragmencie
      */
-    QuestionAdapter(final List<Question> questions) {
+    QuestionAdapter(Context context, final List<Question> questions) {
         this.questions = questions;
+        this.context = context;
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
+import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +19,7 @@ public class BulletedQ implements Question{
     final private String text;
     private int answerId;
     final private List<BulletedAnswer> answers;
+    private QuestionStrength strength;
 
     /**
      * Konstruktor ustawiający id pytania, jego treść oraz możliwe odpowiedi na pytanie.
@@ -25,12 +28,13 @@ public class BulletedQ implements Question{
      * @param text treśc pytania
      * @param possibleValues mapa zawierająca możliwe odpowiedzi na dane pytanie powiązane z pewną daną liczbową
      */
-    public BulletedQ(int id ,String text, Map<Integer, String> possibleValues)
+    public BulletedQ(int id ,String text, QuestionStrength strength, Map<Integer, String> possibleValues)
     {
         this.id = id;
         this.text = text;
         answers = new ArrayList<>();
         answerId = -1;
+        this.strength = strength;
         for(Integer key: possibleValues.keySet())
         {
             answers.add(new BulletedAnswer(key,possibleValues.get(key)));
@@ -86,5 +90,15 @@ public class BulletedQ implements Question{
     @Override
     public int getListItemType() {
         return Question.BULLETED;
+    }
+
+    /**
+     * Metoda zwracająca wagę pytania.
+     *
+     * @return waga pytania
+     */
+    @Override
+    public QuestionStrength getStrength() {
+        return strength;
     }
 }

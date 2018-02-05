@@ -1,6 +1,7 @@
 package com.example.asus.strokeanalyzer.Model.Form;
 
 import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
+import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
 import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier;
 import com.example.asus.strokeanalyzer.Model.Form.Question.BulletedQuestion;
 import com.example.asus.strokeanalyzer.Model.Form.Question.NumericQuestion;
@@ -398,20 +399,20 @@ public final class FormsStructure {
 
         //LECZENIE
         id = 301;
-        TrueFalseQuestion question301 = new TrueFalseQuestion(id, "Choroba nowotworowa");
+        TrueFalseQuestion question301 = new TrueFalseQuestion(id, "Choroba nowotworowa", QuestionStrength.STRONG);
         questionsUsedForIscore.add(id);
         questionsUsedForThrombolysis.add(id);
 
         id = 302;
-        TrueFalseQuestion question302 = new TrueFalseQuestion(id, "Leczenie heparyną w ciągu 48h poprzedzających wystąpienie udaru mózgu");
+        TrueFalseQuestion question302 = new TrueFalseQuestion(id, "Leczenie heparyną w ciągu 48h poprzedzających wystąpienie udaru mózgu", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 303;
-        TrueFalseQuestion question303 = new TrueFalseQuestion(id, "Wcześniej przebyty udar u chorego ze współistniejącą cukrzycą");
+        TrueFalseQuestion question303 = new TrueFalseQuestion(id, "Wcześniej przebyty udar u chorego ze współistniejącą cukrzycą", QuestionStrength.MIDSTRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 304;
-        TrueFalseQuestion question304 = new TrueFalseQuestion(id, "Wcześniej przebyty udar w ciągu ostatnich 3 miesięcy");
+        TrueFalseQuestion question304 = new TrueFalseQuestion(id, "Wcześniej przebyty udar w ciągu ostatnich 3 miesięcy", QuestionStrength.MIDSTRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 305;
@@ -487,7 +488,7 @@ public final class FormsStructure {
         questionsUsedForThrombolysis.add(id);
 
         id=323;
-        TrueFalseQuestion question323 = new TrueFalseQuestion(id, "Czy czas trwania objawów bez znaczącej poprawy wynosi ≥ 30 minut?");
+        TrueFalseQuestion question323 = new TrueFalseQuestion(id, "Czy czas trwania objawów bez znaczącej poprawy wynosi ≥ 30 minut?", QuestionStrength.WEAK);
         questionsUsedForThrombolysis.add(id);
 
         id=324;

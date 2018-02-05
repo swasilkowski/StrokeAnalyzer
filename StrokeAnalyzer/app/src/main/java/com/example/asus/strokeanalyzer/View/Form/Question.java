@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
+import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
+
 /**
  * Interfejs do rozróżniania rodzaju pytania w RecyclerView.
  *
@@ -18,4 +20,11 @@ interface Question {
      * @return rodzaj pytania
      */
     int getListItemType();
+
+    /**
+     * Metoda zwracająca wagę pytania.
+     *
+     * @return waga pytania
+     */
+    QuestionStrength getStrength();
 }

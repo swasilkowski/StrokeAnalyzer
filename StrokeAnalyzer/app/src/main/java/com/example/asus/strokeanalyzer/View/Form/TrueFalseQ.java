@@ -1,5 +1,7 @@
 package com.example.asus.strokeanalyzer.View.Form;
 
+import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
+
 /**
  * Klasa implementująca interfejs {@link Question}, która reprezentuje pytanie, na które odpowiedź jest typu prawda/fałsz.
  *
@@ -11,6 +13,7 @@ public class TrueFalseQ implements Question
     final private int id;
     final private String text;
     private boolean answer;
+    private QuestionStrength strength;
 
     /**
      * Konstruktor ustawiający id pytania oraz jego treść.
@@ -18,10 +21,11 @@ public class TrueFalseQ implements Question
      * @param id id pytania
      * @param text treść pytania
      */
-    public TrueFalseQ(int id ,String text)
+    public TrueFalseQ(int id ,String text, QuestionStrength strength)
     {
         this.id = id;
         this.text = text;
+        this.strength = strength;
     }
 
     /**
@@ -66,5 +70,15 @@ public class TrueFalseQ implements Question
     @Override
     public int getListItemType() {
         return Question.TRUEFALSE;
+    }
+
+    /**
+     * Metoda zwracająca wagę pytania.
+     *
+     * @return waga pytania
+     */
+    @Override
+    public QuestionStrength getStrength() {
+        return strength;
     }
 }
