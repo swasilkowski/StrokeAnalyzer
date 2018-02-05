@@ -50,6 +50,8 @@ public class FormFragment extends Fragment {
     private boolean newForm; //true if new form is being created
     final private List<Question> printQuestions = new ArrayList<>(); // list of questions printed in this form
     private PatientService patientService; //serwis used for communication with database
+    private boolean editable;
+    private NihssExamination examination = null;
 
     /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
@@ -60,11 +62,27 @@ public class FormFragment extends Fragment {
      *                formularz będzie tworzony na nowo; false - jeżeli następuje edycja formularza)
      * @return nowa instancja fragmentu FormFragment
      */
-    public static FormFragment newInstance(Form form, long patientID, boolean newForm) {
+    public static FormFragment newInstance(Form form, long patientID, boolean newForm, boolean editable) {
+        return newInstance(form, patientID,newForm,editable,null);
+    }
+
+    /**
+     *
+     *
+     * @param form
+     * @param patientID
+     * @param newForm
+     * @param editable
+     * @param examination
+     * @return
+     */
+    public static FormFragment newInstance(Form form, long patientID, boolean newForm, boolean editable, NihssExamination examination) {
         FormFragment fragment = new FormFragment();
         fragment.formType = form;
         fragment.patientID = (int)patientID;
         fragment.newForm = newForm;
+        fragment.editable = editable;
+        fragment.examination = examination;
         return fragment;
     }
 
@@ -77,7 +95,8 @@ public class FormFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        if(editable)
+            setHasOptionsMenu(true);
     }
 
     /**
@@ -141,10 +160,13 @@ public class FormFragment extends Fragment {
             //get questions list
             List<Integer> questionIDs = FormsStructure.QuestionsPrintedInForm.get(formType);
 
+            if(examination==null)
             //zmienia sie rozmiar na dwa razy wieksze
-            prepareQuestions(questionIDs);
+                prepareQuestions(questionIDs);
+            else
+                prepareQuestions(examination);
 
-            qAdapter = new QuestionAdapter(getContext(), printQuestions);
+            qAdapter = new QuestionAdapter(getContext(), printQuestions,editable);
             RecyclerView.LayoutManager layout = new LinearLayoutManager(context);
             layout.setAutoMeasureEnabled(true);
             recyclerView.setLayoutManager(layout);
@@ -264,6 +286,44 @@ public class FormFragment extends Fragment {
                 printedQuestion = new NumericQ(question.GetID(), question.GetText(), question.GetStrength(), ((NumericQuestion) question).Range);
                 if(patient.PatientAnswers.containsKey(question.GetID()))
                     ((NumericQ)printedQuestion).setAnswer(((NumericAnswer)patient.PatientAnswers.get(question.GetID())).Value);
+            }
+
+            printQuestions.add(printedQuestion);
+        }
+    }
+
+    /**
+     *
+     *
+     * @param examination
+     */
+    private void prepareQuestions(NihssExamination examination)
+    {
+        if(examination.Answers ==null) return;
+        for(Answer ans: examination.Answers)
+        {
+            com.example.asus.strokeanalyzer.Model.Form.Question.Question question = FormsStructure.Questions.get(ans.GetQuestionID());
+            Question printedQuestion = null;
+
+            if(question instanceof DescriptiveQuestion)
+            {
+                printedQuestion = new DescriptiveQ(question.GetID(), question.GetText(), question.GetStrength());
+                ((DescriptiveQ)printedQuestion).setAnswer(((TextAnswer)ans).Value);
+            }
+            else if(question instanceof TrueFalseQuestion)
+            {
+                printedQuestion = new TrueFalseQ(question.GetID(), question.GetText(), question.GetStrength());
+                ((TrueFalseQ)printedQuestion).setAnswer(((TrueFalseAnswer)ans).Value);
+            }
+            else if(question instanceof BulletedQuestion)
+            {
+                printedQuestion = new BulletedQ(question.GetID(), question.GetText(),question.GetStrength(), ((BulletedQuestion) question).GetPosiibleValues());
+                ((BulletedQ)printedQuestion).setAnswer((int)((NumericAnswer)ans).Value);
+            }
+            else if(question instanceof NumericQuestion)
+            {
+                printedQuestion = new NumericQ(question.GetID(), question.GetText(), question.GetStrength(), ((NumericQuestion) question).Range);
+                ((NumericQ)printedQuestion).setAnswer(((NumericAnswer)ans).Value);
             }
 
             printQuestions.add(printedQuestion);

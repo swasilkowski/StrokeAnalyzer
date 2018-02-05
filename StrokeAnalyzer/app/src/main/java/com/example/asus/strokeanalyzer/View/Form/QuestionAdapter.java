@@ -44,6 +44,7 @@ import java.util.List;
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
     final private List<Question> questions;
     Context context;
+    private boolean editable;
 
     /**
      * Klasa bazowa dla klas zarządzających elementami związanymi z widokiem pojedynczego pytania
@@ -105,23 +106,29 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             this.answer.setText(((DescriptiveQ)questionObject).getAnswer());
             answer.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
-            answer.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if(editable)
+            {
+                answer.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                }
+                    }
 
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                    ((DescriptiveQ)questionObject).setAnswer(answer.getText().toString());
-                }
+                        ((DescriptiveQ)questionObject).setAnswer(answer.getText().toString());
+                    }
 
-                @Override
-                public void afterTextChanged(Editable editable) {
+                    @Override
+                    public void afterTextChanged(Editable editable) {
 
-                }
-            });
+                    }
+                });
+            }
+            else
+                answer.setEnabled(false);
+
         }
     }
 
@@ -165,42 +172,48 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                 this.answer.setText(numericAnswerTransform(String.valueOf(((NumericQ)questionObject).getAnswer())));
             answer.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
-            answer.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if(editable)
+            {
+                answer.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                }
+                    }
 
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    String ans = answer.getText().toString();
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        String ans = answer.getText().toString();
 
-                    try{
-                        if(ans.isEmpty())
-                            ((NumericQ)questionObject).clearAnswer();
-                        else
-                        {
-                            if(!((NumericQ)questionObject).setAnswer(Double.parseDouble(ans)))
-                            {
+                        try{
+                            if(ans.isEmpty())
                                 ((NumericQ)questionObject).clearAnswer();
-                                toast.show();
+                            else
+                            {
+                                if(!((NumericQ)questionObject).setAnswer(Double.parseDouble(ans)))
+                                {
+                                    ((NumericQ)questionObject).clearAnswer();
+                                    toast.show();
+                                }
                             }
+
+                        }
+                        catch(NumberFormatException exception)
+                        {
+                            ((NumericQ)questionObject).clearAnswer();
+                            toast.show();
                         }
 
                     }
-                    catch(NumberFormatException exception)
-                    {
-                        ((NumericQ)questionObject).clearAnswer();
-                        toast.show();
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
                     }
+                });
+            }
+            else
+                answer.setEnabled(false);
 
-                }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-
-                }
-            });
         }
 
         /**
@@ -256,13 +269,19 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             this.question.setTextColor(ContextCompat.getColor( context,textColor(questionObject)));
             this.answer.setChecked(((TrueFalseQ)questionObject).getAnswer());
 
-            answer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+            if(editable)
+            {
+                answer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
 
-                    ((TrueFalseQ)questionObject).setAnswer(answer.isChecked());
-                }
-            });
+                        ((TrueFalseQ)questionObject).setAnswer(answer.isChecked());
+                    }
+                });
+            }
+            else
+                answer.setEnabled(false);
+
         }
     }
 
@@ -311,17 +330,21 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                 layout.setAutoMeasureEnabled(true);
                 answers.setLayoutManager(layout);
                 answers.setAdapter(aAdapter);
-                answers.addOnItemTouchListener(new RecyclerClickListener( context, new ClickListener() {
-                    @Override
-                    public void onClick(View view, int position) {
+                if(editable)
+                {
+                    answers.addOnItemTouchListener(new RecyclerClickListener( context, new ClickListener() {
+                        @Override
+                        public void onClick(View view, int position) {
 
-                        answerID = ((BulletedQ)questionObject).getAnswers().get(position).getId();
-                        ((BulletedQ)questionObject).setAnswer(answerID);
-                        aAdapter.SetAnswerID(answerID);
-                        aAdapter.clearColors();
-                        aAdapter.color(view,answerID);
-                    }
-                }));
+                            answerID = ((BulletedQ)questionObject).getAnswers().get(position).getId();
+                            ((BulletedQ)questionObject).setAnswer(answerID);
+                            aAdapter.SetAnswerID(answerID);
+                            aAdapter.clearColors();
+                            aAdapter.color(view,answerID);
+                        }
+                    }));
+                }
+
 
             }
         }
@@ -355,9 +378,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
      *
      * @param questions lista pytań, która powinna zostać wyświetlona we fragmencie
      */
-    QuestionAdapter(Context context, final List<Question> questions) {
+    QuestionAdapter(Context context, final List<Question> questions, boolean editable) {
         this.questions = questions;
         this.context = context;
+        this.editable = editable;
     }
 
     /**

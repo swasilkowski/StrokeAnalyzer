@@ -170,7 +170,7 @@ public class FormListFragment extends Fragment {
     private void printForm(Form form)
     {
         //move to proper form
-        FormFragment setFragment = FormFragment.newInstance(form, patientID, false);
+        FormFragment setFragment = FormFragment.newInstance(form, patientID, false, true);
         AppCompatActivity activity = ((AppCompatActivity)getActivity());
         if(activity!=null)
         {

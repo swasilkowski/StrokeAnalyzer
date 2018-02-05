@@ -128,7 +128,7 @@ public class NihssExaminationFragment extends Fragment {
             PatientService patientService = new PatientService(getContext());
 
             //get patients list from database
-            List<NihssExamination> examinations = patientService.GetPatientById(patientID).getNihssHistory();
+            final List<NihssExamination> examinations = patientService.GetPatientById(patientID).getNihssHistory();
             Collections.reverse(examinations);
 
             NihssAdapter nAdapter = new NihssAdapter(examinations, context);
@@ -140,15 +140,16 @@ public class NihssExaminationFragment extends Fragment {
                 @Override
                 public void onClick(View view, int position) {
 
+                    FormFragment setFragment;
                     if(position==0)
-                    {
-                        //move to proper form
-                        FormFragment setFragment = FormFragment.newInstance(Form.NIHSS, patientID,  false);
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragmentFrame, setFragment, null)
-                                .addToBackStack(null)
-                                .commit();
-                    }
+                        setFragment= FormFragment.newInstance(Form.NIHSS, patientID,  false,true, examinations.get(position));
+                    else
+                        setFragment= FormFragment.newInstance(Form.NIHSS, patientID,  false,false, examinations.get(position));
+
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentFrame, setFragment, null)
+                            .addToBackStack(null)
+                            .commit();
 
                 }
             }));
@@ -191,7 +192,7 @@ public class NihssExaminationFragment extends Fragment {
             if(activity!=null)
             {
                 //move to proper form
-                FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID, true);
+                FormFragment setFragment = FormFragment.newInstance(Form.NIHSS,patientID, true, true);
                 activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentFrame, setFragment, null)
                         .addToBackStack(null)
