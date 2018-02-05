@@ -32,9 +32,21 @@ import static android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
  */
 public class NewPatientFragment extends Fragment {
 
+    /**
+     * Kontrolka pobierająca imię pacjenta.
+     */
     private EditText name;
+    /**
+     * Kontrolka pobierająca nazwisko pacjenta.
+     */
     private EditText surname;
+    /**
+     * Kontrolka pobierająca indywidualny numer pacjenta.
+     */
     private EditText number;
+    /**
+     * Obiekt umożliwiający wykonywanie operacji na bazie danych aplikacji.
+     */
     private PatientService patientService;
 
     /**

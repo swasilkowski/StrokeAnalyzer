@@ -36,9 +36,19 @@ import java.util.List;
 public class ResultsFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    /**
+     * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
+     * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
+     */
     private static final String ARG_PATIENT_ID = "patient_id";
 
+    /**
+     * Id pacjenta, którego wyniki mają zostać wyświetlone.
+     */
     private Integer patientID;
+    /**
+     * Aktywność związana z fragmentem.
+     */
     private FragmentActivity activity;
 
     /**

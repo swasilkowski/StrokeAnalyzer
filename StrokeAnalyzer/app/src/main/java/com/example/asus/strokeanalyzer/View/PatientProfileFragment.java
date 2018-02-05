@@ -33,10 +33,23 @@ import java.io.File;
 public class PatientProfileFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    /**
+     * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
+     * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
+     */
     private static final String ARG_PATIENT_ID = "patient_id";
 
+    /**
+     * Id pacjenta, którego profil ma zostać wyświetlony.
+     */
     private Integer patientID;
+    /**
+     * Obiekt klasy {@link Patient} reprezentujący pacjenta, którego profil ma zostać wyświetlony.
+     */
     private Patient patient;
+    /**
+     * Aktywność związana z fragmentem.
+     */
     private FragmentActivity activity;
 
     /**

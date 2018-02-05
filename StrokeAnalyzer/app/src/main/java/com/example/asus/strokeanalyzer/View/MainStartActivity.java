@@ -18,6 +18,9 @@ import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
  */
 public class MainStartActivity extends AppCompatActivity{
 
+    /**
+     * Obiekt umożliwiający wykonywanie operacji na obiektach typu {@link android.support.v4.app.Fragment} wykorzystywanych w aplikacji.
+     */
     private FragmentManager fm;
 
     /**

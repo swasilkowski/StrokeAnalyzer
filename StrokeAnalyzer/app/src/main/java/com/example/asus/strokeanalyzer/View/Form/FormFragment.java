@@ -56,7 +56,7 @@ public class FormFragment extends Fragment {
      */
     private Form formType; //typ of a form
     /**
-     * Pacjent, którego dane będą edytowane w formularzu.
+     * Obiekt klasy {@link Patient} reprezentujący pacjenta, którego dane będą edytowane w formularzu.
      */
     private Patient patient; //patient whose data is supposed to be changed
     /**
