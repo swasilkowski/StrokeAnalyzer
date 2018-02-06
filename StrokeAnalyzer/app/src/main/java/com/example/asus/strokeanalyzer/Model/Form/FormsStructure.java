@@ -95,7 +95,7 @@ public final class FormsStructure {
         int id = 101;
         Map<Integer, String> answers101 = new Hashtable<>();
         answers101.put(0, "Czuwa. Żywa reakcja na bodźce.");
-        answers101.put(1, "Reakcja na słabe bodźce. Spełanianie poleceń.");
+        answers101.put(1, "Reakcja na słabe bodźce. Spełnianie poleceń.");
         answers101.put(2, "Reakcja na silny bodziec bólowy.");
         answers101.put(3, "Brak reakcji lub reakcja odruchowa.");
         BulletedQuestion question101 = new BulletedQuestion(id, "1a. Przytomność", answers101);
@@ -104,10 +104,10 @@ public final class FormsStructure {
 
         id = 102;
         Map<Integer, String> answers102 = new Hashtable<>();
-        answers102.put(0, "Prawidłowa odpowiedź na obydwa pytania.");
-        answers102.put(1, "Prawidłowa odpowiedź na jedno z pytań.");
-        answers102.put(2, "Brak prawidłowej odpowiedzi na żadne pytanie.");
-        BulletedQuestion question102 = new BulletedQuestion(id, "1b. Orientacja: Aktualny miesiąc i wiek. Afazja - 2 pkt. Intubacja, Dyzartria, Uraz, Bariera językowa - 1 pkt", answers102);
+        answers102.put(0, "Prawidłowa odpowiedź na oba pytania.");
+        answers102.put(1, "Prawidłowa odpowiedź na jedno pytanie.");
+        answers102.put(2, "Brak prawidłowej odpowiedzi na oba pytania.");
+        BulletedQuestion question102 = new BulletedQuestion(id, "1b. Orientacja: Aktualny miesiąc i wiek. Afazja - 2 pkt. Intubacja, Dyzartria, Uraz, Bariera językowa - 1 pkt.", answers102);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
@@ -133,9 +133,9 @@ public final class FormsStructure {
         Map<Integer, String> answers105 = new Hashtable<>();
         answers105.put(0, "Bez ubytków w polu widzenia.");
         answers105.put(1, "Niedowidzenie +/- kwadrantowe oka.");
-        answers105.put(2, "Niedowidzenie połowiczne oka.");
+        answers105.put(2, "Niedowidzenie połowicze oka.");
         answers105.put(3, "Ślepota organiczna lub korowa.");
-        BulletedQuestion question105 = new BulletedQuestion(id, "3. Pole widzenia", answers105);
+        BulletedQuestion question105 = new BulletedQuestion(id, "3. Pole widzenia: Ocena za pomocą liczenia palców lub bodźca zagrażającego.", answers105);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
@@ -145,17 +145,17 @@ public final class FormsStructure {
         answers106.put(1, "Spłycenie fałdu. Asymetria przy uśmiechu.");
         answers106.put(2, "Całkowity (lub prawie) paraliż dolnego piętra twarzy.");
         answers106.put(3, "Całkowity paraliż dolnej i górnej części twarzy.");
-        BulletedQuestion question106 = new BulletedQuestion(id, "4. Nerw VII", answers106);
+        BulletedQuestion question106 = new BulletedQuestion(id, "4. Nerw VII: Zmarszczenie brwi. Zaciśnięcie oczu. Wyszczerzenie zębów.", answers106);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
         id = 107;
         Map<Integer, String> answers107 = new Hashtable<>();
         answers107.put(0, "LKG nie opada w ciągu 10 s.");
-        answers107.put(1, "LKG opada przed 10 s., ale nie całym impetem");
+        answers107.put(1, "LKG opada przed 10 s., ale nie całym impetem.");
         answers107.put(2, "LKG opada przed 10 s., ale oporuje grawitacji.");
         answers107.put(3, "LKG opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
-        answers107.put(4, "LKG – porażenie (całkowity bark ruchów czynnych).");
+        answers107.put(4, "LKG – porażenie (całkowity brak ruchów czynnych).");
         BulletedQuestion question107 = new BulletedQuestion(id, "5a. LKG", answers107);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
@@ -163,10 +163,10 @@ public final class FormsStructure {
         id = 108;
         Map<Integer, String> answers108 = new Hashtable<>();
         answers108.put(0, "PKG nie opada w ciągu 10 s.");
-        answers108.put(1, "PKG opada przed 10 s., ale nie całym impetem");
+        answers108.put(1, "PKG opada przed 10 s., ale nie całym impetem.");
         answers108.put(2, "PKG opada przed 10 s., ale oporuje grawitacji.");
         answers108.put(3, "PKG opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
-        answers108.put(4, "PKG – porażenie (całkowity bark ruchów czynnych).");
+        answers108.put(4, "PKG – porażenie (całkowity brak ruchów czynnych).");
         BulletedQuestion question108 = new BulletedQuestion(id, "5b. PKG", answers108);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
@@ -174,10 +174,10 @@ public final class FormsStructure {
         id = 109;
         Map<Integer, String> answers109 = new Hashtable<>();
         answers109.put(0, "LKD nie opada w ciągu 5 s.");
-        answers109.put(1, "LKD opada przed 5 s., ale nie całym impetem");
+        answers109.put(1, "LKD opada przed 5 s., ale nie całym impetem.");
         answers109.put(2, "LKD opada przed 5 s., ale oporuje grawitacji.");
         answers109.put(3, "LKD opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
-        answers109.put(4, "LKD – porażenie (całkowity bark ruchów czynnych).");
+        answers109.put(4, "LKD – całkowite porażenie.");
         BulletedQuestion question109 = new BulletedQuestion(id, "6a. LKD", answers109);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
@@ -185,11 +185,11 @@ public final class FormsStructure {
         id = 110;
         Map<Integer, String> answers110 = new Hashtable<>();
         answers110.put(0, "PKD nie opada w ciągu 5 s.");
-        answers110.put(1, "PKD opada przed 5 s., ale nie całym impetem");
+        answers110.put(1, "PKD opada przed 5 s., ale nie całym impetem.");
         answers110.put(2, "PKD opada przed 5 s., ale oporuje grawitacji.");
         answers110.put(3, "PKD opada, nie oporuje grawitacji. Minimalne ruchy czynne.");
-        answers110.put(4, "PKD – porażenie (całkowity bark ruchów czynnych).");
-        BulletedQuestion question110 = new BulletedQuestion(id, "6b. LKD", answers110);
+        answers110.put(4, "PKD – całkowite porażenie.");
+        BulletedQuestion question110 = new BulletedQuestion(id, "6b. PKD", answers110);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
@@ -198,7 +198,7 @@ public final class FormsStructure {
         answers111.put(0, "Ataksja nieobecna.");
         answers111.put(1, "Ataksja obecna w minimum jednej kończynie L lub P.");
         answers111.put(2, "Ataksja obecna w obu kk. górnych lub dolnych (ew. skos).");
-        BulletedQuestion question111 = new BulletedQuestion(id, "7. Ataksja", answers111);
+        BulletedQuestion question111 = new BulletedQuestion(id, "7. Ataksja: Test z otwartymi oczyma. Gdy afazja, brak zrozumienia polecenia, śpiączka, paraliż - 0pkt.", answers111);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
@@ -207,7 +207,7 @@ public final class FormsStructure {
         answers112.put(0, "Czucie prawidłowe.");
         answers112.put(1, "Łagodna do umiarkowanej utrata czucia.");
         answers112.put(2, "Poważna, całkowita lub obustronna utrata czucia.");
-        BulletedQuestion question112 = new BulletedQuestion(id, "8. Czucie", answers112);
+        BulletedQuestion question112 = new BulletedQuestion(id, "8. Czucie: Twarz, KG, tułów, KD. Afazja - 0/1 pkt. Tetraplegia, śpiączka - 2 pkt.", answers112);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
@@ -217,7 +217,7 @@ public final class FormsStructure {
         answers113.put(1, "Łagodna do umiarkowanej afazja.");
         answers113.put(2, "Poważna afazja.");
         answers113.put(3, "Mutyzm. Afazja globalna.");
-        BulletedQuestion question113 = new BulletedQuestion(id, "9. Afazja", answers113);
+        BulletedQuestion question113 = new BulletedQuestion(id, "9. Afazja: Mutyzm, śpiączka - 3 pkt.", answers113);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
@@ -233,9 +233,9 @@ public final class FormsStructure {
         id = 115;
         Map<Integer, String> answers115 = new Hashtable<>();
         answers115.put(0, "Bez nieprawidłowości.");
-        answers115.put(1, "Zaniedbywanie lub ekstyncja bodźców w jednej modalności.");
-        answers115.put(2, "Połowiczna nieuwaga lub ekstyncja bodźców w kilku modalnościach.");
-        BulletedQuestion question115 = new BulletedQuestion(id, "11. Zaniedbywanie", answers115);
+        answers115.put(1, "Zaniedbywanie lub ekstynkcja bodźców w jednej modalności.");
+        answers115.put(2, "Połowicza nieuwaga lub ekstynkcja bodźców w kilku modalnościach.");
+        BulletedQuestion question115 = new BulletedQuestion(id, "11. Zaniedbywanie: śpiączka - 0pkt.", answers115);
         questionsUsedForNihhs.add(id);
         questionsUsedForStrokeBricks.add(id);
 
@@ -317,7 +317,7 @@ public final class FormsStructure {
         questionsUsedForHat.add(id);
 
         id = 204;
-        TrueFalseQuestion question204 = new TrueFalseQuestion(id, "Poziom niepełnosprawności przed przyjęciem (mRS > 1)");
+        TrueFalseQuestion question204 = new TrueFalseQuestion(id, "Czy mRS > 1? (poziom niepełnosprawności przed przyjęciem)");
         questionsUsedForDragon.add(id);
         questionsUsedForIscore.add(id);
 
@@ -333,16 +333,9 @@ public final class FormsStructure {
         questionsUsedForHat.add(id);
         questionsUsedForThrombolysis.add(id);
 
-        id = 207;
-        TrueFalseQuestion question207 = new TrueFalseQuestion(id, "aPTT powyżej górnej granicy normy?");
-        questionsUsedForThrombolysis.add(id);
-
-        id = 208;
-        TrueFalseQuestion question208 = new TrueFalseQuestion(id, "Doustne leczenie przeciwzakrzepowe powodujące wzrost INR > 1,7");
-        questionsUsedForThrombolysis.add(id);
 
         id = 209;
-        TrueFalseQuestion question209 = new TrueFalseQuestion(id, "Hiperdensyjna MCA");
+        TrueFalseQuestion question209 = new TrueFalseQuestion(id, "hiperdensyjna MCA");
         questionsUsedForDragon.add(id);
 
         id = 210;
@@ -363,10 +356,6 @@ public final class FormsStructure {
         BulletedQuestion question211 = new BulletedQuestion(id, "Podtyp udaru", answers211);
         questionsUsedForIscore.add(id);
 
-        id = 212;
-        TrueFalseQuestion question212 = new TrueFalseQuestion(id, "Krwotok śródmózgowy w TK/MR");
-        questionsUsedForThrombolysis.add(id);
-
         Questions.put(200,question200);
         Questions.put(201, question201);
         Questions.put(202, question202);
@@ -374,12 +363,9 @@ public final class FormsStructure {
         Questions.put(204, question204);
         Questions.put(205, question205);
         Questions.put(206, question206);
-        Questions.put(207, question207);
-        Questions.put(208, question208);
         Questions.put(209, question209);
         Questions.put(210, question210);
         Questions.put(211, question211);
-        Questions.put(212, question212);
 
         ArrayList<Integer> questionsDemographic = new ArrayList<>();
         questionsDemographic.add(200);
@@ -389,110 +375,115 @@ public final class FormsStructure {
         questionsDemographic.add(204);
         questionsDemographic.add(205);
         questionsDemographic.add(206);
-        questionsDemographic.add(207);
-        questionsDemographic.add(208);
         questionsDemographic.add(209);
         questionsDemographic.add(210);
         questionsDemographic.add(211);
-        questionsDemographic.add(212);
         QuestionsPrintedInForm.put(Form.DemographicAndClinic,questionsDemographic);
 
         //LECZENIE
         id = 301;
-        TrueFalseQuestion question301 = new TrueFalseQuestion(id, "Choroba nowotworowa", QuestionStrength.STRONG);
+        TrueFalseQuestion question301 = new TrueFalseQuestion(id, "choroba nowotworowa", QuestionStrength.STRONG);
         questionsUsedForIscore.add(id);
         questionsUsedForThrombolysis.add(id);
 
         id = 302;
-        TrueFalseQuestion question302 = new TrueFalseQuestion(id, "Leczenie heparyną w ciągu 48h poprzedzających wystąpienie udaru mózgu", QuestionStrength.STRONG);
+        TrueFalseQuestion question302 = new TrueFalseQuestion(id, "leczenie heparyną w ciągu 48h poprzedzających wystąpienie udaru mózgu, jeśli aPTT przekracza górną granicę normy", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 303;
-        TrueFalseQuestion question303 = new TrueFalseQuestion(id, "Wcześniej przebyty udar u chorego ze współistniejącą cukrzycą", QuestionStrength.MIDSTRONG);
+        TrueFalseQuestion question303 = new TrueFalseQuestion(id, "wcześniej przebyty udar mózgu u chorego ze współistniejącą cukrzycą", QuestionStrength.MIDSTRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 304;
-        TrueFalseQuestion question304 = new TrueFalseQuestion(id, "Wcześniej przebyty udar w ciągu ostatnich 3 miesięcy", QuestionStrength.MIDSTRONG);
+        TrueFalseQuestion question304 = new TrueFalseQuestion(id, "wcześniej przebyty udar mózgu w ciągu ostatnich 3 miesięcy", QuestionStrength.MIDSTRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 305;
-        TrueFalseQuestion question305 = new TrueFalseQuestion(id, " skaza krwotoczna");
+        TrueFalseQuestion question305 = new TrueFalseQuestion(id, "skaza krwotoczna", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 306;
-        TrueFalseQuestion question306 = new TrueFalseQuestion(id, "Czynne bądź niedawno przebyte krwawienie zagrażające życiu");
+        TrueFalseQuestion question306 = new TrueFalseQuestion(id, "czynne bądź niedawno przebyte krwawienie zagrażające życiu", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 307;
-        TrueFalseQuestion question307 = new TrueFalseQuestion(id, "Przebyte świeże krwawienie wewnątrzczaszkowe lub jego podejrzenie");
+        TrueFalseQuestion question307 = new TrueFalseQuestion(id, "przebyte świeże krwawienie wewnątrzczaszkowe lub jego podejrzenie", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 308;
-        TrueFalseQuestion question308 = new TrueFalseQuestion(id, "Podejrzenie krwotoku podpajęczynówkowego (SAH) oraz stan po przebytyn SAH");
+        TrueFalseQuestion question308 = new TrueFalseQuestion(id, "podejrzenie krwotoku podpajęczynówkowego (SAH) oraz stan po przebytym SAH", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 309;
-        TrueFalseQuestion question309 = new TrueFalseQuestion(id, "Przebyte lub czynne uszkodzenie OUN (np. choroba nowotworowa, tętniak, przebyte zabiegi chirurgiczne z otwarciem czaszki lub kręgosłupa");
+        TrueFalseQuestion question309 = new TrueFalseQuestion(id, "przebyte lub czynne uszkodzenie OUN (np. choroba nowotworowa, tętniak, przebyte zabiegi chirurgiczne z otwarciem czaszki, operacje kręgosłupa", QuestionStrength.MIDSTRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 310;
-        TrueFalseQuestion question310 = new TrueFalseQuestion(id, "Retinopatia krwotoczna");
+        TrueFalseQuestion question310 = new TrueFalseQuestion(id, "retinopatia krwotoczna", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 311;
-        TrueFalseQuestion question311 = new TrueFalseQuestion(id, "Przebyty ostatnio (<10 dni) urazowy zewnętrzny masaż serdca, pród, nakłucia naczunia niedostępnego dla ucisku");
+        TrueFalseQuestion question311 = new TrueFalseQuestion(id, "przebyty ostatnio (<10 dni) urazowy zewnętrzny masaż serca, poród, nakłucie naczynia krwionośnego niedostępnego dla ucisku", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 312;
-        TrueFalseQuestion question312 = new TrueFalseQuestion(id, "Bakteryjne zapalenie wsierdzia, zapalenie osierdzia");
+        TrueFalseQuestion question312 = new TrueFalseQuestion(id, "bakteryjne zapalenie wsierdzia, zapalenie osierdzia", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 313;
-        TrueFalseQuestion question313 = new TrueFalseQuestion(id, "Ostre zapalenie trzustki");
+        TrueFalseQuestion question313 = new TrueFalseQuestion(id, "ostre zapalenie trzustki",QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 314;
-        TrueFalseQuestion question314 = new TrueFalseQuestion(id, "Udokumentowana choroba wrzodowa przewodu pokarmowego w ciągu 3 miesięcy, żylaki przełyku, tętniak, malformacja tętniczo-żylna");
+        TrueFalseQuestion question314 = new TrueFalseQuestion(id, "udokumentowana choroba wrzodowa przewodu pokarmowego w ciągu 3 miesięcy, żylaki przełyku, tętniak, malformacja tętniczo-żylna", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 315;
-        TrueFalseQuestion question315 = new TrueFalseQuestion(id, "Ciężka choroba wątroby z niewydolnością, marskością lub nadciśnieniem wrotnym");
+        TrueFalseQuestion question315 = new TrueFalseQuestion(id, "ciężka choroba wątroby z niewydolnością, marskością lub nadciśnieniem wrotnym", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 316;
-        TrueFalseQuestion question316 = new TrueFalseQuestion(id, "Duży zabieg chirurgiczny lub rozległy uraz w ciągu ostatnich 3 miesięcy");
+        TrueFalseQuestion question316 = new TrueFalseQuestion(id, "duży zabieg chirurgiczny lub rozległy uraz w ciągu ostatnich 3 miesięcy", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 317;
-        TrueFalseQuestion question317 = new TrueFalseQuestion(id, "Niewielki lub szybko ustępujący deficyt neurologiczny");
+        TrueFalseQuestion question317 = new TrueFalseQuestion(id, "niewielki lub szybko ustępujący deficyt neurologiczny", QuestionStrength.MIDSTRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 318;
-        TrueFalseQuestion question318 = new TrueFalseQuestion(id, "udar mózgu rozpoczynający się napadami drgawkowymi");
+        TrueFalseQuestion question318 = new TrueFalseQuestion(id, "udar mózgu rozpoczynający się napadami drgawkowymi",QuestionStrength.MIDSTRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 319;
-        TrueFalseQuestion question319 = new TrueFalseQuestion(id, "Kliniczne objawy krwotoku podpajęczynówkowego (SAH) nawet bez stwierdzenia charakterystycznych zmian w TK");
+        TrueFalseQuestion question319 = new TrueFalseQuestion(id, "kliniczne objawy krwotoku podpajęczynówkowego (SAH) nawet bez stwierdzenia charakterystycznych zmian w TK", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 320;
-        TrueFalseQuestion question320 = new TrueFalseQuestion(id, "Ciśnienie skurczowe (SBP)> 185 mmHg lub rozkurczowe (DBP) >110 mmHg nie ulegające obniżeniu po podaniu labetalolu, urapidylu lub innych leków iv");
+        TrueFalseQuestion question320 = new TrueFalseQuestion(id, "ciśnienie skurczowe (SBP) > 185 mmHg lub rozkurczowe (DBP) >110 mmHg nie ulegające obniżeniu po podaniu labetalolu, urapidylu lub innego leku podawanego dożylnie", QuestionStrength.STRONG);
         questionsUsedForThrombolysis.add(id);
 
         id=321;
-        NumericQuestion question321 = new NumericQuestion(id, "Liczba płytek krwi", new RangeClassifier(0,Double.MAX_VALUE));
+        NumericQuestion question321 = new NumericQuestion(id, "Liczba płytek krwi",QuestionStrength.STRONG, new RangeClassifier(0,Double.MAX_VALUE));
         questionsUsedForThrombolysis.add(id);
 
         id = 322;
-        TrueFalseQuestion question322 = new TrueFalseQuestion(id, "Wykluczenie uogólnionego niedokrwienia mózgu (np. omdlenie), napadem drgawkowym i migreną oraz hipoglikemią");
+        TrueFalseQuestion question322 = new TrueFalseQuestion(id, "wykluczenie uogólnionego niedokrwienia mózgu (np. omdlenie), napadu drgawkowego i migreny oraz hipoglikemi", QuestionStrength.WEAK);
         questionsUsedForThrombolysis.add(id);
 
         id=323;
-        TrueFalseQuestion question323 = new TrueFalseQuestion(id, "Czy czas trwania objawów bez znaczącej poprawy wynosi ≥ 30 minut?", QuestionStrength.WEAK);
+        TrueFalseQuestion question323 = new TrueFalseQuestion(id, "czas trwania objawów bez znaczącej poprawy wynosi ≥ 30 minut", QuestionStrength.WEAK);
         questionsUsedForThrombolysis.add(id);
 
         id=324;
-        TrueFalseQuestion question324 = new TrueFalseQuestion(id, "Ostry udaru niedokrwiennego mózgu z istotnym deficytem neurologicznym.");
+        TrueFalseQuestion question324 = new TrueFalseQuestion(id, "ostry udar niedokrwienny mózgu z istotnym deficytem neurologicznym", QuestionStrength.WEAK);
+        questionsUsedForThrombolysis.add(id);
+
+        id = 325;
+        TrueFalseQuestion question325 = new TrueFalseQuestion(id, "doustne leczenie przeciwzakrzepowe powodujące wzrost INR > 1,7", QuestionStrength.STRONG);
+        questionsUsedForThrombolysis.add(id);
+
+        id = 326;
+        TrueFalseQuestion question326 = new TrueFalseQuestion(id, "brak krwawienia śródczaszkowego w TK/MR", QuestionStrength.WEAK);
         questionsUsedForThrombolysis.add(id);
 
         Questions.put(301, question301);
@@ -519,17 +510,25 @@ public final class FormsStructure {
         Questions.put(322, question322);
         Questions.put(323,question323);
         Questions.put(324, question324);
+        Questions.put(325, question325);
+        Questions.put(326, question326);
 
         ArrayList<Integer> questionsTreatment = new ArrayList<>();
-        questionsTreatment.add(301);
-        questionsTreatment.add(302);
+        questionsTreatment.add(322);
+        questionsTreatment.add(323);
+        questionsTreatment.add(324);
+        questionsTreatment.add(326);
         questionsTreatment.add(303);
         questionsTreatment.add(304);
+        questionsTreatment.add(309);
+        questionsTreatment.add(317);
+        questionsTreatment.add(318);
+        questionsTreatment.add(301);
+        questionsTreatment.add(302);
         questionsTreatment.add(305);
         questionsTreatment.add(306);
         questionsTreatment.add(307);
         questionsTreatment.add(308);
-        questionsTreatment.add(309);
         questionsTreatment.add(310);
         questionsTreatment.add(311);
         questionsTreatment.add(312);
@@ -537,31 +536,28 @@ public final class FormsStructure {
         questionsTreatment.add(314);
         questionsTreatment.add(315);
         questionsTreatment.add(316);
-        questionsTreatment.add(317);
-        questionsTreatment.add(318);
         questionsTreatment.add(319);
         questionsTreatment.add(320);
         questionsTreatment.add(321);
-        questionsTreatment.add(322);
-        questionsTreatment.add(323);
-        questionsTreatment.add(324);
+        questionsTreatment.add(325);
+
         QuestionsPrintedInForm.put(Form.ThrombolyticTreatment,questionsTreatment);
 
         //iScore
         id = 401;
-        TrueFalseQuestion question401 = new TrueFalseQuestion(id, "Migotanie przedsionków (AF)");
+        TrueFalseQuestion question401 = new TrueFalseQuestion(id, "migotanie przedsionków (AF)");
         questionsUsedForIscore.add(id);
 
         id = 402;
-        TrueFalseQuestion question402 = new TrueFalseQuestion(id, "Zastoinowa niewydolność serca (CHF)");
+        TrueFalseQuestion question402 = new TrueFalseQuestion(id, "zastoinowa niewydolność serca (CHF)");
         questionsUsedForIscore.add(id);
 
         id = 403;
-        TrueFalseQuestion question403 = new TrueFalseQuestion(id, "Zawał serca w przeszłości (MI)");
+        TrueFalseQuestion question403 = new TrueFalseQuestion(id, "zawał serca w przeszłości (MI)");
         questionsUsedForIscore.add(id);
 
         id = 404;
-        TrueFalseQuestion question404 = new TrueFalseQuestion(id, "Niewydolność nerek");
+        TrueFalseQuestion question404 = new TrueFalseQuestion(id, "niewydolność nerek");
         questionsUsedForIscore.add(id);
 
         Questions.put(401, question401);

@@ -138,10 +138,6 @@ public final class TreatmentAnalyzer {
         answer321.Ranges.add(new RangeClassifier(100000, Double.MAX_VALUE));
         correctAnswers.put(321, answer321);
 
-        correctAnswers.put(203, new ExpectedTrueFalseAnswer(203, false));
-        correctAnswers.put(207, new ExpectedTrueFalseAnswer(207, false));
-        correctAnswers.put(208, new ExpectedTrueFalseAnswer(208, false));
-        correctAnswers.put(212, new ExpectedTrueFalseAnswer(212, false));
         correctAnswers.put(301, new ExpectedTrueFalseAnswer(301, false));
         correctAnswers.put(302, new ExpectedTrueFalseAnswer(302, false));
         correctAnswers.put(303, new ExpectedTrueFalseAnswer(303, false));
@@ -165,5 +161,7 @@ public final class TreatmentAnalyzer {
         correctAnswers.put(322, new ExpectedTrueFalseAnswer(322, true));
         correctAnswers.put(323, new ExpectedTrueFalseAnswer(323, true));
         correctAnswers.put(324, new ExpectedTrueFalseAnswer(324, true));
+        correctAnswers.put(325, new ExpectedTrueFalseAnswer(325, false));
+        correctAnswers.put(326, new ExpectedTrueFalseAnswer(326, true));
     }
 }
