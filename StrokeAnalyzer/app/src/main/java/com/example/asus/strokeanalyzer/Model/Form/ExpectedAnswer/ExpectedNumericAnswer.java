@@ -15,12 +15,6 @@ import java.util.List;
 
 public class ExpectedNumericAnswer extends ExpectedAnswer {
 
-    //if correctValue is considered we give 1 point
-    /**
-     * Poprawna wartość odpowiedzi w przypadku, gdy oczekiwana wartość jest konkretną liczbą.
-     * Może przyjmować wartość null, co oznacza, że wartość ta nie powinna być brana pod uwagę.
-     */
-    private Double CorrectValue;
     /**
      * Lista klasyfikatorów możliwych zakresów odpowiedzi.
      */
@@ -51,9 +45,7 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
      *                           nie została jeszcze udzielona odpowiedź
      */
     public int CalculatePoints(double value) throws NoAnswerException {
-        if(CorrectValue!= null && CorrectValue.equals(value))
-            return 1;
-        else if(Ranges.size() > 0)
+        if (Ranges.size() > 0)
         {
             for(RangeClassifier r:Ranges)
             {
@@ -79,9 +71,7 @@ public class ExpectedNumericAnswer extends ExpectedAnswer {
      *          ani nie przynależy do żadnego z zakresów
      */
     public boolean CheckCorrectness(double value) throws NoAnswerException {
-        if(CorrectValue!= null && CorrectValue.equals(value))
-            return true;
-        else if(Ranges.size() > 0)
+        if (Ranges.size() > 0)
         {
             for(RangeClassifier r:Ranges)
             {

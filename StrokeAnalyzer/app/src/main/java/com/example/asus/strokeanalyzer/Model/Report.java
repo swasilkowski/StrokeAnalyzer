@@ -13,6 +13,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -56,11 +57,15 @@ public final class Report {
 
             File dir = new File(path);
             if(!dir.exists()) {
-                dir.mkdirs();
+                if (!dir.mkdirs()) {
+                    throw new IOException();
+                }
             }
 
             File file = new File(dir, context.getString(R.string.report) + patient.PatientNumber + context.getString(R.string.report_extension));
-            file.createNewFile();
+            if (!file.createNewFile()) {
+                throw new IOException();
+            }
             FileOutputStream fOut = new FileOutputStream(file);
 
             PdfWriter.getInstance(doc, fOut);
@@ -68,37 +73,34 @@ public final class Report {
             //open the document
             doc.open();
 
-            Font paraFont= new Font(Font.FontFamily.COURIER);
-            String noResult = String.valueOf(R.string.report_no_result);
+            BaseFont baseFont = BaseFont.createFont(BaseFont.COURIER, BaseFont.CP1250, BaseFont.EMBEDDED);
+            Font paraFont = new Font(baseFont, 12);
+            String noResult = context.getString(R.string.report_no_result);
 
-            Paragraph p1 = new Paragraph(context.getString(R.string.report_patient_number) + " " + patient.PatientNumber);
+            Paragraph p1 = new Paragraph(context.getString(R.string.report_patient_number) + " " + patient.PatientNumber, paraFont);
             p1.setAlignment(Paragraph.ALIGN_CENTER);
-            p1.setFont(paraFont);
             doc.add(p1);
 
-            Paragraph p2 = new Paragraph(context.getString(R.string.report_name) + patient.Name);
+            Paragraph p2 = new Paragraph(context.getString(R.string.report_name) + patient.Name, paraFont);
             p2.setAlignment(Paragraph.ALIGN_LEFT);
-            p2.setFont(paraFont);
             doc.add(p2);
 
-            Paragraph p3 = new Paragraph(context.getString(R.string.report_surname) + patient.Surname + "\n\n");
+            Paragraph p3 = new Paragraph(context.getString(R.string.report_surname) + patient.Surname + "\n\n", paraFont);
             p3.setAlignment(Paragraph.ALIGN_LEFT);
-            p3.setFont(paraFont);
             doc.add(p3);
 
             String nihssResult = patient.getNihss() >= 0? ((Integer)patient.getNihss()).toString() : noResult;
-            Paragraph p4 = new Paragraph(context.getString(R.string.report_nihss_result) + nihssResult + "\n\n");
+            Paragraph p4 = new Paragraph(context.getString(R.string.report_nihss_result) + nihssResult + "\n\n", paraFont);
             p4.setAlignment(Paragraph.ALIGN_LEFT);
-            p4.setFont(paraFont);
             doc.add(p4);
 
             String treatmentDecisionText = noResult;
-            if (patient.getTreatmentDecision() != null) {
-                TreatmentResult treatmentResult = patient.getTreatmentDecision();
+            TreatmentResult treatmentResult = patient.getTreatmentDecision();
+            if (treatmentResult != null) {
                 if (treatmentResult.Decision) {
-                    treatmentDecisionText = context.getString(R.string.report_yes);
+                    treatmentDecisionText = context.getString(R.string.report_yes) + " \n";
                 } else {
-                    treatmentDecisionText = context.getString(R.string.report_no) + "\n"
+                    treatmentDecisionText = context.getString(R.string.report_no) + " \n"
                             + context.getString(R.string.report_treatment_exclusion_reasons) + "\n";
 
                     StringBuilder sb = new StringBuilder(treatmentDecisionText);
@@ -109,9 +111,8 @@ public final class Report {
                     treatmentDecisionText = sb.toString();
                 }
             }
-            Paragraph p5 = new Paragraph(context.getString(R.string.report_qualification_for_treatment) + treatmentDecisionText + "\n");
+            Paragraph p5 = new Paragraph(context.getString(R.string.report_qualification_for_treatment) + treatmentDecisionText + "\n", paraFont);
             p5.setAlignment(Paragraph.ALIGN_LEFT);
-            p5.setFont(paraFont);
             doc.add(p5);
 
             String hatPrognosisText = noResult;
@@ -121,9 +122,8 @@ public final class Report {
                         "%\n" + context.getString(R.string.report_fatal_haemorrhage_risk) +
                         patient.getHatPrognosis().RiskOfFatalICH+"%";
             }
-            Paragraph p6 = new Paragraph(context.getString(R.string.report_hat_prognosis) + "\n" + hatPrognosisText + "\n\n");
+            Paragraph p6 = new Paragraph(context.getString(R.string.report_hat_prognosis) + "\n" + hatPrognosisText + "\n\n", paraFont);
             p6.setAlignment(Paragraph.ALIGN_LEFT);
-            p6.setFont(paraFont);
             doc.add(p6);
 
             String dragonPrognosisText = noResult;
@@ -133,9 +133,8 @@ public final class Report {
                         "%\n" + context.getString(R.string.report_probability_of_miserable_outcome) +
                         patient.getDragonPrognosis().MiserableOutcomePrognosis+"%";
             }
-            Paragraph p7 = new Paragraph(context.getString(R.string.report_dragon_prognosis) + "\n" + dragonPrognosisText + "\n\n");
+            Paragraph p7 = new Paragraph(context.getString(R.string.report_dragon_prognosis) + "\n" + dragonPrognosisText + "\n\n", paraFont);
             p7.setAlignment(Paragraph.ALIGN_LEFT);
-            p7.setFont(paraFont);
             doc.add(p7);
 
             String iscoreResultText = noResult;
@@ -145,9 +144,8 @@ public final class Report {
                         context.getString(R.string.report_probability_of_1_year_death) +
                         patient.getIscorePrognosis().PrognosisFor1Year+"%";
             }
-            Paragraph p8 = new Paragraph(context.getString(R.string.report_iscore_prognosis) + "\n" + iscoreResultText + "\n\n");
+            Paragraph p8 = new Paragraph(context.getString(R.string.report_iscore_prognosis) + "\n" + iscoreResultText + "\n\n", paraFont);
             p8.setAlignment(Paragraph.ALIGN_LEFT);
-            p8.setFont(paraFont);
             doc.add(p8);
 
             String strokeBrickResultText = noResult;
@@ -161,9 +159,8 @@ public final class Report {
                 }
                 strokeBrickResultText = sb.toString();
             }
-            Paragraph p9 = new Paragraph(context.getString(R.string.report_stroke_bricks) + "\n" + strokeBrickResultText);
+            Paragraph p9 = new Paragraph(context.getString(R.string.report_stroke_bricks) + "\n" + strokeBrickResultText, paraFont);
             p9.setAlignment(Paragraph.ALIGN_LEFT);
-            p9.setFont(paraFont);
             doc.add(p9);
 
             CTPictures.InitializeCTPictures(context);
@@ -185,6 +182,8 @@ public final class Report {
             Log.e("PDFCreator", "DocumentException:" + de);
         } catch (IOException e) {
             Log.e("PDFCreator", "ioException:" + e);
+        } catch (NullPointerException e) {
+            Log.e("Report", "nullPointerException:" + e);
         }
         finally {
             doc.close();

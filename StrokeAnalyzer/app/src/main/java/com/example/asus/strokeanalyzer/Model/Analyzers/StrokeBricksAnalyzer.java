@@ -4,7 +4,6 @@ import com.example.asus.strokeanalyzer.Model.EnumValues.Form;
 import com.example.asus.strokeanalyzer.Model.EnumValues.Region;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.Answer;
 import com.example.asus.strokeanalyzer.Model.Form.Answer.NumericAnswer;
-import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.ExpectedAnswer;
 import com.example.asus.strokeanalyzer.Model.Form.FormsStructure;
 import com.example.asus.strokeanalyzer.Model.NihssExamination;
 import com.example.asus.strokeanalyzer.Model.Patient;
@@ -46,14 +45,6 @@ public final class StrokeBricksAnalyzer {
      * Wartość: opis regionu
      */
     private static Dictionary<Region,String> regionsDescription;
-    /**
-     * Słownik przechowujący oczekiwane odpowiedzi na pytania formularza skali NIHSS w odniesieniu do
-     * powiązania z modelem Stroke Bricks.
-     * Klucz: id pytania formularza.
-     * Wartość: Obiekt klasy {@link ExpectedAnswer} przechowujący poprawną bądź możliwą odpowiedź na dane pytanie.
-     */
-    private static Dictionary<Integer, ExpectedAnswer> correctAnswers;
-
 
     /**
      * Domyślny konstruktor bezparametrowy klasy oznaczony jako prywatny, by uniemożliwić
@@ -75,7 +66,7 @@ public final class StrokeBricksAnalyzer {
      *          użytkownika
      */
     public static List<Region> AnalyzeRegionsAffection(Patient p) {
-        if (correctAnswers == null || regionsDescription == null) {
+        if (regionsDescription == null) {
             Initialize();
         }
 

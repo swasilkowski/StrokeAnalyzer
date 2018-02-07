@@ -23,7 +23,7 @@ public class Question {
     /**
      * Waga pytania. Informuje w jakim kolorze wyświetlona powinna być treść pytania.
      */
-    private QuestionStrength Strength;
+    private final QuestionStrength Strength;
 
     /**
      * Konstruktor ustawiający id pytania oraz jego treść.

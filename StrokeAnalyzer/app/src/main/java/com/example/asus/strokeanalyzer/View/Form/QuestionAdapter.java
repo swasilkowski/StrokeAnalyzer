@@ -2,7 +2,6 @@ package com.example.asus.strokeanalyzer.View.Form;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -50,11 +49,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     /**
      * Kontekst aplikacji.
      */
-    Context context;
+    final Context context;
     /**
      * Zmienna informująca o tym, czy odpowiedzi użytkownika mają być edytowalne czy jedynie wyświetlane.
      */
-    private boolean editable;
+    private final boolean editable;
 
     /**
      * Klasa bazowa dla klas zarządzających elementami związanymi z widokiem pojedynczego pytania

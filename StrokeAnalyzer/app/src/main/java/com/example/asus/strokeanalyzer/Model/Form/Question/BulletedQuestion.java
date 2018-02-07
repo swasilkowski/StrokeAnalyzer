@@ -1,7 +1,5 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
-import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
-
 import java.util.Map;
 
 /**
@@ -33,31 +31,6 @@ public class BulletedQuestion extends Question {
         possibleValues = answers;
     }
 
-    /**
-     * Konstruktor ustawiający id pytania, jego treść i wagę oraz możliwe odpowiedi na pytanie.
-     *
-     * @param id id pytania
-     * @param text treść pytania
-     * @param _strength waga pytania
-     * @param answers mapa zawierająca możliwe odpowiedzi na dane pytanie powiązane z pewną daną liczbową
-     */
-    public BulletedQuestion(int id, String text, QuestionStrength _strength, Map<Integer,String> answers)
-    {
-        super(id,text,_strength);
-        possibleValues = answers;
-    }
-
-
-    /**
-     * Metoda zwracająca treść wybranej odpowiedzi.
-     *
-     * @param ind liczba charakteryzująca daną odpowiedż
-     * @return tekst odpowiedzi
-     */
-    public String GetValueDescription(int ind)
-    {
-        return possibleValues.get(ind);
-    }
 
     /**
      * Metoda zwracająca wszystkie możliwe odpowiedzi na dane pytanie.

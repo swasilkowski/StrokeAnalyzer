@@ -21,10 +21,9 @@ public interface OtherDataDao {
      * Metoda zapisująca odpowiedź na pytanie w bazie danych.
      *
      * @param data dane stanowiące odpowiedź na pytanie
-     * @return id wpisu w bazie danych
      */
     @Insert
-    long insert(OtherData data);
+    void insert(OtherData data);
 
     /**
      * Metoda pobierająca z bazy danych wszystkie odpowiedzi na pytania powiązane z pacjentem o id patientId.

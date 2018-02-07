@@ -2,7 +2,7 @@
     <string name="app_name">StrokeAnalyzer</string>
     <string name="list_bt_text">Lista pacjentów</string>
     <string name="new_patient_bt_text">Dodaj nowego pacjenta</string>
-    <string name="name_hint">Imię pacjenta</string>
+    <string name="name_hint">Imi\u0119 pacjenta</string>
     <string name="surname_hint">Nazwisko pacjenta</string>
     <string name="patient_number_hint">Numer pacjenta</string>
     <string name="nihss"><u>NIHSS</u></string>
@@ -14,26 +14,26 @@
     <string name="result_string">Wyniki</string>
     <string name="report_string">Raport</string>
     <string name="scales_string">Badania</string>
-    <string name="delete_patient">Usuń</string>
+    <string name="delete_patient">Usu\u0144</string>
     <string name="demographic_and_clinic_data">Dane demograficzne i kliniczne</string>
     <string name="no_result_text">Brak wyniku</string>
-    <string name="view_ct_pictures">Zdjęcia TK</string>
-    <string name="wrong_answers_text">Czynniki wykluczające z leczenia:</string>
+    <string name="view_ct_pictures">Zdj\u0119cia TK</string>
+    <string name="wrong_answers_text">Czynniki wykluczaj\u0105ce z leczenia:</string>
     <string name="score_text">Suma punktów:</string>
-    <string name="dragon_good_outcome_text">Prawdopodobieństwo powodzenia (%):</string>
-    <string name="dragon_miserable_outcome_text">Prawdopodobieństwo niepowodzenia (%):</string>
-    <string name="hat_fatalICH_text">Ryzyko wystąpienia śmiertelnego krwotoku śródmózgowego (%):</string>
-    <string name="hat_symptomaticICH_text">Ryzyko wystąpienia objawowego krwotoku śródmózgowego (%):</string>
+    <string name="dragon_good_outcome_text">Prawdopodobie\u0144stwo powodzenia (%):</string>
+    <string name="dragon_miserable_outcome_text">Prawdopodobie\u0144stwo niepowodzenia (%):</string>
+    <string name="hat_fatalICH_text">Ryzyko wyst\u0105pienia \u015Bmiertelnego krwotoku \u015Bródmózgowego (%):</string>
+    <string name="hat_symptomaticICH_text">Ryzyko wyst\u0105pienia objawowego krwotoku \u015Bródmózgowego (%):</string>
     <string name="iscore_30days">Prognoza na 30 dni:</string>
     <string name="iscore_1year">Prognoza na 1 rok:</string>
-    <string name="iscore_treatment">Wskazania do leczenia trombolitycznego (według skali iScore):</string>
+    <string name="iscore_treatment">Wskazania do leczenia trombolitycznego (wed\u0142ug skali iScore):</string>
     <string name="profile_bt">Otwórz profil pacjenta</string>
-    <string name="delete_bt">Usuń</string>
+    <string name="delete_bt">Usu\u0144</string>
     <string name="report_dialog">Po wyborze opcji \'OK\' raport zostanie wygenerowany i
-        zapisany w pamięci Twojego telefonu. Otrzymasz także możliwość udostępnienia wygenerowanego raportu. \n\n
-        Jeżeli nie chcesz udostępniać raportu wybierz przycisk cofania, gdy pojawi się okno udostępniania.</string>
-    <string name="delete_dialog">Czy jesteś pewny, że chcesz usunąć dane pacjenta?</string>
-    <string name="number_alert_dialog">Pacjent o takim numerze już istnieje. Czy jesteś pewny, że chcesz utworzyć
+        zapisany w pami\u0119ci Twojego telefonu. Otrzymasz tak\u017Ce mo\u017Cliwo\u015B\u0107 udost\u0119pnienia wygenerowanego raportu. \n\n
+        Je\u017Celi nie chcesz udost\u0119pnia\u0107 raportu wybierz przycisk cofania, gdy pojawi si\u0119 okno udost\u0119pniania.</string>
+    <string name="delete_dialog">Czy jeste\u015B pewny, \u017Ce chcesz usun\u0105\u0107 dane pacjenta?</string>
+    <string name="number_alert_dialog">Pacjent o takim numerze ju\u017C istnieje. Czy jeste\u015B pewny, \u017Ce chcesz utworzy\u0107
         pacjenta z tym samym numerem?</string>
     <string name="report_generation">Generowanie raportu</string>
     <string name="number_alert_title">Powtórzony numer</string>
@@ -41,10 +41,10 @@
     <string name="cancel_bt">Zamknij</string>
     <string name="new_patient_data_label">DANE OSOBOWE</string>
     <string name="new_patient_id_label">DANE IDENTYFIKACYJNE</string>
-    <string name="toast_new_patient">Należy uzupełnić wszystkie pola formularza.</string>
-    <string name="report_share_title">Udostępnij za pomocą…</string>
+    <string name="toast_new_patient">Nale\u017Cy uzupe\u0142ni\u0107 wszystkie pola formularza.</string>
+    <string name="report_share_title">Udost\u0119pnij za pomoc\u0105…</string>
     <string name="report_share_msg_title">[Stroke Analyzer]Raport z badania</string>
-    <string name="report_share_msg_text">Aplikacja Stroke Analyzer przesyła raport z analizy stanu zdrowia pacjenta o numerze: \n</string>
+    <string name="report_share_msg_text">Aplikacja Stroke Analyzer przesy\u0142a raport z analizy stanu zdrowia pacjenta o numerze: \n</string>
 
     <string name="done_tag">done</string>
     <string name="new_patient_tag">new_patient</string>
@@ -55,27 +55,27 @@
     <string name="report_extension">.pdf</string>
     <string name="report_no_result">Brak wyniku.</string>
     <string name="report_patient_number">Nr pacjenta </string>
-    <string name="report_name">Imię: </string>
+    <string name="report_name">Imi\u0119: </string>
     <string name="report_surname">Nazwisko: </string>
     <string name="report_nihss_result">Wynik NIHSS: </string>
-    <string name="report_yes">TAK</string>
-    <string name="report_no">NIE</string>
+    <string name="report_yes">tak</string>
+    <string name="report_no">nie</string>
     <string name="report_treatment_exclusion_reasons">Powody wykluczenia:</string>
     <string name="report_qualification_for_treatment">Kwalifikacja do leczenia? </string>
     <string name="report_haemorrhage_risk">Ryzyko wylewu: </string>
-    <string name="report_fatal_haemorrhage_risk">Ryzyko śmiertelnego wylewu: </string>
+    <string name="report_fatal_haemorrhage_risk">Ryzyko \u015Bmiertelnego wylewu: </string>
     <string name="report_hat_prognosis">Rokowania HAT:</string>
-    <string name="report_probability_of_good_outcome">Prawdopodobieństwo dobrego wyniku (mRS &lt; 3): </string>
-    <string name="report_probability_of_miserable_outcome">Prawdopodobieństwo złego wyniku (mRS &gt; 4): </string>
+    <string name="report_probability_of_good_outcome">Prawdopodobie\u0144stwo dobrego wyniku (mRS &lt; 3): </string>
+    <string name="report_probability_of_miserable_outcome">Prawdopodobie\u0144stwo z\u0142ego wyniku (mRS &gt; 4): </string>
     <string name="report_dragon_prognosis">Rokowania DRAGON:</string>
-    <string name="report_probability_of_30_days_death">Prawdopodobieństwo śmierci po 30 dniach: </string>
-    <string name="report_probability_of_1_year_death">Prawdopodobieństwo śmierci po roku: </string>
+    <string name="report_probability_of_30_days_death">Prawdopodobie\u0144stwo \u015Bmierci po 30 dniach: </string>
+    <string name="report_probability_of_1_year_death">Prawdopodobie\u0144stwo \u015Bmierci po roku: </string>
     <string name="report_iscore_prognosis">Rokowania iScore:</string>
     <string name="report_stroke_bricks">Prawdopodobne regiony udaru na podstawie StrokeBricks:</string>
 
     <string name="content_desc_logo">Logo aplikacji.</string>
     <string name="content_desc_brain">Bazowy obraz CT mózgu.</string>
-    <string name="content_desc_mod_brain">Obraz CT mózgu z obszarami występowania udaru.</string>
+    <string name="content_desc_mod_brain">Obraz CT mózgu z obszarami wyst\u0119powania udaru.</string>
 
 
 </resources>

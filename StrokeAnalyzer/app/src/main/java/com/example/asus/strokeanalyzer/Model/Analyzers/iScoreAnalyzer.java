@@ -153,6 +153,7 @@ public final class iScoreAnalyzer {
      * @return wartość procentowa prawdopodobieństwa zgodnu pacjenta w przeciągu 30 dni
      *          od wystąpienia udaru
      */
+    @SuppressWarnings("ConstantConditions")
     private static double getPredictionFor30Days(int points) {
         if (points < 59) {
             return 0;
@@ -237,6 +238,7 @@ public final class iScoreAnalyzer {
      *          od wystąpienia udaru
      * @return opis wyniku zawierający przedział punktowy oraz wartość procentową
      */
+    @SuppressWarnings("ConstantConditions")
     private static String getDescriptionFor30Days(int points, double procent) {
         String text;
         if (points < 59) {
@@ -326,6 +328,7 @@ public final class iScoreAnalyzer {
      * @return wartość procentowa prawdopodobieństwa zgodnu pacjenta w przeciągu 1 roku
      *          od wystąpienia udaru
      */
+    @SuppressWarnings("ConstantConditions")
     private static double getPredictionFor1Year(int points) {
         if (points < 59) {
             return 0;
@@ -395,6 +398,7 @@ public final class iScoreAnalyzer {
      *          od wystąpienia udaru
      * @return opis wyniku zawierający przedział punktowy oraz wartość procentową
      */
+    @SuppressWarnings("ConstantConditions")
     private static String getDescriptionFor1Year(int points, double procent) {
         String text;
         if (points < 59) {

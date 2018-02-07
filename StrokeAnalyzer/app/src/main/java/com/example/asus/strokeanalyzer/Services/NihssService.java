@@ -55,26 +55,13 @@ public class NihssService {
     }
 
     /**
-     * Metoda zwracająca z bazy danych nastarsze badanie w skali NIHSS dla pacjenta o podany id.
-     *
-     * @param patientId id pacjenta, którego badanie ma zostać pobrane z bazy danych
-     * @return obiekt zawierający dane nastarszego badania w skali NIHSS
-     */
-    public static NihssExamination getEarliestNihssExaminationForPatient(int patientId) {
-        com.example.asus.strokeanalyzer.Entities.NihssExamination entity;
-        entity = db.nihssDao().SelectEarliestByPatientId(patientId);
-        return EntityToModel(entity);
-    }
-
-    /**
      * Metoda umożliwiająca dodanie do bazy danych nowego badania w skali NIHSS dla pacjenta o podanym id.
      *
      * @param examination obiekt przechowujący dane badania w skali NIHSS
      * @param patientId id pacjenta, dla którego badanie w skali NIHSS chcemy dodać do bazy danych
-     * @return id badanie w bazie danych
      */
-    public static long addNihssExaminationForPatient(NihssExamination examination, int patientId){
-        return db.nihssDao().insert(ModelToEntity(examination, patientId));
+    public static void addNihssExaminationForPatient(NihssExamination examination, int patientId) {
+        db.nihssDao().insert(ModelToEntity(examination, patientId));
     }
 
     /**
@@ -105,6 +92,9 @@ public class NihssService {
         for (Answer answer:
              model.Answers) {
             NumericAnswer numericAnswer = answer instanceof NumericAnswer ? ((NumericAnswer) answer) : null;
+            if (numericAnswer == null) {
+                throw new IndexOutOfBoundsException();
+            }
             switch (numericAnswer.GetQuestionID()){
                 case 101:
                     entity.Question1 = numericAnswer.Value;

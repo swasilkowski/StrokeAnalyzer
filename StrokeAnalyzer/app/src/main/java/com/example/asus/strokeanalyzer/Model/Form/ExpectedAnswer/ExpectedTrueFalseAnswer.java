@@ -13,21 +13,11 @@ public class ExpectedTrueFalseAnswer extends ExpectedAnswer {
     /**
      * Oczekiwana wartość odpowiedzi.
      */
-    public boolean CorrectValue;
+    public final boolean CorrectValue;
     /**
      * Liczba punktów przydzielana w przypadku, gdy odpowiedź jest poprawna.
      */
     public int Score;
-
-    /**
-     *  Konstruktor ustawiający id pytania, którego dotyczy odpowiedź.
-     *
-     * @param questionId id pytania, którego dotyczy odpowiedź
-     */
-    public ExpectedTrueFalseAnswer(int questionId)
-    {
-        super(questionId);
-    }
 
     /**
      * Konstruktor umożliwiający ustawienie poprawnej odpowiedzi. Ustawia także id pytania,
