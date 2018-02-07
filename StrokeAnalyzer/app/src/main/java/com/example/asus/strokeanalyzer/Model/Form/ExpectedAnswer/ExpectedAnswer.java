@@ -25,13 +25,4 @@ public class ExpectedAnswer {
         this.questionId = questionId;
     }
 
-    /**
-     * Metoda zwracająca id pytania, którego dotyczy odpowiedź.
-     *
-     * @return id pytania, którego dotyczy odpowiedź
-     */
-    public int GetQuestionID()
-    {
-        return questionId;
-    }
 }

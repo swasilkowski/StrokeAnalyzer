@@ -64,18 +64,6 @@ public class Patient {
     }
 
     /**
-     * Metoda wyliczająca sumę punktów w skalii NIHSS dla najstarszego (pierwszego) badania pacjenta.
-     *
-     * @return suma punktów w skali NIHSS dla najstarszego badania
-     */
-    public int getNihssOnAdmission() {
-        NihssExamination examination = NihssService.getEarliestNihssExaminationForPatient(Id);
-        if(examination == null)
-            return -1;
-        return NihssAnalyzer.CountNihssSum(examination);
-    }
-
-    /**
      * Metoda wyzaczająca regiony możliwego wystąpienia udaru mózgu przy wykorzystaniu modelu Stroke Bricks.
      *
      * @return lista regionów możliwego wystąpienia udaru mózgu

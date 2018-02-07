@@ -34,7 +34,7 @@ public class BulletedQ implements Question{
     /**
      * Waga pytania wykorzystywana do kolorowania tekstu treści pytania.
      */
-    private QuestionStrength strength;
+    private final QuestionStrength strength;
 
 
     /**
