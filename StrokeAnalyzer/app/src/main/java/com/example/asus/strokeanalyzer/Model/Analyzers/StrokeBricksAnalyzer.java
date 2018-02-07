@@ -19,7 +19,7 @@ import java.util.Set;
  * Klasa wyznaczająca zbiór regionów mózgu dotkniętych udarem przy wykorzystaniu modelu Stroke Bricks
  * oraz skali NIHSS.
  *
- * @author Marta Marciszewicz & Stanisław Wasilkowski
+ * @author Marta Marciszewicz
  */
 
 public final class StrokeBricksAnalyzer {
@@ -122,7 +122,7 @@ public final class StrokeBricksAnalyzer {
         //depending on dominant hemisphere
         if(questionID==102 || questionID==103 || questionID==113)
         {
-            ////right hemisphere dominant
+            //right hemisphere dominant
             if(((NumericAnswer)patient.PatientAnswers.get(116)).Value>0)
                 return regionsAffectionR.get(questionID);
             else return  regionsAffectionL.get(questionID);
@@ -159,7 +159,7 @@ public final class StrokeBricksAnalyzer {
             }
 
             List<Region> tmpList;
-            ////right hemisphere dominant
+            //right hemisphere dominant
             if(((NumericAnswer)patient.PatientAnswers.get(116)).Value>0)
                 tmpList= regionsAffectionL.get(questionID);
             else tmpList=  regionsAffectionR.get(questionID);
@@ -200,7 +200,7 @@ public final class StrokeBricksAnalyzer {
      * wiążący pytania skali NIHSS z regionami modelu Stroke Bricks.
      */
     private static void Initialize() {
-        //correctAnswers = new Hashtable<>();
+
         regionsDescription = new Hashtable<>();
         regionsDescription.put(Region.A1_L,"A1_L");
         regionsDescription.put(Region.A1_R, "A1_R");

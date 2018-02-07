@@ -49,6 +49,9 @@ public final class TreatmentAnalyzer {
      *          na ostateczną decyję w przypadku gdy jest ona negatywna; wynik może
      *          przyjąć wartość null jeżeli nie wszystkie wymagane odpowiedzi zostały udzielone przez
      *          użytkownika
+     * @throws WrongQuestionsSetException zestaw odpowiedzi udzielonych przez użytkownika jest niezgodny
+     *                                      z zestawem pytań dla tej skali (być może użytkownik nie udzielił
+     *                                      odpowiedzi na jedno z wymaganych pytań)
      */
     public static TreatmentResult MakeTreatmentDecision(Patient p) throws WrongQuestionsSetException {
         if (correctAnswers == null) {

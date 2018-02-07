@@ -32,7 +32,6 @@ import java.io.File;
  */
 public class PatientProfileFragment extends Fragment {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     /**
      * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
      * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
@@ -120,13 +119,12 @@ public class PatientProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patient_profile, container, false);
-
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
         PatientService patientService = new PatientService(view.getContext());
         patient = patientService.GetPatientById(patientID);
+
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
         {
@@ -199,7 +197,6 @@ public class PatientProfileFragment extends Fragment {
                 }
             };
 
-            //print dialog with actions for patient
             DialogFragment dialog = ReportFragment.newInstance(patient.Id, listener);
             dialog.show(activity.getSupportFragmentManager(), "ReportFragment");
         }

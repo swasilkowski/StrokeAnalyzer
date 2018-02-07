@@ -36,11 +36,13 @@ public class BulletedQ implements Question{
      */
     private QuestionStrength strength;
 
+
     /**
-     * Konstruktor ustawiający id pytania, jego treść oraz możliwe odpowiedi na pytanie.
+     * Konstruktor ustawiający id pytania, jego treść, wagę oraz możliwe odpowiedi na pytanie.
      *
      * @param id id pytania
-     * @param text treśc pytania
+     * @param text treść pytania
+     * @param strength waga pytania
      * @param possibleValues mapa zawierająca możliwe odpowiedzi na dane pytanie powiązane z pewną daną liczbową
      */
     public BulletedQ(int id ,String text, QuestionStrength strength, Map<Integer, String> possibleValues)

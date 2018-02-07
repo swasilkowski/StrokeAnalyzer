@@ -37,6 +37,11 @@ public class NihssAdapter extends RecyclerView.Adapter<NihssAdapter.ViewHolder> 
         final public TextView sum;
         public final View mView;
 
+        /**
+         * Kontruktor pobierający kontrolki z widoku pojedynczego elementu listy.
+         *
+         * @param view widok pojedynczego elementu listy
+         */
         public ViewHolder(View view) {
             super(view);
             mView = view;

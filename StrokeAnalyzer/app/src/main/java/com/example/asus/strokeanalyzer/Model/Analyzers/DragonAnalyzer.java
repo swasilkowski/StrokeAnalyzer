@@ -46,6 +46,9 @@ public final class DragonAnalyzer {
      *          procent powodzenia oraz procent niepowodzenia leczenia trombolitycznego; wynik może
      *          przyjąć wartość null jeżeli nie wszystkie wymagane odpowiedzi zostały udzielone przez
      *          użytkownika
+     * @throws WrongQuestionsSetException zestaw odpowiedzi udzielonych przez użytkownika jest niezgodny
+     *                                      z zestawem pytań dla tej skali (być może użytkownik nie udzielił
+     *                                      odpowiedzi na jedno z wymaganych pytań)
      */
     public static DragonResult AnalyzePrognosis(Patient p) throws WrongQuestionsSetException {
         if (correctAnswers == null) {

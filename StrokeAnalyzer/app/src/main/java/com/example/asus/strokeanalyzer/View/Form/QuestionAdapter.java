@@ -386,7 +386,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     /**
      * Konstruktor ustawiający listę pytań formularza wykorzystywaną przez adapter do wyświetlenia we fragmencie.
      *
+     * @param context kontekst aplikacji
      * @param questions lista pytań, która powinna zostać wyświetlona we fragmencie
+     * @param editable informacja o tym, czy formularz ma być edytowalny (true - formularz edytowalny; false
+     *                 - formularz jedynie do podglądu)
      */
     QuestionAdapter(Context context, final List<Question> questions, boolean editable) {
         this.questions = questions;

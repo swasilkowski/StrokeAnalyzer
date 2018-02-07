@@ -9,6 +9,8 @@ import java.util.List;
 /**
  * Klasa umożliwiająca udostępnianie raportu innym aplikacjom zainstalowanym na urządzeniu mobilnym.
  * Wymagana przez mechanizm udostępniania - nie zawiera żadnej implementacji.
+ *
+ * @author Marta Marciszewicz
  */
 
 public class ReportChooserTargetService extends ChooserTargetService {

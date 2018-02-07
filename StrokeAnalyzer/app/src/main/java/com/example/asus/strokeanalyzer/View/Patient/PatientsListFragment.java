@@ -25,6 +25,8 @@ import java.util.List;
 /**
  * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie listy pacjentów, których
  * profile przechowywane są w bazie danych aplikacji.
+ *
+ * @author Marta Marciszewicz
  */
 public class PatientsListFragment extends Fragment  {
 
@@ -78,6 +80,7 @@ public class PatientsListFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_patients_list, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
+        //set action bar
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
         {
@@ -94,7 +97,6 @@ public class PatientsListFragment extends Fragment  {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
             PatientService patientService = new PatientService(getContext());
-
             //get patients list from database
             patients = patientService.GetPatientsList();
 
@@ -102,7 +104,6 @@ public class PatientsListFragment extends Fragment  {
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(pAdapter);
             recyclerView.addItemDecoration(new LineDecoration(this.getContext()));
-
             recyclerView.addOnItemTouchListener(new RecyclerClickListener( getActivity().getApplicationContext(), new ClickListener() {
                 @Override
                 public void onClick(View view, int position) {

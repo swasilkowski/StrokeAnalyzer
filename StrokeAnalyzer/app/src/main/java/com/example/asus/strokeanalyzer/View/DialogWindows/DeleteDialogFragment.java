@@ -12,6 +12,8 @@ import com.example.asus.strokeanalyzer.R;
  * Klasa będąca rozszerzeniem klasy {@link DialogFragment}. Wykorzystywana jest w celu otrzymania potwierdzenia od
  * użytkownika chęci usunięcia profilu pacjenta z aplikacji.
  * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link DeleteDialogFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class DeleteDialogFragment extends DialogFragment {
 
@@ -52,6 +54,7 @@ public class DeleteDialogFragment extends DialogFragment {
      */
     public static DeleteDialogFragment newInstance(int id, DeletePatientDialogListener listener) {
         DeleteDialogFragment fragment = new DeleteDialogFragment();
+
         fragment._listener = listener;
         Bundle args = new Bundle();
         args.putInt(ARG_PATIENT_ID, id);
@@ -86,27 +89,22 @@ public class DeleteDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         builder.setTitle(R.string.delete_patient)
                 .setView(R.layout.fragment_delete_dialog)
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //generate report
+
                         _listener.onDialogDeletePositiveClick(DeleteDialogFragment.this, patientID);
 
                     }
                 })
                 .setNegativeButton(R.string.cancel_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
-                        // User cancelled the dialog
-                        // Send the negative button event back to the host activity
                         _listener.onDialogDeleteNegativeClick(DeleteDialogFragment.this);
                     }
                 });
-        // Create the AlertDialog object and return it
+
         return builder.create();
     }
 }

@@ -29,10 +29,11 @@ public class DescriptiveQ implements Question {
     private QuestionStrength strength;
 
     /**
-     * Konstruktor ustawiający id pytania oraz jego treść.
+     * Konstruktor ustawiający id pytania, jego treść oraz wagę.
      *
      * @param id id pytania
      * @param text treść pytania
+     * @param strength waga pytania
      */
     public DescriptiveQ(int id ,String text, QuestionStrength strength)
     {

@@ -32,10 +32,11 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 /**
  * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie listy badań w skali NIHSS pacjenta.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link NihssExaminationFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class NihssExaminationFragment extends Fragment {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     /**
      * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
      * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
@@ -119,11 +120,10 @@ public class NihssExaminationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nihss_examination, container, false);
-
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
+        //set action bar
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
         {
@@ -139,8 +139,6 @@ public class NihssExaminationFragment extends Fragment {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
             PatientService patientService = new PatientService(getContext());
-
-            //get patients list from database
             final List<NihssExamination> examinations = patientService.GetPatientById(patientID).getNihssHistory();
             Collections.reverse(examinations);
 
@@ -148,7 +146,6 @@ public class NihssExaminationFragment extends Fragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(nAdapter);
             recyclerView.addItemDecoration(new LineDecoration(this.getContext()));
-
             recyclerView.addOnItemTouchListener(new RecyclerClickListener( getActivity().getApplicationContext(), new ClickListener() {
                 @Override
                 public void onClick(View view, int position) {
@@ -194,9 +191,7 @@ public class NihssExaminationFragment extends Fragment {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

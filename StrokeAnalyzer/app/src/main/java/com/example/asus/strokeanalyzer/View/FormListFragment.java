@@ -24,14 +24,12 @@ import com.example.asus.strokeanalyzer.View.Nihss.NihssExaminationFragment;
  */
 public class FormListFragment extends Fragment {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     /**
      * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
      * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
      */
     private static final String ARG_PATIENT_ID = "patient_id";
 
-    //Id of patient whose data are going to be changed
     /**
      * Id pacjenta, którego profil ma zostać edytowany.
      */
@@ -107,7 +105,6 @@ public class FormListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_form_list, container, false);
-
         view.setBackgroundColor(getResources().getColor(R.color.buttonBackgroundColor, null));
         view.setClickable(true);
 
@@ -117,12 +114,10 @@ public class FormListFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                //move to proper form
 
                 AppCompatActivity activity = ((AppCompatActivity)getActivity());
                 if(activity!=null)
                 {
-
                     FragmentManager _fmanager = activity.getSupportFragmentManager();
                     if(_fmanager!=null)
                     {

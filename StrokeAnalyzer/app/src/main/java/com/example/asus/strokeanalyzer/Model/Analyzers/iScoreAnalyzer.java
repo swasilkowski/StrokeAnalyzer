@@ -54,8 +54,9 @@ public final class iScoreAnalyzer {
      * @param patient obiekt klasy Patient, dla którego dokonywana jest analiza
      * @return wynik przeprowadzanej analizy; zawiera liczbę punktów skali iScore dla przewidywań
      *          dotyczących 1 roku i 30 dni od wystąpienia udaru mózgu, procent określający prawdopodobieństwo
-     *          zgonu pacjenta w przeciągu 1 roku oraz procent określający prawdopodobieństwo
-     *          zgonu pacjenta w przeciągu 30 dni od zajścia udaru mózgu; wynik może
+     *          zgonu pacjenta w przeciągu 1 roku, procent określający prawdopodobieństwo
+     *          zgonu pacjenta w przeciągu 30 dni od zajścia udaru mózgu oraz rekomendacje dotyczącą
+     *          zastosowania leczenia trombolitycznego wobec pacjenta; wynik może
      *          przyjąć wartość null jeżeli nie wszystkie wymagane odpowiedzi zostały udzielone przez
      *          użytkownika
      */
@@ -485,7 +486,9 @@ public final class iScoreAnalyzer {
      * @param correctAnswers słownik zawierający poprawne odpowiedzi, z którymi porównywane są odpowiedzi
      *                       udzielone przez użytkownika
      * @return suma punktów w skali iScore dla podanego pacjenta i zbioru poprawnych odpowiedzi
-     * @throws WrongQuestionsSetException przekazany zbiór poprawnych odpowiedzi jest niepoprawny (zły zestaw odpowiedzi)
+     * @throws WrongQuestionsSetException zestaw odpowiedzi udzielonych przez użytkownika jest niezgodny
+     *                                      z zestawem pytań dla tej skali (być może użytkownik nie udzielił
+     *                                      odpowiedzi na jedno z wymaganych pytań)
      */
     private static int countPoints(Patient p, Dictionary<Integer, ExpectedAnswer> correctAnswers) throws WrongQuestionsSetException {
         //adding age to the points sum

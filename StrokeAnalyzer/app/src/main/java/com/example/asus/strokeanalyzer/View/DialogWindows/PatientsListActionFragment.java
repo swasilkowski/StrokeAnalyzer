@@ -17,6 +17,8 @@ import com.example.asus.strokeanalyzer.View.PatientProfileFragment;
  * Klasa będąca rozszerzeniem klasy {@link DialogFragment}. Pozwala na wybór akcji, którą użytkownik chce wykonać
  * dla wybranego z listy pacjenta.
  * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link PatientsListActionFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class PatientsListActionFragment extends DialogFragment {
 
@@ -101,7 +103,7 @@ public class PatientsListActionFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_patients_list_action, container, false);
         patientService = new PatientService(view.getContext());
 

@@ -12,17 +12,14 @@ import com.example.asus.strokeanalyzer.Model.Form.ExpectedAnswer.RangeClassifier
  */
 
 public class NumericQ implements Question {
-    //id pytania
     /**
      * Id pytania.
      */
     final private int id;
-    //tresc pytania
     /**
      * Treść pytania.
      */
     final private String text;
-    //wartosc odpowiedzi
     /**
      * Wartość odpowiedzi udzielonej przez użytkownika.
      */
@@ -40,12 +37,14 @@ public class NumericQ implements Question {
      */
     private QuestionStrength strength;
 
+
     /**
-     * Konstruktor ustawiający id pytania, jego treść oraz klasyfikator, określający przedział dopuszczalnych
+     * Konstruktor ustawiający id pytania, jego treść, wagę oraz klasyfikator, określający przedział dopuszczalnych
      * wartości dla wprowadzanej odpowiedzi.
      *
      * @param id id pytania
      * @param text treść pytania
+     * @param strength waga pytania
      * @param _range przedział liczbowy, do którego powinna należeć odpowiedź udzielana przez
      *               użytkownika
      */

@@ -41,7 +41,6 @@ public class CTPictureFullFragment extends Fragment {
      */
     public static CTPictureFullFragment newInstance(Bitmap image) {
         CTPictureFullFragment fragment = new CTPictureFullFragment();
-        //fragment.image = image;
 
         Bundle args = new Bundle();
         args.putParcelable(ARG_PICTURE, image);

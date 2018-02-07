@@ -89,7 +89,6 @@ public class NewPatientFragment extends Fragment {
         if(context!=null)
             view.setBackgroundColor(ContextCompat.getColor(context,R.color.colorBackground));
         view.setClickable(true);
-        //mListener.setTitleName(getString(R.string.title_fragmet_change_name));
         name = view.findViewById(R.id.name);
         surname =  view.findViewById(R.id.surname);
         number =  view.findViewById(R.id.patientNumber);
@@ -134,9 +133,7 @@ public class NewPatientFragment extends Fragment {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -223,12 +220,9 @@ public class NewPatientFragment extends Fragment {
                     }
                 };
 
-
-                //dialog.setArguments(bundel);
                 AppCompatActivity activity = (AppCompatActivity)getActivity();
                 if(activity!=null)
                 {
-                    //print dialog with actions for patient
                     DialogFragment dialog = NumberAlertFragment.newInstance(listener);
                     dialog.show(activity.getSupportFragmentManager(), "NumberAlertFragment");
                 }

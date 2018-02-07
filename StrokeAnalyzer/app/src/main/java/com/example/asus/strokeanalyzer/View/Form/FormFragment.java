@@ -39,44 +39,46 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
  * Klasa będąca rozszerzeniem klasy {@link Fragment}. Pozwala na wyświetlenie listy pytań wybranego przez użytkownika
  * formularza, ich uzupełnienie oraz zapisanie zebranych danych w bazie danych.
  * Do stworzenia instancji tego fragmentu należy wykorzystać metodę {@link FormFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class FormFragment extends Fragment {
 
     /**
      * Obiekt stanowiący kontener do wyświetlania pytań formularza.
      */
-    private RecyclerView recyclerView; //list of questions
+    private RecyclerView recyclerView;
     /**
      * Adapter zapewniający powiązanie zestawu danych (pytań formularza) z widokami wyświetlanymi wewnątrz
      * obiektu klasy {@link RecyclerView}.
      */
-    private QuestionAdapter qAdapter; //questions list adapter
+    private QuestionAdapter qAdapter;
     /**
      * Rodzaj wyświetlanego formularza.
      */
-    private Form formType; //typ of a form
+    private Form formType;
     /**
      * Obiekt klasy {@link Patient} reprezentujący pacjenta, którego dane będą edytowane w formularzu.
      */
-    private Patient patient; //patient whose data is supposed to be changed
+    private Patient patient;
     /**
      * Id pacjenta, którego dane będą edytowane w formularzu.
      */
-    private Integer patientID; //id of this patient
+    private Integer patientID;
     /**
      * Wartość mówiąca o tym, czy formularz tworzony jest na nowo.
      * True - jeżeli formularz będzie tworzony na nowo;
      * False - jeżeli następuje edycja formularza
      */
-    private boolean newForm; //true if new form is being created
+    private boolean newForm;
     /**
      * Lista pytań wyświetlanych w formularzu.
      */
-    final private List<Question> printQuestions = new ArrayList<>(); // list of questions printed in this form
+    final private List<Question> printQuestions = new ArrayList<>();
     /**
      * Obiekt umożliwiający wykonywanie operacji na bazie danych aplikacji.
      */
-    private PatientService patientService; //serwis used for communication with database
+    private PatientService patientService;
     /**
      * Wartość informująca o tym, czy formularz ma być edytowalny, czy jedynie przeznaczony do podglądu.
      * True - formularz jest edytowalny;
@@ -175,6 +177,7 @@ public class FormFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_form, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
 
+        //set action bar
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
         {
@@ -202,7 +205,6 @@ public class FormFragment extends Fragment {
             List<Integer> questionIDs = FormsStructure.QuestionsPrintedInForm.get(formType);
 
             if(examination==null)
-            //zmienia sie rozmiar na dwa razy wieksze
                 prepareQuestions(questionIDs);
             else
                 prepareQuestions(examination);
@@ -242,9 +244,6 @@ public class FormFragment extends Fragment {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

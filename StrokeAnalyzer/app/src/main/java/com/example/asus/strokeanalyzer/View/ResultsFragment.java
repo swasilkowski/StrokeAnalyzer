@@ -35,7 +35,6 @@ import java.util.List;
  */
 public class ResultsFragment extends Fragment {
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     /**
      * Zmienna przechowująca klucz, który pozwala na zapisanie i pobranie danych z obiektu klasy
      * {@link Bundle} wykorzystywanego do przekazania parametrów fragmentu.
@@ -119,10 +118,9 @@ public class ResultsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_results, container, false);
-
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
+        
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
         {

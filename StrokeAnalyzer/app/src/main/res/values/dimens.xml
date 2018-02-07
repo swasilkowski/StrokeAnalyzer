@@ -4,44 +4,33 @@
     <dimen name="huge_button_margin_vertical">7dp</dimen>
     <dimen name="huge_button_text">23sp</dimen>
     <dimen name="huge_button_padding">20dp</dimen>
-
     <dimen name="dialog_button_margin">10dp</dimen>
     <dimen name="dialog_button_margin_vertical">3dp</dimen>
     <dimen name="dialog_button_text">20sp</dimen>
-
     <dimen name="logo_space_height">30dp</dimen>
     <dimen name="list_element_padding">10dp</dimen>
     <dimen name="menu_space_height">110dp</dimen>
     <dimen name="menu_space_height_landscape">70dp</dimen>
     <dimen name="frame_margin">10dp</dimen>
     <dimen name="frame_elevation">3dp</dimen>
-
     <dimen name="nihss_sum_padding">5dp</dimen>
     <dimen name="nihss_sum_width">65dp</dimen>
-
     <dimen name="huge_text_size">25sp</dimen>
     <dimen name="small_text_size">18sp</dimen>
     <dimen name="text_margin">12dp</dimen>
     <dimen name="label_text_size">25sp</dimen>
     <dimen name="question_text_size">22sp</dimen>
-
     <dimen name="label_left_padding">10dp</dimen>
     <dimen name="label_top_padding">20dp</dimen>
     <dimen name="label_bottom_padding">7dp</dimen>
-
     <dimen name="menu_text_name">35sp</dimen>
     <dimen name="menu_text_number">25sp</dimen>
-
     <dimen name="edit_text_new_patient_tezt_size">22sp</dimen>
     <dimen name="edit_text_size">20sp</dimen>
     <dimen name="edit_text_margin">7dp</dimen>
-
     <dimen name="text_size">20sp</dimen>
-
     <dimen name="text_padding">5dp</dimen>
-
     <dimen name="text_margin_vertical">3dp</dimen>
-
     <dimen name="logo_size">250dp</dimen>
     <dimen name="logo_margin">20dp</dimen>
     <dimen name="patient_row_padding">12dp</dimen>
@@ -55,13 +44,4 @@
     <dimen name="answer_text_size">18sp</dimen>
     <dimen name="answer_frame_padding">0.5dp</dimen>
 
-
-
-<!--    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="nav_header_vertical_spacing">16dp</dimen>
-    <dimen name="nav_header_height">200dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="text_margin">16dp</dimen>-->
 </resources>

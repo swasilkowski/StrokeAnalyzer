@@ -50,6 +50,9 @@ public final class HatAnalyzer {
      *          procent określający prawdopodobieństwo śmiertelnego krwotoku śródczaszkowego; wynik może
      *          przyjąć wartość null jeżeli nie wszystkie wymagane odpowiedzi zostały udzielone przez
      *          użytkownika
+     * @throws WrongQuestionsSetException zestaw odpowiedzi udzielonych przez użytkownika jest niezgodny
+     *                                      z zestawem pytań dla tej skali (być może użytkownik nie udzielił
+     *                                      odpowiedzi na jedno z wymaganych pytań)
      */
     public static HatResult AnalyzePrognosis(Patient p) throws WrongQuestionsSetException {
         if (correctAnswers == null) {

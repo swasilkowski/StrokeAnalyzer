@@ -12,6 +12,8 @@ import com.example.asus.strokeanalyzer.R;
  * Klasa będąca rozszerzeniem klasy {@link DialogFragment}. Wykorzystywana jest w celu potwierdzenia przez
  * użytkownika chęci wygenerowania raportu z wynikami pacjenta.
  * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link ReportFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class ReportFragment extends DialogFragment {
 
@@ -34,16 +36,19 @@ public class ReportFragment extends DialogFragment {
         void onDialogReportNegativeClick(android.support.v4.app.DialogFragment dialog);
     }
 
-    // Use this instance of the interface to deliver action events
+
     /**
      * Obiekt odpowiadający za kontrolowanie akcji przycisków okna dialogowego.
      */
     private GenerateReportDialogListener _listener;
 
-     /**
+
+    /**
      * Metoda tworząca nową instancję fragmentu przy użyciu podanych parametrów.
      *
      * @param patientID id pacjenta, dla którego ma zostać wygenerowany raport
+     * @param listener obiekt klasy {@link GenerateReportDialogListener}, wykorzystywany w oknie dialogowym
+     *                do monitorowania akcji przycisków okna
      * @return nowa instancja fragmentu ReportFragment
      */
     public static ReportFragment newInstance(int patientID, GenerateReportDialogListener listener) {
@@ -83,14 +88,11 @@ public class ReportFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         builder.setTitle(R.string.report_generation)
                 .setView(R.layout.fragment_report)
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //generate report
                         _listener.onDialogReportPositiveClick(ReportFragment.this, patientID);
 
                     }
@@ -98,12 +100,9 @@ public class ReportFragment extends DialogFragment {
                 .setNegativeButton(R.string.cancel_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        // User cancelled the dialog
-                        // Send the negative button event back to the host activity
                         _listener.onDialogReportNegativeClick(ReportFragment.this);
                     }
                 });
-        // Create the AlertDialog object and return it
         return builder.create();
     }
 

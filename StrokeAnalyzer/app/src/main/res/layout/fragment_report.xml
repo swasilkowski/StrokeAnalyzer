@@ -11,13 +11,5 @@
         android:layout_height="wrap_content"
         android:text="@string/report_dialog"
         style="@style/StandardText"/>
-<!--
-    <EditText
-        android:id="@+id/emailAddress"
-        style="@style/EditTextCustom"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email_hint" />-->
-
 
 </LinearLayout>

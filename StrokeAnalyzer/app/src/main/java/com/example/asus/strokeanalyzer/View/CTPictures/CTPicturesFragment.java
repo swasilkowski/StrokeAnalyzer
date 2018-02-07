@@ -111,9 +111,9 @@ public class CTPicturesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_ctpictures, container, false);
-
         view.setBackgroundColor(getResources().getColor(R.color.pictureBackground, null));
 
+        //set action bar
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
         {
@@ -127,12 +127,10 @@ public class CTPicturesFragment extends Fragment {
         Context context = view.getContext();
         CTPictures.InitializeCTPictures(context);
         GridView picturesGrid = view.findViewById(R.id.CTPicturesView);
-        // Create an object of CustomAdapter and set Adapter to GirdView
         PatientService patientService = new PatientService(context);
         editedPictures = CTPictures.GenerateOutputImage(patientService.GetPatientById(patientID).getStrokeBricksAffectedRegions());
         CTPicturesAdapter customAdapter = new CTPicturesAdapter(editedPictures);
         picturesGrid.setAdapter(customAdapter);
-        // implement setOnItemClickListener event on GridView
         picturesGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -144,7 +142,7 @@ public class CTPicturesFragment extends Fragment {
                         .commit();
             }
         });
-        // Inflate the layout for this fragment
+
         return view;
     }
 }

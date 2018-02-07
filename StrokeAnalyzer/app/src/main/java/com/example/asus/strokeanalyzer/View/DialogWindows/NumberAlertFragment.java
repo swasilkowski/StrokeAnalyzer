@@ -12,6 +12,8 @@ import com.example.asus.strokeanalyzer.R;
  * Klasa będąca rozszerzeniem klasy {@link DialogFragment}. Wykorzystywana jest w celu poinformowania użytkownika,
  * iż próbuje on dodać pacjenta o takim samym numerze, jak już istniejący pacjent w aplikacji.
  * Do stworzenia instancji tego okna dialogowego należy wykorzystać metodę {@link NumberAlertFragment#newInstance}.
+ *
+ * @author Marta Marciszewicz
  */
 public class NumberAlertFragment extends DialogFragment {
 
@@ -23,7 +25,6 @@ public class NumberAlertFragment extends DialogFragment {
         void onDialogNumberNegativeClick(android.support.v4.app.DialogFragment dialog);
     }
 
-    // Use this instance of the interface to deliver action events
     /**
      * Obiekt odpowiadający za kontrolowanie akcji przycisków okna dialogowego.
      */
@@ -54,14 +55,13 @@ public class NumberAlertFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.number_alert_title)
                 .setView(R.layout.fragment_number_alert)
                 .setPositiveButton(R.string.ok_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //generate report
+
                         _listener.onDialogNumberPositiveClick(NumberAlertFragment.this);
 
                     }
@@ -69,12 +69,9 @@ public class NumberAlertFragment extends DialogFragment {
                 .setNegativeButton(R.string.cancel_bt, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        // User cancelled the dialog
-                        // Send the negative button event back to the host activity
                         _listener.onDialogNumberNegativeClick(NumberAlertFragment.this);
                     }
                 });
-        // Create the AlertDialog object and return it
         return builder.create();
     }
 

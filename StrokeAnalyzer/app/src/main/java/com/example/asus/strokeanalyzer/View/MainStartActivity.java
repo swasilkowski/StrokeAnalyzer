@@ -15,6 +15,8 @@ import com.example.asus.strokeanalyzer.View.Patient.PatientsListFragment;
  * Klasa stanowiąca rozszerzenie klasy {@link AppCompatActivity}. Jest to główna i jedyna aktywność w aplikacji.
  * Wyświetlane są w niej fragmenty reprezentujące poszczególne ekrany aplikacji. Jednocześnie stanowi ona
  * ekran startowy aplikacji.
+ *
+ * @author Marta Marciszewicz
  */
 public class MainStartActivity extends AppCompatActivity{
 
