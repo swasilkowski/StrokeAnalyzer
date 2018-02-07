@@ -120,7 +120,7 @@ public class ResultsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_results, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
-        
+
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
         if(activity!=null)
         {

@@ -20,10 +20,10 @@
     <string name="view_ct_pictures">Zdjęcia TK</string>
     <string name="wrong_answers_text">Czynniki wykluczające z leczenia:</string>
     <string name="score_text">Suma punktów:</string>
-    <string name="dragon_good_outcome_text">Prawdopodobieństwo powodzenia:</string>
-    <string name="dragon_miserable_outcome_text">Prawdopodobieństwo niepowodzenia:</string>
-    <string name="hat_fatalICH_text">Ryzyko wystąpienia śmiertelnego krwotoku śródmózgowego:</string>
-    <string name="hat_symptomaticICH_text">Ryzyko wystąpienia objawowego krwotoku śródmózgowego:</string>
+    <string name="dragon_good_outcome_text">Prawdopodobieństwo powodzenia (%):</string>
+    <string name="dragon_miserable_outcome_text">Prawdopodobieństwo niepowodzenia (%):</string>
+    <string name="hat_fatalICH_text">Ryzyko wystąpienia śmiertelnego krwotoku śródmózgowego (%):</string>
+    <string name="hat_symptomaticICH_text">Ryzyko wystąpienia objawowego krwotoku śródmózgowego (%):</string>
     <string name="iscore_30days">Prognoza na 30 dni:</string>
     <string name="iscore_1year">Prognoza na 1 rok:</string>
     <string name="iscore_treatment">Wskazania do leczenia trombolitycznego (według skali iScore):</string>

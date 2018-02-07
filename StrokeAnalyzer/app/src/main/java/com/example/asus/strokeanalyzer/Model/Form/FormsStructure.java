@@ -91,7 +91,6 @@ public final class FormsStructure {
         LinkedList<Integer> questionsUsedForDragon = new LinkedList<>();
         LinkedList<Integer> questionsUsedForStrokeBricks = new LinkedList<>();
 
-        //NIHSS zrodlo: http://www.medistudent.pl/img/neurologia/skale/skala_nihss.pdf
         int id = 101;
         Map<Integer, String> answers101 = new Hashtable<>();
         answers101.put(0, "Czuwa. Żywa reakcja na bodźce.");
