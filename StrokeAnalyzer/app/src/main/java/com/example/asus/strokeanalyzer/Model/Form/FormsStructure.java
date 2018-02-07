@@ -414,7 +414,7 @@ public final class FormsStructure {
         questionsUsedForThrombolysis.add(id);
 
         id = 309;
-        TrueFalseQuestion question309 = new TrueFalseQuestion(id, "przebyte lub czynne uszkodzenie OUN (np. choroba nowotworowa, tętniak, przebyte zabiegi chirurgiczne z otwarciem czaszki, operacje kręgosłupa", QuestionStrength.MIDSTRONG);
+        TrueFalseQuestion question309 = new TrueFalseQuestion(id, "przebyte lub czynne uszkodzenie OUN (np. choroba nowotworowa, tętniak, przebyte zabiegi chirurgiczne z otwarciem czaszki, operacje kręgosłupa)", QuestionStrength.MIDSTRONG);
         questionsUsedForThrombolysis.add(id);
 
         id = 310;

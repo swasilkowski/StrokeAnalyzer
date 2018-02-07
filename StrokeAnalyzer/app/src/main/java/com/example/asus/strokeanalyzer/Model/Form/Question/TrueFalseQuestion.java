@@ -1,7 +1,5 @@
 package com.example.asus.strokeanalyzer.Model.Form.Question;
 
-import android.support.constraint.solver.widgets.ConstraintAnchor;
-
 import com.example.asus.strokeanalyzer.Model.EnumValues.QuestionStrength;
 
 /**
