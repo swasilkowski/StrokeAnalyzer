@@ -112,6 +112,7 @@ public class CTPicturesFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_ctpictures, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.pictureBackground, null));
+        view.setClickable(true);
 
         //set action bar
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
