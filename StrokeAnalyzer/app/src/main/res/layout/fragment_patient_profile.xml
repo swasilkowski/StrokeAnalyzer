@@ -14,6 +14,7 @@
         android:id="@+id/patientNameShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textSize="@dimen/menu_text_name"
         style="@style/HugeText"/>
 
@@ -21,6 +22,7 @@
         android:id="@+id/patientNumberShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textSize="@dimen/menu_text_number"
         style="@style/SmallText"/>
 

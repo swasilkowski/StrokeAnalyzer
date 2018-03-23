@@ -122,6 +122,7 @@ public class NihssExaminationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_nihss_examination, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
+        view.setClickable(true);
 
         //set action bar
         AppCompatActivity activity = ((AppCompatActivity) getActivity());

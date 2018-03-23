@@ -121,6 +121,8 @@ public class PatientProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_patient_profile, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
+        view.setClickable(true);
+
 
         PatientService patientService = new PatientService(view.getContext());
         patient = patientService.GetPatientById(patientID);

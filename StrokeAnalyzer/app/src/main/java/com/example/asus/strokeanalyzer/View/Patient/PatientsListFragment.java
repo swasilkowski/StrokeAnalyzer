@@ -79,6 +79,8 @@ public class PatientsListFragment extends Fragment  {
 
         View view = inflater.inflate(R.layout.fragment_patients_list, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
+        view.setClickable(true);
+
 
         //set action bar
         AppCompatActivity activity = ((AppCompatActivity) getActivity());

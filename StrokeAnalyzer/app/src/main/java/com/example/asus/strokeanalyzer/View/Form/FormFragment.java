@@ -176,6 +176,7 @@ public class FormFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_form, container, false);
         view.setBackgroundColor(getResources().getColor(R.color.colorBackground, null));
+        view.setClickable(true);
 
         //set action bar
         AppCompatActivity activity = ((AppCompatActivity) getActivity());
